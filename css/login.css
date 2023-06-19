@@ -161,7 +161,7 @@ input{
     margin-bottom: 0.5rem;
 }
 
-input#email, input#password{
+input.inputfield{
     width:50%;
     font-size: 1.2rem;
     margin-bottom: 2rem;
