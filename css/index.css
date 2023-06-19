@@ -1,0 +1,101 @@
+@font-face {
+    font-family: Hero-Regular;
+    src: url(Hero-Regular.ttf);
+}
+
+body {
+    background-color: #fafafa;
+}
+
+/*center the header div that contains a h1*/
+
+.container {
+    display: flex;
+    flex-direction: column;
+  }
+  .header {
+    text-align: center;
+    font-family: Hero-Regular;
+    text-transform: uppercase;
+    color: #423F32;
+    border: 1px solid black;
+    width: 60%;
+    position: relative;
+    margin: auto;
+  }
+  .content {
+    display: flex;
+    margin-top: 50px;
+  }
+
+  .map {
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border: 2px solid brown;
+  }
+
+  .map img {
+    flex-shrink: 0;
+    min-width: 100%;
+    min-height: 100%
+  }
+
+  .search-container {
+    background-color: #409462;
+    border-radius: 30px;
+    padding: 20px;
+    padding-top: 0px;
+    width: 100%;
+    max-width: 600px;
+    flex-direction: column;
+  }
+
+  .search-form {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    width: 100%;
+    max-width: 600px;
+    margin-top: 20px;
+    border-radius: 30px;
+    overflow: hidden;
+    background-color: white;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+  }
+  
+  .search-form input[type="text"] {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    outline: none;
+  }
+  
+  .search-form button[type="submit"] {
+    padding: 20px;
+    background-color: #CCD5AE;
+    border: none;
+    outline: none;
+    color: #fff;
+    font-size: 1rem;
+    border-radius: 0 30px 30px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+  }
+  
+  .search-form button[type="submit"]:hover {
+    cursor: pointer;
+  }
+
+ .buttons button {
+    display: flex;
+    flex-direction: column;
+    border-radius: 30px;
+    background-color: white;
+    width: 100%;
+    max-width: 600px;
+    margin-top: 20px;
+    padding: 20px;
+  }
