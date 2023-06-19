@@ -136,14 +136,29 @@ div.content {
     
   }
 
+  /*buttons, search, and map*/
+  .content {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .search-box {
+    width: 50%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+  }
+
   .search-container {
-    background-color: #409462;
+    background-color: white;
     border-radius: 30px;
     padding: 20px;
     padding-top: 0px;
     width: 100%;
     max-width: 600px;
-    flex-direction: column;
     margin: auto;
   }
 
@@ -155,7 +170,7 @@ div.content {
     margin-top: 20px;
     border-radius: 30px;
     overflow: hidden;
-    background-color: white;
+    background-color: #fff;
     box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
   }
   
@@ -167,8 +182,8 @@ div.content {
   }
   
   .search-form button[type="submit"] {
-    padding: 20px;
-    background-color: #CCD5AE;
+    padding: 10px;
+    background-color: var(--secondary);
     border: none;
     outline: none;
     color: #fff;
@@ -183,16 +198,10 @@ div.content {
   .search-form button[type="submit"]:hover {
     cursor: pointer;
   }
-
- .buttons button {
-    display: flex;
-    flex-direction: column;
-    border-radius: 30px;
-    background-color: white;
-    width: 100%;
-    max-width: 600px;
-    margin-top: 20px;
-    padding: 20px;
+  .map-container iframe {
+    width: 900px;
+    height: 450px;
+    border: 1px solid brown;
   }
 
 
