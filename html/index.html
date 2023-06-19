@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,18 +8,48 @@
     <title>cafebara | Home</title>
     <link rel = "stylesheet" href = "../css/index.css">
 </head>
-    <body>
-        <nav>
-            <div class = "nav-left">
-                <img src = "../images/2logo.png">
-                <span class = "nav-title"><a href = "index.html">cafebara</a></span>
+    
+    <link rel="stylesheet" href="/css/index.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <title>CafeBara</title>
+</head>
+
+<body>
+    <nav>
+        <div class = "nav-left">
+            <img src = "../images/2logo.png">
+            <span class = "nav-title"><a href = "index.html">cafebara</a></span>
+        </div>
+        <div class = "nav-right">
+            <a href = "index.html" class = "active"><span class = "nav-buttons">Home</span></a>
+            <a href = "review.html" class = "inactive"><span class = "nav-buttons">review</span></a>
+            <a href = "about.html" class = "inactive"><span class = "nav-buttons">about</span></a>
+            <a href = "login.html" class = "login"><span class = "nav-buttons">login</span></a>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="header">
+            <div>
+                <h1>Explore user-reviewed cafes, bars, milktea, study lounge reviews here</h1>
             </div>
-            <div class = "nav-right">
-                <a href = "index.html" class = "active"><span class = "nav-buttons">Home</span></a>
-                <a href = "review.html" class = "inactive"><span class = "nav-buttons">review</span></a>
-                <a href = "about.html" class = "inactive"><span class = "nav-buttons">about</span></a>
-                <a href = "login.html" class = "login"><span class = "nav-buttons">login</span></a>
+        </div>
+        <div class="content">
+            <div class="map">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d3861.5812564799917!2d120.99327701950892!3d14.565922441693658!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1scafes!5e0!3m2!1sen!2sph!4v1687173826560!5m2!1sen!2sph" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
-        </nav>
-    </body>
+            <div class="search-container">
+                <form class="search-form">
+                    <input type="text" name="search" placeholder="Search">
+                    <button type="submit"><i class="fas fa-search"></i></button>
+                </form>
+                <div class="buttons">
+                    <button id="cafe-btn">Cafe</button>
+                    <button id="milktea-btn">Milktea</button>
+                    <button id="bars-btn">Bars</button>
+                    <button id="study-btn">Study Lounge</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
 </html>
