@@ -87,23 +87,38 @@ body {
 
 /*center the header div that contains a h1*/
 
-.container {
+div.container {
     display: flex;
     flex-direction: column;
   }
-  .header {
+
+div.header {
     text-align: center;
-    font-family: Hero-Regular;
+    font-family: var(--bodyfont);
     text-transform: uppercase;
     color: #423F32;
     border: 1px solid black;
-    width: 60%;
+    width: 34%;
     position: relative;
+    margin: 100px auto 50px;
+    overflow: visible;
+  }
+
+div.content {
+    display: flex;
+    border: 2px solid green;
+    justify-content: center;
+  }
+
+  .map {
+    display: flex;
     margin: auto;
   }
-  .content {
-    display: flex;
-    margin-top: 50px;
+
+  .map iframe {
+    width: 943.65px;
+    height: 530.7px;
+    
   }
 
   .search-container {
@@ -114,6 +129,7 @@ body {
     width: 100%;
     max-width: 600px;
     flex-direction: column;
+    margin: auto;
   }
 
   .search-form {
