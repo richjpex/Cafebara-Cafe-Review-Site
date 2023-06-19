@@ -5,8 +5,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>cafebara | Sign In</title>
-    <link rel = "stylesheet" href = "../css/login.css">
+    <title>cafebara | Register</title>
+    <link rel = "stylesheet" href = "../css/login.css">    
+    <link rel="stylesheet" href="../css/register.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src = "../scripts/register.js" defer></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 </head>
 
@@ -25,13 +28,13 @@
     </nav>
     <div class="container">
         <div class = "header">
-            <div class = "header-signin active">
+            <div class = "header-signin inactive">
                 <a href = "login.html">
                     <img src = "../images/login.png">
                     <h3>Sign In</h3>
                 </a>
             </div>
-            <div class = "header-register inactive">
+            <div class = "header-register active">
                 <a href = "register.html">
                     <img src = "../images/register.png">
                     <h3>Register</h3>
@@ -40,13 +43,33 @@
         </div>
         <br>
         <div class = "form-wrapper">
-            <form name = "login">
-                <label for="email">Email</label><br>
+            <form name = "login" id = "registerform">
+                <label for="usertype">User Type</label><br>
+                <select name = "usertype" id = "usertype" class = "inputfield">
+                    <option value = "customer" selected>Customer</option>
+                    <option value = "owner">Establishment Owner</option>
+                </select> 
+                <!-- 
+                // first name
+                // last name
+                // age
+                // email
+                // password
+                // confirm password
+
+                //if owner
+                //establishment name
+                //establishment address
+                //establishment contact number
+                //type (bar/cafe)
+
+
+                <label for="email">First Name</label><br>
                 <input type="email" class = "inputfield" name="email" required><br>
                 <label for="password">Password</label><br>
                 <input type="password" class = "inputfield" name="password" required>
                 <br>
-                <input type = "button" id = "submit" name = "submit" value = "Sign In">
+                <input type = "button" id = "submit" name = "submit" value = "Sign In"> -->
             </form>
         </div>
     </div>

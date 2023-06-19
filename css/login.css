@@ -88,7 +88,9 @@ nav a{
 
 
 div.container {
-    text-align: center;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
     font-family: var(--headfont);
     color: #423F32;
     border: 1px solid black;
@@ -105,6 +107,9 @@ div.container {
     display: flex;
     background-color: yellow;
     justify-content: center;
+    width: 100%;
+    align-items: center;
+    text-align: center;
 }
 
 .header-signin{
@@ -150,7 +155,7 @@ div.inactive a, div.active a{
 
 label{
     font-weight:700;
-    font-size: 1.2rem;
+    font-size: 1rem;
 }
 
 input{
@@ -158,13 +163,12 @@ input{
     padding: 0 1rem;
     height: 1.8rem;
     margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
 }
 
 input.inputfield{
-    width:50%;
+    width:85%;
     font-size: 1.2rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
 }
 
 input#submit{
@@ -183,4 +187,10 @@ input#submit:hover{
     cursor: pointer;
     filter: brightness(120%);
     box-shadow: 0px 0px 2px 2px #3b3d2b;
+}
+
+.form-wrapper{
+    text-align: left;
+    width: 50%;
+    border: 1px solid black;
 }
