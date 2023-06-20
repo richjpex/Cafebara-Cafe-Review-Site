@@ -20,7 +20,7 @@
             <span class = "nav-title">cafebara </span>
         </a></div>
         <div class = "nav-right">
-            <a href = "index.html" class = "active">Home</a>
+            <a href = "index.html" class = "inactive">Home</a>
             <a href = "review.html" class = "inactive">review</a>
             <a href = "about.html" class = "inactive">about</a>
             <a href = "login.html" class = "login">login</a>
@@ -46,9 +46,11 @@
             <form name = "login" id = "registerform">
                 <label for="usertype">User Type</label><br>
                 <select name = "usertype" id = "usertype" class = "inputfield">
-                    <option value = "customer" selected>Customer</option>
+                    <option value = "none" selected disabled hidden>Select User Type</option>
+                    <option value = "customer">Customer</option>
                     <option value = "owner">Establishment Owner</option>
-                </select> 
+                </select>
+                <div id = "inputform"></div>
                 <!-- 
                 // first name
                 // last name
