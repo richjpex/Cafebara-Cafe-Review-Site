@@ -7,7 +7,11 @@
     --fivenary: #d4a373;
     --headfont: 'Helvetica', sans-serif;
 }
-
+body {
+    background-image: url('../images/leaf_bg.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
 nav{
     background-color: var(--primary);
     position: fixed;
@@ -88,10 +92,11 @@ nav a{
 
 
 div.container {
-    text-align: center;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
     font-family: var(--headfont);
     color: #423F32;
-    border: 1px solid black;
     width: 30rem;
     position: relative;
     margin: 15rem auto 50px;
@@ -105,6 +110,9 @@ div.container {
     display: flex;
     background-color: yellow;
     justify-content: center;
+    width: 100%;
+    align-items: center;
+    text-align: center;
 }
 
 .header-signin{
@@ -150,21 +158,20 @@ div.inactive a, div.active a{
 
 label{
     font-weight:700;
-    font-size: 1.2rem;
+    font-size: 18px;
 }
 
-input{
-    border-radius: 10px;
-    padding: 0 1rem;
-    height: 1.8rem;
+input, select{
+    border-radius: 5px;
+    padding: 0 4px;
+    height: 32px;
     margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
+    border: 1px solid var(--primary);
+    font-size: 17px;
 }
 
 input.inputfield{
-    width:50%;
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
 }
 
 input#submit{
@@ -183,4 +190,21 @@ input#submit:hover{
     cursor: pointer;
     filter: brightness(120%);
     box-shadow: 0px 0px 2px 2px #3b3d2b;
+}
+
+.form-wrapper{
+    text-align: left;
+    width: 75%;
+}
+
+#buton{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.singlebox{
+    display: flex;
+    flex-direction: column;
+    padding: 0;
 }

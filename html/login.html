@@ -17,7 +17,7 @@
             <span class = "nav-title">cafebara </span>
         </a></div>
         <div class = "nav-right">
-            <a href = "index.html" class = "active">Home</a>
+            <a href = "index.html" class = "inactive">Home</a>
             <a href = "review.html" class = "inactive">review</a>
             <a href = "about.html" class = "inactive">about</a>
             <a href = "login.html" class = "login">login</a>
@@ -39,14 +39,21 @@
             </div>
         </div>
         <br>
-        <form name = "login">
-            <label for="email">Email</label><br>
-            <input type="email" class = "inputfield" name="email" required><br>
-            <label for="password">Password</label><br>
-            <input type="password" class = "inputfield" name="password" required>
-            <br>
-            <input type = "button" id = "submit" name = "submit" value = "Sign In">
-        </form>
+        <div class = "form-wrapper">
+            <form name = "login">
+                <div class = "singlebox">
+                    <label for="email">Email</label>
+                    <input type="email" class = "inputfield" placeholder = "Enter your email" id = "email" name="email" required>
+                </div>
+                <div class = "singlebox">
+                    <label for="password">Password</label>
+                    <input type="password" class = "inputfield" placeholder = "Enter your password" id = "password" name="password" required>
+                </div>
+                <div id = "buton">
+                    <input type = "button" id = "submit" name = "submit" value = "Sign In">
+                </div>
+            </form>
+        </div>
     </div>
 </body>
 </html>
