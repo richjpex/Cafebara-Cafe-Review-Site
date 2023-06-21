@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded",function() {
     const formElement = document.forms.login;
     let formData = new FormData(formElement);
-
     const owner = "owner";
     const customer = "customer";
     
@@ -32,7 +31,7 @@ document.addEventListener("DOMContentLoaded",function() {
     function displayCustomerRegistration(){
 
         const form = document.querySelector("#inputform");
-
+        const profilepic = createProfilePicInput();
         const namefield = createNameInputs();
         const bdayfield = createBirthdayInputs();
         const email = createEmailInput();
@@ -40,7 +39,7 @@ document.addEventListener("DOMContentLoaded",function() {
         const confirm = createConfirmPasswordInput();
         const submit = createSubmitbutton();
 
-
+        form.appendChild(profilepic);
         form.appendChild(namefield);
         form.appendChild(bdayfield);
         form.appendChild(email);
@@ -314,5 +313,21 @@ document.addEventListener("DOMContentLoaded",function() {
         $(namewrapper).append(fnamediv);
         $(namewrapper).append(lnamediv);
         return namewrapper;
+    }
+
+    function createProfilePicInput(){
+        const profilepicdiv = document.createElement("div");
+        const profilepiclabel = document.createElement("label");
+        const profilepic = document.createElement("input");
+
+        profilepiclabel.innerHTML = "Upload Profile Picture";
+        profilepic.setAttribute("type","file");
+        profilepic.setAttribute("name","profilepic");
+        profilepic.setAttribute("id","profilepic");
+
+        profilepicdiv.appendChild(profilepiclabel);
+        profilepicdiv.appendChild(profilepic);
+
+        return profilepicdiv;
     }
 });
