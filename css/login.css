@@ -193,3 +193,7 @@ input#submit:hover{
     flex-direction: column;
     padding: 0;
 }
+
+label{
+    margin-bottom: 0;
+}
