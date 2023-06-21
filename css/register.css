@@ -1,0 +1,63 @@
+.singleboxwrapper{
+    display: flex;
+    justify-content: space-between;
+    overflow: hidden;
+}
+
+.singlebox{
+    margin-top: 10px;
+}
+
+.doubleboxwrapper{
+    display: flex;
+    justify-content: space-between;
+    overflow: hidden;
+}
+
+.doubleboxlayer{
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+}
+
+.doubleboxlayer input{
+    width: 160px;
+}
+
+.tripleboxwrapper{
+    display: flex;
+    gap: 15px;
+}
+
+.tripleboxlayer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+}
+
+#daydiv{
+    width: 55px;
+}
+
+#monthdiv{
+    width: 170px;
+}
+
+#monthdiv select{
+    width: 100%;
+}
+
+#yeardiv{
+    width: 120px;
+}
+
+#inputform{
+    margin-top: 10px;
+}
+
+#usertype{
+    width: 100%;
+}

@@ -5,54 +5,218 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+
     <title>cafebara | Home</title>
-    <link rel = "stylesheet" href = "../css/index.css">
-</head>
+
+    <!-- Bootstrap css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     
-    <link rel="stylesheet" href="/css/index.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-    <title>CafeBara</title>
+    <!-- Our css -->
+    <link rel = "stylesheet" href = "../css/index.css">
+   
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    
+    <!-- adding Bootstrap scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </head>
 
 <body>
-    <nav>
-        <div class = "nav-left"><a href = "index.html">
-            <img src = "../images/2logo.png">
-            <span class = "nav-title">cafebara </span>
-        </a></div>
-        <div class = "nav-right">
-            <a href = "index.html" class = "active">Home</a>
-            <a href = "review.html" class = "inactive">review</a>
-            <a href = "about.html" class = "inactive">about</a>
-            <a href = "login.html" class = "login">login</a>
-        </div>
-    </nav>
-    <!-- container main-->
-    <div class="container">
-        <div class="header">
-            <div>
-                <h1>Explore user-reviewed cafes, bars, milktea, study lounge reviews here</h1>
-            </div>
-        </div>
-        <!-- content part-->
-        <div class="content">
-            <div class="map">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d3861.5812564799917!2d120.99327701950892!3d14.565922441693658!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1scafes!5e0!3m2!1sen!2sph!4v1687173826560!5m2!1sen!2sph" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </div>
-            <div class="search-container">
-                <form class="search-form">
-                    <input type="text" name="search" placeholder="Search">
-                    <button type="submit"><i class="fas fa-search"></i></button>
-                </form>
-                <div class="buttons">
-                    <button id="cafe-btn">Cafe</button>
-                    <button id="milktea-btn">Milktea</button>
-                    <button id="bars-btn">Bars</button>
-                    <button id="study-btn">Study Lounge</button>
-                </div>
-            </div>
-        </div>
-        <!-- content part end-->
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <a class="navbar-brand" href="#"><img src = "../images/2logo.png" id = "logo">
+      <span id = "headername">cafebara</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item inactive">
+          <a class="nav-link" href="#">Review</a>
+        </li>
+        <li class="nav-item inactive">
+          <a class="nav-link" href="#">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id = "login" href="#">login</a>
+        </li>
+      </ul>
     </div>
+  </nav>
+
+    <!-- 
+      BEGINNING OF MAIN CONTAINER
+
+      Notes:  I made it container sm and userCon
+              so that it inherits the properties of Bootstrap fluid
+    -->
+    <div class="container-sm userCon">
+      
+      <!--
+        This is the search bar with the picture.
+      -->
+      <div class="search-container">
+        <form class="search-form">
+            <input type="text" name="search" placeholder="Search...">
+            <button type="submit"><i class="fas fa-search"></i></button>
+        </form>
+      </div>
+
+      <div class="container-sm listCon"">
+        <div class="listInfo">
+          <h1>View all cafes around Taft Avenue</h1>
+          <p>Can't decide where to go? We got you!</p>
+          <a href="cafes.html" class="view-btn">See List</a>
+        </div>
+      </div>
+
+      <!--
+        Title for Recommended
+      -->
+      <div class="container-sm">
+        <h3 class="recommended">
+          NEWLY OPENED AROUND TAFT
+        </h3>
+        <p class="recommended">
+          Recommended
+        </p>
+      </div>
+      
+      <!--
+        Beginning of the Carousel for Newly Opened around Taft
+      -->
+      <div class="wrapper">
+
+          <i id="left" class="fa-solid fa-angle-left"></i>
+
+          <ul class="carousel">
+            <li class="card cardui">
+              <img class="card-img-top" src="../images/cafes/bigboss.jpeg" alt="img" draggable="false">
+
+              <div class="card-body">
+                <h2 class="card-title">Big Boss</h2>
+                <p class="card-text">Avg. Price: ₱250.00</p>
+              </div>
+            </li>
+
+            <li class="card cardui">
+              <img class="card-img-top" src="../images/cafes/bos.jpeg" alt="img" draggable="false">
+
+              <div class="card-body">
+                <h2 class="card-title">Bo's Coffee</h2>
+                <p class="card-text">Avg. Price: ₱200.00</p>
+              </div>
+            </li>
+
+            <li class="card cardui">
+              <img class="card-img-top" src="../images/cafes/coffee-project.jpeg" alt="img" draggable="false">
+
+              <div class="card-body">
+                <h2 class="card-title">Coffee Project</h2>
+                <p class="card-text">Avg. Price: ₱300.00</p>
+              </div>
+            </li>
+
+            <li class="card cardui">
+              <img class="card-img-top" src="../images/cafes/nitro7.jpeg" alt="img" draggable="false">
+              
+              <div class="card-body">
+                <h2 class="card-title">Nitro 7 Coffee & Tea Bar</h2>
+                <p class="card-text">Avg. Price: ₱190.00</p>
+              </div>
+            </li>
+
+            <li class="card cardui">
+              <img class="card-img-top" src="../images/cafes/obscure.jpg" alt="img" draggable="false">
+
+              <div class="card-body">
+                <h2 class="card-title">Obscure</h2>
+                <p class="card-text">Avg. Price: ₱220.00</p>
+              </div>
+            </li>
+
+            <li class="card cardui">
+              <img class="card-img-top" src="../images/cafes/starbs.jpg" alt="img" draggable="false">
+
+              <div class="card-body">
+                <h2 class="card-title">Starbucks Green Court</h2>
+                <p class="card-text">Avg. Price: ₱350.00</p>
+              </div>
+            </li>
+
+          </ul>
+
+          <i id="right" class="fa-solid fa-angle-right"></i>
+
+          
+      </div>
+    </div>
+
+
+    <!-- Footer -->
+    <footer class="bg-dark text-center text-white">
+      <!-- Grid container -->
+      <div class="container p-4">
+        <!-- Section: Social media -->
+        <section class="mb-4">
+          <!-- Facebook -->
+          <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+            ><i class="fab fa-facebook-f"></i
+          ></a>
+
+          <!-- Twitter -->
+          <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+            ><i class="fab fa-twitter"></i
+          ></a>
+
+          <!-- Google -->
+          <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+            ><i class="fab fa-google"></i
+          ></a>
+
+          <!-- Instagram -->
+          <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+            ><i class="fab fa-instagram"></i
+          ></a>
+
+          <!-- Linkedin -->
+          <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+            ><i class="fab fa-linkedin-in"></i
+          ></a>
+
+          <!-- Github -->
+          <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+            ><i class="fab fa-github"></i
+          ></a>
+        </section>
+        <!-- Section: Social media -->
+
+        
+        <!-- Section: Text -->
+        <section class="mb-4">
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt distinctio earum
+            repellat quaerat voluptatibus placeat nam, commodi optio pariatur est quia magnam
+            eum harum corrupti dicta, aliquam sequi voluptate quas.
+          </p>
+        </section>
+        <!-- Section: Text -->
+
+      </div>
+      <!-- Grid container -->
+
+      <!-- Copyright -->
+      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        © 2023 Copyright:
+        <a class="text-white" href="#">Cafebara</a>
+      </div>
+      <!-- Copyright -->
+    </footer>
+    <!-- Footer -->
 </body>
 </html>
