@@ -17,6 +17,7 @@ body {
   background-size: cover;
 }
 
+/*NAVBAR*/
 nav{
     background-color: var(--primary);
     position: fixed;
