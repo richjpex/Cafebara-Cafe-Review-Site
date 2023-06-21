@@ -11,92 +11,65 @@
 
 }
 
+#logo{
+  width: 45px;
+  border-radius: 50%;
+  margin-left:3vw;
+}
+
 body {
   background-image: url('/images/leaf_bg.png');
   background-repeat: no-repeat;
   background-size: cover;
 }
 
-/*NAVBAR*/
-nav{
-    background-color: var(--primary);
-    position: fixed;
-    width: 100%;
-    top:0;
-    left:0;
-    display: flex;
-    flex-direction: row;
-    margin: auto;
-    justify-content: space-between;
-    z-index: 1;
+#headername{
+  font-family: var(--headfont);
+  font-size: 2rem;
+  color: var(--secondary);
+  margin-left: 0.3vw;
+  align-self: center;
+  vertical-align: middle;
+  font-weight: 700;
 }
 
-nav a{
-    text-decoration: none;
-    color: var(--secondary);
+#navbarNavDropdown{
+  justify-content: flex-end;
+  margin-right:4vw;
 }
 
-.nav-title{
-    font-family: var(--headfont);
-    font-size: 2rem;
-    
-}
- 
-.nav-right{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: 4vw;
-    font-family: var(--headfont);
-    font-weight: 300;
-    gap: 1rem;
+
+.nav-link{
+  text-transform: uppercase;
+  width: 7em;
+  padding: 1.5em 0 1.5em 0;
+  box-sizing: border-box;
+  text-align: center;
+  font-weight: 600;
 }
 
-.nav-left{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem;
-    margin-left:4vw;
+a#login{
+  text-transform: lowercase;
+  background-color: var(--fivenary);
+  margin: 1.3em 0 1.3em 0;
+  padding: 0.2em 0 0.2em 0;
+  border-radius: 2em;
+  color:white;
 }
 
-.nav-left a{
-    display:flex;
-    justify-content: center;
-    align-items: center;
+.active{
+  box-shadow: inset 0 3px var(--secondary);
 }
 
-.nav-left img{
-    width: 3.5rem;
-    border-radius: 50%;
-    margin-right: 1rem;
+.inactive:hover{
+  box-shadow: inset 0 3px var(--secondary);
 }
 
-.nav-right a.login{
-    text-transform: lowercase;
-    color:white;
-    padding: 0.5rem 2.2vw;
-    background-color: var(--fivenary);
-    border-radius: 1.5rem;
+.navbar{
+  background-color: var(--primary);
+  padding: 0 16px;
 }
 
-.nav-right a{
-    border-top: 0.5rem solid var(--primary);
-    border-left: 0;
-    border-right: 0;
-    border-bottom: 0.5rem solid var(--primary);
-    box-sizing: border-box;
-    text-transform: uppercase;
-    text-align: center;
-}
-
-.nav-right .active, .inactive{
-    padding: 1.7rem 1.5vw;
-}
-
-.nav-right a.inactive:hover, .nav-right a.active{
-    border-top: 0.5rem solid var(--secondary);
-}
 
 body {
     background-color: #fafafa;
