@@ -8,6 +8,7 @@
     --fivenary: #d4a373;
     --sexanary: #423F32;
     --headfont: 'Merriweather Sans', sans-serif;
+    --secondaryfont: 'Ubuntu Condensed', sans-serif;
 
 }
 
@@ -85,7 +86,7 @@ div.userCon {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 10em;
+  margin-top: 4.8em;
 }
 
 div.userCon div {
@@ -93,14 +94,14 @@ div.userCon div {
 }
 
 /* search bar */
-.search-container {
+div.search-container{
   background-image: url('../images/cafebg2.jpg');
   display: flex;
   position: relative;
   justify-content: center;
   height: 100%;
-  width: 100%;
-  padding: 100px;
+  width: 130%;
+  padding: 150px;
   background-size: 100%;
   background-repeat: no-repeat;
   background-position: center;
@@ -143,6 +144,57 @@ div.userCon div {
   cursor: pointer;
 }
 
+
+/*list container*/
+div.listCon {
+  display: flex;
+  flex-direction: column;
+  outline: 2px solid blue;
+  background-image: url(../images/list-bg.jpeg);
+  height: 100%;
+  width: 100%;
+  padding-top: 400px;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  font-family: var(--secondaryfont);;
+}
+
+.listInfo {
+  background: rgba(0, 0, 0, .4);
+}
+
+.listInfo h1, p {
+  color: white
+}
+
+.listInfo button {
+  left: 0;
+  width: 20%;
+  border-radius: 50%;
+}
+
+.view-btn {
+  border: none;
+  background-color: white;
+  color: var(--sexanary);
+  border-radius: 50px;
+  padding: 10px 40px;
+  font-size: 16px;
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
+  text-decoration: none;
+  margin-bottom: 10px;
+}
+
+.view-btn:focus {
+  outline: none;
+}
+
+.view-btn:hover {
+  background-color: #0069d9;
+}
 
 /*recommended section*/
 .wrapper {
@@ -227,11 +279,11 @@ div.userCon div {
 }
 .carousel .cardui h2 {
   font-weight: 500;
-  font-size: 1.56rem;
+  font-size: 1.48rem;
 }
 .carousel .cardui p {
   color: #6A6D78;
-  font-size: 1.31rem;
+  font-size: 1.11rem;
 }
 
 @media screen and (max-width: 900px) {
