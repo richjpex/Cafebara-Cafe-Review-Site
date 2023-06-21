@@ -299,7 +299,7 @@ div.userCon div {
 
 #map { 
     height: 150vh; 
-    width: 105%;
+    width: 100%;
     z-index: 0;
     margin: 0;
     outline: 1px solid black;
