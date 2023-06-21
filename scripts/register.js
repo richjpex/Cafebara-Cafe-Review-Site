@@ -21,6 +21,7 @@ document.addEventListener("DOMContentLoaded",function() {
         }
         else if(usertype == owner){
             clearForm();
+            displayOwnerRegistration();
         }
     }
 
@@ -46,6 +47,45 @@ document.addEventListener("DOMContentLoaded",function() {
         form.appendChild(pass);
         form.appendChild(confirm);
         form.appendChild(submit);
+    }
+
+    function displayOwnerRegistration(){
+        const form = document.querySelector("#inputform");
+        const email = createEmailInput();
+        const pass = createPasswordInput();
+        const confirm = createConfirmPasswordInput();
+        const submit = createSubmitbutton();
+        const estname = createLongTextBoxInput();
+
+        estname.childNodes[1].setAttribute("placeholder","cafebara");
+        estname.childNodes[0].innerHTML = "Establishment Name";
+
+        const estaddress = createLongTextBoxInput();
+        estaddress.childNodes[1].setAttribute("placeholder","2401 Taft Ave, Malate, Manila");
+        estaddress.childNodes[0].innerHTML = "Establishment Address";
+    
+        form.appendChild(estname);
+        form.appendChild(estaddress);
+        form.appendChild(email);
+        form.appendChild(pass);
+        form.appendChild(confirm);
+        form.appendChild(submit);
+
+    }
+
+    function createLongTextBoxInput(){
+        const div = document.createElement("div");
+        const label = document.createElement("label");
+        const input = document.createElement("input");
+
+        div.setAttribute("class","singlebox");
+        input.setAttribute("type","text");
+        input.setAttribute("name","name");
+        input.setAttribute("placeholder","John Doe");
+        div.appendChild(label);
+        div.appendChild(input);
+
+        return div;
     }
 
     function createSubmitbutton(){
