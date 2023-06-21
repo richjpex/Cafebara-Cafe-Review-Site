@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cafebara | Home</title>
+    <link rel="stylesheet" href="../css/index.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <script src="../scripts/index-carousel.js" defer></script>
+</head>
+
+<body>
+    <nav>
+        <div class = "nav-left"><a href = "index.html">
+            <img src = "../images/2logo.png">
+            <span class = "nav-title">cafebara </span>
+        </a></div>
+        <div class = "nav-right">
+            <a href = "index.html" class = "active">Home</a>
+            <a href = "review.html" class = "inactive">review</a>
+            <a href = "about.html" class = "inactive">about</a>
+            <a href = "login.html" class = "login">login</a>
+        </div>
+    </nav>
+
+    <!-- 
+      BEGINNING OF MAIN CONTAINER
+    -->
+    <div class="container">
+      <div class="search-container">
+        <form class="search-form">
+            <input type="text" name="search" placeholder="Search...">
+            <button type="submit"><i class="fas fa-search"></i></button>
+        </form>
+      </div>
+
+      <!-- content part end-->
+        <!-- newly opened start-->            
+        <div class="wrapper">
+            <i id="left" class="fa-solid fa-angle-left"></i>
+            <ul class="carousel">
+              <li class="card">
+                <div class="img"><img src="../images/establishments/chilltop.jpg" alt="img" draggable="false"></div>
+                <h2>Chilltop Gil Puyat</h2>
+                <span>Bar</span>
+              </li>
+              <li class="card">
+                <div class="img"><img src="../images/establishments/ellipsis.jpg" alt="img" draggable="false"></div>
+                <h2>Ellipsis</h2>
+                <span>Bar</span>
+              </li>
+              <li class="card">
+                <div class="img"><img src="../images/establishments/obscure.jpg" alt="img" draggable="false"></div>
+                <h2>Obscure</h2>
+                <span>Cafe</span>
+              </li>
+              <li class="card">
+                <div class="img"><img src="../images/establishments/outofthebox.jpg" alt="img" draggable="false"></div>
+                <h2>Out Of The Box</h2>
+                <span>Cafe</span>
+              </li>
+              <li class="card">
+                <div class="img"><img src="../images/establishments/starbs.jpg" alt="img" draggable="false"></div>
+                <h2>Starbucks Green Court</h2>
+                <span>Cafe</span>
+              </li>
+            </ul>
+            <i id="right" class="fa-solid fa-angle-right"></i>
+          </div>
+        <!-- newly opened end-->
+    </div>
+</body>
+</html>
