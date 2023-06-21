@@ -21,16 +21,16 @@
 }
 
 #headername{
-  font-family: var(--headfont);
+  font-family: var(--headfont) !important;
   font-size: 2rem;
-  color: var(--secondary);
+  color: var(--secondary) !important;
   margin-left: 0.3vw;
   align-self: center;
   vertical-align: middle;
   font-weight: 700;
 }
 
-#navbarNavDropdown{
+#navbarNav{
   justify-content: flex-end;
   margin-right:4vw;
 }
@@ -46,7 +46,7 @@ a.nav-link{
 
 a#login{
   text-transform: lowercase;
-  background-color: var(--fivenary);
+  background-color: var(--fivenary) !important;
   margin: 1.3em 0 1.3em 0;
   padding: 0.2em 0 0.2em 0;
   border-radius: 2em;
@@ -62,7 +62,7 @@ a#login{
 }
 
 nav.navbar{
-  background-color: var(--primary);
+  background-color: var(--primary) !important;
   padding: 0 16px;
 }
 
