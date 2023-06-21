@@ -41,16 +41,24 @@
       Notes:  I made it container sm and userCon
               so that it inherits the properties of Bootstrap fluid
     -->
-    <div class="container-sm userCon">
+    <div class="container-fluid userCon">
       
       <!--
         This is the search bar with the picture.
       -->
-      <div class="search-container">
+      <div class="container-fluid search-container">
         <form class="search-form">
             <input type="text" name="search" placeholder="Search...">
             <button type="submit"><i class="fas fa-search"></i></button>
         </form>
+      </div>
+
+      <div class="container-sm listCon"">
+        <div class="listInfo">
+          <h1>View all cafes around Taft Avenue</h1>
+          <p>Can't decide where to go? We got you!</p>
+          <a href="cafes.html" class="view-btn">See List</a>
+        </div>
       </div>
 
       <!--
@@ -68,7 +76,7 @@
       <!--
         Beginning of the Carousel for Newly Opened around Taft
       -->
-      <div class="wrapper">
+      <div class="container-sm wrapper">
 
           <i id="left" class="fa-solid fa-angle-left"></i>
 
@@ -78,52 +86,53 @@
 
               <div class="card-body">
                 <a href="cafes/obscure.html"><h2 class="card-title">Obscure</h2></a>
-                <p class="card-text">Cafe</p>
+                <p class="card-text">Avg. Price: ₱220.00</p>
               </div>
             </li>
 
             <li class="card cardui">
-              <img class="card-img-top" src="../images/establishments/boscoffee.jpg" alt="img" draggable="false">
+              <img class="card-img-top" src="../images/cafes/boscoffee.jpg" alt="img" draggable="false">
 
               <div class="card-body">
                 <a href="cafes/boscoffee.html"><h2 class="card-title">Bo's Coffee</h2></a>
-                <p class="card-text">Bar</p>
+                <p class="card-text">Avg. Price: ₱200.00</p>
               </div>
             </li>
 
             <li class="card cardui">
-              <img class="card-img-top" src="../images/establishments/coffeeproject.jpg" alt="img" draggable="false">
+              <img class="card-img-top" src="../images/cafes/coffeeproject.jpg" alt="img" draggable="false">
 
               <div class="card-body">
                 <a href="cafes/coffeeproject.jpg"><h2 class="card-title">Coffee Project</h2></a>
-                <p class="card-text">Cafe</p>
+                <p class="card-text">Avg. Price: ₱300.00</p>
               </div>
             </li>
 
             <li class="card cardui">
-              <img class="card-img-top" src="../images/establishments/nitro7.png" alt="img" draggable="false">
+              <img class="card-img-top" src="../images/cafes/nitro7.png" alt="img" draggable="false">
               
               <div class="card-body">
                 <a href="cafes/nitro7.html"><h2 class="card-title">Nitro 7 Coffee and Tea Bar</h2></a>
-                <p class="card-text">Cafe</p>
+                <p class="card-text">Avg. Price: ₱190.00</p>
               </div>
             </li>
 
             <li class="card cardui">
-              <img class="card-img-top" src="../images/establishments/bigboss.jpg" alt="img" draggable="false">
+              <img class="card-img-top" src="../images/cafes/bigboss.jpeg" alt="img" draggable="false">
               
               <div class="card-body">
                 <a href="cafes/bigboss.html"><h2 class="card-title">Big Boss</h2></a>
-                <p class="card-text">Cafe</p>
+                <p class="card-text">Avg. Price: ₱250.00</p>
               </div>
             </li>
 
             <li class="card cardui">
-              <img class="card-img-top" src="../images/establishments/starbs.jpg" alt="img" draggable="false">
+              <img class="card-img-top" src="../images/cafes/starbs.jpg" alt="img" draggable="false">
 
               <div class="card-body">
                 <a href="cafes/starbs.html"><h2 class="card-title">Starbucks Green Court</h2></a>
-                <p class="card-text">Cafe</p>
+                <p class="card-text">Avg. Price: ₱350.00</p>
+
               </div>
             </li>
 
@@ -137,7 +146,7 @@
 
 
     <!-- Footer -->
-    <footer class="bg-dark text-center text-white">
+    <footer class="container-fluid bg-dark text-center text-white">
       <!-- Grid container -->
       <div class="container p-4">
         <!-- Section: Social media -->

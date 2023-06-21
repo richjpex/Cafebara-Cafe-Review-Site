@@ -9,13 +9,8 @@
     --fivenary: #d4a373;
     --sexanary: #423F32;
     --headfont: 'Merriweather Sans', sans-serif;
+    --secondaryfont: 'Ubuntu Condensed', sans-serif;
 
-}
-
-body {
-  background-image: url('/images/leaf_bg.png');
-  background-repeat: no-repeat;
-  background-size: cover;
 }
 
 /*NAVBAR*/
@@ -99,13 +94,6 @@ nav a{
     border-top: 0.5rem solid var(--secondary);
 }
 
-body {
-    background-color: #fafafa;
-    background-image: url('../images/leaf_bg.png');
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-}
-
 /*center the header div that contains a h1*/
 
 div.userCon {
@@ -113,22 +101,23 @@ div.userCon {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 10em;
+  margin-top: 4.8em;
+  padding: 0;
 }
 
-div.userCon div {
-  margin: 1em;
+.search-container {
+  margin: 1em 0 5em 0;
 }
 
 /* search bar */
-.search-container {
+div.search-container{
   background-image: url('../images/cafebg2.jpg');
   display: flex;
   position: relative;
   justify-content: center;
   height: 100%;
   width: 100%;
-  padding: 100px;
+  padding: 150px;
   background-size: 100%;
   background-repeat: no-repeat;
   background-position: center;
@@ -172,11 +161,57 @@ div.userCon div {
 }
 
 
+/*list container*/
+div.listCon {
+  display: flex;
+  flex-direction: column;
+  background-image: url(../images/list-bg.jpeg);
+  height: 100%;
+  width: 100%;
+  padding-top: 400px;
+  padding-right: 0;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  font-family: var(--secondaryfont);
+}
+
+div.listInfo {
+  background: rgba(0, 0, 0, .4);
+  padding-bottom: 27px;
+  padding-left: 20px;
+  font-size: 1.7em
+}
+
+.listInfo h1, p {
+  color: white
+}
+
+.view-btn {
+  border: none;
+  background-color: white;
+  color: var(--sexanary);
+  border-radius: 50px;
+  padding: 10px 40px;
+  font-size: 1em;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+}
+
+.view-btn:focus {
+  outline: none;
+}
+
+.view-btn:hover {
+  background-color: #0069d9;
+}
+
 /*recommended section*/
 .wrapper {
   width: 100% !important;
   position: relative;
-  margin-top: 2em !important;
+  margin-top: 1em !important;
   margin-bottom: 10em !important;
 }
 .wrapper i {
@@ -255,11 +290,11 @@ div.userCon div {
 }
 .carousel .cardui h2 {
   font-weight: 500;
-  font-size: 1.56rem;
+  font-size: 1.48rem;
 }
 .carousel .cardui p {
   color: #6A6D78;
-  font-size: 1.31rem;
+  font-size: 1.11rem;
 }
 
 @media screen and (max-width: 900px) {
@@ -280,9 +315,14 @@ div.userCon div {
   margin-top: 2em;
 }
 
+h3.recommended {
+  font-size: 2.5rem;
+}
+
 p.recommended {
   color: var(--sexanary);
   margin: 0;
+  font-size: 1.5rem;
 }
 
 .card-img-top {
