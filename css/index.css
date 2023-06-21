@@ -12,12 +12,6 @@
 
 }
 
-body {
-  background-image: url('/images/leaf_bg.png');
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
 /*NAVBAR*/
 nav{
     background-color: var(--primary);
@@ -99,13 +93,6 @@ nav a{
     border-top: 0.5rem solid var(--secondary);
 }
 
-body {
-    background-color: #fafafa;
-    background-image: url('../images/leaf_bg.png');
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-}
-
 /*center the header div that contains a h1*/
 
 div.userCon {
@@ -114,10 +101,11 @@ div.userCon {
   align-items: center;
   justify-content: center;
   margin-top: 4.8em;
+  
 }
 
-div.userCon div {
-  margin: 1em;
+.search-container {
+  margin: 1em 0 5em 0;
 }
 
 /* search bar */
@@ -127,7 +115,7 @@ div.search-container{
   position: relative;
   justify-content: center;
   height: 100%;
-  width: 130%;
+  width: 105%;
   padding: 150px;
   background-size: 100%;
   background-repeat: no-repeat;
@@ -176,29 +164,25 @@ div.search-container{
 div.listCon {
   display: flex;
   flex-direction: column;
-  outline: 2px solid blue;
   background-image: url(../images/list-bg.jpeg);
   height: 100%;
   width: 100%;
   padding-top: 400px;
+  padding-right: 0;
   background-size: 100%;
   background-repeat: no-repeat;
   background-position: center;
-  font-family: var(--secondaryfont);;
+  font-family: var(--secondaryfont);
 }
 
-.listInfo {
+div.listInfo {
   background: rgba(0, 0, 0, .4);
+  padding-bottom: 10px;
+  font-size: 1.5em
 }
 
 .listInfo h1, p {
   color: white
-}
-
-.listInfo button {
-  left: 0;
-  width: 20%;
-  border-radius: 50%;
 }
 
 .view-btn {
@@ -209,10 +193,8 @@ div.listCon {
   padding: 10px 40px;
   font-size: 16px;
   cursor: pointer;
-  width: 100%;
   text-align: center;
   text-decoration: none;
-  margin-bottom: 10px;
 }
 
 .view-btn:focus {
