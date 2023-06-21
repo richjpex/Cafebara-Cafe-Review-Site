@@ -25,6 +25,7 @@ nav{
     flex-direction: row;
     margin: auto;
     justify-content: space-between;
+    z-index: 1;
 }
 
 nav a{
@@ -104,90 +105,47 @@ div.container {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin-top: 200px;
   }
 
-div.header {
-    text-align: center;
-    font-family: var(--headfont);
-    text-transform: uppercase;
-    color: #423F32;
-    border: 1px solid black;
-    width: 34%;
-    position: relative;
-    margin: 100px auto 50px;
-    overflow: visible;
-  }
-
-div.content {
-    display: flex;
-    border: 2px solid green;
-    width: 70%;
-    justify-content: center;
-  }
-
-  .map {
-    display: flex;
-    margin: auto;
-  }
-
-  .map iframe {
-    width: 943.65px;
-    height: 530.7px;
-    
-  }
-
-  /*buttons, search, and map*/
-  .content {
-    margin-top: 50px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .search-box {
-    width: 50%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    box-sizing: border-box;
-    border: 2px solid #ccc;
-    border-radius: 4px;
-  }
-
+  /* search bar */
   .search-container {
-    background-color: white;
-    border-radius: 30px;
-    padding: 20px;
-    padding-top: 0px;
-    width: 100%;
-    max-width: 600px;
-    margin: auto;
+    background-image: url('../images/cafebg.jpg');
+    display: flex;
+    position: relative;
+    justify-content: center;
+    height: 100%;
+    width: 65%;
+    padding: 100px;
+    background-size: 100%;
   }
-
+  
   .search-form {
     display: grid;
     grid-template-columns: 1fr auto;
     width: 100%;
-    max-width: 600px;
+    max-width: 900px;
     margin-top: 20px;
     border-radius: 30px;
     overflow: hidden;
     background-color: #fff;
-    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, .4);
   }
   
   .search-form input[type="text"] {
-    padding: 10px 20px;
+    padding: 20px 20px;
     font-size: 1rem;
     border: none;
     outline: none;
   }
   
   .search-form button[type="submit"] {
-    padding: 10px;
-    background-color: var(--secondary);
+    padding: 20px;
+    background-color: #CCD5AE;
     border: none;
     outline: none;
     color: #fff;
-    font-size: 1rem;
+    font-size: 1.3rem;
     border-radius: 0 30px 30px 0;
     display: flex;
     justify-content: center;
@@ -197,11 +155,6 @@ div.content {
   
   .search-form button[type="submit"]:hover {
     cursor: pointer;
-  }
-  .map-container iframe {
-    width: 900px;
-    height: 450px;
-    border: 1px solid brown;
   }
 
 
