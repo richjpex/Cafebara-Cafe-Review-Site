@@ -13,6 +13,12 @@ document.addEventListener("DOMContentLoaded",function() {
         console.log(usertype);
     })
 
+    const image = formData.get("profilepic");
+
+    $("#profilepic").change(function() {
+        readURL(this);
+    });
+
     function changeForm(usertype){
         if(usertype == customer){
             clearForm();
@@ -24,6 +30,20 @@ document.addEventListener("DOMContentLoaded",function() {
         }
     }
 
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+          var reader = new FileReader();
+          reader.onload = function(e) {
+            $('#profilepicimg').attr('src', e.target.result);
+          }
+          reader.readAsDataURL(input.files[0]);
+        } 
+        else {
+          alert('select a file to see preview');
+          $('#profilepicimg').attr('src', '../images/2logo.png');
+        }
+      }
+
     function clearForm(){
         document.querySelector("#inputform").innerHTML = "";
     }
@@ -32,6 +52,7 @@ document.addEventListener("DOMContentLoaded",function() {
 
         const form = document.querySelector("#inputform");
         const profilepic = createProfilePicInput();
+        const bio = createBioInput();
         const namefield = createNameInputs();
         const bdayfield = createBirthdayInputs();
         const email = createEmailInput();
@@ -40,6 +61,7 @@ document.addEventListener("DOMContentLoaded",function() {
         const submit = createSubmitbutton();
 
         form.appendChild(profilepic);
+        form.appendChild(bio);
         form.appendChild(namefield);
         form.appendChild(bdayfield);
         form.appendChild(email);
@@ -316,18 +338,58 @@ document.addEventListener("DOMContentLoaded",function() {
     }
 
     function createProfilePicInput(){
+        const allwrap = document.createElement("div");
+        
         const profilepicdiv = document.createElement("div");
+        const img = document.createElement("img");
+        
+        const labeldiv = document.createElement("div");
         const profilepiclabel = document.createElement("label");
         const profilepic = document.createElement("input");
 
+        //set image attributes
+        img.setAttribute("src","../images/2logo.png");
+        img.setAttribute("id","profilepicimg");
+        img.setAttribute("alt","Profile Picture");
+
         profilepiclabel.innerHTML = "Upload Profile Picture";
+
         profilepic.setAttribute("type","file");
         profilepic.setAttribute("name","profilepic");
         profilepic.setAttribute("id","profilepic");
+        
+        $(profilepic).addClass("id","inputfield");
 
-        profilepicdiv.appendChild(profilepiclabel);
-        profilepicdiv.appendChild(profilepic);
+        $(allwrap).addClass("imagedivwrapper");
+        $(profilepicdiv).addClass("imagediv");
+        $(labeldiv).addClass("imagelabel");
+        
+        profilepicdiv.appendChild(img);
 
-        return profilepicdiv;
+        labeldiv.appendChild(profilepiclabel);
+        labeldiv.appendChild(profilepic);
+
+        allwrap.appendChild(profilepicdiv);
+        allwrap.appendChild(labeldiv);
+
+        return allwrap;
+    }
+
+    function createBioInput(){
+        const biowrap = document.createElement("div");
+        const biolabel = document.createElement("label");
+        const bio = document.createElement("textarea");
+
+        biolabel.innerHTML = "Write a bio";
+        
+        $(biowrap).addClass("singlebox");
+        
+        $(bio).addClass("inputfield");
+        $(bio).addClass("bioinput");
+
+        biowrap.appendChild(biolabel);
+        biowrap.appendChild(bio);
+
+        return biowrap;
     }
 });
