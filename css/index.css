@@ -15,6 +15,7 @@ body {
   background-size: cover;
 }
 
+/*NAVBAR*/
 nav{
     background-color: var(--primary);
     position: fixed;
@@ -105,10 +106,10 @@ div.container {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-top: 200px;
+    margin-top: 140px;
   }
 
-  /* search bar */
+/* SEARCH BAR */
   .search-container {
     background-image: url('../images/cafebg.jpg');
     display: flex;
@@ -157,8 +158,18 @@ div.container {
     cursor: pointer;
   }
 
+/*LIST SECTION*/
+div.list-container {
+  display: flex;
+  position: relative;
+  outline: 1px solid blue;
+  width: 65%;
+  justify-content: center;
+  margin: 50px 0px;
+}
 
-  /*recommended section*/
+
+/*RECOMMENDED SECTION*/
   .wrapper {
     max-width: 1100px;
     width: 100%;
@@ -247,16 +258,15 @@ div.container {
     color: #6A6D78;
     font-size: 1.31rem;
   }
-  
+
   @media screen and (max-width: 900px) {
     .wrapper .carousel {
       grid-auto-columns: calc((100% / 2) - 9px);
     }
   }
-  
+
   @media screen and (max-width: 600px) {
     .wrapper .carousel {
       grid-auto-columns: 100%;
     }
   }
-  
