@@ -80,11 +80,12 @@ div.userCon {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 4.8em;
+  margin-top: 4.5em;
+  padding: 0;
 }
 
-div.userCon div {
-  margin: 1em;
+.search-container {
+  margin-bottom: 5em;
 }
 
 /* search bar */
@@ -94,7 +95,7 @@ div.search-container{
   position: relative;
   justify-content: center;
   height: 100%;
-  width: 130%;
+  width: 100%;
   padding: 150px;
   background-size: 100%;
   background-repeat: no-repeat;
@@ -143,29 +144,27 @@ div.search-container{
 div.listCon {
   display: flex;
   flex-direction: column;
-  outline: 2px solid blue;
   background-image: url(../images/list-bg.jpeg);
   height: 100%;
   width: 100%;
   padding-top: 400px;
+  padding-right: 0;
   background-size: 100%;
   background-repeat: no-repeat;
   background-position: center;
-  font-family: var(--secondaryfont);;
+  font-family: var(--secondaryfont);
+  margin: auto 140px;
 }
 
-.listInfo {
+div.listInfo {
   background: rgba(0, 0, 0, .4);
+  padding-bottom: 27px;
+  padding-left: 20px;
+  font-size: 1.7em
 }
 
 .listInfo h1, p {
   color: white
-}
-
-.listInfo button {
-  left: 0;
-  width: 20%;
-  border-radius: 50%;
 }
 
 .view-btn {
@@ -174,12 +173,10 @@ div.listCon {
   color: var(--sexanary);
   border-radius: 50px;
   padding: 10px 40px;
-  font-size: 16px;
+  font-size: 1em;
   cursor: pointer;
-  width: 100%;
   text-align: center;
   text-decoration: none;
-  margin-bottom: 10px;
 }
 
 .view-btn:focus {
@@ -194,7 +191,7 @@ div.listCon {
 .wrapper {
   width: 100% !important;
   position: relative;
-  margin-top: 2em !important;
+  margin-top: 1em !important;
   margin-bottom: 10em !important;
 }
 .wrapper i {
@@ -298,9 +295,14 @@ div.listCon {
   margin-top: 2em;
 }
 
+h3.recommended {
+  font-size: 2.5rem;
+}
+
 p.recommended {
   color: var(--sexanary);
   margin: 0;
+  font-size: 1.5rem;
 }
 
 .card-img-top {
