@@ -66,6 +66,20 @@ nav.navbar{
   padding: 0 16px;
 }
 
+ul.dropdown-menu{
+  background-color: #f5f5f5 !important;
+  border: none;
+  padding: 0;
+}
+
+a.dropdown-item{
+  color: black !important;
+}
+
+a.dropdown-item:hover{
+  background-color: #cacaca;
+}
+
 body {
     background-color: #fafafa;
     background-image: url('../images/leaf_bg.png');
