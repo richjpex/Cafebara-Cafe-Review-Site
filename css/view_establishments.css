@@ -3,6 +3,7 @@
     --primary: #3b3d2b;
     --secondary: #ccd5ae;
     --secondary2: #e9edc9;
+    --secondary3: #99a280;
     --tertiary: #fefae0;
     --quarternary: #faedcd;
     --fivenary: #d4a373;
@@ -330,4 +331,13 @@ div.col-2, div.col-8, div.col {
 
 h5.recommended {
     margin-top: 1.6em;
+}
+
+.card-body > a {
+    text-decoration: none !important;
+    color: var(--secondary3) !important;
+}
+
+.card-body > a:hover {
+    color: var(--sexanary) !important;
 }
