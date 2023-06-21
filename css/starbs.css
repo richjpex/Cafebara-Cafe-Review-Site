@@ -172,8 +172,9 @@ div.header {
     margin: 10px 5% 10px;
     height: 300px;
     border-radius: 20px;
-    background-image: url("../images/establishments/ellipsis.jpg");
-    background-position: 65% 40%;
+    background-image: url("../images/cafes/starbs.jpg");
+    
+    background-size: cover;
 }
 
 .text_container {
@@ -185,8 +186,8 @@ div.map_container {
     margin: 10px 5%;
     height: 150px;
     border-radius: 20px;
-    background-image: url("../images/establishments/ellipsis.jpg");
-    background-position: 65% 40%;
+    background-image: url("../images/cafes/starbs.jpg");
+    background-size: cover;
 }
 
 #map {
