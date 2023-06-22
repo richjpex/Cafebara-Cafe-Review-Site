@@ -13,16 +13,13 @@ document.addEventListener("DOMContentLoaded",function() {
         console.log(usertype);
     })
 
-    const image = formData.get("profilepic");
-
-    $("#profilepic").change(function() {
-        readURL(this);
-    });
-
     function changeForm(usertype){
         if(usertype == customer){
             clearForm();
             displayCustomerRegistration();
+            document.querySelector("#profilepic").addEventListener("change", function() {
+                readURL(this);
+            });
         }
         else if(usertype == owner){
             clearForm();
@@ -79,10 +76,14 @@ document.addEventListener("DOMContentLoaded",function() {
         const estname = createLongTextBoxInput();
 
         estname.childNodes[1].setAttribute("placeholder","cafebara");
+        estname.childNodes[1].setAttribute("name", "estname");
+        estname.childNodes[1].required = true;
         estname.childNodes[0].innerHTML = "Establishment Name";
 
         const estaddress = createLongTextBoxInput();
         estaddress.childNodes[1].setAttribute("placeholder","2401 Taft Ave, Malate, Manila");
+        estaddress.childNodes[1].setAttribute("name", "estaddress");
+        estaddress.childNodes[1].required = true;
         estaddress.childNodes[0].innerHTML = "Establishment Address";
     
         form.appendChild(estname);
@@ -101,8 +102,6 @@ document.addEventListener("DOMContentLoaded",function() {
 
         div.setAttribute("class","singlebox");
         input.setAttribute("type","text");
-        input.setAttribute("name","name");
-        input.setAttribute("placeholder","John Doe");
         div.appendChild(label);
         div.appendChild(input);
 
@@ -112,13 +111,16 @@ document.addEventListener("DOMContentLoaded",function() {
     function createSubmitbutton(){
         const button = document.createElement("input");
         const div = document.createElement("div");
-
+        const anchortag = document.createElement("a");
+        
+        anchortag.setAttribute("href","index2.html");
         button.setAttribute("type","submit");
         button.setAttribute("id","submit");
         button.setAttribute("name","submit");
         button.innerHTML = "Sign up";
 
-        div.appendChild(button);
+        anchortag.appendChild(button);
+        div.appendChild(anchortag);
         div.setAttribute("id","buton");
         return div;
     }
@@ -132,6 +134,7 @@ document.addEventListener("DOMContentLoaded",function() {
         pass.setAttribute("name","confirmpassword");
         pass.setAttribute("id","confirmpassword");
         pass.setAttribute("placeholder","Re-enter your password");
+        pass.required = true;
 
         passlabel.setAttribute("for","confirmpassword");
         passlabel.innerHTML = "Confirm Password";
@@ -153,6 +156,7 @@ document.addEventListener("DOMContentLoaded",function() {
         pass.setAttribute("name","password");
         pass.setAttribute("id","password");
         pass.setAttribute("placeholder","password12345");
+        pass.required = true;
 
         passlabel.setAttribute("for","password");
         passlabel.innerHTML = "Password";
@@ -174,6 +178,7 @@ document.addEventListener("DOMContentLoaded",function() {
         email.setAttribute("name","email");
         email.setAttribute("id","email");
         email.setAttribute("placeholder","kk@email.com");
+        email.required = true;
 
         emaillabel.setAttribute("for","email");
         emaillabel.innerHTML = "Email";
@@ -223,22 +228,25 @@ document.addEventListener("DOMContentLoaded",function() {
         for(let i = 0; i < months.length; i++){
             month.appendChild(months[i]);
         };
-
-        day.setAttribute("type","text");
+        
+        day.setAttribute("type","number");
         day.setAttribute("id","day");
         day.setAttribute("min","1");
         day.setAttribute("max","31");
         day.setAttribute("placeholder","DD");
+        day.required = true;
         
         month.setAttribute("class","inputfield");
+        month.required = true;
         
         year.setAttribute("placeholder","YYYY");
+        year.required = true;
         
         const date = new Date();
         const currentyear = date.getFullYear();
-        year.setAttribute("type","text");
+        year.setAttribute("type","number");
         year.setAttribute("min", currentyear-120);
-        year.setAttribute("type", currentyear);
+        year.setAttribute("max", currentyear);
 
         daydiv.appendChild(daylabel);
         daydiv.appendChild(day);
@@ -298,6 +306,7 @@ document.addEventListener("DOMContentLoaded",function() {
         //input type = text
         firstname.setAttribute("type","text");
         lastname.setAttribute("type","text");
+        firstname.required = true;
 
         //name = firstname, id = firstname
         firstname.setAttribute("name","firstname");
@@ -308,6 +317,7 @@ document.addEventListener("DOMContentLoaded",function() {
         lastname.setAttribute("name","lastname");
         lastname.setAttribute("id","lastname");
         lastname.setAttribute("placeholder","Kaslana");
+        lastname.required = true;
 
         //for = firstname, for = lastname
         labelfname.setAttribute("for","firstname");
@@ -357,7 +367,8 @@ document.addEventListener("DOMContentLoaded",function() {
         profilepic.setAttribute("type","file");
         profilepic.setAttribute("name","profilepic");
         profilepic.setAttribute("id","profilepic");
-        
+        profilepic.required = true;
+
         $(profilepic).addClass("id","inputfield");
 
         $(allwrap).addClass("imagedivwrapper");
@@ -381,7 +392,12 @@ document.addEventListener("DOMContentLoaded",function() {
         const bio = document.createElement("textarea");
 
         biolabel.innerHTML = "Write a bio";
-        
+
+        bio.setAttribute("name","bio");
+        bio.setAttribute("id","bio");
+        bio.setAttribute("placeholder","I love cafes frfr.");
+        bio.setAttribute("alt", "Insert your bio here");
+
         $(biowrap).addClass("singlebox");
         
         $(bio).addClass("inputfield");
