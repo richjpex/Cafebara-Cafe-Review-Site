@@ -1,13 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@300;500&family=Ubuntu+Condensed&display=swap');
 :root {
     --primary: #3b3d2b;
     --secondary: #ccd5ae;
     --secondary2: #e9edc9;
+    --secondary3: #99a280;
     --tertiary: #fefae0;
     --quarternary: #faedcd;
     --fivenary: #d4a373;
-    --headfont: 'Helvetica', sans-serif;
+    --sexanary: #423F32;
+    --headfont: 'Merriweather Sans', sans-serif;
+    --secondaryfont: 'Ubuntu Condensed', sans-serif;
 }
-
 
 /*NAVBAR*/
 #logo{
