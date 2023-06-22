@@ -61,3 +61,36 @@
 #usertype{
     width: 100%;
 }
+
+#profilepicimg{
+    object-fit: cover;
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+    image-rendering: pixelated;
+}
+
+.imagedivwrapper{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.imagelabel input{
+    padding:0;
+    margin:0;
+    width: 100%;
+    margin-bottom:10px;
+}
+
+.imagediv{
+    overflow: hidden;
+}
+
+.bioinput{
+    width: 100%;
+    height: 100px;
+    margin-bottom:10px;
+}
