@@ -328,8 +328,6 @@ document.addEventListener("DOMContentLoaded",function() {
         labelfname.innerHTML = "First Name";
         labellname.innerHTML = "Last Name";
 
-        console.log(lastname.outerHTML);
-
         $(firstname).addClass("inputfield");
         $(lastname).addClass("inputfield");
         
