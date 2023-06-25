@@ -203,12 +203,18 @@ h2 {
 }
 
 div.map_container {
-    width: 90%;
+    display:flex;
     margin: 10px 5%;
     height: 250px;
     border-radius: 20px;
-    background-image: url("../images/cafes/bos.jpeg");
-    background-size: cover;
+    padding: 0;
+    border: 1px solid black;
+    align-items: center;
+    overflow: hidden;
+}
+
+div.map_container img{
+    max-width: 100%;
 }
 
 #map {
