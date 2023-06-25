@@ -158,6 +158,36 @@
 
     </div>
 
+    <!-- collapsible write -->
+    <div class = "write_review">
+        <button class="btn btn-dark" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+            Write a review
+        </button>
+        <div class="collapse" id="collapseExample">
+            <div class="card card-body">
+                <div class = "review-wrapper">
+                    <form>
+                        <img src="../../images/ratings/empty.png" class = "user-rating"/>
+                        <img src="../../images/ratings/empty.png" class = "user-rating"/>
+                        <img src="../../images/ratings/empty.png" class = "user-rating"/>
+                        <img src="../../images/ratings/empty.png" class = "user-rating"/>
+                        <img src="../../images/ratings/empty.png" class = "user-rating"/>
+                        <div class = "review-title">
+                            <input class="form-control form-control-lg review-title" type="text" placeholder="Title" aria-label=".form-control-lg example">                        </div>
+                        <div class = "review-content">
+                            <textarea class="form-control review-body" placeholder="Leave your review here" id="review-editor" style="height: 100px"></textarea>
+                            <div class = "attachmedia">
+                                  <input class="form-control" type="file" id="formFile" accept = "image/*, video/*">
+                            </div>
+                        </div>
+                        <br>
+                        <input type = "submit" id = "submit-review">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="content_review">
         <div class="review_label">
             <h2>REVIEWS</h2>
@@ -179,6 +209,16 @@
                             member since 2023
                         </div>
                     </div>
+                    <div class="dropdown options">
+                        <button class="btn " type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
+                                <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+                            </svg>
+                        </button>
+                        <ul class="dropdown-menu">
+                          <li><span class = "dropdown-item-text">No options</span></li>
+                        </ul>
+                      </div>
                 </div>
                 
                 <div class = "cb_rating">
@@ -191,7 +231,7 @@
                     <br>
                     <span class = "review_date">Reviewed on 2023/06/21</span>
                     </div>
-                <div class="review_comment">
+                <div class="review_comment crop">
                     <p>"Oh my gosh, I am, like, totally obsessed with Starbucks! Every time I walk into their super chill and sosyal store, 
                     I just feel, like, sosyal AF, you know? The smell of freshly brewed coffee pa lang, it's already an instant mood-lifter. 
                     And the baristas, OMG, they're always so jolly and ma-chika! Whether I'm craving for a super extra creamy latte or a 
@@ -205,11 +245,7 @@
 
 
                 <div class="review_pics_container">
-                    <img src="../../images/reviews/starbs_rev1.jpg" class="review_pics"/>
-                    <img src="../../images/reviews/starbs_rev1.jpg" class="review_pics"/>
-                    <img src="../../images/reviews/starbs_rev1.jpg" class="review_pics"/>
-                    <img src="../../images/reviews/starbs_rev1.jpg" class="review_pics"/>
-                    <img src="../../images/reviews/starbs_rev1.jpg" class="review_pics"/>
+                    <video src="../../videos/Learning with FGO - Gudako crazy about gacha.mp4" class="object-fit-cover" controls></video>
                 </div>
                 
                 <div class = "helpful?">
@@ -246,6 +282,18 @@
                                 member since 2023
                             </div>
                         </div>
+                        
+                        <div class="dropdown options">
+                            <button class="btn " type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
+                                    <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+                                </svg>
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li><a class = "dropdown-item" >Edit</a></li>
+                              <li><a class = "dropdown-item">Delete</a></li>
+                            </ul>
+                          </div>
                     </div>
                     
                     <div class = "cb_rating">
@@ -258,7 +306,7 @@
                         <br>
                         <span class = "review_date">Reviewed on 2023/06/21</span>
                         </div>
-                    <div class="review_comment">
+                    <div class="review_comment crop">
                         <p>"Oh my gosh, I am, like, totally obsessed with Starbucks! Every time I walk into their super chill and sosyal store, 
                         I just feel, like, sosyal AF, you know? The smell of freshly brewed coffee pa lang, it's already an instant mood-lifter. 
                         And the baristas, OMG, they're always so jolly and ma-chika! Whether I'm craving for a super extra creamy latte or a 
@@ -272,10 +320,6 @@
     
     
                     <div class="review_pics_container">
-                        <img src="../../images/reviews/starbs_rev1.jpg" class="review_pics"/>
-                        <img src="../../images/reviews/starbs_rev1.jpg" class="review_pics"/>
-                        <img src="../../images/reviews/starbs_rev1.jpg" class="review_pics"/>
-                        <img src="../../images/reviews/starbs_rev1.jpg" class="review_pics"/>
                         <img src="../../images/reviews/starbs_rev1.jpg" class="review_pics"/>
                     </div>
                     
