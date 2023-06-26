@@ -1,0 +1,72 @@
+.reviewer-img{
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+
+.card-header{
+    display: flex !important;
+    align-items: center !important;
+}
+
+.member_since{
+    font-size: 1rem;
+    color: #A9A9A9;
+}
+
+.cb_rating{
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.cb_rating img{
+    width: 2rem;
+}
+
+a.btn-dark{
+    color:white !important;
+}
+
+.card-text{
+    margin-top:0.5rem;
+}
+
+#submit-review{
+    background-color: var(--primary) !important;
+    border-radius: 5px;
+    padding: 0.3rem 1rem;
+    color:white;
+    font-size: 0.8rem;
+    margin-left: 1rem;
+}
+
+.options{
+    right: 0;
+}
+
+.ratings img{
+    width: 3rem;
+}
+
+.numreviews{
+    color: var(--fivenary);
+}
+
+button.btn-dark{
+    margin-top:1rem;
+}
+
+.review_pics_container {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    width: 150px;
+    height: 150px;
+}
+
+.ownerreply{
+    margin-left: 3rem !important;
+    margin-top:-1rem !important;
+}
