@@ -1,13 +1,52 @@
+//readmore button
+
+
 document.addEventListener("DOMContentLoaded",function() {
     
+    const btn = document.getElementById("myBtn");
+    let check = true;
+    console.log(check);
+    if(btn == null){
+        check = false;
+    }
+    if(check){
+        btn.addEventListener("click",function() {
+            readMore();
+        });
+    }
+    function readMore() {
+        var dots = document.getElementById("dots");
+        var moreText = document.getElementById("more");
+        var btnText = document.getElementById("myBtn");
+      
+        if (dots.style.display === "none") {
+          dots.style.display = "inline";
+          btnText.innerHTML = "Read more";
+          moreText.style.display = "none";
+        } else {
+          dots.style.display = "none";
+          btnText.innerHTML = "Read less";
+          moreText.style.display = "inline";
+        }
+    }
+
     const editreview = document.getElementById("editbtn");
     const changesbuttons = document.querySelector(".submitChanges");
     const savechanges = document.getElementById("submitChanges");
     const cancelchanges = document.getElementById("cancel");
     let texts = [];
     editreview.addEventListener("click",function() {
-        const editableforms = document.querySelectorAll(".editable")
-        
+        const editableforms = document.querySelectorAll(".editable");
+        if(check){
+            btn.style.display = "none";
+
+            var dots = document.getElementById("dots");
+            var moreText = document.getElementById("more");
+            var btnText = document.getElementById("myBtn");
+            dots.style.display = "none";
+            btnText.innerHTML = "Read less";
+            moreText.style.display = "inline";
+        }
         editableforms.forEach(function(form) {
             texts.push(form.innerHTML);
             form.setAttribute("contenteditable","true");
@@ -26,6 +65,11 @@ document.addEventListener("DOMContentLoaded",function() {
         
         editedon[0].innerHTML = `<span class = "review_date">Last edited on: ${date}</span>`;
         changesbuttons.style.display = "none";
+
+        if(check){
+            console.log("here");
+            btn.style.display = "inline";
+        };
     });
 
     cancelchanges.addEventListener("click",function() {
@@ -34,8 +78,12 @@ document.addEventListener("DOMContentLoaded",function() {
             form.innerHTML = texts.shift();
             form.setAttribute("contenteditable","false");
         });
-        
         changesbuttons.style.display = "none";
+
+        if(check){
+            console.log("@")
+            btn.style.display = "inline";
+        }
     });
 
     function getDate(){
