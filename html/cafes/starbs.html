@@ -14,6 +14,10 @@
     <link rel = "stylesheet" href = "../../css/index.css">
     <link rel = "stylesheet" href = "../../css/cafes.css">
     <script src = "../../scripts/cafes.js" defer></script>
+    <script src = "../../scripts/readmore.js"></script>
+    <style>
+        #more {display: none;}
+    </style>
 <!-- JQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 
@@ -39,8 +43,8 @@
 <body>
     <nav class="navbar navbar-expand-lg fixed-top" data-bs-theme="dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="../index.html">
-                <img src = "../../images/2logo.png" id = "logo">
+            <a class="navbar-brand" href="../user-views/index.html">
+                <img src = "../../images/assets/2logo.png" id = "logo">
                 <span id = "headername">cafebara</span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -49,22 +53,22 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item inactive">
-                        <a class="nav-link" aria-current="page" href="../index.html">Home</a>
+                        <a class="nav-link" aria-current="page" href="../user-views/index.html">Home</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link active" href="../view_establishments.html">Review</a>
+                        <a class="nav-link active" href="../user-views/view-cafes.html">Review</a>
                     </li>
                     <li class="nav-item inactive">
-                        <a class="nav-link" href="../aboutus.html">About</a>
+                        <a class="nav-link" href="../user-views/about.html">About</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Profile
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="user_profile.html">My Profile</a></li>
-                            <li><a class="dropdown-item" href="#">Settings</a></li>
-                            <li><a class="dropdown-item" href="index.html">Log out</a></li>
+                            <li><a class="dropdown-item" href="../user-views/user-profile.html">My Profile</a></li>
+                            <li><a class="dropdown-item" href="../user-views/edit-profile.html">Settings</a></li>
+                            <li><a class="dropdown-item" href="../../html/guest-views/index.html">Log out</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -72,7 +76,7 @@
         </div>
     </nav>
 
-    <img src="../../images/leaf-accent.png" class="background_leaf"/>
+    <img src="../../images/assets/leaf-accent.png" class="background_leaf"/>
     <div class="content">
         <div class = "left">
             <div class = "pic_container">
@@ -213,7 +217,7 @@
             <div class="review_post">
                 <div class="prof_header" >
                     <div class="profpic_container"> 
-                        <img src="../../images/login.png" class="profpic"/>
+                        <img src="../../images/assets/login.png" class="profpic"/>
                     </div>
                     <div class = "userinfo">
                         <div class="profname">
@@ -286,7 +290,7 @@
                 <div class="review_post">
                     <div class="prof_header" >
                         <div class="profpic_container"> 
-                            <img src="../../images/login.png" class="profpic"/>
+                            <img src="../../images/assets/login.png" class="profpic"/>
                         </div>
                         <div class = "userinfo">
                             <div class="profname">
@@ -335,20 +339,22 @@
                     <div class="review_comment crop editable">
                         <p>
                             As a proud Lasallian, my experience at Starbucks reflects my unique perspective and preferences. Here's my review of Starbucks, seen through the lens of a Lasallian:
-
-First and foremost, Starbucks provides a convenient and welcoming environment for studying and group discussions. The comfortable seating arrangements, ample power outlets, and free Wi-Fi make it an ideal spot for Lasallians to gather, work on projects, or prepare for exams. The vibrant atmosphere and background music create a lively yet focused ambiance, fostering a sense of productivity.
-
-From the Lasallian perspective, Starbucks offers a diverse range of beverage options to cater to different preferences and dietary needs. Their menu includes a variety of coffee choices, from classic favorites to seasonal specials. As a Lasallian who values sustainability, I appreciate Starbucks' commitment to ethically sourced coffee beans and their efforts to reduce environmental impact through initiatives like reusable cups and recycling programs.
-
-One aspect that aligns well with the Lasallian spirit is Starbucks' dedication to corporate social responsibility. Through their Starbucks Foundation, they actively contribute to community development projects, education, and social causes. This commitment resonates with Lasallians, who prioritize making a positive impact on society and promoting social justice.
-
-Moreover, Starbucks' convenient locations near De La Salle University campuses provide a quick caffeine fix for busy Lasallians on the go. Whether it's grabbing a morning coffee before an early lecture or fueling up during a study break, Starbucks is a reliable option.
-
-However, it's worth noting that the prices at Starbucks may be a bit steep for students on a tight budget. While the quality and taste of their beverages are generally commendable, the affordability factor might not always align with the financial realities of Lasallians. Nonetheless, occasional indulgence in Starbucks' offerings can be a treat and a well-deserved break from the daily grind.
-
-In conclusion, Starbucks holds a special place in the hearts of Lasallians. It provides a conducive environment for academic pursuits, offers a wide selection of beverages, and embraces values that resonate with the Lasallian spirit. While the price point may be a consideration, the overall Starbucks experience is one that Lasallians can appreciate and enjoy as they navigate their academic journeys.
-
+                            <span id="dots"></span><span id="more">
+                            <br><br>
+                            First and foremost, Starbucks provides a convenient and welcoming environment for studying and group discussions. The comfortable seating arrangements, ample power outlets, and free Wi-Fi make it an ideal spot for Lasallians to gather, work on projects, or prepare for exams. The vibrant atmosphere and background music create a lively yet focused ambiance, fostering a sense of productivity.
+                            <br><br>
+                            From the Lasallian perspective, Starbucks offers a diverse range of beverage options to cater to different preferences and dietary needs. Their menu includes a variety of coffee choices, from classic favorites to seasonal specials. As a Lasallian who values sustainability, I appreciate Starbucks' commitment to ethically sourced coffee beans and their efforts to reduce environmental impact through initiatives like reusable cups and recycling programs.
+                            <br><br>
+                            One aspect that aligns well with the Lasallian spirit is Starbucks' dedication to corporate social responsibility. Through their Starbucks Foundation, they actively contribute to community development projects, education, and social causes. This commitment resonates with Lasallians, who prioritize making a positive impact on society and promoting social justice.
+                            <br><br>
+                            Moreover, Starbucks' convenient locations near De La Salle University campuses provide a quick caffeine fix for busy Lasallians on the go. Whether it's grabbing a morning coffee before an early lecture or fueling up during a study break, Starbucks is a reliable option.
+                            <br><br>
+                            However, it's worth noting that the prices at Starbucks may be a bit steep for students on a tight budget. While the quality and taste of their beverages are generally commendable, the affordability factor might not always align with the financial realities of Lasallians. Nonetheless, occasional indulgence in Starbucks' offerings can be a treat and a well-deserved break from the daily grind.
+                            <br><br>
+                            In conclusion, Starbucks holds a special place in the hearts of Lasallians. It provides a conducive environment for academic pursuits, offers a wide selection of beverages, and embraces values that resonate with the Lasallian spirit. While the price point may be a consideration, the overall Starbucks experience is one that Lasallians can appreciate and enjoy as they navigate their academic journeys.
+                        </span>
                         </p>
+                        <button onclick="readMore()" id="myBtn">Read more</button>
                     </div>
                     <div class = "editedon user-edit">
                     </div>
