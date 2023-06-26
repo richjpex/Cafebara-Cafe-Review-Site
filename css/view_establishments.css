@@ -341,3 +341,14 @@ h5.recommended {
 .card-body > a:hover {
     color: var(--sexanary) !important;
 }
+
+.cb_rating { margin: 0 !important; }
+
+.cb_rating img{
+  width: 2rem;
+  height: 2rem;
+}
+
+.numreviews{
+  color: var(--fivenary);
+}
