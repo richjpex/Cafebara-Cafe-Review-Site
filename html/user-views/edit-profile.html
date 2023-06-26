@@ -5,15 +5,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="../../images/assets/favicon.ico">
     <title>cafebara | Edit Profile</title>
     <!-- Bootstrap css -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <!-- Our CSS -->
-    <link rel = "stylesheet" href = "/css/index.css">
-    <link rel = "stylesheet" href = "/css/register.css">
-    <link rel = "stylesheet" href = "/css/editprofile.css">
-    <script src = "/scripts/editprofile.js" defer></script>
+    <link rel = "stylesheet" href = "../../css/index.css">
+    <link rel = "stylesheet" href = "../../css/register.css">
+    <link rel = "stylesheet" href = "../../css/editprofile.css">
+    <script src = "../../scripts/editprofile.js" defer></script>
 
 <!-- JQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
@@ -27,7 +28,7 @@
     <nav class="navbar navbar-expand-lg fixed-top" data-bs-theme="dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
-                <img src = "/images/assets/2logo.png" id = "logo">
+                <img src = "../../images/assets/2logo.png" id = "logo">
                 <span id = "headername">cafebara</span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,22 +37,22 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item inactive">
-                        <a class="nav-link" aria-current="page" href="/html/user-views/index.html">Home</a>
+                        <a class="nav-link" aria-current="page" href="../../html/user-views/index.html">Home</a>
                     </li>
                     <li class="nav-item inactive">
-                        <a class="nav-link" href="/html/user-views/view-cafes.html">Review</a>
+                        <a class="nav-link" href="../../html/user-views/view-cafes.html">Review</a>
                     </li>
                     <li class="nav-item inactive">
-                        <a class="nav-link" href="/html/user-views/about.html">About</a>
+                        <a class="nav-link" href="../../html/user-views/about.html">About</a>
                     </li>
                     <li class="nav-item dropdown active">
                         <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Profile
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="/html/user-views/user-profile.html">My Profile</a></li>
+                            <li><a class="dropdown-item" href="../../html/user-views/user-profile.html">My Profile</a></li>
                             <li><a class="dropdown-item" href="#">Settings</a></li>
-                            <li><a class="dropdown-item" href="/html/guest-views/index.html">Log out</a></li>
+                            <li><a class="dropdown-item" href="../../html/guest-views/index.html">Log out</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -60,7 +61,7 @@
     </nav>
     <div class = "content-wrapper">
         <div class = "profilepic">
-            <img src = "/images/assets/2logo.png" id = "profilepic">
+            <img src = "../../images/assets/2logo.png" id = "profilepic">
             <div class = "uploadphoto-btn">
                 <label for = "uploadbtn">Upload Photo</label>
                 <input type = "file"  id = "uploadbtn" class = "hidden" name = "dp-upload" accept = "image/*">
@@ -68,7 +69,7 @@
         </div>
         <div class = "vertline"></div>
         <div class = "right-div">
-            <form class = "editprofileform" name = "editprofileform" action = "/html/user-views/user-profile.html">
+            <form class = "editprofileform" name = "editprofileform" action = "../../html/user-views/user-profile.html">
                 <div class = "singlebox">
                     <label for = "username">Username</label>
                     <input type = "text" id = "username" class = "form-control" placeholder = "Edit username">
