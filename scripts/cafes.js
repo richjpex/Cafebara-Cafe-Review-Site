@@ -12,7 +12,6 @@ document.addEventListener("DOMContentLoaded",function() {
             texts.push(form.innerHTML);
             form.setAttribute("contenteditable","true");
         });
-        document.querySelector(".ratings").style.display = "none";
         changesbuttons.style.display = "inline-block";
     });
     
@@ -25,7 +24,6 @@ document.addEventListener("DOMContentLoaded",function() {
         const editedon = document.getElementsByClassName("editedon user-edit");
         let date = getDate();
         
-        document.querySelector(".ratings").style.display = "block";
         editedon[0].innerHTML = `<span class = "review_date">Last edited on: ${date}</span>`;
         changesbuttons.style.display = "none";
     });
@@ -37,7 +35,6 @@ document.addEventListener("DOMContentLoaded",function() {
             form.setAttribute("contenteditable","false");
         });
         
-        document.querySelector(".ratings").style.display = "block";
         changesbuttons.style.display = "none";
     });
 

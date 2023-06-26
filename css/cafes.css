@@ -154,7 +154,6 @@ div.content_review {
 .review_wrapper{
     display:flex;
     flex-direction: column;
-    gap: 3rem;
 }
 
 .review_post {
@@ -315,4 +314,18 @@ div[contenteditable="true"]{
 
 .hidden{
     display:none;
+}
+
+
+.ownerreply{
+    display:flex;
+    flex-direction: column;
+    width: 70%;
+    margin-left:auto;
+    padding-right: 2rem;
+}
+
+.ownerreplytext h4{
+    margin: 0 !important;
+    padding: 0 !important;
 }
