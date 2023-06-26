@@ -98,22 +98,35 @@ div.userCon {
   padding: 0;
 }
 
-.search-container {
-  margin-bottom: 5em;
-}
+
 
 /* search bar */
 div.search-container{
-  background-image: url('../images/cafebg2.jpg');
+  background-image: url('../images/cafe-container-bg.jpg');
   display: flex;
   position: relative;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
   height: 100%;
   width: 100%;
   padding: 150px;
   background-size: 100%;
   background-repeat: no-repeat;
   background-position: center;
+  background-position-y: -640px;
+  margin-bottom: 5em;
+}
+
+.search-container h1{
+  color: #fff;
+  font-size: 120px;
+  text-shadow: 2px 2px 2px black;
+}
+
+.search-container p {
+  font-size: 50px;
+  text-shadow: 2px 2px 2px black;
 }
 
 .search-form {
@@ -137,7 +150,7 @@ div.search-container{
 
 .search-form button[type="submit"] {
   padding: 20px;
-  background-color: #CCD5AE;
+  background-color: #b6be9c;
   border: none;
   outline: none;
   color: #fff;
