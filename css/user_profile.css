@@ -29,7 +29,7 @@ nav{
     flex-direction: row;
     margin: auto;
     justify-content: space-between;
-    z-index: 100;
+    z-index: 1;
 }
 
 nav a{
