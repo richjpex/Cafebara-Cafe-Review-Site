@@ -324,3 +324,13 @@ p.recommended {
   height: 14vw;
   object-fit: cover;
 }
+
+
+.card-body > a {
+  text-decoration: none !important;
+  color: var(--secondary3) !important;
+}
+
+.card-body > a:hover {
+  color: var(--sexanary) !important;
+}
