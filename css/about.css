@@ -1,0 +1,94 @@
+.content-container {
+  text-align: center;
+  background: #f5f5f5;
+}
+
+.content-container h1 {
+  padding-top: 60px;
+  color: #444;  
+  margin: auto;
+  line-height: 100px;  
+  font-size: 80px;
+}
+
+.content-container h2 {
+  color: #444;
+  font-size: 20px;
+  margin: auto;
+  line-height: 100px;  
+  font-size: 40px;
+}
+
+.sub-container {
+  max-width: 50%;
+  margin: auto;
+  padding: 50px 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+}
+
+.profile {
+  margin: 0 50px;
+  padding: 22px;
+  max-width: 30%;
+  cursor: pointer;
+  box-sizing: border-box;
+  text-align: center;
+  border-radius: 15px;
+}
+
+.profile:hover {
+  background-color: #efefef;
+}
+
+.profile img {
+  text-align: center;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+}
+
+.name {
+  padding: 12px;
+  font-weight: bold;
+  font-size: 36px; 
+}
+
+.position {
+  font-style: italic;
+  font-size: 24px;
+  color: #888;
+}
+
+.bio {
+  margin: 20px 0;
+  font-weight: lighter;
+  font-size: 16px;
+  color: #4e4e4e;
+}
+
+
+.social-links a {
+  display: inline-block;
+  height: 40px;
+  width: 40px;
+  font-size: 26px;
+}
+
+.social-links a:hover {
+  transform: scale(1.5);
+}
+
+.social-links a i {
+  color: #444;
+}
+
+
+@media screen and (max-width: 600px) {
+  .profile {
+    max-width: 100%;
+  }
+}
