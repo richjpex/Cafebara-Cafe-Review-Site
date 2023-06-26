@@ -140,7 +140,7 @@ div.content_review {
     padding: 20px;
     border-radius: 5px;
     width: 70rem;
-    margin: 5rem auto;
+    margin: 1rem auto;
     font-family: var(--subfont);
     gap: 0.2rem;
 }
@@ -151,7 +151,7 @@ div.content_review {
     margin: 10px 0px;
 }
 
-.review_wrapper{
+.user_review_wrapper{
     display:flex;
     flex-direction: column;
 }
@@ -163,6 +163,8 @@ div.content_review {
     gap:1rem;
     display:flex;
     flex-direction: column;
+    outline: 1px solid #818589;
+    margin: 20px 0px;
 }
 
 .prof_header {
@@ -257,7 +259,7 @@ p{
 .review-wrapper{
     display:flex;
     flex-direction: column;
-    width: 40rem;
+    width: 60rem;
 }
 
 .review-title{
@@ -284,6 +286,10 @@ p{
     padding: 0.3rem 1rem;
     color:white;
     font-size: 0.8rem;
+}
+
+#collapseExample {
+    margin-top: 1rem;
 }
 
 
@@ -320,12 +326,11 @@ div[contenteditable="true"]{
 .ownerreply{
     display:flex;
     flex-direction: column;
-    width: 70%;
-    margin-left:auto;
     padding-right: 2rem;
+    padding-left: 3rem;
 }
 
-.ownerreplytext h4{
-    margin: 0 !important;
-    padding: 0 !important;
+.ownerreply h4 {
+    padding: 0;
+    margin: 0;
 }

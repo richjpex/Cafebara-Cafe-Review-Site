@@ -294,6 +294,8 @@ div.content_review {
 }
 .review_comment {
     margin: 10px 0px;
+    background-color: #efefef;
+
 }
 
 .review_pics_container {
