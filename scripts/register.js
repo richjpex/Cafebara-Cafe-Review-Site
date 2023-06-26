@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded",function() {
         } 
         else {
           alert('select a file to see preview');
-          $('#profilepicimg').attr('src', '../images/2logo.png');
+          $('#profilepicimg').attr('src', '/images/assets/2logo.png');
         }
       }
 
@@ -356,7 +356,7 @@ document.addEventListener("DOMContentLoaded",function() {
         const profilepic = document.createElement("input");
 
         //set image attributes
-        img.setAttribute("src","../images/2logo.png");
+        img.setAttribute("src","/images/assets/2logo.png");
         img.setAttribute("id","profilepicimg");
         img.setAttribute("alt","Profile Picture");
 

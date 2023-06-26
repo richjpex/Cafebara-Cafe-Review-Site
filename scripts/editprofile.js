@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded",function() {
         } 
         else {
           alert('select a file to see preview');
-            profilepic.setAttribute('src', '../images/2logo.png');
+            profilepic.setAttribute('src', '/images/assets/2logo.png');
         }
       }
 });

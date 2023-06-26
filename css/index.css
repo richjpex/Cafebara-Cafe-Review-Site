@@ -82,7 +82,7 @@ a.dropdown-item:hover{
 
 body {
     background-color: #fafafa;
-    background-image: url('../images/leaf_bg.png');
+    background-image: url('../images/assets/leaf_bg.png');
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
@@ -102,7 +102,7 @@ div.userCon {
 
 /* search bar */
 div.search-container{
-  background-image: url('../images/cafe-container-bg.jpg');
+  background-image: url('../images/assets/cafe-container-bg.jpg');
   display: flex;
   position: relative;
   flex-direction: column;
@@ -118,15 +118,18 @@ div.search-container{
   margin-bottom: 5em;
 }
 
-.search-container h1{
+.search-container {
   color: #fff;
-  font-size: 120px;
   text-shadow: 2px 2px 2px black;
+  font-family: var(--secondaryfont);
+}
+
+.search-container h1{
+  font-size: 120px;
 }
 
 .search-container p {
   font-size: 50px;
-  text-shadow: 2px 2px 2px black;
 }
 
 .search-form {
@@ -171,7 +174,7 @@ div.search-container{
 div.listCon {
   display: flex;
   flex-direction: column;
-  background-image: url(../images/list-bg.jpeg);
+  background-image: url('../images/assets/list-bg.jpeg');
   height: 100%;
   width: 100%;
   padding-top: 400px;
