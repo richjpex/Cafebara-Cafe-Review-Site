@@ -46,7 +46,7 @@ or the description. By entering a search phrase/word, all establishment containi
   - Groups must implement an additional user account role – establishment
 owner. This doesn’t need to be integrated with the register system, and
 credentials can be created manually by the database admin.
-  - Establishmentowneraccountsaretiedtoasingleestablishment,andcan respond to reviews on their establishment. Their responses would then be
+  - Establishment owner accounts are tied to a single establishment, and can respond to reviews on their establishment. Their responses would then be
 published, making it visible to the public.
 - General
   - Good user experience.
