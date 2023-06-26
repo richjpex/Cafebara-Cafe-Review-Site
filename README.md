@@ -1,6 +1,6 @@
 # CCAPDEV-GROUP11
 
-## Landing Page: html/guest-views/login.html
+## Landing Page: html/guest-views/index.html
 
 
 ## cafebara cafe review site
