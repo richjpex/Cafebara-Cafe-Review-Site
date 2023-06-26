@@ -322,3 +322,9 @@ h5.recommended {
 .card-body > a:hover {
     color: var(--sexanary) !important;
 }
+
+.hard > img {
+  width: 32px;
+}
+
+.hard { margin: 0 !important; }
