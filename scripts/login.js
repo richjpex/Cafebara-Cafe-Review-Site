@@ -6,10 +6,10 @@ document.addEventListener("DOMContentLoaded",function() {
 
     submit.addEventListener("click",function() {
         if (email.value == "owner@email.com"){
-            login.setAttribute("action","/html/user-views/owner.html");
+            login.setAttribute("action","../../html/user-views/owner-profile.html");
         }
         else{
-            login.setAttribute("action","/html/user-views/index.html");
+            login.setAttribute("action","../../html/user-views/index.html");
         }
     });
 });
