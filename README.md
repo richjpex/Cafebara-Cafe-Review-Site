@@ -1,3 +1,6 @@
+run npm install in the root directory to install all dependencies
+npm run dev or npm start to run server
+
 # CCAPDEV-GROUP11
 
 ## Landing Page: html/guest-views/index.html
