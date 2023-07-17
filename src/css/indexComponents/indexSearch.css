@@ -1,0 +1,70 @@
+div.search-container{
+    background-image: url('../../images/assets/cafe-container-bg.jpg');
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    padding: 150px;
+    background-size: cover;
+    /* I have no idea why this works -Orrin */
+    /* its not perfect doe */
+    background-repeat: no-repeat;
+    background-position: 100% 79%;
+    margin-bottom: 5em;
+  }
+
+
+  .search-container {
+    color: #fff;
+    text-shadow: 2px 2px 2px black;
+    font-family: var(--secondaryfont);
+  }
+  
+  .search-container h1{
+    font-size: 120px;
+  }
+  
+  .search-container p {
+    font-size: 50px;
+  }
+  
+  .search-form {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    width: 100%;
+    max-width: 900px;
+    margin-top: 20px;
+    border-radius: 30px;
+    overflow: hidden;
+    background-color: #fff;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, .4);
+  }
+  
+  .search-form input[type="text"] {
+    padding: 20px 20px;
+    font-size: 1rem;
+    border: none;
+    outline: none;
+  }
+  
+  .search-form button[type="submit"] {
+    padding: 20px;
+    background-color: #b6be9c;
+    border: none;
+    outline: none;
+    color: #fff;
+    font-size: 1.3rem;
+    border-radius: 0 30px 30px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+  }
+  
+  .search-form button[type="submit"]:hover {
+    cursor: pointer;
+  }
+  

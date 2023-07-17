@@ -1,0 +1,15 @@
+div.userCon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 55px;
+    padding: 0;
+}
+
+body {
+    background-color: #fafafa;
+    background-image: url('../images/assets/leaf_bg.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}

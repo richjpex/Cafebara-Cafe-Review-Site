@@ -1,0 +1,45 @@
+div.listCon {
+    display: flex;
+    flex-direction: column;
+    background-image: url('../../images/assets/list-bg.jpeg');
+    height: 100%;
+    width: 100%;
+    padding-top: 400px;
+    padding-right: 0;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    font-family: var(--secondaryfont);
+    margin: auto 140px;
+}
+
+div.listInfo {
+    background: rgba(0, 0, 0, .4);
+    padding-bottom: 27px;
+    padding-left: 20px;
+    font-size: 1.7em
+}
+
+.listInfo h1, p {
+    color: white;
+}
+  
+.view-btn {
+    border: none;
+    background-color: white;
+    color: var(--sexanary);
+    border-radius: 50px;
+    padding: 10px 40px;
+    font-size: 1em;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+}
+  
+.view-btn:focus {
+    outline: none;
+}
+  
+.view-btn:hover {
+    background-color: #0069d9;
+}
