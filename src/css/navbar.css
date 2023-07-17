@@ -74,3 +74,10 @@ nav.navbar{
 a.dropdown-item:hover{
     background-color: #cacaca;
 }
+
+.dropdown-menu{
+    background-color: white !important;
+}
+.dropdown-divider{
+    border-top: 1px solid #cacaca !important;
+}

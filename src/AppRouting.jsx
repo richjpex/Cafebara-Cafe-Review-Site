@@ -5,11 +5,13 @@ import Review from './review.jsx';
 import React from 'react';
 
 function AppRouting() {
+    const navs = [<Navibar />, <Navibar />, <Navibar />]
     switch(location.pathname) {
         case '/':
         case '/home':
             return (<>
                     <Navibar />
+                    {navs}
                     <Index />
                     </>);
         case '/about':
