@@ -20,6 +20,9 @@ async function main(){
         // note: make sure to npm i first to install new dependencies I added
         // npm run dev will make it so the server auto restarts when you save a file
 
+        // NO NEED TO CREATE THE DATABASE MANUALLY
+        // OR ADD THE COLLECTIONS MANUALLY (see comment below)
+
         // commented out section from here to newEst.save should only be run once
         // to populate the database with test data
         // unless you delete the stuff from the database
