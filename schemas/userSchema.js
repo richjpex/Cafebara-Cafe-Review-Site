@@ -24,6 +24,11 @@ const userSchema = new Schema({
     profilepic: String,
 
     bio: String,
+    
+    birthday: {
+        type: Date,
+        required: true
+    }
 });
 
 export const User = mongoose.model('User', userSchema);
