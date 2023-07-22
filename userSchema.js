@@ -22,6 +22,8 @@ const userSchema = new Schema({
     },
 
     profilepic: String,
+
+    bio: String,
 });
 
 export const User = mongoose.model('User', userSchema);
