@@ -14,7 +14,7 @@ import mongoose from 'mongoose';
 
 //Schema model imports
 //These are basically the db collections
-import { Est } from './schemas/estSchema.js';
+import { Cafe } from './schemas/cafeSchema.js';
 import { Reviews } from './schemas/reviewsSchema.js';
 import { User } from './schemas/userSchema.js';
 
@@ -36,7 +36,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 // current signed up user
-let activeUser, currentEst;
+let activeUser, currentCafe;
 
 // express stuff
 app.use(express.static(path.join(dirname(fileURLToPath(import.meta.url)), 'public')));
@@ -68,11 +68,11 @@ async function main(){
                 const userdata = req.body;
                 console.log(userdata);
     
-                // check if email exists in either User or Est colleciton
+                // check if email exists in either User or cafe colleciton
                 const existingUser = await User.findOne({email: userdata.email});
-                const existingEstablishment = await Est.findOne({email: userdata.email});
+                const existingCafe = await Cafe.findOne({email: userdata.email});
 
-                if (existingUser || existingEstablishment) {
+                if (existingUser || existingCafe) {
                     const queryParams = new URLSearchParams();
                     queryParams.append('usertype', userdata.usertype);
                     queryParams.append('message', 'Email already exists!');
@@ -102,7 +102,7 @@ async function main(){
                     else if(userdata.usertype ==='owner'){
                         // create new est profile
                         console.log(userdata)
-                        const newEst = new Est({
+                        const newCafe = new Cafe({
                             name: userdata.estname,
                             address: userdata.estaddress,
                             email: userdata.email,
@@ -110,7 +110,7 @@ async function main(){
                         });
 
                         //save to db
-                        newEst.save().then(function (err) {
+                        newCafe.save().then(function (err) {
                             if (err) {
                                 const queryParams = new URLSearchParams();
                                 queryParams.append('message', 'Error creating establishment!');
@@ -135,18 +135,18 @@ async function main(){
                 const current_user = await User.findOne(
                     {email: userdata.email, password: userdata.password}
                 )
-                const current_est = await Est.findOne(
+                const current_cafe = await Cafe.findOne(
                     {email: userdata.email, password: userdata.password}
                 )
             
-                if (current_user || current_est){
+                if (current_user || current_cafe){
                     console.log("user verified");
                     if(current_user){
                         activeUser = current_user;
                         res.redirect('../../html/user-views/index.html');
                     }
-                    if(current_est){
-                        activeUser = current_est;
+                    if(current_cafe){
+                        activeUser = current_cafe;
                         //TODO this
                         res.render('owner-profile', { activeUser });
                     }
@@ -178,11 +178,11 @@ async function main(){
                 const db = getDb();
                 const collection = await db.collection('reviews');
                 //const temp_review = await collection.insertOne(review_data);
-                console.log(currentEst);
-                const temp_user = await collection.insertOne({...review_data, estname: currentEst, reviewee: activeUser});
+                console.log(currentCafe);
+                const temp_user = await collection.insertOne({...review_data, estname: currentCafe, reviewee: activeUser});
                 console.log(temp_user.reviewee.firstname);
                 //await collection.updateOne({_id: temp_review._id}, {$set: { estname: currentEst }});
-                res.redirect('/cafe/'+currentEst);
+                res.redirect('/cafe/'+currentCafe);
     
             }
             catch(err){
@@ -203,7 +203,7 @@ async function main(){
     
         // load Starbucks cafe data
         app.get('/cafe/starbucks', async (req, res) => {
-            currentEst = "starbucks";
+            currentCafe = "starbucks";
             const review_data = await getDb().collection('reviews').find({estname: 'starbucks'}).toArray();
             console.log(review_data);
             console.log(review_data[0].reviewee.firstname);
@@ -217,7 +217,7 @@ async function main(){
     
         // load Obscure cafe data
         app.get('/cafe/obscure', async (req, res) => {
-            currentEst = "obscure";
+            currentCafe = "obscure";
             console.log(activeUser._id);
             const cafe_data = await getDb().collection('cafes').findOne({_id: new ObjectId('64ada22db9871bb37ff2994b')});
             console.log(cafe_data);
