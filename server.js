@@ -16,6 +16,7 @@ import mongoose from 'mongoose';
 //These are basically the db collections
 import { Est } from './schemas/estSchema.js';
 import { Reviews } from './schemas/reviewsSchema.js';
+import { Review_details } from './schemas/review_detailsSchema.js';
 import { User } from './schemas/userSchema.js';
 
 
@@ -57,7 +58,7 @@ main()
 async function main(){
 
     try{
-        mongoose.connect('mongodb://localhost:27017/mydatabase', { useNewUrlParser: true, useUnifiedTopology: true });
+        mongoose.connect('mongodb://localhost:27017/apdev_test', { useNewUrlParser: true, useUnifiedTopology: true });
              // Connect to MongoDB
         app.listen(port, () => {
             console.log(`Server running on port ${port}`);
@@ -174,7 +175,20 @@ async function main(){
             try{
                 const review_data = req.body;
                 console.log(review_data);
+
+                /*
+                const newReview_details = new Review_details({
+                    estName: currentEst,
+                    reviewer: activeUser
+                })
     
+                
+                const newReview = new Review({
+                    review_details: newReview_details,
+                    review_title: request.body,
+                    reviewee: activeUser,
+                    estname: currentEst,
+                })
                 const db = getDb();
                 const collection = await db.collection('reviews');
                 //const temp_review = await collection.insertOne(review_data);
@@ -183,6 +197,7 @@ async function main(){
                 console.log(temp_user.reviewee.firstname);
                 //await collection.updateOne({_id: temp_review._id}, {$set: { estname: currentEst }});
                 res.redirect('/cafe/'+currentEst);
+                */
     
             }
             catch(err){
@@ -202,7 +217,7 @@ async function main(){
     
     
         // load Starbucks cafe data
-        app.get('/cafe/starbucks', async (req, res) => {
+        app.get('/cafe/starbucks-coffee', async (req, res) => {
             currentEst = "starbucks";
             const review_data = await getDb().collection('reviews').find({estname: 'starbucks'}).toArray();
             console.log(review_data);
