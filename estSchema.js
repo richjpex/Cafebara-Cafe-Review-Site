@@ -38,7 +38,19 @@ const estSchema = new Schema({
         required: true
     },
 
-    image: String
+    image: String,
+
+    rating: {
+        type: Number,
+        required: true,
+        default: 0
+    },
+
+    price: {
+        type: Number,
+        required: true,
+        default: 0
+    }
 });
 
 export const Est = mongoose.model('Est', estSchema);
