@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 const Schema = mongoose.Schema;
 
-const estSchema = new Schema({
+const cafeSchema = new Schema({
     name: {
         type: String,
         required: true,
@@ -53,4 +53,4 @@ const estSchema = new Schema({
     }
 });
 
-export const Est = mongoose.model('Est', estSchema);
+export const Cafe = mongoose.model('Cafe', cafeSchema);
