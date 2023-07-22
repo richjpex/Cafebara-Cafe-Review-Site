@@ -74,6 +74,7 @@ async function main(){
 
                 if (existingUser || existingEstablishment) {
                     const queryParams = new URLSearchParams();
+                    queryParams.append('usertype', userdata.usertype);
                     queryParams.append('message', 'Email already exists!');
                     const queryString = queryParams.toString();
                     return res.redirect(`./html/guest-views/register.html?${queryString}`);
