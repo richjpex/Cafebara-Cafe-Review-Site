@@ -21,7 +21,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
+  "description": "-----------------------------------------------------------------------\r NOTE:   \r     - Make sure to have a working \r     - Collections should still be manually imported to MongoDB.\r         - Obtain the JSON files of the pre-existing collections in 'db_data_init' folder\r         - Using MongoDB Compass, import the file collections to the database \"apdev_test\"",
   "devDependencies": {
     "nodemon": "^3.0.1"
   }

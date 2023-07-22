@@ -53,6 +53,7 @@ app.use(bodyParser.json());
 // load views
 app.set('view engine', 'ejs');
 app.set('views', [
+    path.join(dirname(fileURLToPath(import.meta.url)), 'public/html/guest-views'),
     path.join(dirname(fileURLToPath(import.meta.url)), 'public/html/user-views'),
     path.join(dirname(fileURLToPath(import.meta.url)), 'public/html/cafes')
 ]);
@@ -212,7 +213,10 @@ app.get('/profile', async (req, res) => {
 });
 
 app.get('/cafe', async (req, res) => {
-    console.log('cafe router');
+    const cafes = await getDb().collection('cafes').find().toArray();
+    console.log(cafes);
+
+    res.render('view-cafes-guest', {cafes});
 });
 
 
