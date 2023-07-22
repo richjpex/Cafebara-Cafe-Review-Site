@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 const Schema = mongoose.Schema;
 
-const reviewsSchema = new Schema({
+const review_detailsSchema = new Schema({
 
     //probably change estName and reviewer into an array
     //and set unique: true
@@ -13,24 +13,13 @@ const reviewsSchema = new Schema({
         ref: 'Est',
         required: true
     },
+
     reviewer: {
         type: Schema.Types.ObjectId,
         ref: 'User',
-        required: true
-    },
-    review_title: {
-        type: String,
-        required: true
-    },
-    review: {
-        type: String,
-        required: true
-    },
-    rating: {
-        type: Number,
         required: true
     }
 
 });
 
-export const Reviews = mongoose.model('Reviews', reviewsSchema);
+export const Review_details = mongoose.model('Reviews', review_detailsSchema);

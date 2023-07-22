@@ -14,8 +14,7 @@ const estSchema = new Schema({
         unique: true
     },
     description: {
-        type: String,
-        required: true
+        type: String
     },
     weekdays_avail:{
         type: String,
@@ -30,7 +29,27 @@ const estSchema = new Schema({
         type: String
     },
     email:{
-        type: String
+        type: String,
+        required: true,
+        unique: true
+    },
+    password: {
+        type: String,
+        required: true
+    },
+
+    image: String,
+
+    rating: {
+        type: Number,
+        required: true,
+        default: 0
+    },
+
+    price: {
+        type: Number,
+        required: true,
+        default: 0
     }
 });
 

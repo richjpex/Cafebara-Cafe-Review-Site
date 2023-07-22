@@ -12,14 +12,16 @@ import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 import mongoose from 'mongoose';
 
-
-
+//Schema model imports
+//These are basically the db collections
+import { Est } from './schemas/estSchema.js';
+import { Reviews } from './schemas/reviewsSchema.js';
+import { User } from './schemas/userSchema.js';
 
 
 const app = express();
 const port = process.env.SERVER_PORT;
 
-mongoose.connect('mongodb://localhost:27017/mydatabase', { useNewUrlParser: true, useUnifiedTopology: true });
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -27,21 +29,14 @@ const storage = multer.diskStorage({
   },
   filename: function (req, file, cb) {
     const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-    cb(null, file.originalname + '-' + uniqueSuffix);
+    cb(null, file.originalname + '-' + uniqueSuffix + path.extname(file.originalname));
   }
 });
 
 const upload = multer({ storage: storage });
 
-// Define a Mongoose schema for storing image paths in MongoDB
-const imageSchema = new mongoose.Schema({
-    path: String
-});
-const Image = mongoose.model('Image', imageSchema);
-
 // current signed up user
 let activeUser, currentEst;
-
 
 // express stuff
 app.use(express.static(path.join(dirname(fileURLToPath(import.meta.url)), 'public')));
@@ -53,216 +48,196 @@ app.use(bodyParser.json());
 // load views
 app.set('view engine', 'ejs');
 app.set('views', [
-    path.join(dirname(fileURLToPath(import.meta.url)), 'public/html/guest-views'),
     path.join(dirname(fileURLToPath(import.meta.url)), 'public/html/user-views'),
     path.join(dirname(fileURLToPath(import.meta.url)), 'public/html/cafes')
 ]);
 
+main()
 
-// register
-app.post('/register', upload.single('profilepic'), async (req, res) => {
-    try {
-        const userdata = req.body;
-        console.log(userdata);  
-        const imagePath = req.file.path;
-        const image = new Image({ path: imagePath });
-        
-        const db = getDb();
-        var collection;
+async function main(){
 
-
-        // user is customer
-        if(userdata.usertype === 'customer'){
-            collection = db.collection('user-customers');
-            const existingUser = await collection.findOne({email: userdata.email});
-            
-            // if user already exists
-            if (existingUser) { 
-                const queryParams = new URLSearchParams(userdata);
-                queryParams.append('message', 'Email already exists!');
-                const queryString = queryParams.toString();
-                return res.redirect(`./html/guest-views/register.html?${queryString}`);
-            }
-
-            // create new user
-            else{      
-                delete userdata.profilepic;          
-                delete userdata.usertype;
-                delete userdata.confirmpassword;
-                delete userdata.submit;
-                userdata['profilepic'] = image;
-                activeUser = userdata;
-                await collection.insertOne(activeUser);
-                res.redirect('../../html/user-views/index.html');
-            }   
-                    
-        }
-
-        // user is owner
-        else if(userdata.usertype ==='owner'){
-            collection = db.collection('user-owners');
-            const existingUser = await collection.findOne({email: userdata.email});
-            
-            // if user already exists
-            if (existingUser) { 
-                const queryParams = new URLSearchParams(userdata);
-                queryParams.append('message', 'Email already exists!');
-                const queryString = queryParams.toString();
-                return res.redirect(`./html/guest-views/register.html?${queryString}`);
-            }
-
-            // create new user
-            else{
-
-                // Assuming you have the binary data in a file
-                const binaryFilePath = req.file.path;
-                const binaryData = fs.readFileSync(binaryFilePath);
-
-                // Convert the binary data to a Base64 string
-                const base64Data = binaryData.toString('base64');
-
-                // Create an object containing the Base64 data
-                const imageObject = {
-                base64Data,
-                mimetype: 'image/png', // Replace with the appropriate MIME type of your binary file
-                };
-
-                delete userdata.profilepic;
-                delete userdata.usertype;
-                delete userdata.confirmpassword;
-                delete userdata.submit;
-                userdata['profilepic'] = imageObject;
-                activeUser = userdata;
-                await collection.insertOne(activeUser);
-                res.render('owner-profile', { activeUser });
-            }
-        }
-        
-        
-    } catch (err) {
-        console.error(err);
-        return res.sendStatus(500);
-    }
-});
-
-// login
-app.post('/login', async (req, res) => {
-    try {
-        const userdata = req.body;
-        console.log(userdata);
-
-        const db = getDb();
-
-        const customer_user = await db.collection('user-customers').findOne({email: userdata.email});
-        const owner_user = await db.collection('user-owners').findOne({email: userdata.email});
-        
-        // check if user is a customer
-        if(customer_user){
-            activeUser = customer_user;
-            res.redirect('../../html/user-views/index.html');
-
-        }
-
-        // check if user is an owner
-        else if(owner_user){
-            activeUser = owner_user;
-            res.render('owner-profile', { activeUser });
-            //res.redirect('../../html/user-views/owner-profile.html');
-        }
-
-        // user and/or pass doesn't exist
-        else{
-            const queryParams = new URLSearchParams(userdata);
-            queryParams.append('message', 'Invalid username or password');
-            const queryString = queryParams.toString();
-            return res.redirect(`./html/guest-views/login.html?${queryString}`);
-            
-        }
-    } catch (err) {
-      console.error(err);
-      return res.sendStatus(500);
-    }
-
-});
-
-// store reviews
-app.post('/review', async (req, res) => {
     try{
-        const review_data = req.body;
-        console.log(review_data);
+        mongoose.connect('mongodb://localhost:27017/mydatabase', { useNewUrlParser: true, useUnifiedTopology: true });
+             // Connect to MongoDB
+        app.listen(port, () => {
+            console.log(`Server running on port ${port}`);
+        });
 
-        const db = getDb();
-        const collection = await db.collection('reviews');
-        //const temp_review = await collection.insertOne(review_data);
-        console.log(currentEst);
-        const temp_user = await collection.insertOne({...review_data, estname: currentEst, reviewee: activeUser});
-        console.log(temp_user.reviewee.firstname);
-        //await collection.updateOne({_id: temp_review._id}, {$set: { estname: currentEst }});
-        res.redirect('/cafe/'+currentEst);
-
-    }
-    catch(err){
-        console.error(err);
-        return res.sendStatus(500);
-    }
-});
-
-// load profile data of a user to the my profile page
-app.get('/profile', async (req, res) => {
-    res.render('user-profile', { activeUser });
-});
-
-app.get('/cafe', async (req, res) => {
-    const cafes = await getDb().collection('cafes').find().toArray();
-    console.log(cafes);
-
-    res.render('view-cafes-guest', {cafes});
-});
-
-
-// load Starbucks cafe data
-app.get('/cafe/starbucks', async (req, res) => {
-    currentEst = "starbucks";
-    const review_data = await getDb().collection('reviews').find({estname: 'starbucks'}).toArray();
-    console.log(review_data);
-    console.log(review_data[0].reviewee.firstname);
-    console.log(activeUser._id);
-    const cafe_data = await getDb().collection('cafes').findOne({_id: new ObjectId('64ad3715b9871bb37ff2993c')});
-    console.log(cafe_data);
+        app.post('/register', upload.single('profilepic'), async (req, res) => {
+            try {
+                const userdata = req.body;
+                console.log(userdata);
     
+                // check if email exists in either User or Est colleciton
+                const existingUser = await User.findOne({email: userdata.email});
+                const existingEstablishment = await Est.findOne({email: userdata.email});
 
-    res.render('cafe-view', { cafe_data, review_data });
-});
+                if (existingUser || existingEstablishment) {
+                    const queryParams = new URLSearchParams();
+                    queryParams.append('usertype', userdata.usertype);
+                    queryParams.append('message', 'Email already exists!');
+                    const queryString = queryParams.toString();
+                    return res.redirect(`./html/guest-views/register.html?${queryString}`);
+                }
+                else {
+                    if(userdata.usertype === 'customer'){
+                        // create new user
+                        const newUser = new User({
+                            password: userdata.password,
+                            email: userdata.email,
+                            firstname: userdata.firstname,
+                            lastname: userdata.lastname,
+                            });
+                            
+                        //save to db
+                        newUser.save().then(function (err) {
+                            if (err) {
+                                const queryParams = new URLSearchParams();
+                                queryParams.append('message', 'Error creating user!');
+                                return res.redirect(`./html/guest-views/register.html?${queryParams.toString()}`);
+                            }
+                            res.redirect('../../html/user-views/index.html');
+                        });
+                    }   
+                    else if(userdata.usertype ==='owner'){
+                        // create new est profile
+                        console.log(userdata)
+                        const newEst = new Est({
+                            name: userdata.estname,
+                            address: userdata.estaddress,
+                            email: userdata.email,
+                            password: userdata.password,
+                        });
 
-// load Obscure cafe data
-app.get('/cafe/obscure', async (req, res) => {
-    currentEst = "obscure";
-    console.log(activeUser._id);
-    const cafe_data = await getDb().collection('cafes').findOne({_id: new ObjectId('64ada22db9871bb37ff2994b')});
-    console.log(cafe_data);
-    res.render('cafe-view', { cafe_data, review_data });
-});
+                        //save to db
+                        newEst.save().then(function (err) {
+                            if (err) {
+                                const queryParams = new URLSearchParams();
+                                queryParams.append('message', 'Error creating establishment!');
+                                return res.redirect(`./html/guest-views/register.html?${queryParams.toString()}`);
+                            }
+                            res.redirect('../../html/user-views/index.html');
+                        });
+                    }
+                }
+            } catch (err) {
+                console.error(err);
+                return res.sendStatus(500);
+            }
+        });
+    
+        // login
+        app.post('/login', async (req, res) => {
+            try {
+                const userdata = req.body;
+                console.log(userdata);
+                
+                const current_user = await User.findOne(
+                    {email: userdata.email, password: userdata.password}
+                )
+                const current_est = await Est.findOne(
+                    {email: userdata.email, password: userdata.password}
+                )
+            
+                if (current_user || current_est){
+                    console.log("user verified");
+                    if(current_user){
+                        activeUser = current_user;
+                        res.redirect('../../html/user-views/index.html');
+                    }
+                    if(current_est){
+                        activeUser = current_est;
+                        //TODO this
+                        res.render('owner-profile', { activeUser });
+                    }
+                }
+                // user and/or pass doesn't exist
+                else{
+                    const queryParams = new URLSearchParams();
+                    queryParams.append('message', 'Invalid email or password!');
+                    const queryString = queryParams.toString();
+                    console.log(queryString)
+                    return res.redirect(`./html/guest-views/login.html?${queryString}`);
+                    
+                }
+            } catch (err) {
+            console.error(err);
+            return res.sendStatus(500);
+            }
+    
+        });
+    
+        //I havent touched anything below here yet so stuff might be broken
 
-
-
-
-// run index.html (guest-views)
-app.get('/cafebara', (req, res) => {
-
-    //const activeUser = req.query.activeUser;
-    res.sendFile(path.join(dirname(fileURLToPath(import.meta.url)), 'public/html/guest-views/index.html'));
-});
-
-
-// Connect to MongoDB
-connectToMongo((err) => {
-    if (err) {
+        // store reviews
+        app.post('/review', async (req, res) => {
+            try{
+                const review_data = req.body;
+                console.log(review_data);
+    
+                const db = getDb();
+                const collection = await db.collection('reviews');
+                //const temp_review = await collection.insertOne(review_data);
+                console.log(currentEst);
+                const temp_user = await collection.insertOne({...review_data, estname: currentEst, reviewee: activeUser});
+                console.log(temp_user.reviewee.firstname);
+                //await collection.updateOne({_id: temp_review._id}, {$set: { estname: currentEst }});
+                res.redirect('/cafe/'+currentEst);
+    
+            }
+            catch(err){
+                console.error(err);
+                return res.sendStatus(500);
+            }
+        });
+    
+        // load profile data of a user to the my profile page
+        app.get('/profile', async (req, res) => {
+            res.render('user-profile', { activeUser });
+        });
+    
+        app.get('/cafe', async (req, res) => {
+            console.log('cafe router');
+        });
+    
+    
+        // load Starbucks cafe data
+        app.get('/cafe/starbucks', async (req, res) => {
+            currentEst = "starbucks";
+            const review_data = await getDb().collection('reviews').find({estname: 'starbucks'}).toArray();
+            console.log(review_data);
+            console.log(review_data[0].reviewee.firstname);
+            console.log(activeUser._id);
+            const cafe_data = await getDb().collection('cafes').findOne({_id: new ObjectId('64ad3715b9871bb37ff2993c')});
+            console.log(cafe_data);
+            
+    
+            res.render('cafe-view', { cafe_data, review_data });
+        });
+    
+        // load Obscure cafe data
+        app.get('/cafe/obscure', async (req, res) => {
+            currentEst = "obscure";
+            console.log(activeUser._id);
+            const cafe_data = await getDb().collection('cafes').findOne({_id: new ObjectId('64ada22db9871bb37ff2994b')});
+            console.log(cafe_data);
+            res.render('cafe-view', { cafe_data, review_data });
+        });
+    
+    
+    
+    
+        // run index.html (guest-views)
+        app.get('/cafebara', (req, res) => {
+    
+            //const activeUser = req.query.activeUser;
+            res.sendFile(path.join(dirname(fileURLToPath(import.meta.url)), 'public/html/guest-views/index.html'));
+        });
+    
+    
+   
+    
+    } catch(err){
         console.error(err);
-        process.exit(1);
     }
-  
-    // Start the server
-    app.listen(port, () => {
-        console.log(`Server running on port ${port}`);
-    });
-});
+}
