@@ -38,7 +38,12 @@ const reviewsSchema = new Schema({
     },
 
     dateModified: Date,
-
+    modified: {
+        type: Boolean,
+        required: true,
+        default: false
+    },
+    
     upvotes: {
         type: Number,
         required: true,

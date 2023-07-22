@@ -14,9 +14,9 @@ import mongoose from 'mongoose';
 
 //Schema model imports
 //These are basically the db collections
-import { Est } from './estSchema.js';
-import { Reviews } from './reviewsSchema.js';
-import { User } from './userSchema.js';
+import { Est } from './schemas/estSchema.js';
+import { Reviews } from './schemas/reviewsSchema.js';
+import { User } from './schemas/userSchema.js';
 
 
 const app = express();
