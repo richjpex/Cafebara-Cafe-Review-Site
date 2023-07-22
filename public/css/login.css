@@ -161,9 +161,19 @@ input, select{
 input.inputfield{
     margin-bottom: 1rem;
 }
+input#password{
+    margin-bottom: 0.2rem;
+}
+
+p#errorMessage{
+    height:20px;
+    color:red; 
+    font:italic 15px Arial, sans-serif;
+    margin:0px;
+}
 
 input#submit{
-    margin-top:1rem;
+    margin-top:0.2rem;
     border-radius: 15px;
     background-color: var(--primary);
     color:white;
@@ -187,6 +197,7 @@ input#submit:hover{
 
 #buton{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }

@@ -1,5 +1,18 @@
 # CCAPDEV-GROUP11
-## cafebara cafe review site
+## cafebara cafe review site with backend
+
+-----------------------------------------------------------------------
+NOTE:   
+    - Make sure to have a working 
+    - Collections should still be manually imported to MongoDB.
+        - Obtain the JSON files of the pre-existing collections in 'db_data_init' folder
+        - Using MongoDB Compass, import the file collections to the database "apdev_test"
+
+    - To run the website
+        - Start the server using "npm start" command
+        - Enter "http://localhost:3000/cafebara/" in the browser url to open index.html (guest-view)
+    
+-----------------------------------------------------------------------
 
 The following describes the features of a restaurant / store / service review web application. Groups may choose to either develop a review web application for either restaurants, stores, or services. For realism, groups may base the establishments featured in the application from actual establishments that are found around the campus. The minimum features required to be implemented for this project is as follows:
 - View establishments
@@ -53,3 +66,5 @@ published, making it visible to the public.
   - Visitors can easily navigate without help, all information is easy to access.
   - Good visual design.
   - Design suits the theme of the application, and is cohesive and consistent across the whole application.
+
+    

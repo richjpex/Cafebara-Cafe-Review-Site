@@ -23,7 +23,7 @@
     -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="crossorigin=""/>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="crossorigin=""></script>
-    <link rel="stylesheet" href="../../css/Control.FullScreen.css" />
+    <link rel="stylesheet" href="../css/Control.FullScreen.css" />
     <script src="../../scripts/Control.FullScreen.js"></script>
     
 </head>
@@ -41,17 +41,25 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item inactive">
-            <a class="nav-link" aria-current="page" href="../../html/guest-views/index.html">Home</a>
+            <a class="nav-link" aria-current="page" href="../../html/user-views/index.html">Home</a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link active" href="../../html/guest-views/view-cafes.html">Review</a>
+            <a class="nav-link active" href="#">Review</a>
           </li>
           <li class="nav-item inactive">
-            <a class="nav-link" href="../../html/guest-views/about.html">About</a>
+            <a class="nav-link" href="../../html/user-views/about.html">About</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" id = "login" href="login.html">login</a>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Profile
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="../../html/user-views/user-profile.html">My Profile</a></li>
+              <li><a class="dropdown-item" href="../../html/user-views/edit-profile.html">Settings</a></li>
+              <li><a class="dropdown-item" href="../../html/guest-views/index.html">Log out</a></li>
+            </ul>
           </li>
+  
         </ul>
       </div>
     </div>
@@ -147,162 +155,36 @@
                     List of Cafes
                 -->
 
-                <!-- Cafe 1 -->
-                <div class="card mb-3">
-                    <div class="row g-0" style="margin: 0;">
-                      <div class="col-md-4">
-                        <img src="../../images/cafes/obscure.jpg" class="img-fluid rounded" alt="Obscure">
-                      </div>
-
-                      <div class="col-md-6">
-                        <div class="card-body"  style="margin: 0;">
-
-                          <a href="../../html/cafes/obscure.html"><h5 class="card-title">Obscure Cafe</h5></a>
-                          <div class = "cb_rating">
-                            <img src="../../images/ratings/full.png"/>
-                            <img src="../../images/ratings/full.png"/>
-                            <img src="../../images/ratings/full.png"/>
-                            <img src="../../images/ratings/full.png"/>
-                            <img src="../../images/ratings/full.png"/>
-                            <span class = "numreviews">(56)</span>
+                <% for(let i=0; i<cafes.length; i++) { %>
+                  <div class="card mb-3">
+                      <div class="row g-0" style="margin: 0;">
+                        <div class="col-md-4">
+                          <img src="/<%= cafes[i].img_path %>" class="img-fluid rounded" alt="cafe">
                         </div>
-                          <p class="card-text">Obscure cafe is an exclusive and lavish café that captivates with its opulence.</p>
-                          <p class="card-text"><small class="text-body-secondary">Open from 1030 - 2000</small></p>
+  
+                        <div class="col-md-6">
+                          <div class="card-body"  style="margin: 0;">
+  
+                            <a href="../../html/cafes/obscure.html"><h5 class="card-title"><%= cafes[i].name%></h5></a>
+                            <div class = "cb_rating">
+                              <img src="../../images/ratings/full.png"/>
+                              <img src="../../images/ratings/full.png"/>
+                              <img src="../../images/ratings/full.png"/>
+                              <img src="../../images/ratings/full.png"/>
+                              <img src="../../images/ratings/full.png"/>
+                              <span class = "numreviews">(56)</span>
+                          </div>
+                            <p class="card-text"><%= cafes[i].description %></p>
+                            <p class="card-text"><small class="text-body-secondary">Open from 1030 - 2000</small></p>
+                          </div>
                         </div>
+  
                       </div>
+                  </div>
+  
+                  <% } %>
 
-                    </div>
-                </div>
-
-                 <!-- Cafe 2 -->
-                 <div class="card mb-3">
-                    <div class="row g-0" style="margin: 0;">
-                      <div class="col-md-4">
-                        <img src="../../images/cafes/bos.jpeg" class="img-fluid rounded" alt="Bo's Coffee">
-                      </div>
-
-                      <div class="col-md-6">
-                        <div class="card-body"  style="margin: 0;">
-                          <a href="../../html/cafes/bos.html"><h5 class="card-title">Bo's Coffee</h5></a>
-                          <div class = "cb_rating">
-                            <img src="../../images/ratings/full.png"/>
-                            <img src="../../images/ratings/full.png"/>
-                            <img src="../../images/ratings/full.png"/>
-                            <img src="../../images/ratings/full.png"/>
-                            <img src="../../images/ratings/full.png"/>
-                            <span class = "numreviews">(56)</span>
-                        </div>
-                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                          <p class="card-text"><small class="text-body-secondary">Open from 0930 - 2100</small></p>
-                        </div>
-                      </div>
-
-                    </div>
-                </div>
-
-                 <!-- Cafe 3 -->
-                 <div class="card mb-3">
-                    <div class="row g-0" style="margin: 0;">
-                      <div class="col-md-4">
-                        <img src="../../images/cafes/coffee-project.jpeg" class="img-fluid rounded" alt="Coffe Project">
-                      </div>
-
-                      <div class="col-md-6">
-                        <div class="card-body"  style="margin: 0;">
-                          <a href="../../html/cafes/coffee-project.html"><h5 class="card-title">Coffee Project</h5></a>
-                          <div class = "cb_rating">
-                            <img src="../../images/ratings/full.png"/>
-                            <img src="../../images/ratings/full.png"/>
-                            <img src="../../images/ratings/full.png"/>
-                            <img src="../../images/ratings/full.png"/>
-                            <img src="../../images/ratings/full.png"/>
-                            <span class = "numreviews">(56)</span>
-                        </div>
-                          <p class="card-text">Coffee Project is a popular coffee shop chain in the Philippines known for its unique and enchanting ambiance. Each Coffee Project branch is meticulously designed to create a whimsical and Instagram-worthy atmosphere, with lush greenery, charming vintage decor, and cozy seating areas. </p>
-                          <p class="card-text"><small class="text-body-secondary">Open from 1030 - 2000</small></p>
-                        </div>
-                      </div>
-
-                    </div>
-                </div>
-
-                 <!-- Cafe 4 -->
-                 <div class="card mb-3">
-                    <div class="row g-0" style="margin: 0;">
-                      <div class="col-md-4">
-                        <img src="../../images/cafes/nitro7.jpeg" class="img-fluid rounded" alt="Nitro 7">
-                      </div>
-
-                      <div class="col-md-6">
-                        <div class="card-body"  style="margin: 0;">
-                          <a href="../../html/cafes/nitro7.html"><h5 class="card-title">Nitro 7 Coffee and Tea Bar</h5></a>
-                          <div class = "cb_rating">
-                            <img src="../../images/ratings/full.png"/>
-                            <img src="../../images/ratings/full.png"/>
-                            <img src="../../images/ratings/full.png"/>
-                            <img src="../../images/ratings/full.png"/>
-                            <img src="../../images/ratings/full.png"/>
-                            <span class = "numreviews">(56)</span>
-                        </div>
-                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                          <p class="card-text"><small class="text-body-secondary">Open from 24/7</small></p>
-                        </div>
-                      </div>
-
-                    </div>
-                </div>
-
-                 <!-- Cafe 5 -->
-                 <div class="card mb-3">
-                    <div class="row g-0" style="margin: 0;">
-                      <div class="col-md-4">
-                        <img src="../../images/cafes/bigboss.jpeg" class="img-fluid rounded" alt="Big Boss">
-                      </div>
-
-                      <div class="col-md-6">
-                        <div class="card-body"  style="margin: 0;">
-                          <a href="../../html/cafes/bigboss.html"><h5 class="card-title">Big Boss</h5></a>
-                          <div class = "cb_rating">
-                            <img src="../../images/ratings/full.png"/>
-                            <img src="../../images/ratings/full.png"/>
-                            <img src="../../images/ratings/full.png"/>
-                            <img src="../../images/ratings/full.png"/>
-                            <img src="../../images/ratings/full.png"/>
-                            <span class = "numreviews">(56)</span>
-                        </div>
-                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                          <p class="card-text"><small class="text-body-secondary">Open from 730 - 1800</small></p>
-                        </div>
-                      </div>
-
-                    </div>
-                </div>
-
-                 <!-- Cafe 6 -->
-                 <div class="card mb-3">
-                    <div class="row g-0" style="margin: 0;">
-                      <div class="col-md-4">
-                        <img src="../../images/cafes/starbs.jpg" class="img-fluid rounded" alt="Starbucks">
-                      </div>
-
-                      <div class="col-md-6">
-                        <div class="card-body"  style="margin: 0;">
-                          <a href="../../html/cafes/starbs.html"><h5 class="card-title">Starbucks Green Court</h5></a>
-                          <div class = "cb_rating">
-                            <img src="../../images/ratings/full.png"/>
-                            <img src="../../images/ratings/full.png"/>
-                            <img src="../../images/ratings/full.png"/>
-                            <img src="../../images/ratings/full.png"/>
-                            <img src="../../images/ratings/full.png"/>
-                            <span class = "numreviews">(56)</span>
-                        </div>
-                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                          <p class="card-text"><small class="text-body-secondary">Open from 24/7</small></p>
-                        </div>
-                      </div>
-
-                    </div>
-                </div>
+                 
 
                 <!--
                     Pagination

@@ -6,6 +6,56 @@ document.addEventListener("DOMContentLoaded",function() {
     
     let dropdown = document.querySelector("#usertype");
 
+    const urlParams = new URLSearchParams(window.location.search);
+    const usertypeparam = urlParams.get('usertype');
+    const message = urlParams.get('message');
+
+    if(usertypeparam){
+        dropdown.value = decodeURIComponent(usertypeparam);
+    }
+    if(dropdown.value == customer){
+        displayCustomerRegistration();
+
+        console.log(urlParams.entries());
+        for (const [name, value] of urlParams.entries()) {
+            console.log(`${name}: ${value}`);
+            if (name !== 'message' && name !== 'email' && name !== 'password' && name !== 'confirmpassword') {
+                const input = document.querySelector(`[name="${name}"]`);
+                if (input) {
+                
+                    input.value = decodeURIComponent(value);
+                
+                }
+            }
+        }
+        if (message) {
+            emaillabel.innerHTML = `Email <span style='color:red; font:italic 15px Arial, sans-serif '>${decodeURIComponent(message)}</span>`;
+
+            
+        }
+    }
+    else if(dropdown.value == owner){
+        displayOwnerRegistration();
+        // Populate form inputs with existing values
+        console.log(urlParams.entries());
+        for (const [name, value] of urlParams.entries()) {
+            console.log(`${name}: ${value}`);
+            if (name !== 'message' && name !== 'email' && name !== 'password' && name !== 'confirmpassword') {
+                const input = document.querySelector(`[name="${name}"]`);
+                if (input) {
+                
+                    input.value = decodeURIComponent(value);
+                
+                }
+            }
+        }
+        if (message) {
+            emaillabel.innerHTML = `Email <span style='color:red; font:italic 15px Arial, sans-serif '>${decodeURIComponent(message)}</span>`;
+          }
+
+        
+    }
+
     dropdown.addEventListener("change", function() {
         let usertype = dropdown.value;
         clearForm();
@@ -170,7 +220,7 @@ document.addEventListener("DOMContentLoaded",function() {
     }
 
     function createEmailInput(){
-        const email = document.createElement("input");
+        const email = document.createElement("input");        
         const emaildiv = document.createElement("div");
         const emaillabel = document.createElement("label");
 
@@ -179,8 +229,9 @@ document.addEventListener("DOMContentLoaded",function() {
         email.setAttribute("id","email");
         email.setAttribute("placeholder","kk@email.com");
         email.required = true;
-
+  
         emaillabel.setAttribute("for","email");
+        emaillabel.setAttribute("id", "emaillabel");
         emaillabel.innerHTML = "Email";
         emaildiv.setAttribute("class","singlebox");
 
@@ -354,6 +405,7 @@ document.addEventListener("DOMContentLoaded",function() {
         const labeldiv = document.createElement("div");
         const profilepiclabel = document.createElement("label");
         const profilepic = document.createElement("input");
+        
 
         //set image attributes
         img.setAttribute("src","/images/assets/2logo.png");
@@ -406,4 +458,5 @@ document.addEventListener("DOMContentLoaded",function() {
 
         return biowrap;
     }
+
 });
