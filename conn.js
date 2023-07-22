@@ -1,9 +1,11 @@
-const {MongoClient} = require("mongodb");
+import { MongoClient } from "mongodb";
+import dotenv from 'dotenv';   // environment variables
+dotenv.config();
 
-const mongoURI = process.env.MONGODB_URI;
-const client = new MongoClient(mongoURI);
+export const mongoURI = process.env.MONGODB_URI;
+export const client = new MongoClient(mongoURI);
 
-function connectToMongo (callback) {
+export function connectToMongo (callback) {
     client.connect().then((client) => {
         return callback();
     }).catch( err => {
@@ -11,7 +13,7 @@ function connectToMongo (callback) {
     })
 }
 
-function getDb(dbName = process.env.DB_NAME) {
+export function getDb(dbName = process.env.DB_NAME) {
     return client.db(dbName);
 }
 
@@ -26,10 +28,5 @@ process.on('SIGNINT', signalHandler);
 process.on('SIGTERM', signalHandler);
 process.on('SIGQUIT', signalHandler);
 
-module.exports = {
-    connectToMongo: connectToMongo,
-    uri: mongoURI,
-    client: client,
-    getDb: getDb
-}
+
 
