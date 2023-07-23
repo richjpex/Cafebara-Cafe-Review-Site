@@ -28,8 +28,7 @@ const userSchema = new Schema({
     bio: String,
     
     birthday: {
-        type: Date,
-        required: true
+        type: Date
     }
 });
 

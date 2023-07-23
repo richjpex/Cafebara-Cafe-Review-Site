@@ -9,6 +9,11 @@ import { create } from "domain";
 
 //change this to the env
 mongoose.connect('mongodb://127.0.0.1:27017/apdev_test', { useNewUrlParser: true, useUnifiedTopology: true });
+
+createUsers();
+createCafes();
+console.log("Process can be terminated safely now");
+
 function createUsers(){
     const users = [];
 
@@ -75,9 +80,9 @@ function createCafes(){
         phone: "+63917 546 9130",
         email: "bigbosscafe@gmail.com",
         password: "b1gb0ss",
-        image: "../../images/cafes/bigboss.jpeg",
+        image: "./uploads/cafes/bigboss.jpeg",
         rating: 4,
-        price: 200
+        price: 200,
         }));
 
     cafes.push(new Cafe({
@@ -90,7 +95,7 @@ function createCafes(){
         phone: "+63995 484 2599",
         email: "boscoffee@gmail.com",
         password: "b0sc0ffee",
-        image: "../../images/cafes/bos.jpeg",
+        image: "./uploads/cafes/bos.jpeg",
         rating: 4,
         price: 240
         }));
@@ -105,7 +110,7 @@ function createCafes(){
         phone: "+63920 331 6503",
         email: "coffeeproject@gmail.com",
         password: "c0ff33pr0ject",
-        image: "../../images/cafes/coffeeproject.jpeg",
+        image: "./uploads/cafes/coffeeproject.jpeg",
         rating: 3,
         price: 250
         }));
@@ -120,7 +125,7 @@ function createCafes(){
         phone: "+63921 498 2255",
         email: "nitro7taft@gmail.com",
         password: "n1tr07",
-        image: "../../images/cafes/nitro7.jpeg",
+        image: "./uploads/cafes/nitro7.jpeg",
         rating: 3,
         price: 190
         }));
@@ -135,7 +140,7 @@ function createCafes(){
         phone: "+63917 546 9130",
         email: "obscurecafetaft@gmail.com",
         password: "0bscur3",
-        image: "../../images/cafes/obscure.jpeg",
+        image: "./uploads/cafes/obscure.jpeg",
         rating: 4,
         price: 220
         }));
@@ -150,7 +155,7 @@ function createCafes(){
         phone: "+63917 546 9130",
         email: "starbucksgreencourt@gmail.com",
         password: "st4rbuck5",
-        image: "../../images/cafes/starbucks.jpeg",
+        image: "./uploads/cafes/starbucks.jpeg",
         rating: 5,
         price: 200
         }));
@@ -159,77 +164,3 @@ function createCafes(){
         cafes[i].save();
     }
 }
-
-function getCafeId(cafeName){
-    const cafe = Cafe.findOne({name: cafeName});
-    return new ObjectId(cafe._id);
-
-}
-
-function getUserId(firstName, lastName){
-    const user = User.findOne({firstname: firstName, lastname: lastName});
-    return new ObjectId(user._id);
-
-}
-
-function createReviews(){
-    const reviews = []
-
-    reviews.push(new Review({
-        cafeName: getCafeId("Big Boss Cafe"),  
-        reviewer: getUserId("Orrin", "Uy"),
-        review_title: "SNAKEEEEE!!",
-        review: "Big Boss is my go-to cafe when I'm in need of a delicious cup of coffee. The moment you step inside, you're greeted by the warm and inviting aroma of freshly brewed beans. The staff is incredibly knowledgeable and passionate about coffee, and they always go the extra mile to ensure you have a fantastic experience. The menu offers a great variety of unique coffee blends, and the baristas are skilled in their craft. The cozy ambiance and comfortable seating make it a great spot to unwind and savor your coffee. Big Boss truly delivers excellence in every cup.",
-        rating: 4,
-        dateCreated: "2021-05-01",
-        upvotes: 10,
-        downvotes: 2
-    }));
-
-    reviews.push(new Review({
-        //get the _id of cafeName and reviewer
-        cafeName: getCafeId("Big Boss Cafe"),
-        reviewer: getUserId("Migs", "Leysa"),
-        review_title: "Bo's Coffee Review",
-        review: "This is a review for Bo's Coffee",
-        rating: 4,
-        dateCreated: "2021-05-01",
-        upvotes: 2,
-        downvotes: 0
-    }));
-
-    reviews.push(new Review({
-        _id: new ObjectId(),
-        cafeName: getCafeId("Coffee Project"),
-        reviewer: getUserId("Rich", "Pex"),
-        review_title: "Coffee Project Review",
-        review: "This is a review for Coffee Project",
-        rating: 3,
-        dateCreated: "2021-05-01",
-        upvotes: 2,
-        downvotes: 5
-    }));
-
-    reviews.push(new Review({
-        cafeName: getCafeId("Coffee Project"),
-        reviewer: getUserId("Rich", "Pex"),
-        review_title: "Coffee Project Review",
-        review: "This is a review for Coffee Project",
-        rating: 3,
-        dateCreated: "2021-05-01",
-        upvotes: 2,
-        downvotes: 5
-    }));
-
-    for (let i = 0; i < reviews.length; i++) {
-        reviews[i].save();
-    }
-
-    
-
-
-}
-
-createUsers();
-createCafes();
-createReviews();

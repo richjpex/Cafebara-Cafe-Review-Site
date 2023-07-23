@@ -4,21 +4,7 @@ const Schema = mongoose.Schema;
 
 const reviewsSchema = new Schema({
 
-    // review_details depreciated... use cafeName and reviewer instead
-    // code that has index in it below does the thing but better
-    // review_details:{
-    //     type: Schema.Types.ObjectId,
-    //     required: true,
-    //     unique: true,
-    //     immutable: true
-    // },
-
-    _id: {
-        cafeName: Schema.Types.ObjectId,
-        reviewer: Schema.Types.ObjectId
-    },
-
-    /*cafeName:{
+    cafeName:{
         type: Schema.Types.ObjectId,
         required: true,
         ref: 'Cafe',
@@ -30,7 +16,7 @@ const reviewsSchema = new Schema({
         required: true,
         ref: 'User',
         immutable: true
-    },*/
+    },
 
     review_title: {
         type: String,
@@ -51,11 +37,11 @@ const reviewsSchema = new Schema({
 
     dateCreated: {
         type: Date,
-        required: true,
-        default: Date.now()
+        required: true
     },
 
     dateModified: Date,
+
     modified: {
         type: Boolean,
         required: true,
@@ -72,8 +58,12 @@ const reviewsSchema = new Schema({
         type: Number,
         required: true,
         default: 0
-    }
+    },
 
+    ownerReply: {
+        type: Schema.Types.ObjectId,
+        ref: 'Reply'
+    }
 });
 
 reviewsSchema.index({cafeName: 1, reviewer: 1}, {unique: true});

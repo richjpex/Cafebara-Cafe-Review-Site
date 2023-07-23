@@ -14,7 +14,9 @@
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon mongoose.js",
-    "test": "nodemon index.js"
+    "test": "nodemon index.js",
+    "pop1": "node magic.js",
+    "pop2": "node magic2.js"
   },
   "name": "apdev_dup",
   "version": "1.0.0",
