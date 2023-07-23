@@ -1,0 +1,41 @@
+
+
+<link rel="stylesheet" href="../../css/view_cafes.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+
+<div class="container-fluid userCon">
+        <div class="container-fluid" style="margin: 0 auto;">
+            <div class="row">
+
+              {{> filters}}
+
+              {{> cafelist}}
+
+              <!-- 
+                Right Column
+              -->
+              <div class="col offset-md-4">
+                <div id="map"></div>
+              </div>
+
+            </div>
+            <!-- ROW -->
+
+        </div>
+        <!-- container-sm -->
+
+    </div>
+
+    <script defer>
+    var map = new L.Map('map', {
+    fullscreenControl: true,
+    fullscreenControlOptions: {
+        position: 'topleft'
+    }
+    }).setView([14.564980, 120.993041], 17);
+
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+</script>
