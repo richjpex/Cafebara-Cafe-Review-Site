@@ -73,6 +73,8 @@ async function main(){
                 const existingUser = await User.findOne({email: userdata.email});
                 const existingCafe = await Cafe.findOne({email: userdata.email});
 
+                
+
                 if (existingUser || existingCafe) {
                     const queryParams = new URLSearchParams();
                     queryParams.append('usertype', userdata.usertype);
