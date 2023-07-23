@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="../../images/assets/favicon.ico">
+
+    <title>cafebara | Profile</title>
+    <link rel="stylesheet" href="../../css/user_profile.css" />
+    <link rel="stylesheet" href="../../css/owner_profile.css" />
+
+    <!-- 
+      Importing BOOTSTRAP
+    -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script> 
+    <!--
+        Importing Leaflet
+    -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="crossorigin=""></script>
+    <link rel="stylesheet" href="../../css/Control.FullScreen.css" />
+    <script src="../../scripts/Control.FullScreen.js"></script>
+    
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg fixed-top" data-bs-theme="dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href=".\index.html">
+        <img src = "../../images/assets/2logo.png" id = "logo">
+        <span id = "headername">cafebara</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item dropdown active">
+            <a class="nav-link active dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Profile
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">My Profile</a></li>
+              <li><a class="dropdown-item" href="../../html/guest-views/index.html">Log out</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+    <!-- 
+      BEGINNING OF MAIN CONTAINER
+
+      Notes:  I made it container sm and userCon
+              so that it inherits the properties of Bootstrap fluid
+    -->
+    <div class="container-fluid userCon">
+
+        <div class="container-fluid">
+
+            <div class="row">
+
+              <div class="col-3">
+                <div class="container-sm">
+
+                <img src="../../images/cafes/bos.jpeg" style="width: 100%; border-radius: 10%; border: 1px solid grey;">
+                <h5 class="recommended">
+                    Bo's Coffee
+                </h5>
+
+                  <p class="recommended">
+                    member since 2023
+                  </p>
+                  <p class = "ratings">
+                    <img src="../../images/ratings/full.png"/>
+                    <img src="../../images/ratings/full.png"/>
+                    <img src="../../images/ratings/full.png"/>
+                    <img src="../../images/ratings/empty.png"/>
+                    <img src="../../images/ratings/empty.png"/>
+                    <span class = "numreviews">(2)</span>
+                  </p>
+                  <hr>
+                    <p>
+                      <h5 class = "recommended">Description</h5>
+                      Bo's Coffee is a well-established and beloved coffee 
+                      chain in the Philippines, renowned for its commitment 
+                      to showcasing the country's rich coffee heritage. With 
+                      its cozy and inviting ambiance, Bo's Coffee provides a 
+                      warm and welcoming space for coffee enthusiasts to gather, 
+                      relax, and savor their favorite brews. The brand prides 
+                      itself on supporting local coffee farmers by sourcing 
+                      high-quality beans from various regions across the 
+                      Philippines. This dedication to promoting local agriculture
+                      is evident in the robust and flavorful coffees they serve.
+                      Bo's Coffee offers a diverse menu, featuring a range of
+                      espresso-based beverages, handcrafted pour-overs, and 
+                      refreshing iced coffees. Complementing their exceptional
+                      coffee offerings, Bo's Coffee also provides a selection
+                      of delectable pastries and light snacks, making it an
+                      ideal destination for a quick pick-me-up or a 
+                      leisurely coffee break. Whether you're seeking a 
+                      taste of authentic Philippine coffee or a cozy spot 
+                      to unwind, Bo's Coffee is a go-to destination for 
+                      coffee lovers throughout the country.
+                    </p>
+
+                    <hr>
+                </div>
+
+                </div>
+
+                
+              <!--
+                Middle Column
+              -->
+              <div class="col-8">
+                <!--
+                    Title for Recommended
+                -->
+                <div class="container-sm">
+                    <h3 class="recommended">
+                    Reviews
+                    </h3>
+
+
+                    <!-- DROPDOWN SORT BY -->
+                    <div class="dropdown recommended">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          Sort by: 
+                        </button>
+                        <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" href="#">Date</a></li>
+                          <li><a class="dropdown-item" href="#">Alphabetical</a></li>
+                          <li><a class="dropdown-item" href="#">Most Useful</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!--
+                    List of Cafes
+                -->
+
+                <!-- Cafe 1 -->
+                <div class="card">
+                  <h5 class="card-header">
+                      <img src = "../../images/assets/login.png" class = "reviewer-img">
+                      <div class = "userinfo">
+                        Joe B.<br>
+                        <span class = "member_since">member since 2023</span>
+                      </div>
+                  </h5>
+                  <div class="card-body">
+                    <h5 class="card-title">Approved by the Federal Government</h5>
+                    <div class = "cb_rating">
+                      <img src="../../images/ratings/full.png"/>
+                      <img src="../../images/ratings/full.png"/>
+                      <img src="../../images/ratings/full.png"/>
+                      <img src="../../images/ratings/full.png"/>
+                      <img src="../../images/ratings/full.png"/>
+                      <br>
+                      <span class = "review_date">Reviewed on 2023/06/21</span>
+                    </div>
+                    <p class="card-text">
+                      I absolutely love Bo's Coffee! The moment I step inside, 
+                      I'm greeted with the rich aroma of freshly brewed coffee. 
+                      The staff is always friendly and attentive, making me feel 
+                      right at home. Their coffee is exceptional, with a wide variety 
+                      of flavors and blends to choose from. My personal favorite is 
+                      the Hazelnut Latte - it's smooth, creamy, and perfectly balanced
+                      . The cozy ambiance and comfortable seating make it a great 
+                      place to relax or catch up with friends. Bo's Coffee never 
+                      disappoints!
+                    </p>
+                    <div class="review_pics_container" style= "margin: 0">
+                      <video src="../../videos/Learning with FGO - Gudako crazy about gacha.mp4" class="object-fit-cover" controls></video>
+                  </div>
+                    <div class = "write_review" id = "reply-button" style = "margin: 0;">
+                      <button class="btn btn-dark" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                          Reply
+                      </button>
+                      <div class="collapse" id="collapseExample">
+                          <div class="card card-body">
+                              <div class = "review-wrapper">
+                                  <form>
+                                      <div class = "review-content">
+                                          <textarea class="form-control review-body" placeholder="Write a reply" id="review-editor" style="height: 100px"></textarea>
+                                      </div>
+                                      <input type = "submit" id = "submit-review">
+                                  </form>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  </div>
+                </div>
+                
+                
+                <div class="card">
+                  <h5 class="card-header">
+                      <img src = "../../images/assets/login.png" class = "reviewer-img">
+                      <div class = "userinfo">
+                        Xijin P.<br>
+                        <span class = "member_since">member since 2023</span>
+                      </div>
+                  </h5>
+                  <div class="card-body" style = "margin-bottom:0;">
+                    <h5 class="card-title">我不喜欢Bo's</h5>
+                    <div class = "cb_rating">
+                      <img src="../../images/ratings/full.png"/>
+                      <img src="../../images/ratings/empty.png"/>
+                      <img src="../../images/ratings/empty.png"/>
+                      <img src="../../images/ratings/empty.png"/>
+                      <img src="../../images/ratings/empty.png"/>
+                      <br>
+                      <span class = "review_date">Reviewed on 2023/06/21</span>
+                    </div>
+                    <p class="card-text">
+                      I had high expectations for Bo's Coffee, but unfortunately, 
+                      it fell short. The coffee itself was decent, but nothing exceptional. 
+                      I ordered a cappuccino, and it lacked the boldness and depth of flavor
+                       I was hoping for. The service was mediocre at best - the staff seemed 
+                       disinterested and inattentive. The atmosphere was also quite noisy and 
+                       chaotic, making it difficult to have a peaceful moment. Overall, Bo's 
+                       Coffee didn't live up to the hype for me. I'll be exploring other options 
+                       for my caffeine fix in the future
+                    </p>
+                    <div class="review_pics_container" style= "margin: 0">
+                      <img src="../../images/reviews/starbs_rev1.jpg" class="review_pics"/>
+                    </div>
+                  </div>
+                  <div class = "ownerreply" style = "margin:0; padding : 0;">
+                    <div class = "ownerreplytext">
+                        <h4>Owner Reply</h4>
+                        <!--<span class = "customeraddressed">XiJin P.</span>-->
+                        <span class = "review_date">Reviewed on 2023/06/22</span>
+                    </div>
+                    <div class = "ownerreplycontent">
+                        <p>Thank you for your feedback. We will look into this matter.</p>
+                    </div>
+                </div>
+                </div>
+                 
+                <!--
+                    Pagination
+                -->
+                <ul class="pagination justify-content-center">
+                    <li class="page-item disabled">
+                      <a class="page-link">Previous</a>
+                    </li>
+
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+
+                    <li class="page-item">
+                      <a class="page-link" href="#">Next</a>
+                    </li>
+                  </ul>
+              </div>
+
+              <!-- 
+                Right Column
+              -->
+             
+            </div>
+            <!-- ROW -->
+
+        </div>
+        <!-- container-sm -->
+
+    </div>
+    <!-- userCon -->
+
+</body>
+
+<script defer>
+    var map = new L.Map('map', {
+    fullscreenControl: true,
+    fullscreenControlOptions: {
+        position: 'topleft'
+    }
+    }).setView([14.564980, 120.993041], 17);
+
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+</script>
+
+</html>

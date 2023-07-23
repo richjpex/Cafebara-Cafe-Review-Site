@@ -1,0 +1,34 @@
+[{
+  "_id": {
+    "$oid": "64ad3715b9871bb37ff2993c"
+  },
+  "name": "Starbucks Coffee",
+  "avg_cost": "Avg. Php350.00",
+  "description": "Starbucks is a global coffeehouse chain that offers a wide range of coffee beverages, including espresso-based drinks, brewed coffee, and teas. They also provide an assortment of food items, pastries, and snacks. Known for its cozy and welcoming store ambiance, Starbucks has become a popular destination for people to socialize, work, or relax. With a focus on ethical sourcing and sustainability, Starbucks has thousands of locations worldwide and is recognized for its commitment to high-quality products and customer satisfaction.",
+  "menu": "No available menu yet. Please contact the establishment.",
+  "website": "starbucks.com",
+  "phone_num": "+639175469130",
+  "fb_link": "fb.me/starbucks",
+  "address1": "8085 Mangga St.",
+  "address2": "Taft Ave. Pasay City, Manila",
+  "weekdays": "7am-10pm",
+  "weekends": "9am-10pm",
+  "owner_id": "64ad79e3b9871bb37ff29944"
+},
+{
+  "_id": {
+    "$oid": "64ada22db9871bb37ff2994b"
+  },
+  "name": "Obscure Cafe",
+  "avg_cost": "Avg. Php220.00",
+  "description": "Obscure cafe is an exclusive and lavish café that captivates with its opulence. From the magnificent crystal chandeliers illuminating the marble floors to the plush velvet seating arrangements, every detail exudes elegance. Indulge in rare and carefully crafted coffee blends, accompanied by exquisite pastries and desserts. Impeccable service and a refined atmosphere make this café a haven of luxury and refinement, inviting you to experience a truly extraordinary culinary journey.",
+  "menu": "No available menu yet. Please contact the establishment.",
+  "website": "obscure.com",
+  "phone_num": "+639175469130",
+  "fb_link": "fb.me/obscure",
+  "address1": "8085 Mangga St.",
+  "address2": "Taft Ave. Pasay City, Manila",
+  "weekdays": "7am-10pm",
+  "weekends": "9am-10pm",
+  "owner_id": "64ada259b9871bb37ff2994d"
+}]

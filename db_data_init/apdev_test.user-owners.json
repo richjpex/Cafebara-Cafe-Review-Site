@@ -1,0 +1,18 @@
+[{
+  "_id": {
+    "$oid": "64ad79e3b9871bb37ff29944"
+  },
+  "estname": "starbucks",
+  "estaddress": "8085 Mangga St. Taft Ave. Pasay City, Manila",
+  "email": "starbucks@gmail.com",
+  "password": "rawr"
+},
+{
+  "_id": {
+    "$oid": "64ada259b9871bb37ff2994d"
+  },
+  "estname": "obscure",
+  "estaddress": "8085 Mangga St. Taft Ave. Pasay City, Manila",
+  "email": "obscure@gmail.com",
+  "password": "rawr"
+}]

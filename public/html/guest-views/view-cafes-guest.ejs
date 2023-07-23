@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="../../images/assets/favicon.ico">
+
+    <title>cafebara | View Establishments</title>
+    <link rel="stylesheet" href="../../css/view_cafes.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+
+    <!-- 
+      Importing BOOTSTRAP
+    -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script> 
+    <!--
+        Importing Leaflet
+    -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="crossorigin=""></script>
+    <link rel="stylesheet" href="../../css/Control.FullScreen.css" />
+    <script src="../../scripts/Control.FullScreen.js"></script>
+    
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg fixed-top" data-bs-theme="dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href=".\index.html">
+        <img src = "../../images/assets/2logo.png" id = "logo">
+        <span id = "headername">cafebara</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item inactive">
+            <a class="nav-link" aria-current="page" href="../../html/guest-views/index.html">Home</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link active" href="../../html/guest-views/view-cafes.html">Review</a>
+          </li>
+          <li class="nav-item inactive">
+            <a class="nav-link" href="../../html/guest-views/about.html">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id = "login" href="login.html">login</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+    <!-- 
+      BEGINNING OF MAIN CONTAINER
+
+      Notes:  I made it container sm and userCon
+              so that it inherits the properties of Bootstrap fluid
+    -->
+    <div class="container-fluid userCon">
+
+        <div class="container-fluid" style="margin: 0 auto;">
+
+            <div class="row">
+
+              <div class="col-2">
+                <div class="container-sm">
+                <h5 class="recommended">
+                    FILTERS
+                </h5>
+
+                    <p class="recommended">
+                        Rating
+                    </p>
+                    
+                    <div class="custom-radio-group btn-group flex-wrap" role="group" aria-label="Basic radio toggle button group" style="margin: 0;">
+                        <input type="radio" class="btn-check bg-success" name="btnradio" id="btnradio1" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="btnradio1">1 C</label>
+                    
+                        <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="btnradio2">2 C</label>
+                    
+                        <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="btnradio3">3 C</label>
+
+                        <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="btnradio4">4 C</label>
+
+                        <input type="radio" class="btn-check" name="btnradio" id="btnradio5" autocomplete="off" checked>
+                        <label class="btn btn-outline-primary" for="btnradio5">5 C</label>
+                    </div>
+
+                    <hr>
+
+                    <p class="recommended">
+                        Price Range
+                    </p>
+
+                    <div class="custom-radio-group btn-group flex-wrap" role="group" aria-label="Basic radio toggle button group" style="margin: 0;">
+                        <input type="radio" class="btn-check bg-success" name="btnradio2" id="btnradio21" autocomplete="off" checked>
+                        <label class="btn btn-outline-primary" for="btnradio21">₱</label>
+                    
+                        <input type="radio" class="btn-check" name="btnradio2" id="btnradio22" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="btnradio22">₱₱</label>
+                    
+                        <input type="radio" class="btn-check" name="btnradio2" id="btnradio23" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="btnradio23">₱₱₱</label>
+                    </div>
+
+                    <hr>
+                </div>
+
+                </div>
+
+                
+              <!--
+                Middle Column
+              -->
+              <div class="col-7">
+                <!--
+                    Title for Recommended
+                -->
+                <div class="container-sm">
+                    <h3 class="recommended">
+                    CAFES IN YOUR AREA
+                    </h3>
+
+                    <!-- DROPDOWN SORT BY -->
+                    <div class="dropdown recommended">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          Sort by: 
+                        </button>
+                        <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" href="#">Name</a></li>
+                          <li><a class="dropdown-item" href="#">Highest Rated</a></li>
+                          <li><a class="dropdown-item" href="#">Most Reviewed</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!--
+                    List of Cafes
+                -->
+
+                <% for(let i=0; i<cafes.length; i++) { %>
+                <div class="card mb-3">
+                    <div class="row g-0" style="margin: 0;">
+                      <div class="col-md-4">
+                        <img src="/<%= cafes[i].img_path %>" class="img-fluid rounded" alt="cafe">
+                      </div>
+
+                      <div class="col-md-6">
+                        <div class="card-body"  style="margin: 0;">
+
+                          <a href="/cafe/<%=cafes[i].name.replaceAll(' ', '-').toLowerCase()%>"><h5 class="card-title"><%= cafes[i].name%></h5></a>
+                          <div class = "cb_rating">
+                            <img src="../../images/ratings/full.png"/>
+                            <img src="../../images/ratings/full.png"/>
+                            <img src="../../images/ratings/full.png"/>
+                            <img src="../../images/ratings/full.png"/>
+                            <img src="../../images/ratings/full.png"/>
+                            <span class = "numreviews">(56)</span>
+                        </div>
+                          <p class="card-text"><%= cafes[i].description %></p>
+                          <p class="card-text"><small class="text-body-secondary">Open from 1030 - 2000</small></p>
+                        </div>
+                      </div>
+
+                    </div>
+                </div>
+
+                <% } %>
+                
+
+                <!--
+                    Pagination
+                -->
+                <ul class="pagination justify-content-center">
+                    <li class="page-item disabled">
+                      <a class="page-link">Previous</a>
+                    </li>
+
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+
+                    <li class="page-item">
+                      <a class="page-link" href="#">Next</a>
+                    </li>
+                  </ul>
+              </div>
+
+              <!-- 
+                Right Column
+              -->
+              <div class="col offset-md-4">
+                <div id="map"></div>
+              </div>
+
+            </div>
+            <!-- ROW -->
+
+        </div>
+        <!-- container-sm -->
+
+    </div>
+    <!-- userCon -->
+    
+    <!-- Footer -->
+    <footer class="container-fluid bg-dark text-center text-white">
+      <!-- Grid container -->
+      <div class="container p-4">
+        <!-- Section: Social media -->
+        <section class="mb-4">
+          <!-- Facebook -->
+          <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+            ><i class="fab fa-facebook-f"></i
+          ></a>
+
+          <!-- Twitter -->
+          <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+            ><i class="fab fa-twitter"></i
+          ></a>
+
+          <!-- Google -->
+          <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+            ><i class="fab fa-google"></i
+          ></a>
+
+          <!-- Instagram -->
+          <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+            ><i class="fab fa-instagram"></i
+          ></a>
+
+          <!-- Linkedin -->
+          <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+            ><i class="fab fa-linkedin-in"></i
+          ></a>
+
+          <!-- Github -->
+          <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+            ><i class="fab fa-github"></i
+          ></a>
+        </section>
+        <!-- Section: Social media -->
+
+        
+        <!-- Section: Text -->
+        <section class="mb-4">
+          <p>
+            We really like capybaras.
+          </p>
+        </section>
+        <!-- Section: Text -->
+
+      </div>
+      <!-- Grid container -->
+
+      <!-- Copyright -->
+      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        © 2023 Copyright:
+        <a class="text-white" href="#">Cafebara</a>
+      </div>
+      <!-- Copyright -->
+    </footer>
+    <!-- Footer -->
+
+</body>
+
+<script defer>
+    var map = new L.Map('map', {
+    fullscreenControl: true,
+    fullscreenControlOptions: {
+        position: 'topleft'
+    }
+    }).setView([14.564980, 120.993041], 17);
+
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+</script>
+
+</html>
