@@ -6,6 +6,6 @@ const router = Router();
 router.get(`/`, controller.getIndex);
 router.get(`/about`, controller.getAbout);
 router.get(`/cafe`, controller.getCafes);
-
+router.get(`/cafe/:cafeName`, controller.cafe);
 //edit
 export default router;

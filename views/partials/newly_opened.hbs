@@ -19,70 +19,11 @@ TO DO: please turn this into variable shit!!
 
     <i id="left" class="fa-solid fa-angle-left"></i>
 
+   
     <ul class="carousel">
-    <li class="card cardui">
-        <img class="card-img-top" src="../../images/cafes/bigboss.jpeg" alt="img" draggable="false">
-
-        <div class="card-body">
-        <a href="../../html/cafes/bigboss.html">
-        <h2 class="card-title">Big Boss</h2>
-        </a>
-        <p class="card-text">Avg. Price: ₱250.00</p>
-        </div>
-    </li>
-
-    <li class="card cardui">
-        <img class="card-img-top" src="../../images/cafes/bos.jpeg" alt="img" draggable="false">
-
-        <div class="card-body">
-        <a href="../../html/cafes/bos.html">
-        <h2 class="card-title">Bo's Coffee</h2></a>
-        <p class="card-text">Avg. Price: ₱200.00</p>
-        </div>
-    </li>
-
-    <li class="card cardui">
-        <img class="card-img-top" src="../../images/cafes/coffee-project.jpeg" alt="img" draggable="false">
-
-        <div class="card-body">
-        <a href="../../html/cafes/coffee-project.html">
-        <h2 class="card-title">Coffee Project</h2>
-        </a>
-        <p class="card-text">Avg. Price: ₱300.00</p>
-        </div>
-    </li>
-
-    <li class="card cardui">
-        <img class="card-img-top" src="../../images/cafes/nitro7.jpeg" alt="img" draggable="false">
-        
-        <div class="card-body">
-        <a href="../../html/cafes/nitro7.html">
-        <h2 class="card-title">Nitro 7 Coffee & Tea Bar</h2></a>
-        <p class="card-text">Avg. Price: ₱190.00</p>
-        </div>
-    </li>
-
-    <li class="card cardui">
-        <img class="card-img-top" src="../../images/cafes/obscure.jpg" alt="img" draggable="false">
-
-        <div class="card-body">
-        <a href="../../html/cafes/obscure.html">
-        <h2 class="card-title">Obscure</h2>
-        </a>
-        <p class="card-text">Avg. Price: ₱220.00</p>
-        </div>
-    </li>
-
-    <li class="card cardui">
-        <img class="card-img-top" src="../../images/cafes/starbs.jpg" alt="img" draggable="false">
-
-        <div class="card-body">
-        <a href="../../html/cafes/starbs.html">
-        <h2 class="card-title">Starbucks Green Court</h2></a>
-        <p class="card-text">Avg. Price: ₱350.00</p>
-        </div>
-    </li>
-
+    {{#each carouselCards}}
+        {{> carouselCard this}}
+    {{/each}}
     </ul>
 
     <i id="right" class="fa-solid fa-angle-right"></i>
