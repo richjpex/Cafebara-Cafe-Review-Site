@@ -1,0 +1,27 @@
+<!-- 
+    BEGINNING OF MAIN CONTAINER
+
+    Notes:  I made it container sm and userCon
+            so that it inherits the properties of Bootstrap fluid
+-->
+<link rel = "stylesheet" href = "../../css/login.css">
+<link rel = "stylesheet" href = "../../css/register.css">
+<script src = "../../scripts/register.js" defer></script>
+
+
+<div class="container">
+    {{>logreg_header}}
+    <div class = "form-wrapper">
+        <form name = "register" id = "registerform" enctype="multipart/form-data" action = "/registerUser" method = "POST">
+            <label for="usertype">User Type</label><br>
+            <select name = "usertype" id = "usertype" class = "inputfield">
+                <option value = "none" selected disabled hidden>Select User Type</option>
+                <option value = "customer">Customer</option>
+                <option value = "owner">Establishment Owner</option>
+            </select>
+            <div id = "inputform"></div>
+        </form>
+    </div>
+</div>
+
+    

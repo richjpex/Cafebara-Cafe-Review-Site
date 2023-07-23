@@ -39,14 +39,15 @@ const database = {
         }
     },
 
-    findOne: function(model, query, projection, callback) {
-        model.findOne(query, projection, function(error, result) {
-            if(error) { 
-                console.log(error);
-                return callback(false);
-            }
-            return callback(result);
-        });
+    findOne: async function(model, query, projection) {
+        try {
+            const result = await model.findOne(query, projection).exec();
+            return result;
+        } catch (error) {
+            console.error(error);
+            return null;
+        }
+        
     },
 
     findMany: function(model, query, projection, callback) {

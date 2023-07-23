@@ -3,6 +3,8 @@ import 'dotenv/config';
 import express from "express";
 import exphbs from "express-handlebars";
 import routes from './routes/routes.js';
+import bodyParser   from 'body-parser';
+import path         from 'path';
 import db from './schemas/db.js';
 
 const port = process.env.SERVER_PORT;
@@ -14,6 +16,8 @@ app.set("view engine", "hbs");
 app.set("views", "./views");
 
 app.use(express.static(`public`));
+app.use ( express.urlencoded({ extended: true }));
+app.use ( bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use(`/`, routes);
