@@ -1,50 +1,70 @@
-import dotenv from 'dotenv';   // environment variables
+/***
+ * Server.js
+ * 
+ * This file is pretty much the server and
+ * guides the user to everything in the website.
+ */
+
+/***
+ * !!! BEGINNING OF ENVIRONMENT VARIABLES AND IMPORTS !!!
+ */
+
+// Importing DOTENV
+import dotenv from 'dotenv'; 
 dotenv.config();
-import {connectToMongo, getDb} from './conn.js';
-import express from 'express';
-import bodyParser from 'body-parser';
-import path from 'path';
-import { URLSearchParams } from 'url';
-import { ObjectId } from 'mongodb';
-import fs from 'fs';
-import multer from 'multer';
-import { fileURLToPath } from 'url';
-import { dirname, join } from 'path';
-import mongoose from 'mongoose';
 
-//Schema model imports
-//These are basically the db collections
-import { Cafe } from './schemas/cafeSchema.js';
-import { Reviews } from './schemas/reviewsSchema.js';
-import { Review_details } from './schemas/review_detailsSchema.js';
-import { User } from './schemas/userSchema.js';
+// Importing MONGODB, EXPRESS, BODYPARSER, MONGOOSE, PATH
+// AND NODEJS LIBRARIES
+import express      from 'express';
+import bodyParser   from 'body-parser';
+import path         from 'path';
+import mongoose     from 'mongoose';
+import multer       from 'multer';
+import fs           from 'fs';
+
+// Importing objects from conn, url, mongodb, and path
+import { connectToMongo, getDb }  from './conn.js';
+import { URLSearchParams }      from 'url';
+import { ObjectId }             from 'mongodb';
+import { fileURLToPath }        from 'url';
+import { dirname, join }        from 'path';
 
 
+// Schema model imports
+// These are basically the db collections
+import { Cafe }             from './schemas/cafeSchema.js';
+import { Reviews }          from './schemas/reviewsSchema.js';
+import { Review_details }   from './schemas/review_detailsSchema.js';
+import { User }             from './schemas/userSchema.js';
+
+// declare app for Express library
 const app = express();
 const port = process.env.SERVER_PORT;
 
-
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, 'uploads/'); // The folder where uploaded images will be stored
-  },
-  filename: function (req, file, cb) {
-    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-    cb(null, file.originalname + '-' + uniqueSuffix + path.extname(file.originalname));
-  }
+// stores all the images
+// Don't try to disect it, it's basically storing images into the file system
+const storage = multer.diskStorage ({
+    destination: function (req, file, cb) {
+        cb(null, 'uploads/'); // The folder where uploaded images will be stored
+    },
+    filename: function (req, file, cb) {
+        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+        cb(null, file.originalname + '-' + uniqueSuffix + path.extname(file.originalname));
+    }
 });
 
+// upload multer
 const upload = multer({ storage: storage });
 
 // current signed up user
 let activeUser, currentCafe;
 
 // express stuff
-app.use(express.static(path.join(dirname(fileURLToPath(import.meta.url)), 'public')));
-app.use('/uploads', express.static(path.join(dirname(fileURLToPath(import.meta.url)), 'uploads')));
-app.use(express.urlencoded({ extended: true }));
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+app.use ( express.static(path.join(dirname(fileURLToPath(import.meta.url)), 'public')));
+app.use ( '/uploads', express.static(path.join(dirname(fileURLToPath(import.meta.url)), 'uploads')));
+app.use ( express.urlencoded({ extended: true }));
+app.use ( bodyParser.urlencoded({ extended: true }));
+app.use ( bodyParser.json() );
 
 // load views
 app.set('view engine', 'ejs');
@@ -54,16 +74,16 @@ app.set('views', [
 ]);
 
 main()
-
 async function main(){
 
     try{
+        // This block connects to the database
         mongoose.connect('mongodb://localhost:27017/apdev_test', { useNewUrlParser: true, useUnifiedTopology: true });
-             // Connect to MongoDB
         app.listen(port, () => {
             console.log(`Server running on port ${port}`);
         });
 
+        // This block handles new registers
         app.post('/register', upload.single('profilepic'), async (req, res) => {
             try {
                 const userdata = req.body;
@@ -129,7 +149,7 @@ async function main(){
             }
         });
     
-        // login
+        // This block handles logins
         app.post('/login', async (req, res) => {
             try {
                 const userdata = req.body;
@@ -146,6 +166,12 @@ async function main(){
                     console.log("user verified");
                     if(current_user){
                         activeUser = current_user;
+                        /***
+                         * TO DO:   @everyone
+                         *          Use ? system when logging in,
+                         *          index.html?user=askjdnsakd&pw=asdjksandjkas
+                         *    
+                         */
                         res.redirect('../../html/user-views/index.html');
                     }
                     if(current_cafe){
