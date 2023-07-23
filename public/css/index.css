@@ -193,7 +193,7 @@ div.listInfo {
   font-size: 1.7em
 }
 
-.listInfo h1, p {
+.listInfo h1, .listInfo p {
   color: white
 }
 
