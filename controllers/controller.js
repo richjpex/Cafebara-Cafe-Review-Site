@@ -1,6 +1,7 @@
 import db from '../schemas/db.js';
 import {About} from '../schemas/aboutSchema.js';
 import { Cafe } from '../schemas/cafeSchema.js';
+import { Review } from '../schemas/reviewsSchema.js';
 const controller = {
 
     getIndex: function(req, res) {
@@ -70,8 +71,7 @@ const controller = {
  
     cafe: function(req, res){
        //change render to the correct one
-       const cafe=[];
-
+       let cafe;
        const reviews = [];
        db.findAll(Review, {cafeName: req.params.cafeName}, function(result) {
             for(let i = 0; i < result.length; i++){
@@ -84,9 +84,9 @@ const controller = {
                 });
             }
         });
-
+        console.log(req)
        db.findOne(Cafe, {name: req.params.cafeName}, function(result) {
-            cafe.push({
+            cafe = {
                 cafeName: result.name,
                 imgPath: result.image,
                 description: result.description,
@@ -98,9 +98,11 @@ const controller = {
                 numReviews: reviews.length,
                 menu: result.menu,
                 address: result.address
-            });
+            };
         });
-       res.render("viewCafe");
+       res.render("viewCafe", {
+            cafePage: cafe
+       });
     }
 
 

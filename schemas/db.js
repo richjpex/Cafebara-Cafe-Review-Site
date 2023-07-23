@@ -39,12 +39,8 @@ const database = {
         }
     },
 
-    findOne: function(model, query, projection, callback) {
-        model.findOne(query, projection).then(function(error, result) {
-            if(error) { 
-                console.log(error);
-                return callback(false);
-            }
+    findOne: function(model, query, callback) {
+        model.findOne(query).then(function(result) {
             return callback(result);
         });
     },
