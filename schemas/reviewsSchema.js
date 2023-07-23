@@ -4,13 +4,26 @@ const Schema = mongoose.Schema;
 
 const reviewsSchema = new Schema({
 
-    //review_details is basically a combination of reviewer and estblishment ids from the db
-    //more details @revew_detailsSchema
-    //this just makes it so that a user can't have more than 1 review per est
-    review_details:{
+    // review_details depreciated... use cafeName and reviewer instead
+    // code that has index in it below does the thing but better
+    // review_details:{
+    //     type: Schema.Types.ObjectId,
+    //     required: true,
+    //     unique: true,
+    //     immutable: true
+    // },
+
+    cafeName:{
         type: Schema.Types.ObjectId,
         required: true,
-        unique: true,
+        ref: 'Cafe',
+        immutable: true
+    },
+
+    reviewer:{
+        type: Schema.Types.ObjectId,
+        required: true,
+        ref: 'User',
         immutable: true
     },
 
@@ -57,5 +70,7 @@ const reviewsSchema = new Schema({
     }
 
 });
+
+reviewsSchema.index({cafeName: 1, reviewer: 1}, {unique: true});
 
 export const Reviews = mongoose.model('Reviews', reviewsSchema);
