@@ -51,7 +51,6 @@ const controller = {
         // your code here
         // do database stuff here
         const cafes = [];
-
         db.findAll(Cafe, function(result) {
             for(let i = 0; i < result.length; i++){
                 cafes.push({
@@ -68,7 +67,7 @@ const controller = {
             cafeCards: cafes
         });
     },
-
+ 
     cafe: function(req, res){
        //change render to the correct one
        const cafe=[];

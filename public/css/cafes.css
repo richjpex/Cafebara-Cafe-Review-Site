@@ -284,6 +284,33 @@ p{
     width:3rem;
 }
 
+/*The user review capybaras*/
+.rating-container {
+    display: flex;
+    cursor: pointer;
+    width: 150px;
+  }
+  
+  .star {
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    background-image: url("../images/ratings/empty.png");
+    background-size: contain;
+  }
+  
+  /* Fill the stars with the full.png image on hover */
+  .star:hover{
+    background-image: url("../images/ratings/full.png");
+  }
+  
+  /* Fill the stars with the full.png image based on selected rating */
+  .star.filled {
+    background-image: url("../images/ratings/full.png");
+  }
+  
+/*Form*/
+
 #formFile{
     border-top-left-radius: 0 !important;
     border-top-right-radius: 0 !important;
