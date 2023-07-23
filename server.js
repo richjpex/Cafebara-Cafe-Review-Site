@@ -1,3 +1,4 @@
+
 /***
  * Server.js
  * 
@@ -112,11 +113,12 @@ async function main(){
         });
 
         // This block handles new registers
+
         app.post('/register', upload.single('profilepic'), async (req, res) => {
             try {
                 const userdata = req.body;
                 console.log(userdata);
-    
+				
                 // check if email exists in either User or cafe colleciton
                 const existingUser = await User.findOne({email: userdata.email});
                 const existingCafe = await Cafe.findOne({email: userdata.email});
