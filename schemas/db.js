@@ -62,6 +62,11 @@ const database = {
             return callback(result);
         });
     },
+    findAllQuery: function(model, query, callback) {
+        model.find(query).then(function(result) {
+            return callback(result);
+        });
+    },
 
     findMany: function(model, query, projection, callback) {
         model.find(query, projection).then(function(error, result) {

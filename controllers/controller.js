@@ -73,22 +73,31 @@ const controller = {
        //change render to the correct one
        let cafe;
        const reviews = [];
-       db.findAll(Review, {cafeName: req.params.cafeName}, function(result) {
+
+       const cafeName = req.params.cafeName;
+       let cafeId;
+
+       db.findOne(Cafe, {name: req.params.cafeName}, function(result) {
+            console.log(result);    
+            cafeId = result._id;
+        });
+
+       db.findAllQuery(Review, {cafeName: cafeId}, function(result) {
             for(let i = 0; i < result.length; i++){
                 reviews.push({
-                    review_text: result[i].review_text,
-                    date: result[i].date,
-                    rating: result[i].rating,
+                    // review_text: result[i].review,
+                    // date: result[i].dateCreated,
+                    // rating: result[i].rating,
                     cafeName: result[i].cafeName,
-                    username: result[i].username
+                    username: result[i].reviewer,
+                    // dateModified: result[i].dateModified
                 });
             }
         });
-
-        res.send(req.params)
         
        db.findOne(Cafe, {name: req.params.cafeName}, function(result) {
-            cafe = {
+        console.log(result);    
+        cafe = {
                 cafeName: result.name,
                 imgPath: result.image,
                 description: result.description,
