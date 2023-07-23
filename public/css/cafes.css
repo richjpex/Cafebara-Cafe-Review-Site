@@ -129,6 +129,15 @@ hr{
 
 .loc_and_time{
     margin-top: 0.7rem;
+    display:flex;
+    max-width: 100%;
+}
+
+.address{
+    width: 45%;
+    max-width: 45%;
+    margin-right: 2em;  
+    overflow-wrap: break-word;
 }
 /*review*/
 

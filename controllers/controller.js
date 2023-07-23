@@ -51,21 +51,18 @@ const controller = {
         // your code here
         // do database stuff here
         const cafes = [];
-        cafes.push({
-            cafeName: "MY COFFEe",
-            numOfReviews: "255",
-            cafeShortInfo: "penis",
-            open_details: "Open in my ass",
-            cafeImg: "obscure.jpg"
-        })
-        
-        cafes.push({
-            cafeName: "Starbees",
-            numOfReviews: "56",
-            cafeShortInfo: "peeens",
-            open_details: "Open in my uranus",
-            cafeImg: "starbs.jpg"
-        })
+
+        db.findAll(Cafe, function(result) {
+            for(let i = 0; i < result.length; i++){
+                cafes.push({
+                    cafeName: result[i].name,
+                    numOfReviews: result[i].rating,
+                    cafeShortInfo: result[i].description,
+                    open_details: result[i].weekdays_avail,
+                    cafeImg: result[i].image
+                });
+            }
+        });
 
         res.render('cafes', {
             cafeCards: cafes
@@ -74,7 +71,37 @@ const controller = {
 
     cafe: function(req, res){
        //change render to the correct one
-       res.render("index");
+       const cafe=[];
+
+       const reviews = [];
+       db.findAll(Review, {cafeName: req.params.cafeName}, function(result) {
+            for(let i = 0; i < result.length; i++){
+                reviews.push({
+                    review_text: result[i].review_text,
+                    date: result[i].date,
+                    rating: result[i].rating,
+                    cafeName: result[i].cafeName,
+                    username: result[i].username
+                });
+            }
+        });
+
+       db.findOne(Cafe, {name: req.params.cafeName}, function(result) {
+            cafe.push({
+                cafeName: result.name,
+                imgPath: result.image,
+                description: result.description,
+                weekday_avail: result.weekdays_avail,
+                weekend_avail: result.weekends_avail,
+                website: result.website,
+                phonenumber: result.phone,
+                price: result.price,
+                numReviews: reviews.length,
+                menu: result.menu,
+                address: result.address
+            });
+        });
+       res.render("viewCafe");
     }
 
 
