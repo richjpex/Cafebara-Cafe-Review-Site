@@ -84,7 +84,9 @@ const controller = {
                 });
             }
         });
-        console.log(req)
+
+        res.send(req.params)
+        
        db.findOne(Cafe, {name: req.params.cafeName}, function(result) {
             cafe = {
                 cafeName: result.name,
