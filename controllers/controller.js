@@ -98,19 +98,20 @@ const controller = {
        db.findOne(Cafe, {name: req.params.cafeName}, function(result) {
         console.log(result);    
         cafe = {
-                cafeName: result.name,
-                imgPath: result.image,
-                description: result.description,
-                weekday_avail: result.weekdays_avail,
-                weekend_avail: result.weekends_avail,
-                website: result.website,
-                phonenumber: result.phone,
-                price: result.price,
+                cafeName: result[0].name,
+                imgPath: result[0].image,
+                description: result[0].description,
+                weekday_avail: result[0].weekdays_avail,
+                weekend_avail: result[0].weekends_avail,
+                website: result[0].website,
+                phonenumber: result[0].phone,
+                price: result[0].price,
                 numReviews: reviews.length,
-                menu: result.menu,
-                address: result.address
+                menu: result[0].menu,
+                address: result[0].address
             };
         });
+
        res.render("viewCafe", {
             cafePage: cafe
        });
