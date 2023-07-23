@@ -1,3 +1,4 @@
+
 /***
  * Server.js
  * 
@@ -16,6 +17,7 @@ dotenv.config();
 // Importing MONGODB, EXPRESS, BODYPARSER, MONGOOSE, PATH
 // AND NODEJS LIBRARIES
 import express      from 'express';
+import handlebars   from 'express-handlebars';
 import bodyParser   from 'body-parser';
 import path         from 'path';
 import mongoose     from 'mongoose';
@@ -66,12 +68,40 @@ app.use ( express.urlencoded({ extended: true }));
 app.use ( bodyParser.urlencoded({ extended: true }));
 app.use ( bodyParser.json() );
 
-// load views
+/***
 app.set('view engine', 'ejs');
 app.set('views', [
     path.join(dirname(fileURLToPath(import.meta.url)), 'public/html/user-views'),
     path.join(dirname(fileURLToPath(import.meta.url)), 'public/html/cafes')
 ]);
+*/
+
+// testing handlebars
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+app.set('view engine', 'hbs');
+app.engine('hbs', handlebars.engine({
+	layoutsDir: `${__dirname}/views/layouts`,
+	extname: 'hbs',
+	defaultLayout: 'index',
+    partialsDir: `${__dirname}/views/partials`
+}));
+
+app.use(express.static('public'));
+app.get('/', (req, res) => {
+	res.render ('index', {layout: 'main'});
+});
+
+app.get('/cafes', (req, res) => {
+	res.render ('cafes', {layout: 'main'});
+});
+
+/*** 
+app.get('/different directory view estab;ish')
+res.render ('view_establishments!', 'layout: main', ??)
+*/
+
 
 main()
 async function main(){
@@ -84,11 +114,12 @@ async function main(){
         });
 
         // This block handles new registers
+
         app.post('/register', upload.single('profilepic'), async (req, res) => {
             try {
                 const userdata = req.body;
                 console.log(userdata);
-    
+				
                 // check if email exists in either User or cafe colleciton
                 const existingUser = await User.findOne({email: userdata.email});
                 const existingCafe = await Cafe.findOne({email: userdata.email});
