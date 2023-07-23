@@ -35,8 +35,7 @@ import { dirname, join }        from 'path';
 // Schema model imports
 // These are basically the db collections
 import { Cafe }             from './schemas/cafeSchema.js';
-import { Reviews }          from './schemas/reviewsSchema.js';
-import { Review_details }   from './schemas/review_detailsSchema.js';
+import { Review }          from './schemas/reviewsSchema.js';
 import { User }             from './schemas/userSchema.js';
 
 // declare app for Express library
