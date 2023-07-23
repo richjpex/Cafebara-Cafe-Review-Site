@@ -5,7 +5,7 @@ const url = process.env.MONGODB_URI;
 const database = {
 
     connect: function () {
-        mongoose.connect(url + 'CAFEBARA').then(function() {
+        mongoose.connect(url + 'apdev_test').then(function() {
             console.log('Connected to: ' + url);
         }).catch(function(error) {
             console.log(error)
@@ -40,7 +40,7 @@ const database = {
     },
 
     findOne: function(model, query, projection, callback) {
-        model.findOne(query, projection, function(error, result) {
+        model.findOne(query, projection).then(function(error, result) {
             if(error) { 
                 console.log(error);
                 return callback(false);
@@ -49,8 +49,26 @@ const database = {
         });
     },
 
+    find: function(model, query, callback) {
+        model.find(query).then(function(result) {
+            return callback(result);
+        });
+    },
+
+    findLimitSorted: function(model, query, limit, callback) {
+        model.find(query).sort({dateCreated:-1}).limit(limit).then(function(result) {
+            return callback(result);
+        });
+    },
+
+    findAll: function(model, callback) {
+        model.find({}).then(function(result) {
+            return callback(result);
+        });
+    },
+
     findMany: function(model, query, projection, callback) {
-        model.find(query, projection, function(error, result) {
+        model.find(query, projection).then(function(error, result) {
             if(error) { 
                 console.log(error);
                 return callback(false);
@@ -60,7 +78,7 @@ const database = {
     },
 
     updateOne: function(model, filter, update, callback) {
-        model.updateOne(filter, update, function(error, result) {
+        model.updateOne(filter, update).then(function(error, result) {
             if(error) { 
                 console.log(error);
                 return callback(false);
@@ -71,7 +89,7 @@ const database = {
     },
 
     updateMany: function(model, filter, update, callback) {
-        model.updateMany(filter, update, function(error, result) {
+        model.updateMany(filter, update).then(function(error, result) {
             if(error) { 
                 console.log(error);
                 return callback(false);
@@ -82,7 +100,7 @@ const database = {
     },
 
     deleteOne: function(model, conditions, callback) {
-        model.deleteOne(conditions, function (error, result) {
+        model.deleteOne(conditions).then(function (error, result) {
             if(error) { 
                 console.log(error);
                 return callback(false);
@@ -93,7 +111,7 @@ const database = {
     },
 
     deleteMany: function(model, conditions, callback) {
-        model.deleteMany(conditions, function (error, result) {
+        model.deleteMany(conditions).then(function (error, result) {
             if(error) { 
                 console.log(error);
                 return callback(false);

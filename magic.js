@@ -1,10 +1,9 @@
 import mongoose from "mongoose";
-import { ObjectId } from "mongodb";
 
 import { User } from "./schemas/userSchema.js";
 import { Cafe } from "./schemas/cafeSchema.js";
-import { Review } from "./schemas/reviewsSchema.js";
-import { create } from "domain";
+import { About } from "./schemas/aboutSchema.js";
+
 //import { ReviewDetails } from "./schemas/review_detailsSchema.js";
 
 //change this to the env
@@ -12,6 +11,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/apdev_test', { useNewUrlParser: true
 
 createUsers();
 createCafes();
+createAbout()
 console.log("Process can be terminated safely now");
 
 function createUsers(){
@@ -110,7 +110,7 @@ function createCafes(){
         phone: "+63920 331 6503",
         email: "coffeeproject@gmail.com",
         password: "c0ff33pr0ject",
-        image: "./uploads/cafes/coffeeproject.jpeg",
+        image: "./uploads/cafes/coffee-project.jpeg",
         rating: 3,
         price: 250
         }));
@@ -140,7 +140,7 @@ function createCafes(){
         phone: "+63917 546 9130",
         email: "obscurecafetaft@gmail.com",
         password: "0bscur3",
-        image: "./uploads/cafes/obscure.jpeg",
+        image: "./uploads/cafes/obscure.jpg",
         rating: 4,
         price: 220
         }));
@@ -155,12 +155,57 @@ function createCafes(){
         phone: "+63917 546 9130",
         email: "starbucksgreencourt@gmail.com",
         password: "st4rbuck5",
-        image: "./uploads/cafes/starbucks.jpeg",
+        image: "./uploads/cafes/starbs.jpg",
         rating: 5,
         price: 200
         }));
 
     for (let i = 0; i < cafes.length; i++) {
         cafes[i].save();
+    }
+}
+
+
+function createAbout(){
+
+    const aboutBios = {
+        francis: "Francis Martinez is an experienced web developer specializing in front-end and back-end development. With expertise in HTML, CSS, JavaScript, and popular frameworks like React and Angular, he creates visually appealing and user-friendly websites. Passionate about delivering top-notch digital solutions, Francis' attention to detail and problem-solving skills make him a valuable asset to any web development team.",
+        migs: "Miguel Leysa is a talented web developer with a focus on creating dynamic and responsive websites. With a strong background in HTML, CSS, and JavaScript, he brings creativity and technical expertise to every project. His ability to translate client requirements into intuitive and visually appealing web experiences sets him apart in the field.",
+        orrin: "Orrin Uy is a skilled web developer specializing in crafting modern and user-centric websites. With a solid foundation in HTML, CSS, and JavaScript, Orrin leverages his expertise to create seamless and engaging online experiences. Known for his attention to detail and dedication to staying abreast of the latest industry trends, he consistently delivers high-quality websites that exceed client expectations",
+        rich: "Richard Pecson is a versatile web developer known for her ability to blend creativity and technical expertise. With a proficiency in HTML, CSS, and JavaScript, His crafts visually stunning and interactive websites that captivate users. His passion for continuous learning and problem-solving allows her to adapt to evolving technologies and deliver innovative digital solutions."
+    }
+
+    const abouts = []
+
+    abouts.push(new About({
+        name: "Francis Martinez",
+        position: "Web Developer",
+        image: "./uploads/francis.jpg",
+        bio: aboutBios.francis
+    }));
+
+    abouts.push(new About({
+        name: "Miguel Leysa",
+        position: "Web Developer",
+        image: "./uploads/migs.jpg",
+        bio: aboutBios.migs
+    }));
+
+    abouts.push(new About({
+        name: "Orrin Uy",
+        position: "Web Developer",
+        image: "./uploads/orrin.jpg",
+        bio: aboutBios.orrin
+    }));
+
+    abouts.push(new About({
+        name: "Richard Pecson",
+        position: "Web Developer",
+        image: "./uploads/rich.jpg",
+        bio: aboutBios.rich
+    }));
+
+    for (let i = 0; i < abouts.length; i++) {
+        abouts[i].save();
     }
 }

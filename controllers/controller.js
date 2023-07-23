@@ -1,33 +1,20 @@
 import db from '../schemas/db.js';
+import {About} from '../schemas/aboutSchema.js';
+import { Cafe } from '../schemas/cafeSchema.js';
 const controller = {
 
     getIndex: function(req, res) {
         // your code here
         const cafeCarouselCards = [];
-        cafeCarouselCards.push({
-            cafeName: "Starbees",
-            cafePath: "starbs.jpg",
-            avgPrice: "1000.00"
-        });
-        cafeCarouselCards.push({
-            cafeName: "Obscure",
-            cafePath: "obscure.jpg",
-            avgPrice: "300.00"
-        });
-        cafeCarouselCards.push({
-            cafeName: "Bos",
-            cafePath: "bos.jpeg",
-            avgPrice: "300.00"
-        });
-        cafeCarouselCards.push({
-            cafeName: "bigboss",
-            cafePath: "bigboss.jpeg",
-            avgPrice: "300.00"
-        });
-        cafeCarouselCards.push({
-            cafeName: "nitro7",
-            cafePath: "nitro7.jpeg",
-            avgPrice: "300.00"
+        db.findLimitSorted(Cafe, {}, 5, function(result) {
+            console.log(result);
+            for(let i = 0; i < result.length; i++){
+                cafeCarouselCards.push({
+                    cafeName: result[i].name,
+                    cafePath: result[i].image,
+                    avgPrice: result[i].price
+                });
+            }
         });
 
         console.log(cafeCarouselCards)
@@ -40,7 +27,24 @@ const controller = {
 
     getAbout: function(req, res) {
         // your code here
-        res.render('about');
+        const profilecards = [];
+        db.findAll(About, function(result) {
+            for(let i = 0; i < result.length; i++){
+                profilecards.push({
+                    name: result[i].name,
+                    position: result[i].position,
+                    bio: result[i].bio,
+                    // fb: result[i].fb,
+                    // twitter: result[i].twitter,
+                    // insta: result[i].insta,
+                    // git: result[i].git,
+                    image: result[i].image
+                });
+            }
+        });
+        res.render('about', {
+            profilecards: profilecards
+        });
     },
 
     getCafes: function(req, res) {
