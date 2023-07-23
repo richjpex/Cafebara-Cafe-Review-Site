@@ -34,7 +34,7 @@ const database = {
                     return callback(false);
                 }
                 console.log('Added ' + result);
-                return callback(result);
+                return callback(result);4
             });
         }
     },
