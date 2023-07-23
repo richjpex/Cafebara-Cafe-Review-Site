@@ -10,8 +10,8 @@ const cafeSchema = new Schema({
     },
     address: {
         type: String,
-        required: true,
-        unique: true
+        //required: true,
+        //unique: true
     },
     description: {
         type: String
@@ -53,4 +53,4 @@ const cafeSchema = new Schema({
     }
 });
 
-export const Cafe = mongoose.model('Cafe', cafeSchema);
+export const Cafe = mongoose.model('Cafes', cafeSchema);

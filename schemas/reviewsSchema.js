@@ -13,7 +13,12 @@ const reviewsSchema = new Schema({
     //     immutable: true
     // },
 
-    cafeName:{
+    _id: {
+        cafeName: Schema.Types.ObjectId,
+        reviewer: Schema.Types.ObjectId
+    },
+
+    /*cafeName:{
         type: Schema.Types.ObjectId,
         required: true,
         ref: 'Cafe',
@@ -25,7 +30,7 @@ const reviewsSchema = new Schema({
         required: true,
         ref: 'User',
         immutable: true
-    },
+    },*/
 
     review_title: {
         type: String,
@@ -73,4 +78,4 @@ const reviewsSchema = new Schema({
 
 reviewsSchema.index({cafeName: 1, reviewer: 1}, {unique: true});
 
-export const Reviews = mongoose.model('Reviews', reviewsSchema);
+export const Review = mongoose.model('Review', reviewsSchema);

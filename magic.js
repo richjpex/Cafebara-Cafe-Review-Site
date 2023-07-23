@@ -1,16 +1,18 @@
 import mongoose from "mongoose";
+import { ObjectId } from "mongodb";
 
 import { User } from "./schemas/userSchema.js";
-import { Est } from "./schemas/cafeSchema.js";
+import { Cafe } from "./schemas/cafeSchema.js";
 import { Review } from "./schemas/reviewsSchema.js";
-import { ReviewDetails } from "./schemas/review_detailsSchema.js";
+import { create } from "domain";
+//import { ReviewDetails } from "./schemas/review_detailsSchema.js";
 
 //change this to the env
-mongoose.connect('mongodb://localhost:27017/mydatabase', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb://127.0.0.1:27017/apdev_test', { useNewUrlParser: true, useUnifiedTopology: true });
 function createUsers(){
     const users = [];
 
-    users.append(new User({
+    users.push(new User({
         password: "password",
         email: "orrin@gmail.com",
         firstname: "Orrin",
@@ -19,7 +21,7 @@ function createUsers(){
         profilepic: "/uploads/orrin.jpg"
     }));
 
-    users.append(new User({
+    users.push(new User({
         password: "password",
         email: "migs@gmail.com",
         firstname: "Migs",
@@ -28,7 +30,7 @@ function createUsers(){
         profilepic: "/uploads/migs.jpg"
     }));
 
-    users.append(new User({
+    users.push(new User({
         password: "password",
         email: "rich@gmail.com",
         firstname: "Rich",
@@ -37,7 +39,7 @@ function createUsers(){
         profilepic: "/uploads/rich.jpg"
     }));
 
-    users.append(new User({
+    users.push(new User({
         password: "password",
         email: "ice@gmail.com",
         firstname: "Francis",
@@ -46,7 +48,7 @@ function createUsers(){
         profilepic: "/uploads/francis.jpg"
     }));
 
-    users.append(new User({
+    users.push(new User({
         password: "password",
         email: "shinji@eva.com",
         firstname: "Shinji",
@@ -63,22 +65,22 @@ function createUsers(){
 function createCafes(){
     const cafes = [];
     
-    cafes.append(new Cafe({
-    name: "Big Boss Cafe",
-    address: "EGI Tower, Taft Ave, Malate, Manila, 1004 Metro Manila",
-    description: "A cafe for the big boss",
-    weekdays_avail: "7:00 AM - 10:00 PM",
-    weekends_avail: "9:00 AM - 10:00 PM",
-    website: "https://www.facebook.com/bigbosscafe",
-    phone: "+63917 546 9130",
-    email: "bigbosscafe@gmail.com",
-    password: "b1gb0ss",
-    image: "../../images/cafes/bigboss.jpeg",
-    rating: 4,
-    price: 200
-    }));
+    cafes.push(new Cafe({
+        name: "Big Boss Cafe",
+        address: "EGI Tower, Taft Ave, Malate, Manila, 1004 Metro Manila",
+        description: "A cafe for the big boss",
+        weekdays_avail: "7:00 AM - 10:00 PM",
+        weekends_avail: "9:00 AM - 10:00 PM",
+        website: "https://www.facebook.com/bigbosscafe",
+        phone: "+63917 546 9130",
+        email: "bigbosscafe@gmail.com",
+        password: "b1gb0ss",
+        image: "../../images/cafes/bigboss.jpeg",
+        rating: 4,
+        price: 200
+        }));
 
-    cafes.append(new Cafe({
+    cafes.push(new Cafe({
         name: "Bo's Coffee",
         address: "Unit 110 G/F SMDC Green Residences, Taft, Zone 78, Malate, Manila, Metro Manila",
         description: "Bo's Coffee is a homegrown brew that has been serving coffee from the heart since 1996.",
@@ -93,7 +95,7 @@ function createCafes(){
         price: 240
         }));
 
-    cafes.append(new Cafe({
+    cafes.push(new Cafe({
         name: "Coffee Project",
         addresss: "G/F, Vista Taft Residences, 2587 Taft Ave, Malate, Manila, 1004 Metro Manila",
         description: "Coffee Project is a rustic coffee shop that offers a wide variety of food and drinks.",
@@ -108,7 +110,7 @@ function createCafes(){
         price: 250
         }));
 
-    cafes.append(new Cafe({
+    cafes.push(new Cafe({
         name: "Nitro 7 Tea and Coffee Bar",
         address: "Taft Avenue WH Taft Residences, Unit G7 (Ground Floor, Malate, Manila, 1004",
         description: "Nitro 7 is a cafe that offers a wide variety of coffee and tea.",
@@ -123,7 +125,7 @@ function createCafes(){
         price: 190
         }));
 
-    cafes.append(new Cafe({
+    cafes.push(new Cafe({
         name: "Obscure Cafe",
         address: "One Archers Palace, Taft Ave, Malate, 1004 Metro Manila",
         description: "Obscure Cafe is a cafe that offers a wide variety of coffee and tea.",
@@ -138,7 +140,7 @@ function createCafes(){
         price: 220
         }));
 
-    cafes.append(new Cafe({
+    cafes.push(new Cafe({
         name: "Starbucks",
         address: "Fidel A.Reyes, Malate, Manila, 1004 Metro Manila",
         description: "Seattle-based coffeehouse chain known for its signature roasts, light bites and WiFi availability.",
@@ -156,7 +158,78 @@ function createCafes(){
     for (let i = 0; i < cafes.length; i++) {
         cafes[i].save();
     }
+}
 
-function createReviews(){
+function getCafeId(cafeName){
+    const cafe = Cafe.findOne({name: cafeName});
+    return new ObjectId(cafe._id);
 
 }
+
+function getUserId(firstName, lastName){
+    const user = User.findOne({firstname: firstName, lastname: lastName});
+    return new ObjectId(user._id);
+
+}
+
+function createReviews(){
+    const reviews = []
+
+    reviews.push(new Review({
+        cafeName: getCafeId("Big Boss Cafe"),  
+        reviewer: getUserId("Orrin", "Uy"),
+        review_title: "SNAKEEEEE!!",
+        review: "Big Boss is my go-to cafe when I'm in need of a delicious cup of coffee. The moment you step inside, you're greeted by the warm and inviting aroma of freshly brewed beans. The staff is incredibly knowledgeable and passionate about coffee, and they always go the extra mile to ensure you have a fantastic experience. The menu offers a great variety of unique coffee blends, and the baristas are skilled in their craft. The cozy ambiance and comfortable seating make it a great spot to unwind and savor your coffee. Big Boss truly delivers excellence in every cup.",
+        rating: 4,
+        dateCreated: "2021-05-01",
+        upvotes: 10,
+        downvotes: 2
+    }));
+
+    reviews.push(new Review({
+        //get the _id of cafeName and reviewer
+        cafeName: getCafeId("Big Boss Cafe"),
+        reviewer: getUserId("Migs", "Leysa"),
+        review_title: "Bo's Coffee Review",
+        review: "This is a review for Bo's Coffee",
+        rating: 4,
+        dateCreated: "2021-05-01",
+        upvotes: 2,
+        downvotes: 0
+    }));
+
+    reviews.push(new Review({
+        _id: new ObjectId(),
+        cafeName: getCafeId("Coffee Project"),
+        reviewer: getUserId("Rich", "Pex"),
+        review_title: "Coffee Project Review",
+        review: "This is a review for Coffee Project",
+        rating: 3,
+        dateCreated: "2021-05-01",
+        upvotes: 2,
+        downvotes: 5
+    }));
+
+    reviews.push(new Review({
+        cafeName: getCafeId("Coffee Project"),
+        reviewer: getUserId("Rich", "Pex"),
+        review_title: "Coffee Project Review",
+        review: "This is a review for Coffee Project",
+        rating: 3,
+        dateCreated: "2021-05-01",
+        upvotes: 2,
+        downvotes: 5
+    }));
+
+    for (let i = 0; i < reviews.length; i++) {
+        reviews[i].save();
+    }
+
+    
+
+
+}
+
+createUsers();
+createCafes();
+createReviews();
