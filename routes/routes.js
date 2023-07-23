@@ -4,10 +4,8 @@ import controller from '../controllers/controller.js'
 const router = Router();
 
 router.get(`/`, controller.getIndex);
-router.get(`/`, controller.getAbout);
-router.get(`/`, controller.getReview);
+router.get(`/about`, controller.getAbout);
+router.get(`/cafe`, controller.getCafes);
 
 //edit
-
-
 export default router;

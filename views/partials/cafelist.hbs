@@ -28,31 +28,10 @@
                 -->
 
                 <!-- Cafe 1 -->
-                <div class="card mb-3">
-                    <div class="row g-0" style="margin: 0;">
-                      <div class="col-md-4">
-                        <img src="../../images/cafes/obscure.jpg" class="img-fluid rounded" alt="...">
-                      </div>
-
-                      <div class="col-md-6">
-                        <div class="card-body"  style="margin: 0;">
-
-                          <a href="../../html/cafes/obscure.html"><h5 class="card-title">Obscure Cafe</h5></a>
-                          <div class = "cb_rating">
-                            <img src="../../images/ratings/full.png"/>
-                            <img src="../../images/ratings/full.png"/>
-                            <img src="../../images/ratings/full.png"/>
-                            <img src="../../images/ratings/full.png"/>
-                            <img src="../../images/ratings/full.png"/>
-                            <span class = "numreviews">(56)</span>
-                        </div>
-                          <p class="card-text">Obscure cafe is an exclusive and lavish café that captivates with its opulence.</p>
-                          <p class="card-text"><small class="text-body-secondary">Open from 1030 - 2000</small></p>
-                        </div>
-                      </div>
-
-                    </div>
-                </div>
+                {{#each cafeCards}}
+                  {{> cafeCard this}}
+                {{/each}}
+                
 
                  <!-- Cafe 2 -->
                  <div class="card mb-3">
