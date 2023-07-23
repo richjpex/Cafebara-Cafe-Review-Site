@@ -7,31 +7,26 @@ const controller = {
         cafeCarouselCards.push({
             cafeName: "Starbees",
             cafePath: "starbs.jpg",
-            cafeUrl: "starbs",
             avgPrice: "1000.00"
         });
         cafeCarouselCards.push({
             cafeName: "Obscure",
             cafePath: "obscure.jpg",
-            cafeUrl: "obscure.html",
             avgPrice: "300.00"
         });
         cafeCarouselCards.push({
             cafeName: "Bos",
             cafePath: "bos.jpeg",
-            cafeUrl: "bos.html",
             avgPrice: "300.00"
         });
         cafeCarouselCards.push({
             cafeName: "bigboss",
             cafePath: "bigboss.jpeg",
-            cafeUrl: "bigboss.html",
             avgPrice: "300.00"
         });
         cafeCarouselCards.push({
             cafeName: "nitro7",
             cafePath: "nitro7.jpeg",
-            cafeUrl: "nitro7.html",
             avgPrice: "300.00"
         });
 
@@ -57,7 +52,6 @@ const controller = {
             numOfReviews: "255",
             cafeShortInfo: "penis",
             open_details: "Open in my ass",
-            cafePath: "obscure",
             cafeImg: "obscure.jpg"
         })
         
@@ -66,8 +60,7 @@ const controller = {
             numOfReviews: "56",
             cafeShortInfo: "peeens",
             open_details: "Open in my uranus",
-            cafeImg: "starbs.jpg",
-            cafePath: "starbs"
+            cafeImg: "starbs.jpg"
         })
 
         res.render('cafes', {
@@ -77,7 +70,7 @@ const controller = {
 
     cafe: function(req, res){
        //change render to the correct one
-        res.render('index');
+       res.render("index");
     }
 
 
