@@ -7,7 +7,6 @@ const router = Router();
 router.use(bodyParser.urlencoded({extended: true}));
 router.use(bodyParser.json());
 
-
 router.use(bodyParser.urlencoded({ extended: true }));
 router.get(`/`, controller.getIndex);
 router.get(`/about`, controller.getAbout);
@@ -18,6 +17,7 @@ router.post(`/login_success`, controller.logsucc);
 router.get(`/logout`, controller.logout);
 router.get(`/register`, controller.register);
 //edit
+router.get(`/review`, controller.refreshCafe);
 
 router.post('/addReview', controller.addReview);
 export default router;

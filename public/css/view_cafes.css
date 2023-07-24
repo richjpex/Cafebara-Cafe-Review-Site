@@ -79,6 +79,9 @@ a.dropdown-item:hover{
   background-color: #cacaca;
 }
 
+.card.mb-3:hover {
+  cursor: pointer;
+}
 
 body {
     background-color: #fafafa;
