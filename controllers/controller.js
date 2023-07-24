@@ -5,6 +5,7 @@ import { Review } from '../schemas/reviewsSchema.js';
 import { User } from '../schemas/userSchema.js';
 
 let email = ``;
+let isLogged = 0;
 
 const controller = {
 
@@ -25,7 +26,8 @@ const controller = {
         console.log(`YESSSSS${email}`);
        res.render('index', {
             isIndex: true,
-            carouselCards: cafeCarouselCards
+            carouselCards: cafeCarouselCards,
+            session: isLogged
        });
        res.status(200);
        return;
@@ -50,7 +52,8 @@ const controller = {
         });
         res.render('about', {
             isAbout: true,
-            profilecards: profilecards
+            profilecards: profilecards,
+            session: isLogged
         });
         console.log(`NOOO${email}`);
     },
@@ -75,7 +78,8 @@ const controller = {
         });
 
         res.render('cafes', {
-            cafeCards: cafes
+            cafeCards: cafes,
+            session: isLogged
         });
     },
  
@@ -132,7 +136,8 @@ const controller = {
        res.render("viewCafe", {
             layout: 'cafeTemplate',
             cafePage: cafe,
-            reviews: reviews
+            reviews: reviews,
+            session: isLogged
        });
 
     },
@@ -182,7 +187,14 @@ const controller = {
 
     logsucc: function (req, res) {
         email = req.body.email;
+        isLogged = 1;
         console.log(`${email}`);
+        res.redirect(`/`);
+    },
+
+    logout: function (req, res) {
+        email = ``;
+        isLogged = 0;
         res.redirect(`/`);
     }
 
