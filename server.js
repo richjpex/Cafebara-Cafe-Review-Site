@@ -235,7 +235,7 @@ async function main(){
                 const review_data = req.body;
                 console.log(review_data);
 
-                /*
+                
                 const newReview_details = new Review_details({
                     estName: currentEst,
                     reviewer: activeUser
@@ -257,7 +257,7 @@ async function main(){
                 //await collection.updateOne({_id: temp_review._id}, {$set: { estname: currentEst }});
                 res.redirect('/cafe/'+currentCafe);
                 res.redirect('/cafe/'+currentEst);
-                */
+                
     
             }
             catch(err){
