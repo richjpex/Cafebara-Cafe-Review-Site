@@ -83,43 +83,52 @@ const controller = {
        const cafeId = [];
        const cafeName = req.params.cafeName;
 
-       db.findOne(Cafe, {name: cafeName}, function(result) { 
-            if (result){;
-            db.findAllQuery(Review, {cafeName: result._id}, function(result2) {
-                for(let i = 0; i < result2.length; i++){
+       
+
+    db.findOne(Cafe, {name: cafeName}, function(result) { 
+        if (result){
+            
+        db.findAllQuery(Review, {cafeName: result._id}, function(result2) {
+
+            for(let i = 0; i < result2.length; i++){
                     db.findOne(User, {_id: result2[i].reviewer}, function(result3) {
-                        reviews.push({
-                            review: result2[i].review,
-                            date: result2[i].dateCreated.toString().substring(11, 15),
-                            // rating: result[i].rating,
-                            cafeName: result2[i].cafeName,
-                            username: result3.firstname + " " + result3.lastname,
-                            dateModified: result2[i].dateModified,
-                            up: result2[i].upvotes,
-                            down: result2[i].downvotes,
-                            media: result2[i].mediaPath,
-                            profilepic: result3.profilepic,
-                            title: result2[i].review_title
+                            reviews.push({
+                                review: result2[i].review,
+                                date: result2[i].dateCreated.toString().substring(11, 15),
+                                // rating: result[i].rating,
+                                cafeName: result2[i].cafeName,
+                                username: result3.firstname + " " + result3.lastname,
+                                dateModified: result2[i].dateModified,
+                                up: result2[i].upvotes,
+                                down: result2[i].downvotes,
+                                media: result2[i].mediaPath,
+                                profilepic: result3.profilepic,
+                                title: result2[i].review_title
+                            });
+                        });
+                    }
+
+                    db.findOne(Cafe, {name: cafeName}, function(result4) {
+                        cafe.push({
+                            cafeName: result4.name,
+                            imgPath: result4.image,
+                            description: result4.description,
+                            weekday_avail: result4.weekdays_avail,
+                            weekend_avail: result4.weekends_avail,
+                            website: result4.website,
+                            phonenumber: result4.phone,
+                            price: result4.price,
+                            numReviews: reviews.length,
+                            menu: result4.menu,
+                            address: result4.address
                         });
                     });
-                }
-                db.findOne(Cafe, {name: cafeName}, function(result4) {
-                    cafe.push({
-                        cafeName: result4.name,
-                        imgPath: result4.image,
-                        description: result4.description,
-                        weekday_avail: result4.weekdays_avail,
-                        weekend_avail: result4.weekends_avail,
-                        website: result4.website,
-                        phonenumber: result4.phone,
-                        price: result4.price,
-                        numReviews: reviews.length,
-                        menu: result4.menu,
-                        address: result4.address
-                    });
-                });
-            });} 
+                    
         });
+        } 
+    });
+    
+      
        
 
        res.render("viewCafe", {
@@ -136,7 +145,7 @@ const controller = {
 
     login: function (req, res) {
         res.render ('login', {layout: 'main'});
-    }
+    },
 
 }
 
