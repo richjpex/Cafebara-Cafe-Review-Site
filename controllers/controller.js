@@ -128,6 +128,10 @@ const controller = {
 
     addReview: function(req, res) {
 
+    },
+
+    login: function (req, res) {
+        res.render ('login', {layout: 'main'});
     }
 
 }

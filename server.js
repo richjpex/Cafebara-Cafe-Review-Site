@@ -92,10 +92,11 @@ app.get('/', (req, res) => {
 	res.render ('index', {layout: 'main'});
 });
 
-app.get('/cafes', (req, res) => {
-	res.render ('cafes', {layout: 'main'});
+/*
+app.get('/logins', (req, res) => {
+    res.render ('login', {layout: 'main'});
 });
-
+*/
 /*** 
 app.get('/different directory view estab;ish')
 res.render ('view_establishments!', 'layout: main', ??)
