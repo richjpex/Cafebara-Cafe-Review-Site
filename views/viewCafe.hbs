@@ -44,10 +44,15 @@
         </div>
 
         <!-- Turn this into JS -->
-        {{#each reviews}}
-        {{>review}}
-        {{/each}}
-
+        {{#if reviews}}
+            {{#each reviews}}
+            {{>review}}
+            {{/each}}
+        {{else}}
+            <h2>No reviews yet... start one yourself!</h2>
+        {{/if}}
+        
+        <!--
             <div class = "review_wrapper">
                 <div class="review_post">
                     <div class="prof_header" >
@@ -151,6 +156,7 @@
                         </div>
                     </div>
                 </div>
-        </div>
+        </div> 
+        -->
         
     </div>

@@ -25,15 +25,15 @@
         <div class="container-fluid" style="margin: 0 auto;">
             <div class="row">
                 <div class="searchbar-container">
-                    <form class="search-form">
+                    <form class="search-form" action="/cafe" method="POST">
                         <input type="text" name="search" placeholder="Search...">
                         <button type="submit"><i class="fas fa-search"></i></button>
                     </form>
                 </div>
               {{> filters}}
-
+             
               {{> cafelist}}
-
+              
               <!-- 
                 Right Column
               -->

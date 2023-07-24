@@ -15,9 +15,11 @@ router.get(`/cafe/:cafeName`, controller.cafe);
 router.get(`/login`, controller.login);
 router.post(`/login_success`, controller.logsucc);
 router.get(`/logout`, controller.logout);
-router.post(`/register`, controller.register);
+router.get(`/register`, controller.register);
+router.post(`/register_process`, controller.register);
 router.get(`/myprofile`, controller.profile);
 router.get(`/settings`, controller.settings);
+router.post(`/cafe`, controller.searchcafes)
 //edit
 router.get(`/review`, controller.refreshCafe);
 router.post('/register_process', controller.register_process);
