@@ -4,6 +4,8 @@ import { Cafe } from '../schemas/cafeSchema.js';
 import { Review } from '../schemas/reviewsSchema.js';
 import { User } from '../schemas/userSchema.js';
 
+let email = ``;
+
 const controller = {
 
     getIndex: function(req, res) {
@@ -20,7 +22,7 @@ const controller = {
             }
         });
 
-        console.log(cafeCarouselCards)
+        console.log(`YESSSSS${email}`);
        res.render('index', {
             isIndex: true,
             carouselCards: cafeCarouselCards
@@ -50,6 +52,7 @@ const controller = {
             isAbout: true,
             profilecards: profilecards
         });
+        console.log(`NOOO${email}`);
     },
 
     getCafes: function(req, res) {
@@ -142,8 +145,14 @@ const controller = {
     },
 
     login: function (req, res) {
-        res.render ('login', {layout: 'main'});
+        res.render ('login', {layout: 'logregTemplate'});
     },
+
+    logsucc: function (req, res) {
+        email = req.body.email;
+        console.log(`${email}`);
+        res.redirect(`/`);
+    }
 
 }
 
