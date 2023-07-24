@@ -3,6 +3,7 @@ import {About} from '../schemas/aboutSchema.js';
 import { Cafe } from '../schemas/cafeSchema.js';
 import { Review } from '../schemas/reviewsSchema.js';
 import { User } from '../schemas/userSchema.js';
+import { Reply } from '../schemas/ownerReply.js';
 
 let email = ``;
 let isLogged = 0;
@@ -100,14 +101,23 @@ const controller = {
                 revs = result2
             }
         });
-
+        console.log(revs[0].cafeName)
         for(let i = 0; i < revs.length; i++){
+            let ownerreply= null;
+            let ownerreplydate = null;
+            const getOwnerReply = await db.findOne(Reply, {_id: revs[i].ownerReply}, function(result4) {
+                if(result4 != false){
+                    ownerreply = result4.reply_text;
+                    ownerreplydate = result4.date.toString().substring(0, 15);
+                }
+            })
             const resp3 = await db.findOne(User, {_id: revs[i].reviewer}, function(result3) {
+                    const author = (email == result3.email) ? true: false;
+                    console.log() 
                     reviews.push({
                         review: revs[i].review,
                         reviewdate: revs[i].dateCreated.toString().substring(0, 15),
                         rating: revs[i].rating,
-                        cafeName: revs[i].cafeName,
                         username: result3.firstname + " " + result3.lastname,
                         dateModified: revs[i].dateModified,
                         up: revs[i].upvotes,
@@ -115,7 +125,12 @@ const controller = {
                         media: revs[i].mediaPath,
                         profilepic: result3.profilepic,
                         title: revs[i].review_title,
-                        date: result3.dateCreated.toString().substring(11, 15)
+                        author: author,
+                        date: result3.dateCreated.toString().substring(11, 15),
+                        ownerreply: ownerreply,
+                        ownerreplydate: ownerreplydate,
+                        cafe_id: revs[i].cafeName,
+                        user_id: revs[i].reviewer
                     });
                 });
             }
@@ -172,6 +187,7 @@ const controller = {
             rating: rating,
             dateCreated: dateCreated,
             mediaPath: media,
+            ownerreply: null
         };
 
         const resp3 = await db.insertOne(Review, newReview, function(flag) {
@@ -256,7 +272,39 @@ const controller = {
             session: isLogged
        });
 
-    }
+    },
+    
+    deleteReview: async function(req, res) {
+        const review_id = req.body.user_id;
+        const cafe_id = req.body.cafe_id;
+        let ownerreplyID;
+        console.log(review_id + cafe_id)
+        const resp2 = await db.findOne(Review, {reviewer: review_id, cafeName: cafe_id}, function(flag) {
+            if(flag.ownerReply != null){
+                ownerreplyID = flag.ownerReply;                
+            }
+        });
+
+        const resp3 = await db.deleteOne(Reply, {_id: ownerreplyID}, function(flag) {
+            if(flag != false){
+                console.log("Owner reply deleted");
+            }
+            else{
+                console.log("Owner reply not deleted");
+            }
+        });
+        
+        const resp = await db.deleteOne(Review, {reviewer: review_id, cafeName: cafe_id}, function(flag) {
+            if(flag != false){
+                console.log("Review deleted");
+            }
+            else{
+                console.log("Review not deleted");
+            }
+        });
+
+        res.redirect('/')
+    },
 
 }
 

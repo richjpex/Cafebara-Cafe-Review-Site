@@ -20,4 +20,6 @@ router.get(`/logout`, controller.logout);
 router.get(`/review`, controller.refreshCafe);
 
 router.post('/addReview', controller.addReview);
+
+router.delete('/deleteReview', controller.deleteReview);
 export default router;
