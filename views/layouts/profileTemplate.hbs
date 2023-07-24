@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {{> head}}
+
+    <link rel="stylesheet" href="../../css/user_profile.css" />
+</head>
+
+<body>
+    {{#unless session}}
+        {{> navbar}}
+    {{else}}
+        {{> navbar_logged}}
+    {{/unless}}
+    
+    {{{body}}}
+</body>
+</html>
