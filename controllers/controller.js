@@ -444,6 +444,7 @@ const controller = {
                 console.log("Review not deleted");
             }
         });
+        res.sendStatus(200);
     },
 
     editReview: async function(req, res) {
