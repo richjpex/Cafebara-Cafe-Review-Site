@@ -168,7 +168,7 @@ export const controller = {
                 if(current_user){
                     activeUser = current_user;
 
-                    res.redirect('/index');
+                    res.redirect(`/?user=${activeUser.email}`);
                 }
                 if(current_cafe){
                     activeUser = current_cafe;
