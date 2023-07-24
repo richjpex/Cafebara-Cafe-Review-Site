@@ -196,6 +196,10 @@ const controller = {
         email = ``;
         isLogged = 0;
         res.redirect(`/`);
+    },
+
+    register: function (req, res) {
+        res.render ('register', {layout: 'logregTemplate'});
     }
 
 }
