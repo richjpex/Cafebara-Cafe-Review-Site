@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
 
-import { User } from "./schemas/userSchema.js";
-import { Cafe } from "./schemas/cafeSchema.js";
-import { About } from "./schemas/aboutSchema.js";
+import { User } from "./model/userSchema.js";
+import { Cafe } from "./model/cafeSchema.js";
+import { About } from "./model/aboutSchema.js";
 
 //import { ReviewDetails } from "./schemas/review_detailsSchema.js";
 

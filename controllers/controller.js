@@ -1,9 +1,9 @@
-import db from '../schemas/db.js';
-import {About} from '../schemas/aboutSchema.js';
-import { Cafe } from '../schemas/cafeSchema.js';
-import { Review } from '../schemas/reviewsSchema.js';
-import { User } from '../schemas/userSchema.js';
-import { Reply } from '../schemas/ownerReply.js';
+import db from '../model/db.js';
+import {About} from '../model/aboutSchema.js';
+import { Cafe } from '../model/cafeSchema.js';
+import { Review } from '../model/reviewsSchema.js';
+import { User } from '../model/userSchema.js';
+import { Reply } from '../model/ownerReply.js';
 
 let email = ``;
 let isLogged = 0;

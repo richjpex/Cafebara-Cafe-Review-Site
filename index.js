@@ -3,7 +3,7 @@ import 'dotenv/config';
 import express from "express";
 import exphbs from "express-handlebars";
 import routes from './routes/routes.js';
-import db from './schemas/db.js';
+import db from './model/db.js';
 import bodyParser from 'body-parser';
 import Handlebars from 'handlebars';
 import path from 'path';
