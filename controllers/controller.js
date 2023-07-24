@@ -224,6 +224,14 @@ const controller = {
         res.redirect(`/`);
     },
 
+    profile: function (req, res) {
+        res.render ('userProfile', {layout: 'profileTemplate', session: isLogged});
+    },
+
+    settings: function (req, res) {
+        res.render ('settings', {layout: 'main', session: isLogged    });
+    },
+
     refreshCafe: async function(req, res) {
         const cafe_id= req.query.cafeid;
 
