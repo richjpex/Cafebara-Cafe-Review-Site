@@ -55,6 +55,11 @@ const cafeSchema = new Schema({
     dateCreated: {
         type: Date,
         default: Date.now()
+    },
+
+    menu: {
+        type: String,
+        default: "No menu posted. Please contact the store."   
     }
 });
 
