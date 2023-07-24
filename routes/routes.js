@@ -15,6 +15,7 @@ router.get(`/cafe`, controller.getCafes);
 router.get(`/cafe/:cafeName`, controller.cafe);
 router.get(`/login`, controller.login);
 router.post(`/login_success`, controller.logsucc);
+router.get(`/logout`, controller.logout);
 //router.get(`/register`, );
 //edit
 
