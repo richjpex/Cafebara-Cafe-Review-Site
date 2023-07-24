@@ -98,19 +98,19 @@ document.addEventListener("DOMContentLoaded",function() {
     function displayCustomerRegistration(){
 
         const form = document.querySelector("#inputform");
-        const profilepic = createProfilePicInput();
-        const bio = createBioInput();
+        //const profilepic = createProfilePicInput();
+        //const bio = createBioInput();
         const namefield = createNameInputs();
-        const bdayfield = createBirthdayInputs();
+        //const bdayfield = createBirthdayInputs();
         const email = createEmailInput();
         const pass = createPasswordInput();
         const confirm = createConfirmPasswordInput();
         const submit = createSubmitbutton();
 
-        form.appendChild(profilepic);
-        form.appendChild(bio);
+        // form.appendChild(profilepic);
+        // form.appendChild(bio);
         form.appendChild(namefield);
-        form.appendChild(bdayfield);
+        //form.appendChild(bdayfield);
         form.appendChild(email);
         form.appendChild(pass);
         form.appendChild(confirm);
@@ -163,10 +163,12 @@ document.addEventListener("DOMContentLoaded",function() {
         const div = document.createElement("div");
         const anchortag = document.createElement("a");
         
-        anchortag.setAttribute("href","index2.html");
+        //anchortag.setAttribute("href","index2.html");
         button.setAttribute("type","submit");
         button.setAttribute("id","submit");
         button.setAttribute("name","submit");
+        // set attribute "method" = lowercase post
+        button.setAttribute("method","post");
         button.innerHTML = "Sign up";
 
         anchortag.appendChild(button);
@@ -241,109 +243,109 @@ document.addEventListener("DOMContentLoaded",function() {
         return emaildiv;
     }
 
-    function createBirthdayInputs(){
-        const bdaywrap = document.createElement("div");
-        const firstdiv = document.createElement("div");
-        const seconddiv = document.createElement("div");
-        const daydiv = document.createElement("div");
-        const monthdiv = document.createElement("div");
-        const yeardiv = document.createElement("div");
-        $(bdaywrap).addClass("longbox");
-        $(seconddiv).addClass("tripleboxwrapper");
-        $(daydiv).addClass("tripleboxlayer");
-        $(monthdiv).addClass("tripleboxlayer");
-        $(yeardiv).addClass("tripleboxlayer");
+    // // function createBirthdayInputs(){
+    // //     const bdaywrap = document.createElement("div");
+    // //     const firstdiv = document.createElement("div");
+    // //     const seconddiv = document.createElement("div");
+    // //     const daydiv = document.createElement("div");
+    // //     const monthdiv = document.createElement("div");
+    // //     const yeardiv = document.createElement("div");
+    // //     $(bdaywrap).addClass("longbox");
+    // //     $(seconddiv).addClass("tripleboxwrapper");
+    // //     $(daydiv).addClass("tripleboxlayer");
+    // //     $(monthdiv).addClass("tripleboxlayer");
+    // //     $(yeardiv).addClass("tripleboxlayer");
 
-        const bdaytag = document.createElement("label");
-        bdaytag.innerHTML = "When is your birthday?";
-        firstdiv.appendChild(bdaytag);
+    // //     const bdaytag = document.createElement("label");
+    // //     bdaytag.innerHTML = "When is your birthday?";
+    // //     firstdiv.appendChild(bdaytag);
 
-        daydiv.setAttribute("id","daydiv");
-        monthdiv.setAttribute("id","monthdiv");
-        yeardiv.setAttribute("id","yeardiv");
+    // //     daydiv.setAttribute("id","daydiv");
+    // //     monthdiv.setAttribute("id","monthdiv");
+    // //     yeardiv.setAttribute("id","yeardiv");
 
-        const month = document.createElement("select");
-        const day = document.createElement("input");
-        const year = document.createElement("input");
+    // //     const month = document.createElement("select");
+    // //     const day = document.createElement("input");
+    // //     const year = document.createElement("input");
 
-        const monthlabel = document.createElement("label");
-        const daylabel = document.createElement("label");
-        const yearlabel = document.createElement("label");
+    // //     const monthlabel = document.createElement("label");
+    // //     const daylabel = document.createElement("label");
+    // //     const yearlabel = document.createElement("label");
 
-        monthlabel.innerHTML = "Month";
-        daylabel.innerHTML = "Day";
-        yearlabel.innerHTML = "Year";
+    // //     monthlabel.innerHTML = "Month";
+    // //     daylabel.innerHTML = "Day";
+    // //     yearlabel.innerHTML = "Year";
 
-        //This part creates the month option elements and adds to the select
-        const months = createBirthMonths();
-        for(let i = 0; i < months.length; i++){
-            month.appendChild(months[i]);
-        };
+    // //     //This part creates the month option elements and adds to the select
+    // //     const months = createBirthMonths();
+    // //     for(let i = 0; i < months.length; i++){
+    // //         month.appendChild(months[i]);
+    // //     };
         
-        day.setAttribute("type","number");
-        day.setAttribute("id","day");
-        day.setAttribute("min","1");
-        day.setAttribute("max","31");
-        day.setAttribute("placeholder","DD");
-        day.required = true;
+    // //     day.setAttribute("type","number");
+    // //     day.setAttribute("id","day");
+    // //     day.setAttribute("min","1");
+    // //     day.setAttribute("max","31");
+    // //     day.setAttribute("placeholder","DD");
+    // //     day.required = true;
         
-        month.setAttribute("class","inputfield");
-        month.required = true;
+    // //     month.setAttribute("class","inputfield");
+    // //     month.required = true;
         
-        year.setAttribute("placeholder","YYYY");
-        year.required = true;
+    // //     year.setAttribute("placeholder","YYYY");
+    // //     year.required = true;
         
-        const date = new Date();
-        const currentyear = date.getFullYear();
-        year.setAttribute("type","number");
-        year.setAttribute("min", currentyear-120);
-        year.setAttribute("max", currentyear);
+    // //     const date = new Date();
+    // //     const currentyear = date.getFullYear();
+    // //     year.setAttribute("type","number");
+    // //     year.setAttribute("min", currentyear-120);
+    // //     year.setAttribute("max", currentyear);
 
-        daydiv.appendChild(daylabel);
-        daydiv.appendChild(day);
-        monthdiv.appendChild(monthlabel);
-        monthdiv.appendChild(month);
-        yeardiv.appendChild(yearlabel);
-        yeardiv.appendChild(year);
+    // //     daydiv.appendChild(daylabel);
+    // //     daydiv.appendChild(day);
+    // //     monthdiv.appendChild(monthlabel);
+    // //     monthdiv.appendChild(month);
+    // //     yeardiv.appendChild(yearlabel);
+    // //     yeardiv.appendChild(year);
 
-        seconddiv.appendChild(daydiv);
-        seconddiv.appendChild(monthdiv);
-        seconddiv.appendChild(yeardiv);
+    // //     seconddiv.appendChild(daydiv);
+    // //     seconddiv.appendChild(monthdiv);
+    // //     seconddiv.appendChild(yeardiv);
 
-        bdaywrap.appendChild(firstdiv);
-        bdaywrap.appendChild(seconddiv);
+    // //     bdaywrap.appendChild(firstdiv);
+    // //     bdaywrap.appendChild(seconddiv);
 
-        return bdaywrap;
-    }
+    // //     return bdaywrap;
+    // // }
 
-    function createBirthMonths(){
-        const Jan = document.createElement("option");
-        const Feb = document.createElement("option");
-        const Mar = document.createElement("option");
-        const Apr = document.createElement("option");
-        const May = document.createElement("option");
-        const Jun = document.createElement("option");
-        const Jul = document.createElement("option");
-        const Aug = document.createElement("option");
-        const Sep = document.createElement("option");
-        const Oct = document.createElement("option");
-        const Nov = document.createElement("option");
-        const Dec = document.createElement("option");
-        const none = document.createElement("option");
-        const months = [none,Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec];
-        const monthhtml = ['Month','January','February','March','April','May','June','July','August','September','October','November','December'];
+    // function createBirthMonths(){
+    //     const Jan = document.createElement("option");
+    //     const Feb = document.createElement("option");
+    //     const Mar = document.createElement("option");
+    //     const Apr = document.createElement("option");
+    //     const May = document.createElement("option");
+    //     const Jun = document.createElement("option");
+    //     const Jul = document.createElement("option");
+    //     const Aug = document.createElement("option");
+    //     const Sep = document.createElement("option");
+    //     const Oct = document.createElement("option");
+    //     const Nov = document.createElement("option");
+    //     const Dec = document.createElement("option");
+    //     const none = document.createElement("option");
+    //     const months = [none,Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec];
+    //     const monthhtml = ['Month','January','February','March','April','May','June','July','August','September','October','November','December'];
         
-        none.disabled = true;
-        none.selected = true;
-        none.hidden = true;
+    //     none.disabled = true;
+    //     none.selected = true;
+    //     none.hidden = true;
         
-        for(let i = 0; i < months.length; i++){
-            months[i].setAttribute("value",i);
-            months[i].innerHTML = monthhtml[i];
-        }
+    //     for(let i = 0; i < months.length; i++){
+    //         months[i].setAttribute("value",i);
+    //         months[i].innerHTML = monthhtml[i];
+    //     }
 
-        return months;
-    }
+    //     return months;
+    // }
 
     function createNameInputs(){
         const namewrapper = document.createElement("div");
@@ -396,67 +398,67 @@ document.addEventListener("DOMContentLoaded",function() {
         return namewrapper;
     }
 
-    function createProfilePicInput(){
-        const allwrap = document.createElement("div");
+    // function createProfilePicInput(){
+    //     const allwrap = document.createElement("div");
         
-        const profilepicdiv = document.createElement("div");
-        const img = document.createElement("img");
+    //     const profilepicdiv = document.createElement("div");
+    //     const img = document.createElement("img");
         
-        const labeldiv = document.createElement("div");
-        const profilepiclabel = document.createElement("label");
-        const profilepic = document.createElement("input");
+    //     const labeldiv = document.createElement("div");
+    //     const profilepiclabel = document.createElement("label");
+    //     const profilepic = document.createElement("input");
         
 
-        //set image attributes
-        img.setAttribute("src","/images/assets/2logo.png");
-        img.setAttribute("id","profilepicimg");
-        img.setAttribute("alt","Profile Picture");
+    //     //set image attributes
+    //     img.setAttribute("src","/images/assets/2logo.png");
+    //     img.setAttribute("id","profilepicimg");
+    //     img.setAttribute("alt","Profile Picture");
 
-        profilepiclabel.innerHTML = "Upload Profile Picture";
+    //     profilepiclabel.innerHTML = "Upload Profile Picture";
 
-        profilepic.setAttribute("type","file");
-        profilepic.setAttribute("name","profilepic");
-        profilepic.setAttribute("id","profilepic");
-        profilepic.required = true;
+    //     profilepic.setAttribute("type","file");
+    //     profilepic.setAttribute("name","profilepic");
+    //     profilepic.setAttribute("id","profilepic");
+    //     profilepic.required = true;
 
-        $(profilepic).addClass("id","inputfield");
+    //     $(profilepic).addClass("id","inputfield");
 
-        $(allwrap).addClass("imagedivwrapper");
-        $(profilepicdiv).addClass("imagediv");
-        $(labeldiv).addClass("imagelabel");
+    //     $(allwrap).addClass("imagedivwrapper");
+    //     $(profilepicdiv).addClass("imagediv");
+    //     $(labeldiv).addClass("imagelabel");
         
-        profilepicdiv.appendChild(img);
+    //     profilepicdiv.appendChild(img);
 
-        labeldiv.appendChild(profilepiclabel);
-        labeldiv.appendChild(profilepic);
+    //     labeldiv.appendChild(profilepiclabel);
+    //     labeldiv.appendChild(profilepic);
 
-        allwrap.appendChild(profilepicdiv);
-        allwrap.appendChild(labeldiv);
+    //     allwrap.appendChild(profilepicdiv);
+    //     allwrap.appendChild(labeldiv);
 
-        return allwrap;
-    }
+    //     return allwrap;
+    // }
 
-    function createBioInput(){
-        const biowrap = document.createElement("div");
-        const biolabel = document.createElement("label");
-        const bio = document.createElement("textarea");
+    // function createBioInput(){
+    //     const biowrap = document.createElement("div");
+    //     const biolabel = document.createElement("label");
+    //     const bio = document.createElement("textarea");
 
-        biolabel.innerHTML = "Write a bio";
+    //     biolabel.innerHTML = "Write a bio";
 
-        bio.setAttribute("name","bio");
-        bio.setAttribute("id","bio");
-        bio.setAttribute("placeholder","I love cafes frfr.");
-        bio.setAttribute("alt", "Insert your bio here");
+    //     bio.setAttribute("name","bio");
+    //     bio.setAttribute("id","bio");
+    //     bio.setAttribute("placeholder","I love cafes frfr.");
+    //     bio.setAttribute("alt", "Insert your bio here");
 
-        $(biowrap).addClass("singlebox");
+    //     $(biowrap).addClass("singlebox");
         
-        $(bio).addClass("inputfield");
-        $(bio).addClass("bioinput");
+    //     $(bio).addClass("inputfield");
+    //     $(bio).addClass("bioinput");
 
-        biowrap.appendChild(biolabel);
-        biowrap.appendChild(bio);
+    //     biowrap.appendChild(biolabel);
+    //     biowrap.appendChild(bio);
 
-        return biowrap;
-    }
+    //     return biowrap;
+    // }
 
 });

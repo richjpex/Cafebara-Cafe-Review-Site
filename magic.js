@@ -7,7 +7,7 @@ import { About } from "./schemas/aboutSchema.js";
 //import { ReviewDetails } from "./schemas/review_detailsSchema.js";
 
 //change this to the env
-mongoose.connect('mongodb://localhost:27017/mydatabase', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb://localhost:27017/apdev_test_2', { useNewUrlParser: true, useUnifiedTopology: true });
 function createUsers(){
     const users = [];
 
@@ -158,6 +158,8 @@ function createCafes(){
         cafes[i].save();
     }
 
-function createReviews(){
 
 }
+
+createCafes();
+createUsers();

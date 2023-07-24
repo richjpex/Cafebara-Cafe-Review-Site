@@ -221,11 +221,84 @@ const controller = {
     },
 
 
-    register: function (req, res) {
+    register: async function (req, res) {
+        
         res.render ('register', {layout: 'logregTemplate'});
     },
 
-    register_process: function (req, res) {
+    register_process: async function (req, res) {
+        try {
+            console.log("check");
+            const userdata = req.body;
+
+            
+            console.log(userdata);
+            
+            
+            // check if email exists in either User or cafe colleciton
+            const existingUser = await db.findOne(User, {email: userdata.email}, function(result) {
+                if(result != false)
+                    user_id = result._id;
+            });
+            const existingCafe = await db.findOne(Cafe, {email: userdata.email}, function(result) {
+                if(result != false)
+                    user_id = result._id;
+            });
+            
+
+            if (existingUser || existingCafe) {
+                const queryParams = new URLSearchParams();
+                queryParams.append('usertype', userdata.usertype);
+                queryParams.append('message', 'Email already exists!');
+                const queryString = queryParams.toString();
+                return res.redirect(`/register_process?${queryString}`);
+            }
+            else {
+                if(userdata.usertype === 'customer'){
+                    // create new user
+                    const newUser = new User({
+                        password: userdata.password,
+                        email: userdata.email,
+                        firstname: userdata.firstname,
+                        lastname: userdata.lastname,
+                        
+                        });
+                        
+                    //save to db
+                    newUser.save().then(function (err) {
+                        if (err) {
+                            const queryParams = new URLSearchParams();
+                            queryParams.append('message', 'Error creating user!');
+                            return res.redirect(`/register_process?${queryParams.toString()}`);
+                        }
+                        res.redirect('/');
+                    });
+                }   
+                else if(userdata.usertype ==='owner'){
+                    // create new est profile
+                    console.log(userdata)
+                    const newCafe = new Cafe({
+                        name: userdata.estname,
+                        address: userdata.estaddress,
+                        email: userdata.email,
+                        password: userdata.password,
+                    });
+
+                    //save to db
+                    newCafe.save().then(function (err) {
+                        if (err) {
+                            const queryParams = new URLSearchParams();
+                            queryParams.append('message', 'Error creating establishment!');
+                            return res.redirect(`/register_process?${queryParams.toString()}`);
+                        }
+                        res.redirect('/');
+                    });
+                }
+            }
+        } catch (err) {
+            console.error(err);
+            return res.sendStatus(500);
+        }
         // insert information into DB here
         /*
         @BANANZAI
@@ -238,7 +311,6 @@ const controller = {
         req.body.estname
         req.body.estaddress
         */
-        res.redirect(`/`);
     },
 
     profile: function (req, res) {
