@@ -9,10 +9,10 @@ let isLogged = 0;
 
 const controller = {
 
-    getIndex: function(req, res) {
+    getIndex: async function(req, res) {
         // your code here
         const cafeCarouselCards = [];
-        const resp = db.findLimitSorted(Cafe, {}, 5, function(result) {
+        const resp = await db.findLimitSorted(Cafe, {}, 5, function(result) {
             if(result != false)for(let i = 0; i < result.length; i++){
                 cafeCarouselCards.push({
                     cafeName: result[i].name,
@@ -31,10 +31,10 @@ const controller = {
        return;
     },
 
-    getAbout: function(req, res) {
+    getAbout: async function(req, res) {
         // your code here
         const profilecards = [];
-        const resp = db.findAll(About, function(result) {
+        const resp = await db.findAll(About, function(result) {
             for(let i = 0; i < result.length; i++){
                 profilecards.push({
                     name: result[i].name,
@@ -53,16 +53,15 @@ const controller = {
             profilecards: profilecards,
             session: isLogged
         });
-        console.log(`NOOO${email}`);
     },
 
-    getCafes: function(req, res) {
+    getCafes: async function(req, res) {
         // your code here
         // do database stuff here
         const cafes = [];
-        const resp = db.findAll(Cafe, function(result) {
+        const resp = await db.findAll(Cafe, async function(result) {
             for(let i = 0; i < result.length; i++){
-                db.findAllQuery(Review, {cafeName: result[i]._id}, function(result2) {
+                await db.findAllQuery(Review, {cafeName: result[i]._id}, function(result2) {
                     cafes.push({
                         cafeName: result[i].name,
                         numOfReviews: result2.length,
@@ -81,44 +80,47 @@ const controller = {
         });
     },
  
-    cafe: function(req, res){
+    cafe: async function(req, res){
        //change render to the correct one
        const cafe = [];
        const reviews = [];
 
-       const cafeId = [];
        const cafeName = req.params.cafeName;
 
         let cafe_id;
-        const resp1 = db.findOne(Cafe, {name: cafeName}, function(result) { 
-            if(result!= false)
+        const resp1 = await db.findOne(Cafe, {name: cafeName}, function(result) { 
+            if(result!= false){
                 cafe_id = result._id;
+            }
+        });
+        
+        let revs = [];
+        const resp2 = await db.findAllQuery(Review, {cafeName: cafe_id}, function(result2) {
+            if(result2 != false){
+                revs = result2
+            }
         });
 
-        const resp2 = db.findAllQuery(Review, {cafeName: cafe_id}, function(result2) {
-            if(result2 != false){
-                for(let i = 0; i < result2.length; i++){
-                    const resp3 = db.findOne(User, {_id: result2[i].reviewer}, function(result3) {
-                            reviews.push({
-                                review: result2[i].review,
-                                reviewdate: result2[i].dateCreated.toString().substring(0, 15),
-                                rating: result2[i].rating,
-                                cafeName: result2[i].cafeName,
-                                username: result3.firstname + " " + result3.lastname,
-                                dateModified: result2[i].dateModified,
-                                up: result2[i].upvotes,
-                                down: result2[i].downvotes,
-                                media: result2[i].mediaPath,
-                                profilepic: result3.profilepic,
-                                title: result2[i].review_title,
-                                date: result3.dateCreated.toString().substring(11, 15)
-                            });
-                        });
-                    }
-                }
-            });
+        for(let i = 0; i < revs.length; i++){
+            const resp3 = await db.findOne(User, {_id: revs[i].reviewer}, function(result3) {
+                    reviews.push({
+                        review: revs[i].review,
+                        reviewdate: revs[i].dateCreated.toString().substring(0, 15),
+                        rating: revs[i].rating,
+                        cafeName: revs[i].cafeName,
+                        username: result3.firstname + " " + result3.lastname,
+                        dateModified: revs[i].dateModified,
+                        up: revs[i].upvotes,
+                        down: revs[i].downvotes,
+                        media: revs[i].mediaPath,
+                        profilepic: result3.profilepic,
+                        title: revs[i].review_title,
+                        date: result3.dateCreated.toString().substring(11, 15)
+                    });
+                });
+            }
             
-        const resp4 = db.findOne(Cafe, {name: cafeName}, function(result4) {
+        const resp4 = await db.findOne(Cafe, {name: cafeName}, function(result4) {
             cafe.push({
                 cafeName: result4.name,
                 imgPath: result4.image,
@@ -142,7 +144,7 @@ const controller = {
 
     },
 
-    addReview: function(req, res) {
+    addReview: async function(req, res) {
         const cafeName = req.body.cafeName;
         const review = req.body.review;
         const review_title = req.body.review_title;
@@ -153,11 +155,11 @@ const controller = {
         let user_id;
         let cafe_id;
         
-        const resp1 = db.findOne(User, {email: user}, function(result) {
+        const resp1 = await db.findOne(User, {email: user}, function(result) {
             if(result != false)
                 user_id = result._id;
         });
-        const resp2 = db.findOne(Cafe, {name: cafeName}, function(result2) {
+        const resp2 = await db.findOne(Cafe, {name: cafeName}, function(result2) {
             if(result2){
                 cafe_id = result2._id;
             }
@@ -171,13 +173,19 @@ const controller = {
             dateCreated: dateCreated,
             mediaPath: media,
         };
-        const resp3 = db.insertOne(Review, newReview, function(flag) {
+
+        const resp3 = await db.insertOne(Review, newReview, function(flag) {
             if(flag!=false){
                 console.log("Review added");
                 res.sendStatus(200);
             }
+            else{
+                console.log("Review not added");
+                res.sendStatus(500);
+            }
         });
     },
+
     login: function (req, res) {
         res.render ('login', {layout: 'logregTemplate'});
     },
