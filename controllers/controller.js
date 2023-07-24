@@ -128,9 +128,6 @@ const controller = {
         });
         } 
     });
-    
-      
-       
 
        res.render("viewCafe", {
             layout: 'cafeTemplate',
@@ -141,7 +138,42 @@ const controller = {
     },
 
     addReview: function(req, res) {
+        const cafeName = req.body.cafeName;
+        const review = req.body.review;
+        const review_title = req.body.review_title;
+        const rating = req.body.rating;
+        const dateCreated = req.body.dateCreated;
+        const media = req.body.media;
+        const user = req.body.email;
+        let user_id;
+        let cafe_id;
+        db.findOne(User, {email: user}, function(result) {
+            if(result){
+                console.log("HERE")
+                user_id = result._id;
 
+                db.findOne(Cafe, {name: cafeName}, function(result2) {
+                    if(result2){
+                        cafe_id = result2._id;
+
+                        const newReview = {
+                            cafeName: cafe_id,
+                            reviewer: user_id,
+                            review: review,
+                            review_title: review_title,
+                            rating: rating,
+                            dateCreated: dateCreated,
+                            mediaPath: media,
+                        };
+                        db.insertOne(Review, newReview, function(flag) {
+                            console.log(flag)
+                            res.redirect('/cafes/' + cafeName + '?email=' + user);
+                    });
+                    }
+                }
+                );
+            }
+        });
     },
 
     login: function (req, res) {

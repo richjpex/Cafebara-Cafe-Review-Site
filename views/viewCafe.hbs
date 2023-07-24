@@ -1,3 +1,5 @@
+    <script src = "../../scripts/cafe-rating.js"></script>
+
 <div class="content">
     {{> cafePage}}
 </div>
@@ -10,14 +12,17 @@
         <div class="collapse" id="collapseExample">
             <div class="card card-body">
                 <div class = "review-wrapper">
-                    <form>
-                        <img src="../../images/ratings/empty.png" class = "user-rating"/>
-                        <img src="../../images/ratings/empty.png" class = "user-rating"/>
-                        <img src="../../images/ratings/empty.png" class = "user-rating"/>
-                        <img src="../../images/ratings/empty.png" class = "user-rating"/>
-                        <img src="../../images/ratings/empty.png" class = "user-rating"/>
+                    <form name="writeReview" id = "reviewWrite">
+                        <div class="rating-container">
+                            <span class="star" data-rating="1"></span>
+                            <span class="star" data-rating="2"></span>
+                            <span class="star" data-rating="3"></span>
+                            <span class="star" data-rating="4"></span>
+                            <span class="star" data-rating="5"></span>
+                          </div>
+                          <input type="hidden" id="selected-rating" value="0" />
                         <div class = "review-title">
-                            <input class="form-control form-control-lg review-title" type="text" placeholder="Title" aria-label=".form-control-lg example">                        </div>
+                            <input class="form-control form-control-lg review-title" type="text" id = "review-title" placeholder="Title" aria-label=".form-control-lg example">                        </div>
                         <div class = "review-content">
                             <textarea class="form-control review-body" placeholder="Leave your review here" id="review-editor" style="height: 100px"></textarea>
                             <div class = "attachmedia">

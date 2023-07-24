@@ -14,7 +14,7 @@ const database = {
 
     insertOne: function(model, doc, callback) {
         const newDoc = new model(doc);
-        newDoc.save(function(error, result) {
+        newDoc.save().then(function(error, result) {
             if(error) { 
                 console.log(error);
                 return callback(false);
@@ -28,7 +28,7 @@ const database = {
 
         const newDocs = [];
         for(let i = 0; i < docs.length; i++) {
-            new model(docs[i]).save(function(error, result) {
+            new model(docs[i]).save().then(function(error, result) {
                 if(error) {
                     console.log(error);
                     return callback(false);
@@ -62,7 +62,7 @@ const database = {
             return callback(result);
         });
     },
-    
+
     findAllQuery: function(model, query, callback) {
         model.find(query).then(function(result) {
             return callback(result);
