@@ -92,24 +92,15 @@
                 <div id="map" style="width: 100%; height: 250px;"></div>
             </div>
             <div class="container text-center loc_and_time">
-                <div class="row row-cols-4">
-                    <div class="col-6 left-align">
-                        8085 Mangga St.
-                    </div>
-                    <div class="col-md-auto">
-                        
-                    </div>
+                <div class = "address">
+                    8085 Mangga St. Taftasjhdgajkhsdghjkasghkdashgjdghkjaskghaskgdasg Ave. Pasay City, Manila
+                </div>
+                <div class="row row-cols-2">
                     <div class="col-md-auto">
                         <span class = "bold">Mon-Fri</span>
                     </div>
                     <div class="col-md-auto">
                         7am - 10pm
-                    </div>
-                    <div class="col-6 left-align">
-                        Taft Ave. Pasay City, Manila
-                    </div>
-                    <div class="col-md-auto">
-                        
                     </div>
                     <div class="col-md-auto">
                         <span class = "bold">Sat-Sun</span>
@@ -337,13 +328,14 @@
                             <img src="../../images/ratings/empty.png"/>
                             <img src="../../images/ratings/empty.png"/>
                         </div>
-                        <div class = "hidden editable">
-                            <img src="../../images/ratings/full.png"/>
-                            <img src="../../images/ratings/full.png"/>
-                            <img src="../../images/ratings/empty.png"/>
-                            <img src="../../images/ratings/empty.png"/>
-                            <img src="../../images/ratings/empty.png"/>
-                        </div>
+                        <div class="hidden other-rating-container">
+                            <span class="star" data-rating="1"></span>
+                            <span class="star" data-rating="2"></span>
+                            <span class="star" data-rating="3"></span>
+                            <span class="star" data-rating="4"></span>
+                            <span class="star" data-rating="5"></span>
+                          </div>
+                          <input type="hidden" id="selected-rating" value="0" />
                         <br>
                         <span class = "review_date">Reviewed on 2023/06/21</span>
                     </div>
@@ -424,4 +416,48 @@
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(map);
 </script>
+<script>
+    // Get the elements you need
+    const ratingsDiv = document.querySelector('.ratings');
+    const ratingContainerDiv = document.querySelector('.other-rating-container');
+    const editBtn = document.getElementById('editbtn');
+    const submitChangesBtn = document.getElementById('submitChanges');
+    const selectedRatingInput = document.getElementById('selected-rating');
+  
+    // Add a click event listener to the "editbtn"
+    editBtn.addEventListener('click', function() {
+      // Show the "rating-container" and hide the "ratings" div
+      ratingContainerDiv.classList.remove('hidden');
+      ratingsDiv.classList.add('hidden');
+    });
+  
+    // Add a click event listener to the "submitChanges" button
+    submitChangesBtn.addEventListener('click', function() {
+      // Get the data-rating value from the selectedRatingInput
+      const dataRating = parseInt(selectedRatingInput.value);
+  
+      // Show the "ratings" div and hide the "rating-container" div
+      ratingContainerDiv.classList.add('hidden');
+      ratingsDiv.classList.remove('hidden');
+  
+      // Update the displayed images based on the data-rating value
+      const fullImages = dataRating;
+      const emptyImages = 5 - dataRating;
+  
+      const fullImageHTML = '<img src="../../images/ratings/full.png" />';
+      const emptyImageHTML = '<img src="../../images/ratings/empty.png" />';
+  
+      let ratingsHTML = '';
+  
+      for (let i = 0; i < fullImages; i++) {
+        ratingsHTML += fullImageHTML;
+      }
+  
+      for (let i = 0; i < emptyImages; i++) {
+        ratingsHTML += emptyImageHTML;
+      }
+  
+      ratingsDiv.innerHTML = ratingsHTML;
+    });
+  </script>
 </html>

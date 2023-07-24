@@ -35,8 +35,7 @@ import { dirname, join }        from 'path';
 // Schema model imports
 // These are basically the db collections
 import { Cafe }             from './schemas/cafeSchema.js';
-import { Reviews }          from './schemas/reviewsSchema.js';
-import { Review_details }   from './schemas/review_detailsSchema.js';
+import { Review }          from './schemas/reviewsSchema.js';
 import { User }             from './schemas/userSchema.js';
 
 // declare app for Express library
@@ -93,10 +92,11 @@ app.get('/', (req, res) => {
 	res.render ('index', {layout: 'main'});
 });
 
-app.get('/cafes', (req, res) => {
-	res.render ('cafes', {layout: 'main'});
+/*
+app.get('/logins', (req, res) => {
+    res.render ('login', {layout: 'main'});
 });
-
+*/
 /*** 
 app.get('/different directory view estab;ish')
 res.render ('view_establishments!', 'layout: main', ??)

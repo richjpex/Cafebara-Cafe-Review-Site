@@ -1,32 +1,36 @@
-<!-- 
-    BEGINNING OF MAIN CONTAINER
-
-    Notes:  I made it container sm and userCon
-            so that it inherits the properties of Bootstrap fluid
--->
-
-<link rel = "stylesheet" href = "../../css/login.css">
-
-
 <div class="container">
-    {{>logreg_header}}
-    <div class = "form-wrapper">
-        <form name = "login" action="/loginUser" method = "POST" >
-            <div class = "singlebox">
-                <label for="email">Email</label>
-                <input type="email" class = "inputfield" placeholder = "Enter your email" id = "email" name="email" required>
+        <div class = "header">
+            <div class = "header-signin active-login">
+                <a href = "/login">
+                    <img src = "../../images/assets/login.png">
+                    <h3>Sign In</h3>
+                </a>
             </div>
-            <div class = "singlebox">
-                <label for="password">Password</label>
-                <input type="password" class = "inputfield" placeholder = "Enter your password" id = "password" name="password" required>
+            <div class = "header-register inactive-login">
+                <a href = "/register">
+                    <img src = "../../images/assets/register.png">
+                    <h3>Register</h3>
+                </a>
             </div>
-            
-            <div id = "buton">
-                <p id="errorMessage"></p>
-                <input type = "submit" id = "submit" name = "submit" value = "Sign In">
-            </div>
-        </form>
+        </div>
+        <br>
+        <div class = "form-wrapper">
+            <form name = "login" action="/login_success" method = "POST" >
+                <div class = "singlebox">
+                    <label for="email">Email</label>
+                    <input type="email" class = "inputfield" placeholder = "Enter your email" id = "email" name="email" required>
+                </div>
+                <div class = "singlebox">
+                    <label for="password">Password</label>
+                    <input type="password" class = "inputfield" placeholder = "Enter your password" id = "password" name="password" required>
+                </div>
+                
+                <div id = "buton">
+                    <p id="errorMessage"></p>
+                    <input type = "submit" id = "submit" name = "submit" value = "Sign In">
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 
-    
+    {{> footer}}

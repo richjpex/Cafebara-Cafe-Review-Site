@@ -1,182 +1,52 @@
- <!--
-                Middle Column
-              -->
-              <div class="col-7">
-                <!--
-                    Title for Recommended
-                -->
-                <div class="container-sm">
-                    <h3 class="recommended">
-                    CAFES IN YOUR AREA
-                    </h3>
+<!--
+  Middle Column
+-->
+<div class="col-7">
+  <!--
+      Title for Recommended
+  -->
+  <div class="container-sm">
+      <h3 class="recommended">
+      CAFES IN YOUR AREA
+      </h3>
 
-                    <!-- DROPDOWN SORT BY -->
-                    <div class="dropdown recommended">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                          Sort by: 
-                        </button>
-                        <ul class="dropdown-menu">
-                          <li><a class="dropdown-item" href="#">Name</a></li>
-                          <li><a class="dropdown-item" href="#">Highest Rated</a></li>
-                          <li><a class="dropdown-item" href="#">Most Reviewed</a></li>
-                        </ul>
-                    </div>
-                </div>
+      <!-- DROPDOWN SORT BY -->
+      <div class="dropdown recommended">
+          <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Sort by: 
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Name</a></li>
+            <li><a class="dropdown-item" href="#">Highest Rated</a></li>
+            <li><a class="dropdown-item" href="#">Most Reviewed</a></li>
+          </ul>
+      </div>
+  </div>
 
-                <!--
-                    List of Cafes
-                -->
+  <!--
+      List of Cafes
+  -->
 
-                <!-- Cafe 1 -->
-                {{#each cafeCards}}
-                  {{> cafeCard cafe_data}}
-                {{/each}}
-                
+  {{{error}}}
 
-                 <!-- Cafe 2 -->
-                 {{!-- <div class="card mb-3">
-                    <div class="row g-0" style="margin: 0;">
-                      <div class="col-md-4">
-                        <img src="../../images/cafes/bos.jpeg" class="img-fluid rounded" alt="...">
-                      </div>
+  {{#each cafeCards}}
+    {{> cafeCard this}}
+  {{/each}}
 
-                      <div class="col-md-6">
-                        <div class="card-body"  style="margin: 0;">
-                          <a href="../../html/cafes/bos.html"><h5 class="card-title">Bo's Coffee</h5></a>
-                          <div class = "cb_rating">
-                            <img src="../../images/ratings/full.png"/>
-                            <img src="../../images/ratings/full.png"/>
-                            <img src="../../images/ratings/full.png"/>
-                            <img src="../../images/ratings/full.png"/>
-                            <img src="../../images/ratings/full.png"/>
-                            <span class = "numreviews">(56)</span>
-                        </div>
-                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                          <p class="card-text"><small class="text-body-secondary">Open from 0930 - 2100</small></p>
-                        </div>
-                      </div>
+  <!--
+      Pagination
+  -->
+  <ul class="pagination justify-content-center">
+      <li class="page-item disabled">
+        <a class="page-link">Previous</a>
+      </li>
 
-                    </div>
-                </div>
+      <li class="page-item"><a class="page-link" href="#">1</a></li>
+      <li class="page-item"><a class="page-link" href="#">2</a></li>
+      <li class="page-item"><a class="page-link" href="#">3</a></li>
 
-                 <!-- Cafe 3 -->
-                 <div class="card mb-3">
-                    <div class="row g-0" style="margin: 0;">
-                      <div class="col-md-4">
-                        <img src="../../images/cafes/coffee-project.jpeg" class="img-fluid rounded" alt="...">
-                      </div>
-
-                      <div class="col-md-6">
-                        <div class="card-body"  style="margin: 0;">
-                          <a href="../../html/cafes/coffee-project.html"><h5 class="card-title">Coffee Project</h5></a>
-                          <div class = "cb_rating">
-                            <img src="../../images/ratings/full.png"/>
-                            <img src="../../images/ratings/full.png"/>
-                            <img src="../../images/ratings/full.png"/>
-                            <img src="../../images/ratings/full.png"/>
-                            <img src="../../images/ratings/full.png"/>
-                            <span class = "numreviews">(56)</span>
-                        </div>
-                          <p class="card-text">Coffee Project is a popular coffee shop chain in the Philippines known for its unique and enchanting ambiance. Each Coffee Project branch is meticulously designed to create a whimsical and Instagram-worthy atmosphere, with lush greenery, charming vintage decor, and cozy seating areas. </p>
-                          <p class="card-text"><small class="text-body-secondary">Open from 1030 - 2000</small></p>
-                        </div>
-                      </div>
-
-                    </div>
-                </div>
-
-                 <!-- Cafe 4 -->
-                 <div class="card mb-3">
-                    <div class="row g-0" style="margin: 0;">
-                      <div class="col-md-4">
-                        <img src="../../images/cafes/nitro7.jpeg" class="img-fluid rounded" alt="...">
-                      </div>
-
-                      <div class="col-md-6">
-                        <div class="card-body"  style="margin: 0;">
-                          <a href="../../html/cafes/nitro7.html"><h5 class="card-title">Nitro 7 Coffee and Tea Bar</h5></a>
-                          <div class = "cb_rating">
-                            <img src="../../images/ratings/full.png"/>
-                            <img src="../../images/ratings/full.png"/>
-                            <img src="../../images/ratings/full.png"/>
-                            <img src="../../images/ratings/full.png"/>
-                            <img src="../../images/ratings/full.png"/>
-                            <span class = "numreviews">(56)</span>
-                        </div>
-                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                          <p class="card-text"><small class="text-body-secondary">Open from 24/7</small></p>
-                        </div>
-                      </div>
-
-                    </div>
-                </div>
-
-                 <!-- Cafe 5 -->
-                 <div class="card mb-3">
-                    <div class="row g-0" style="margin: 0;">
-                      <div class="col-md-4">
-                        <img src="../../images/cafes/bigboss.jpeg" class="img-fluid rounded" alt="...">
-                      </div>
-
-                      <div class="col-md-6">
-                        <div class="card-body"  style="margin: 0;">
-                          <a href="../../html/cafes/bigboss.html"><h5 class="card-title">Big Boss</h5></a>
-                          <div class = "cb_rating">
-                            <img src="../../images/ratings/full.png"/>
-                            <img src="../../images/ratings/full.png"/>
-                            <img src="../../images/ratings/full.png"/>
-                            <img src="../../images/ratings/full.png"/>
-                            <img src="../../images/ratings/full.png"/>
-                            <span class = "numreviews">(56)</span>
-                        </div>
-                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                          <p class="card-text"><small class="text-body-secondary">Open from 730 - 1800</small></p>
-                        </div>
-                      </div>
-
-                    </div>
-                </div>
-
-                 <!-- Cafe 6 -->
-                 <div class="card mb-3">
-                    <div class="row g-0" style="margin: 0;">
-                      <div class="col-md-4">
-                        <img src="../../images/cafes/starbs.jpg" class="img-fluid rounded" alt="...">
-                      </div>
-
-                      <div class="col-md-6">
-                        <div class="card-body"  style="margin: 0;">
-                          <a href="../../html/cafes/starbs.html"><h5 class="card-title">Starbucks Green Court</h5></a>
-                          <div class = "cb_rating">
-                            <img src="../../images/ratings/full.png"/>
-                            <img src="../../images/ratings/full.png"/>
-                            <img src="../../images/ratings/full.png"/>
-                            <img src="../../images/ratings/full.png"/>
-                            <img src="../../images/ratings/full.png"/>
-                            <span class = "numreviews">(56)</span>
-                        </div>
-                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                          <p class="card-text"><small class="text-body-secondary">Open from 24/7</small></p>
-                        </div>
-                      </div>
-
-                    </div>
-                </div> --}}
-
-                <!--
-                    Pagination
-                -->
-                <ul class="pagination justify-content-center">
-                    <li class="page-item disabled">
-                      <a class="page-link">Previous</a>
-                    </li>
-
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-
-                    <li class="page-item">
-                      <a class="page-link" href="#">Next</a>
-                    </li>
-                  </ul>
-              </div>
+      <li class="page-item">
+        <a class="page-link" href="#">Next</a>
+      </li>
+    </ul>
+</div>

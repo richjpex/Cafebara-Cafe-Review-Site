@@ -79,10 +79,13 @@ a.dropdown-item:hover{
   background-color: #cacaca;
 }
 
+.card.mb-3:hover {
+  cursor: pointer;
+}
 
 body {
     background-color: #fafafa;
-    background-image: url('../images/leaf_bg.png');
+    background-image: url('../images/assets/leaf_bg.png');
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
@@ -102,29 +105,27 @@ div.userCon div {
 }
 
 /* search bar */
-.search-container {
-  background-image: url('../images/cafebg2.jpg');
+.searchbar-container {
   display: flex;
   position: relative;
   justify-content: center;
   height: 80%;
+  padding-left: 8rem;
+  padding-right: 14rem;
   width: 100%;
-  padding: 100px;
-  background-size: 100%;
-  background-repeat: no-repeat;
-  background-position: center;
 }
 
 .search-form {
   display: grid;
   grid-template-columns: 1fr auto;
-  width: 40%;
-  max-width: 900px;
+  width: 70%;
+  max-width: 1500px;
   margin: 1em;
   border-radius: 30px;
   overflow: hidden;
   background-color: #fff;
-  box-shadow: 2px 2px 4px rgba(0, 0, 0, .4);
+  /*put shadow all around*/
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.6);
 }
 
 .search-form input[type="text"] {

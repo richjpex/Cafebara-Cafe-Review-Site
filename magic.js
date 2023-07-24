@@ -2,13 +2,12 @@ import mongoose from "mongoose";
 
 import { User } from "./schemas/userSchema.js";
 import { Cafe } from "./schemas/cafeSchema.js";
-import { Reviews } from "./schemas/reviewsSchema.js";
-import { Review_details } from "./schemas/review_detailsSchema.js";
+import { About } from "./schemas/aboutSchema.js";
+
+//import { ReviewDetails } from "./schemas/review_detailsSchema.js";
 
 //change this to the env
-mongoose.connect('mongodb://localhost:27017/apdev_test', { useNewUrlParser: true, useUnifiedTopology: true });
-createUsers();
-createCafes();
+mongoose.connect('mongodb://localhost:27017/mydatabase', { useNewUrlParser: true, useUnifiedTopology: true });
 function createUsers(){
     const users = [];
 
@@ -18,7 +17,7 @@ function createUsers(){
         firstname: "Orrin",
         lastname: "Uy",
         birthday: "2002-08-13",
-        profilepic: "/uploads/orrin.jpg"
+        profilepic: "./uploads/orrin.jpg"
     }));
 
     users.push(new User({
@@ -27,7 +26,7 @@ function createUsers(){
         firstname: "Migs",
         lastname: "Leysa",
         birthday: "2002-01-01",
-        profilepic: "/uploads/migs.jpg"
+        profilepic: "./uploads/migs.jpg"
     }));
 
     users.push(new User({
@@ -36,7 +35,7 @@ function createUsers(){
         firstname: "Rich",
         lastname: "Pex",
         birthday: "2002-01-01",
-        profilepic: "/uploads/rich.jpg"
+        profilepic: "./uploads/rich.jpg"
     }));
 
     users.push(new User({
@@ -45,7 +44,7 @@ function createUsers(){
         firstname: "Francis",
         lastname: "Mart",
         birthday: "2002-12-15",
-        profilepic: "/uploads/francis.jpg"
+        profilepic: "./uploads/francis.jpg"
     }));
 
     users.push(new User({
@@ -54,7 +53,7 @@ function createUsers(){
         firstname: "Shinji",
         lastname: "Ikari",
         birthday: "2002-01-01",
-        profilepic: "/uploads/shinji.jpg"
+        profilepic: "./uploads/shinji.jpg"
     }));
 
     for (let i = 0; i < users.length; i++) {
@@ -66,19 +65,19 @@ function createCafes(){
     const cafes = [];
     
     cafes.push(new Cafe({
-    name: "Big Boss Cafe",
-    address: "EGI Tower, Taft Ave, Malate, Manila, 1004 Metro Manila",
-    description: "A cafe for the big boss",
-    weekdays_avail: "7:00 AM - 10:00 PM",
-    weekends_avail: "9:00 AM - 10:00 PM",
-    website: "https://www.facebook.com/bigbosscafe",
-    phone: "+63917 546 9130",
-    email: "bigbosscafe@gmail.com",
-    password: "b1gb0ss",
-    image: "../../images/cafes/bigboss.jpeg",
-    rating: 4,
-    price: 200
-    }));
+        name: "Big Boss Cafe",
+        address: "EGI Tower, Taft Ave, Malate, Manila, 1004 Metro Manila",
+        description: "A cafe for the big boss",
+        weekdays_avail: "7:00 AM - 10:00 PM",
+        weekends_avail: "9:00 AM - 10:00 PM",
+        website: "https://www.facebook.com/bigbosscafe",
+        phone: "+63917 546 9130",
+        email: "bigbosscafe@gmail.com",
+        password: "b1gb0ss",
+        image: "./uploads/cafes/bigboss.jpeg",
+        rating: 4,
+        price: 200,
+        }));
 
     cafes.push(new Cafe({
         name: "Bo's Coffee",
@@ -90,7 +89,7 @@ function createCafes(){
         phone: "+63995 484 2599",
         email: "boscoffee@gmail.com",
         password: "b0sc0ffee",
-        image: "../../images/cafes/bos.jpeg",
+        image: "./uploads/cafes/bos.jpeg",
         rating: 4,
         price: 240
         }));
@@ -105,7 +104,7 @@ function createCafes(){
         phone: "+63920 331 6503",
         email: "coffeeproject@gmail.com",
         password: "c0ff33pr0ject",
-        image: "../../images/cafes/coffeeproject.jpeg",
+        image: "./uploads/cafes/coffee-project.jpeg",
         rating: 3,
         price: 250
         }));
@@ -120,7 +119,7 @@ function createCafes(){
         phone: "+63921 498 2255",
         email: "nitro7taft@gmail.com",
         password: "n1tr07",
-        image: "../../images/cafes/nitro7.jpeg",
+        image: "./uploads/cafes/nitro7.jpeg",
         rating: 3,
         price: 190
         }));
@@ -135,7 +134,7 @@ function createCafes(){
         phone: "+63917 546 9130",
         email: "obscurecafetaft@gmail.com",
         password: "0bscur3",
-        image: "../../images/cafes/obscure.jpeg",
+        image: "./uploads/cafes/obscure.jpg",
         rating: 4,
         price: 220
         }));
@@ -150,7 +149,7 @@ function createCafes(){
         phone: "+63917 546 9130",
         email: "starbucksgreencourt@gmail.com",
         password: "st4rbuck5",
-        image: "../../images/cafes/starbucks.jpeg",
+        image: "./uploads/cafes/starbs.jpg",
         rating: 5,
         price: 200
         }));
@@ -158,4 +157,7 @@ function createCafes(){
     for (let i = 0; i < cafes.length; i++) {
         cafes[i].save();
     }
+
+function createReviews(){
+
 }
