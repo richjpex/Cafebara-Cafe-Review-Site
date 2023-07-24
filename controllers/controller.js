@@ -112,8 +112,8 @@ const controller = {
                     db.findOne(User, {_id: result2[i].reviewer}, function(result3) {
                             reviews.push({
                                 review: result2[i].review,
-                                date: result2[i].dateCreated.toString().substring(11, 15),
-                                // rating: result[i].rating,
+                                reviewdate: result2[i].dateCreated.toString().substring(11, 15),
+                                rating: result2[i].rating,
                                 cafeName: result2[i].cafeName,
                                 username: result3.firstname + " " + result3.lastname,
                                 dateModified: result2[i].dateModified,
@@ -144,7 +144,7 @@ const controller = {
         const rating = req.body.rating;
         const dateCreated = req.body.dateCreated;
         const media = req.body.media;
-        const user = req.body.email;
+        const user = email;
         let user_id;
         let cafe_id;
         db.findOne(User, {email: user}, function(result) {

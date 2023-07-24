@@ -11,9 +11,9 @@ document.addEventListener("DOMContentLoaded",function() {
     
     submitBtn.addEventListener("click",function() {
         
-        const urlParams = new URLSearchParams(window.location.search);
+        /*const urlParams = new URLSearchParams(window.location.search);
         const email = urlParams.get('email');
-        console.log(email)
+        console.log(email)*/
         const review_title = document.querySelector("#review-title").value;
         const review = document.querySelector("#review-editor").value;
         const rating = document.querySelector("#selected-rating").value;
@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded",function() {
 
         fetch('/addReview', {
             method: "POST",
-            body: JSON.stringify({email,cafeName, review_title, review, rating, dateCreated, media}),
+            body: JSON.stringify({cafeName, review_title, review, rating, dateCreated, media}),
             headers: {
                 'Content-Type': 'application/json'
             }

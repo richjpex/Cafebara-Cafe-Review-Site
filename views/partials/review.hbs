@@ -32,11 +32,38 @@
                 
                 <div class = "cb_rating">
                     <span class = "review_title">{{title}}</span><br>
+
+                    {{#equals rating 5}}
                     <img src="../../images/ratings/full.png"/>
                     <img src="../../images/ratings/full.png"/>
                     <img src="../../images/ratings/full.png"/>
                     <img src="../../images/ratings/full.png"/>
                     <img src="../../images/ratings/full.png"/>
+                    {{else equals rating 4}}
+                    <img src="../../images/ratings/full.png"/>
+                    <img src="../../images/ratings/full.png"/>
+                    <img src="../../images/ratings/full.png"/>
+                    <img src="../../images/ratings/full.png"/>
+                    <img src="../../images/ratings/empty.png"/>
+                    {{else equals rating 3}}
+                    <img src="../../images/ratings/full.png"/>
+                    <img src="../../images/ratings/full.png"/>
+                    <img src="../../images/ratings/full.png"/>
+                    <img src="../../images/ratings/empty.png"/>
+                    <img src="../../images/ratings/empty.png"/>
+                    {{else equals rating 2}}
+                    <img src="../../images/ratings/full.png"/>
+                    <img src="../../images/ratings/full.png"/>
+                    <img src="../../images/ratings/empty.png"/>
+                    <img src="../../images/ratings/empty.png"/>
+                    <img src="../../images/ratings/empty.png"/>
+                    {{else equals rating 1}}
+                    <img src="../../images/ratings/full.png"/>
+                    <img src="../../images/ratings/empty.png"/>
+                    <img src="../../images/ratings/empty.png"/>
+                    <img src="../../images/ratings/empty.png"/>
+                    <img src="../../images/ratings/empty.png"/>
+                    {{/equals}}
                     <br>
                     <span class = "review_date">Reviewed on {{reviewdate}}</span>
                     </div>
