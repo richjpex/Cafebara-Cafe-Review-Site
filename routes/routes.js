@@ -32,4 +32,7 @@ router.get(`/review`, controller.refreshCafe);
 router.post('/addReview', controller.addReview);
 
 router.delete('/deleteReview', controller.deleteReview);
+
+router.put('/editReview', controller.editReview);
+
 export default router;
