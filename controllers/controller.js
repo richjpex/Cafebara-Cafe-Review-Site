@@ -177,13 +177,13 @@ const controller = {
         const resp3 = await db.insertOne(Review, newReview, function(flag) {
             if(flag!=false){
                 console.log("Review added");
-                res.sendStatus(200);
             }
             else{
                 console.log("Review not added");
-                res.sendStatus(500);
             }
         });
+
+        res.redirect('/review?cafeid=' + cafe_id);
     },
 
     login: function (req, res) {
@@ -201,6 +201,61 @@ const controller = {
         email = ``;
         isLogged = 0;
         res.redirect(`/`);
+    },
+
+    refreshCafe: async function(req, res) {
+        const cafe_id= req.query.cafeid;
+
+        const cafe = []
+        let revs = [];
+        const reviews = []
+        const resp2 = await db.findAllQuery(Review, {cafeName: cafe_id}, function(result2) {
+            if(result2 != false){
+                revs = result2
+            }
+        });
+
+        for(let i = 0; i < revs.length; i++){
+            const resp3 = await db.findOne(User, {_id: revs[i].reviewer}, function(result3) {
+                    reviews.push({
+                        review: revs[i].review,
+                        reviewdate: revs[i].dateCreated.toString().substring(0, 15),
+                        rating: revs[i].rating,
+                        cafeName: revs[i].cafeName,
+                        username: result3.firstname + " " + result3.lastname,
+                        dateModified: revs[i].dateModified,
+                        up: revs[i].upvotes,
+                        down: revs[i].downvotes,
+                        media: revs[i].mediaPath,
+                        profilepic: result3.profilepic,
+                        title: revs[i].review_title,
+                        date: result3.dateCreated.toString().substring(11, 15)
+                    });
+                });
+            }
+            
+        const resp4 = await db.findOne(Cafe, {_id: cafe_id}, function(result4) {
+            cafe.push({
+                cafeName: result4.name,
+                imgPath: result4.image,
+                description: result4.description,
+                weekday_avail: result4.weekdays_avail,
+                weekend_avail: result4.weekends_avail,
+                website: result4.website,
+                phonenumber: result4.phone,
+                price: result4.price,
+                numReviews: reviews.length,
+                menu: result4.menu,
+                address: result4.address
+            });
+        });
+       res.render("viewCafe", {
+            layout: 'cafeTemplate',
+            cafePage: cafe,
+            reviews: reviews,
+            session: isLogged
+       });
+
     }
 
 }
