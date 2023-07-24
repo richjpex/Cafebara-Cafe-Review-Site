@@ -90,6 +90,21 @@ const controller = {
             
         db.findAllQuery(Review, {cafeName: result._id}, function(result2) {
 
+            db.findOne(Cafe, {name: cafeName}, function(result4) {
+                cafe.push({
+                    cafeName: result4.name,
+                    imgPath: result4.image,
+                    description: result4.description,
+                    weekday_avail: result4.weekdays_avail,
+                    weekend_avail: result4.weekends_avail,
+                    website: result4.website,
+                    phonenumber: result4.phone,
+                    price: result4.price,
+                    numReviews: result2.length,
+                    menu: result4.menu,
+                    address: result4.address
+                });
+            });
             for(let i = 0; i < result2.length; i++){
                     db.findOne(User, {_id: result2[i].reviewer}, function(result3) {
                             reviews.push({
@@ -107,22 +122,6 @@ const controller = {
                             });
                         });
                     }
-
-                    db.findOne(Cafe, {name: cafeName}, function(result4) {
-                        cafe.push({
-                            cafeName: result4.name,
-                            imgPath: result4.image,
-                            description: result4.description,
-                            weekday_avail: result4.weekdays_avail,
-                            weekend_avail: result4.weekends_avail,
-                            website: result4.website,
-                            phonenumber: result4.phone,
-                            price: result4.price,
-                            numReviews: reviews.length,
-                            menu: result4.menu,
-                            address: result4.address
-                        });
-                    });
         });
         } 
     });
