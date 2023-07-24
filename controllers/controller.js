@@ -2,6 +2,7 @@ import db from '../schemas/db.js';
 import {About} from '../schemas/aboutSchema.js';
 import { Cafe } from '../schemas/cafeSchema.js';
 import { Review } from '../schemas/reviewsSchema.js';
+import { User } from '../schemas/userSchema.js';
 
 const controller = {
 
@@ -55,14 +56,16 @@ const controller = {
         const cafes = [];
         db.findAll(Cafe, function(result) {
             for(let i = 0; i < result.length; i++){
-                cafes.push({
-                    cafeName: result[i].name,
-                    numOfReviews: result[i].rating,
-                    cafeShortInfo: result[i].description,
-                    open_details: result[i].weekdays_avail,
-                    cafeImg: result[i].image
-                });
-            }
+                db.findAllQuery(Review, {cafeName: result[i]._id}, function(result2) {
+                    cafes.push({
+                        cafeName: result[i].name,
+                        numOfReviews: result2.length,
+                        cafeShortInfo: result[i].description,
+                        open_details: result[i].weekdays_avail,
+                        cafeImg: result[i].image
+                    });
+                })
+            };
         });
 
         res.render('cafes', {
@@ -75,46 +78,47 @@ const controller = {
        const cafe = [];
        const reviews = [];
 
+       const cafeId = [];
        const cafeName = req.params.cafeName;
-       let cafeId;
 
        db.findOne(Cafe, {name: cafeName}, function(result) { 
-            cafeId = result._id;
-            db.findAllQuery(Review, {cafeName: cafeId}, function(result) {
-                console.log(result + cafeId)
-                    for(let i = 0; i < result.length; i++){
+            if (result){;
+            db.findAllQuery(Review, {cafeName: result._id}, function(result2) {
+                for(let i = 0; i < result2.length; i++){
+                    db.findOne(User, {_id: result2[i].reviewer}, function(result3) {
                         reviews.push({
-                            review: result[i].review,
-                            date: result[i].dateCreated.toString().substring(0, 10),
+                            review: result2[i].review,
+                            date: result2[i].dateCreated.toString().substring(11, 15),
                             // rating: result[i].rating,
-                            cafeName: result[i].cafeName,
-                            username: result[i].reviewer,
-                            dateModified: result[i].dateModified,
-                            up: result[i].upvotes,
-                            down: result[i].downvotes
+                            cafeName: result2[i].cafeName,
+                            username: result3.firstname + " " + result3.lastname,
+                            dateModified: result2[i].dateModified,
+                            up: result2[i].upvotes,
+                            down: result2[i].downvotes,
+                            media: result2[i].mediaPath,
+                            profilepic: result3.profilepic,
+                            title: result2[i].review_title
                         });
-                    }
-                    console.log(reviews)
+                    });
+                }
+                db.findOne(Cafe, {name: cafeName}, function(result4) {
+                    cafe.push({
+                        cafeName: result4.name,
+                        imgPath: result4.image,
+                        description: result4.description,
+                        weekday_avail: result4.weekdays_avail,
+                        weekend_avail: result4.weekends_avail,
+                        website: result4.website,
+                        phonenumber: result4.phone,
+                        price: result4.price,
+                        numReviews: reviews.length,
+                        menu: result4.menu,
+                        address: result4.address
+                    });
                 });
-                
+            });} 
         });
-
        
-       db.findOne(Cafe, {name: cafeName}, function(result) {
-        cafe.push({
-                cafeName: result.name,
-                imgPath: result.image,
-                description: result.description,
-                weekday_avail: result.weekdays_avail,
-                weekend_avail: result.weekends_avail,
-                website: result.website,
-                phonenumber: result.phone,
-                price: result.price,
-                numReviews: reviews.length,
-                menu: result.menu,
-                address: result.address
-            });
-        });
 
        res.render("viewCafe", {
             layout: 'cafeTemplate',

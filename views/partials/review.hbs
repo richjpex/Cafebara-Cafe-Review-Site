@@ -2,7 +2,7 @@
             <div class="review_post">
                 <div class="prof_header" >
                     <div class="profpic_container"> 
-                        <img src={{profilepic}} class="profpic"/>
+                        <img src=".{{profilepic}}" class="profpic"/>
                     </div>
                     <div class = "userinfo">
                         <div class="profname">
@@ -47,9 +47,11 @@
                 </div>
 
 
+                    {{#if media}}
                 <div class="review_pics_container">
-                    <video src="../../videos/Learning with FGO - Gudako crazy about gacha.mp4" class="object-fit-cover" controls></video>
+                    <video src=".{{media}}" class="object-fit-cover" controls></video>
                 </div>
+                    {{/if}}
                 
                 <div class = "helpful?">
                     <div class="helpful_label">

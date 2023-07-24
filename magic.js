@@ -23,7 +23,7 @@ function createUsers(){
         firstname: "Orrin",
         lastname: "Uy",
         birthday: "2002-08-13",
-        profilepic: "/uploads/orrin.jpg"
+        profilepic: "./uploads/orrin.jpg"
     }));
 
     users.push(new User({
@@ -32,7 +32,7 @@ function createUsers(){
         firstname: "Migs",
         lastname: "Leysa",
         birthday: "2002-01-01",
-        profilepic: "/uploads/migs.jpg"
+        profilepic: "./uploads/migs.jpg"
     }));
 
     users.push(new User({
@@ -41,7 +41,7 @@ function createUsers(){
         firstname: "Rich",
         lastname: "Pex",
         birthday: "2002-01-01",
-        profilepic: "/uploads/rich.jpg"
+        profilepic: "./uploads/rich.jpg"
     }));
 
     users.push(new User({
@@ -50,7 +50,7 @@ function createUsers(){
         firstname: "Francis",
         lastname: "Mart",
         birthday: "2002-12-15",
-        profilepic: "/uploads/francis.jpg"
+        profilepic: "./uploads/francis.jpg"
     }));
 
     users.push(new User({
@@ -59,7 +59,7 @@ function createUsers(){
         firstname: "Shinji",
         lastname: "Ikari",
         birthday: "2002-01-01",
-        profilepic: "/uploads/shinji.jpg"
+        profilepic: "./uploads/shinji.jpg"
     }));
 
     for (let i = 0; i < users.length; i++) {
