@@ -219,6 +219,76 @@ const controller = {
         res.redirect(`/`);
     },
 
+
+    register: function (req, res) {
+        res.render ('register', {layout: 'logregTemplate'});
+    },
+
+    register_process: function (req, res) {
+        // insert information into DB here
+        /*
+        @BANANZAI
+        req.body.email
+        req.body.firstname
+        req.body.lastname
+        req.body.password
+        req.body.confirmpassword
+
+        req.body.estname
+        req.body.estaddress
+        */
+        res.redirect(`/`);
+    },
+
+    profile: function (req, res) {
+        res.render ('userProfile', {layout: 'profileTemplate', session: isLogged});
+    },
+
+    settings: function (req, res) {
+        res.render ('settings', {layout: 'main', session: isLogged    });
+    },
+
+    searchcafes: async function (req, res) {
+        const cafes = [];
+        console.log(`Search Query: ${req.body.search}`);
+        // i call the db 
+        // select * from est where=`%req.body.search%`
+        // then just display everything
+        // refresh page with the new list of cafes badabing badaboom!!!
+        
+        const v = await db.findAllQuery(Cafe, {name: { $regex : '.*' + req.body.search + '.*', $options: 'i'}}, async function(result){
+                //write here what you want to happen after it finds teh stuff
+     
+                for(let i = 0; i < result.length; i++){
+                    await db.findAllQuery(Review, {cafeName: result[i]._id}, function(result2) {
+                        cafes.push({
+                            cafeName: result[i].name,
+                            numOfReviews: result2.length,
+                            cafeShortInfo: result[i].description,
+                            open_details: result[i].weekdays_avail,
+                            cafeImg: result[i].image,
+                            price: result[i].price,
+                        });
+                    })
+                }
+        });
+
+        if (cafes.length == 0) {
+            res.render('cafes', {
+                cafeCards: cafes,
+                error: "<h2 style='width: 100%; text-align: center;'>No results found...</h2>",
+                session: isLogged
+            });
+        }
+        else{
+            res.render('cafes', {
+                cafeCards: cafes,
+                session: isLogged
+            });
+        }
+        
+    },
+
     refreshCafe: async function(req, res) {
         const cafe_id= req.query.cafeid;
 
