@@ -2,15 +2,16 @@
 ## cafebara cafe review site with backend
 
 -----------------------------------------------------------------------
-NOTE:   
-    - To install dependencies just do `npm i`
-    - To populate the DB SPECIFICALLY IN THIS ORDER!!!! IMPORTANT
-      - `npm run pop1`
-      - `npm run pop2`
-    - To run the website
-      - `npm run start`
-      - Start the server using "npm start" command
-      - Enter "http://localhost:3000/cafebara/" in the browser url to open index.html (guest-view)
+HOW TO RUN WEB APP:
+1. Install dependencies using `npm i`
+2. Populate the DB using
+    1. `npm run pop1`
+    2. Terminate manually
+    3. `npm run pop2`
+    4. Terminate manually
+3. Run the web app using `npm run start`
+4. Enter "http://localhost:3000/" in the browser address bar
+5. Enjoy
 
 -----------------------------------------------------------------------
 
