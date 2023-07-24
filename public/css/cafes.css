@@ -116,7 +116,7 @@ hr{
     padding:0;
     color:var(--sexanary);
     background-color: var(--sexanary);
-    border: none;
+    border-top: 1px solid var(--sexanary);
 }
 
 .bold{

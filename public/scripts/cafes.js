@@ -39,6 +39,36 @@ document.addEventListener("DOMContentLoaded",function() {
     });
 
 
+    const deleteBtn = document.getElementById("deletebtn");
+    deleteBtn.addEventListener("click",function() {
+        let div = this.parentElement;
+        for(let i = 0; i < 5; i++){
+            div = div.parentElement;
+        }
+        console.log(div);
+
+        const cafe_id = div.children[1].children[0].innerHTML;
+        const user_id = div.children[1].children[1].innerHTML;
+
+        fetch('/deleteReview', {
+            method: "DELETE",
+            body: JSON.stringify({cafe_id, user_id}),
+            headers: {
+                'Content-Type': 'application/json'
+        }
+        }).then(response => {
+            console.log(response.data);
+            if (response.status == 200){
+                console.log("A")
+            }
+            else
+                console.log("An error has occurred");
+        }
+        );
+
+    });
+
+
 
     const btn = document.getElementById("myBtn");
     let check = true;

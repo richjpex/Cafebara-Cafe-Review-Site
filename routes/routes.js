@@ -25,4 +25,6 @@ router.get(`/review`, controller.refreshCafe);
 router.post('/register_process', controller.register_process);
 
 router.post('/addReview', controller.addReview);
+
+router.delete('/deleteReview', controller.deleteReview);
 export default router;

@@ -10,10 +10,10 @@ const replySchema = new Schema({
     },
 
     date: {
-        type: String,
+        type: Date,
         required: true,
         immutable : true,
-        default: Date.now().toString().substring(0,10)
+        default: Date.now()
     }
     
 });

@@ -21,7 +21,7 @@
                         <ul class="dropdown-menu">
                             {{#if author}}
                             <li><a class = "dropdown-item" id = "editbtn">Edit</a></li>
-                            <li><a class = "dropdown-item">Delete</a></li>
+                            <li><a class = "dropdown-item" id = "deletebtn">Delete</a></li>
                             <li><a class = "dropdown-item">Cancel</a></li>
                             {{else}}
                             <li><span class = "dropdown-item-text">No options</span></li>
@@ -98,5 +98,20 @@
                         </div>
                     </div>
                 </div>
+                {{#if ownerreply}}
+                    <div class = "ownerreply">
+                            <div class = "ownerreplytext">
+                                <h4>Owner Reply</h4>
+                                <span class = "review_date">Reviewed on {{ownerreplydate}}</span>
+                            </div>
+                            <div class = "ownerreplycontent">
+                                <p>{{ownerreply}}</p>
+                            </div>
+                    </div>
+                {{/if}}
             </div>
+            <div class = "metadata" hidden = "true" display = "none">
+                <span class = "cafeId">{{cafe_id}}</span>
+                <span class = "userId">{{user_id}}</span>
             </div>
+    </div>
