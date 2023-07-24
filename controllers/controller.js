@@ -31,6 +31,12 @@ export const controller = {
        res.render('index');
     },
 
+    getIndexUser: function(req, res) {
+        // your code here
+       res.render('index');
+    },
+
+
     getAbout: function(req, res) {
         // your code here
         res.render('about');
