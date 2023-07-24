@@ -251,7 +251,7 @@ const controller = {
                 queryParams.append('usertype', userdata.usertype);
                 queryParams.append('message', 'Email already exists!');
                 const queryString = queryParams.toString();
-                return res.redirect(`/register_process?${queryString}`);
+                return res.redirect(`/`);
             }
             else {
                 if(userdata.usertype === 'customer'){
@@ -263,13 +263,14 @@ const controller = {
                         lastname: userdata.lastname,
                         
                         });
-                        
+                    console.log(newUser);
                     //save to db
                     newUser.save().then(function (err) {
                         if (err) {
+                            console.log(err);
                             const queryParams = new URLSearchParams();
                             queryParams.append('message', 'Error creating user!');
-                            return res.redirect(`/register_process?${queryParams.toString()}`);
+                            return res.redirect(`/`);
                         }
                         res.redirect('/');
                     });
@@ -289,7 +290,7 @@ const controller = {
                         if (err) {
                             const queryParams = new URLSearchParams();
                             queryParams.append('message', 'Error creating establishment!');
-                            return res.redirect(`/register_process?${queryParams.toString()}`);
+                            return res.redirect(`/`);
                         }
                         res.redirect('/');
                     });

@@ -173,7 +173,7 @@ document.addEventListener("DOMContentLoaded",function() {
 
         anchortag.appendChild(button);
         div.appendChild(anchortag);
-        div.setAttribute("id","buton");
+        div.setAttribute("id","button");
         return div;
     }
 
