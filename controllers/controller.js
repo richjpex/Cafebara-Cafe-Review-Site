@@ -101,7 +101,7 @@ const controller = {
                 revs = result2
             }
         });
-        console.log(revs[0].cafeName)
+
         for(let i = 0; i < revs.length; i++){
             let ownerreply= null;
             let ownerreplydate = null;
@@ -245,7 +245,7 @@ const controller = {
     },
 
     settings: function (req, res) {
-        res.render ('settings', {layout: 'main', session: isLogged    });
+        res.render ('settings', {layout: 'profileTemplate', session: isLogged    });
     },
 
     searchcafes: async function (req, res) {
