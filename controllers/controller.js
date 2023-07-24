@@ -28,18 +28,18 @@ export const controller = {
 
     getIndex: function(req, res) {
         // your code here
-       res.render('index');
+       res.render('index', {activeUser: activeUser});
     },
 
     getIndexUser: function(req, res) {
         // your code here
-       res.render('index');
+       res.render('index', {activeUser: activeUser});
     },
 
 
     getAbout: function(req, res) {
         // your code here
-        res.render('about');
+        res.render('about', {activeUser: activeUser});
     },
 
     getCafes: function(req, res) {
@@ -59,22 +59,22 @@ export const controller = {
             numOfReviews: "56",
             cafeShortInfo: "peeens",
             open_details: "Open in my uranus",
-            cafePath: "starbs"
+            cafePath: "starbucks"
         })
 
         res.render('cafes', {
-            cafeCards: cafes
+            cafeCards: cafes, activeUser: activeUser
         });
     },
 
     gotoLogin: function(req, res) {
         // your code here
-        res.render('login');
+        res.render('login', {activeUser: activeUser});
     },
 
     gotoRegister: function(req, res) {
         // your code here
-        res.render('register');
+        res.render('register', {activeUser: activeUser});
     },
 
     registerUser:  async function(req, res) {
@@ -94,7 +94,7 @@ export const controller = {
                 queryParams.append('usertype', userdata.usertype);
                 queryParams.append('message', 'Email already exists!');
                 const queryString = queryParams.toString();
-                return res.redirect(`register${queryString}`);
+                return res.redirect(`/register${queryString}`);
             }
             else {
                 if(userdata.usertype === 'customer'){
@@ -111,9 +111,9 @@ export const controller = {
                         if (err) {
                             const queryParams = new URLSearchParams();
                             queryParams.append('message', 'Error creating user!');
-                            return res.redirect(`./html/guest-views/register.html?${queryParams.toString()}`);
+                            return res.redirect(`/register?${queryParams.toString()}`);
                         }
-                        res.redirect('../../html/user-views/index.html');
+                        res.redirect('/home');
                     });
                 }   
                 else if(userdata.usertype ==='owner'){
@@ -133,7 +133,7 @@ export const controller = {
                             console.log(err);
                             const queryParams = new URLSearchParams();
                             queryParams.append('message', 'Error creating establishment!');
-                            return res.redirect(`./register?${queryParams.toString()}`);
+                            return res.redirect(`/register?${queryParams.toString()}`);
                         }
                         res.redirect('/index');
                     });
@@ -174,7 +174,7 @@ export const controller = {
                 if(current_user){
                     activeUser = current_user;
 
-                    res.redirect('/index');
+                    res.redirect('/home');
                 }
                 if(current_cafe){
                     activeUser = current_cafe;
@@ -197,6 +197,19 @@ export const controller = {
         }
     },
 
+    getStarbucks: function(req, res) {
+        currentEst = "starbucks";
+        // const review_data = await getDb().collection('reviews').find({estname: 'starbucks'}).toArray();
+        // console.log(review_data);
+        // console.log(review_data[0].reviewee.firstname);
+        // console.log(activeUser._id);
+        // const cafe_data = await getDb().collection('cafes').findOne({_id: new ObjectId('64ad3715b9871bb37ff2993c')});
+        // console.log(cafe_data);
+        
+
+        // res.render('cafe-view', { cafe_data, review_data });
+    },
+
     writeReview: async function(req, res) {
         try{
             const review_data = req.body;
@@ -209,12 +222,19 @@ export const controller = {
             })
 
             
-            const newReview = new Review({
+            const newReview = new Reviews({
                 review_details: newReview_details,
                 review_title: request.body,
                 reviewee: activeUser,
                 estname: currentEst,
             })
+
+            newReview.save().then(function (err) {
+                if (err) {
+                    return res.redirect(`/register?${queryParams.toString()}`);
+                }
+                res.redirect('/home');
+            });
             const db = getDb();
             const collection = await db.collection('reviews');
             //const temp_review = await collection.insertOne(review_data);

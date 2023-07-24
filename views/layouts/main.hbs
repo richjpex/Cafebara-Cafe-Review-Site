@@ -16,7 +16,12 @@
     </head>
 
     <body>
+        {{#if activeUser}}
+        {{>usernav}}
+        {{else}}
         {{> navbar}}
+        {{/if }}
+        
         {{{body}}}
     </body>
 </html>

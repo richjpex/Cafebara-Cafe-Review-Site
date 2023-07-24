@@ -13,7 +13,7 @@ const port = process.env.SERVER_PORT;
 
 const app = express();
 
-app.engine("hbs", exphbs.engine({extname: 'hbs'}));
+app.engine("hbs", exphbs.engine({extname: 'hbs', defaultLayout: 'main'}));
 app.set("view engine", "hbs");
 app.set("views", "./views");
 

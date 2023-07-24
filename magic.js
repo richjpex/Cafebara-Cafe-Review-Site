@@ -156,7 +156,7 @@ function createCafes(){
     for (let i = 0; i < cafes.length; i++) {
         cafes[i].save();
     }
-
+}
 function createReviews(){
 
 }
