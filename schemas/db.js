@@ -12,115 +12,115 @@ const database = {
         });
     },
 
-    insertOne: function(model, doc, callback) {
-        const newDoc = new model(doc);
-        newDoc.save().then(function(error, result) {
-            if(error) { 
-                console.log(error);
-                return callback(false);
-            }
-            console.log('Added ' + result);
+    insertOne: async function(model, doc, callback) {
+        try{
+            const newDoc = await new model(doc);
+            const result = await newDoc.save();
             return callback(result);
-        });
-    },
-
-    insertMany: function(model, docs, callback) {
-
-        const newDocs = [];
-        for(let i = 0; i < docs.length; i++) {
-            new model(docs[i]).save().then(function(error, result) {
-                if(error) {
-                    console.log(error);
-                    return callback(false);
-                }
-                console.log('Added ' + result);
-                return callback(result);
-            });
+        } catch{
+            return callback(false);
         }
     },
 
-    findOne: function(model, query, callback) {
-        model.findOne(query).then(function(result) {
+    insertMany: async function(model, docs, callback) {
+
+        try{const result = [];
+        for(let i = 0; i < docs.length; i++) {
+            result.push(await new model(docs[i]).save());
+        };
+        return callback(result);}
+        catch{
+            return callback(false);
+        }
+    },
+
+    findOne: async function(model, query, callback) {
+        try{
+            const result = await model.findOne(query)
             return callback(result);
-        });
+        }catch{
+            return callback(false);
+        }
     },
 
-    find: function(model, query, callback) {
-        model.find(query).then(function(result) {
+    find: async function(model, query, callback) {
+        try{
+            const result = await model.find(query)
             return callback(result);
-        });
+        }catch{
+            return callback(false);
+        }
     },
 
-    findLimitSorted: function(model, query, limit, callback) {
-        model.find(query).sort({dateCreated:-1}).limit(limit).then(function(result) {
+    findLimitSorted: async function(model, query, limit, callback) {
+        try{
+            const result = await model.find(query).sort({dateCreated:-1}).limit(limit)
             return callback(result);
-        });
+        } catch{
+            return callback(false);
+        }
     },
 
-    findAll: function(model, callback) {
-        model.find({}).then(function(result) {
+    findAll: async function(model, callback) {
+        try{
+            const result = await model.find({})
             return callback(result);
-        });
+        } catch{
+            return callback(false);
+        }
     },
 
-    findAllQuery: function(model, query, callback) {
-        model.find(query).then(function(result) {
+    findAllQuery: async function(model, query, callback) {
+        try{
+            const result = await model.find(query)
             return callback(result);
-        });
+        } catch{
+            return callback(false);
+        }
     },
 
-    findMany: function(model, query, projection, callback) {
-        model.find(query, projection).then(function(error, result) {
-            if(error) { 
-                console.log(error);
-                return callback(false);
-            }
+    findMany: async function(model, query, projection, callback) {
+        try{
+            const result = await model.find(query, projection)
             return callback(result);
-        });
+        } catch{
+            return callback(false);
+        }
     },
 
-    updateOne: function(model, filter, update, callback) {
-        model.updateOne(filter, update).then(function(error, result) {
-            if(error) { 
-                console.log(error);
-                return callback(false);
-            }
-            console.log('Document modified: ' + result.nModified);
-            return callback(true);
-        });
+    updateOne: async function(model, filter, update, callback) {
+        try{
+            const result = await model.updateOne(filter, update)
+        } catch{
+            return callback(false);
+        }
     },
 
-    updateMany: function(model, filter, update, callback) {
-        model.updateMany(filter, update).then(function(error, result) {
-            if(error) { 
-                console.log(error);
-                return callback(false);
-            }
-            console.log('Documents modified: ' + result.nModified);
-            return callback(true);
-        });
+    updateMany: async function(model, filter, update, callback) {
+        try{
+            const result = await model.updateMany(filter, update);
+            return callback(result);
+        }catch{
+            return callback(false);
+        }
     },
 
-    deleteOne: function(model, conditions, callback) {
-        model.deleteOne(conditions).then(function (error, result) {
-            if(error) { 
-                console.log(error);
-                return callback(false);
-            }
-            console.log('Document deleted: ' + result.deletedCount);
-            return callback(true);
-        });
+    deleteOne: async function(model, conditions, callback) {
+        try{
+            const result = await model.deleteOne(conditions)
+            return callback(result);
+        }catch{
+            return callback(false);
+        }
     },
 
-    deleteMany: function(model, conditions, callback) {
-        model.deleteMany(conditions).then(function (error, result) {
-            if(error) { 
-                console.log(error);
-                return callback(false);
-            }
-            console.log('Document deleted: ' + result.deletedCount);
-            return callback(true);
-        });
+    deleteMany: async function(model, conditions, callback) {
+        try{
+            const result = await model.deleteMany(conditions)
+            return callback(result);
+        }catch{
+            return callback(false);
+        }
     }
 
 }
