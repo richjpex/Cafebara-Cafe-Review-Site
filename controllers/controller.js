@@ -22,7 +22,6 @@ const controller = {
                 });
             }
         });
-        console.log(`YESSSSS${email}`);
        res.render('index', {
             isIndex: true,
             carouselCards: cafeCarouselCards,
@@ -102,7 +101,7 @@ const controller = {
                 revs = result2
             }
         });
-        console.log(revs[0].cafeName)
+
         for(let i = 0; i < revs.length; i++){
             let ownerreply= null;
             let ownerreplydate = null;
@@ -114,7 +113,7 @@ const controller = {
             })
             const resp3 = await db.findOne(User, {_id: revs[i].reviewer}, function(result3) {
                     const author = (email == result3.email) ? true: false;
-                    console.log() 
+                  
                     reviews.push({
                         review: revs[i].review,
                         reviewdate: revs[i].dateCreated.toString().substring(0, 15),
@@ -210,7 +209,6 @@ const controller = {
     logsucc: function (req, res) {
         email = req.body.email;
         isLogged = 1;
-        console.log(`${email}`);
         res.redirect(`/`);
     },
 
@@ -446,9 +444,24 @@ const controller = {
                 console.log("Review not deleted");
             }
         });
-
-        res.redirect('/')
     },
+
+    editReview: async function(req, res) {
+        const review_id = req.body.user_id;
+        const cafe_id = req.body.cafe_id;
+        const newReview = req.body.review;
+        const newTitle = req.body.review_title;
+        const newRating = req.body.rating;
+        console.log(newRating)
+        const resp = await db.updateOne(Review, {reviewer: review_id, cafeName: cafe_id}, {review: newReview, review_title: newTitle, rating: newRating}, function(flag) {
+            if(flag != false){
+                console.log("Review updated");
+            }
+            else{
+                console.log("Review not updated");
+            }
+        });
+    }
 
 }
 
