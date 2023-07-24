@@ -21,6 +21,7 @@ const controller = {
 
         console.log(cafeCarouselCards)
        res.render('index', {
+            isIndex: true,
             carouselCards: cafeCarouselCards
        });
        res.status(200);
@@ -45,6 +46,7 @@ const controller = {
             }
         });
         res.render('about', {
+            isAbout: true,
             profilecards: profilecards
         });
     },
