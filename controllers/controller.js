@@ -246,7 +246,7 @@ const controller = {
     },
 
     settings: function (req, res) {
-        res.render ('settings', {layout: 'main', session: isLogged    });
+        res.render ('settings', {layout: 'profileTemplate', session: isLogged    });
     },
 
     searchcafes: async function (req, res) {
