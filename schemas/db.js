@@ -50,14 +50,14 @@ const database = {
         
     },
 
-    findMany: function(model, query, projection, callback) {
-        model.find(query, projection, function(error, result) {
-            if(error) { 
-                console.log(error);
-                return callback(false);
-            }
-            return callback(result);
-        });
+    findMany: async function(model, query, projection) {
+        try {
+            const result = await model.find(query, projection).exec();
+            return result;
+        } catch (error) {
+            console.log(error);
+            return false;
+        }
     },
 
     updateOne: function(model, filter, update, callback) {

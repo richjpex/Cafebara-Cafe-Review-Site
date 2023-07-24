@@ -42,28 +42,31 @@ export const controller = {
         res.render('about', {activeUser: activeUser});
     },
 
-    getCafes: function(req, res) {
+    getCafes: async function(req, res) {
         // your code here
         // do database stuff here
-        const cafes = [];
-        cafes.push({
-            cafeName: "MY COFFEe",
-            numOfReviews: "255",
-            cafeShortInfo: "penis",
-            open_details: "Open in my ass",
-            cafePath: "obscure"
-        })
+        // const cafes = [];
+        // cafes.push({
+        //     cafeName: "MY COFFEe",
+        //     numOfReviews: "255",
+        //     cafeShortInfo: "penis",
+        //     open_details: "Open in my ass",
+        //     cafePath: "obscure"
+        // })
         
-        cafes.push({
-            cafeName: "Starbees",
-            numOfReviews: "56",
-            cafeShortInfo: "peeens",
-            open_details: "Open in my uranus",
-            cafePath: "starbucks"
-        })
+        // cafes.push({
+        //     cafeName: "Starbees",
+        //     numOfReviews: "56",
+        //     cafeShortInfo: "peeens",
+        //     open_details: "Open in my uranus",
+        //     cafePath: "starbucks"
+        // })
+
+        const cafes = await db.findMany(Cafe, {}, {}, );
+        console.log(cafes);
 
         res.render('cafes', {
-            cafeCards: cafes, activeUser: activeUser
+            cafe_data: cafes, activeUser: activeUser
         });
     },
 
@@ -197,17 +200,17 @@ export const controller = {
         }
     },
 
-    getStarbucks: function(req, res) {
+    getStarbucks: async function(req, res) {
         currentEst = "starbucks";
-        // const review_data = await getDb().collection('reviews').find({estname: 'starbucks'}).toArray();
+        const review_data = await getDb().collection('reviews').find({estname: 'starbucks'}).toArray();
         // console.log(review_data);
         // console.log(review_data[0].reviewee.firstname);
         // console.log(activeUser._id);
-        // const cafe_data = await getDb().collection('cafes').findOne({_id: new ObjectId('64ad3715b9871bb37ff2993c')});
-        // console.log(cafe_data);
+        const cafe_data = await getDb().collection('cafes').findOne({name: currentEst});
+        console.log(cafe_data);
         
 
-        // res.render('cafe-view', { cafe_data, review_data });
+        res.render('cafe-view', { cafe_data, review_data, activeUser });
     },
 
     writeReview: async function(req, res) {

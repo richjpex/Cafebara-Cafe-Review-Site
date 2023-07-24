@@ -1,0 +1,21 @@
+<!-- 
+    BEGINNING OF MAIN CONTAINER
+
+    Notes:  I made it container sm and userCon
+            so that it inherits the properties of Bootstrap fluid
+-->
+<link rel = "stylesheet" href = "../../css/index.css">
+<link rel = "stylesheet" href = "../../css/cafes.css">
+<script src = "../../scripts/cafes.js" defer></script>
+<script src = "../../scripts/readmore.js"></script>
+<style>
+    #more {display: none;}
+</style>
+
+<div class="container-fluid userCon">
+    
+    {{> big_searchbar}}
+    {{> newly_opened}}
+</div>
+
+    {{> footer}}
