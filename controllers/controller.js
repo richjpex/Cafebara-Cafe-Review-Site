@@ -64,7 +64,8 @@ const controller = {
                         numOfReviews: result2.length,
                         cafeShortInfo: result[i].description,
                         open_details: result[i].weekdays_avail,
-                        cafeImg: result[i].image
+                        cafeImg: result[i].image,
+                        price: result[i].price,
                     });
                 })
             };
@@ -83,7 +84,6 @@ const controller = {
        const cafeId = [];
        const cafeName = req.params.cafeName;
 
-       
 
     db.findOne(Cafe, {name: cafeName}, function(result) { 
         if (result){
@@ -123,7 +123,6 @@ const controller = {
                             address: result4.address
                         });
                     });
-                    
         });
         } 
     });
