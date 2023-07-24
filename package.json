@@ -1,7 +1,30 @@
 {
-  "name": "CCAPDEV-GROUP11",
+  "type": "module",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "dotenv": "^16.3.1",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "express-handlebars": "^7.1.0",
+    "mongodb": "^5.7.0",
+    "mongoose": "^7.4.0",
+    "multer": "^1.4.5-lts.1",
+    "node.js": "^0.0.1-security",
+    "url": "^0.11.1"
+  },
+  "scripts": {
+    "start": "nodemon index.js",
+    "pop1": "node magic.js",
+    "pop2": "node magic2.js"
+  },
+  "name": "apdev_dup",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "https://github.com/richjpex/CCAPDEV-GROUP11.git",
-  "license": "MIT"
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "-----------------------------------------------------------------------\r NOTE:   \r     - Make sure to have a working \r     - Collections should still be manually imported to MongoDB.\r         - Obtain the JSON files of the pre-existing collections in 'db_data_init' folder\r         - Using MongoDB Compass, import the file collections to the database \"apdev_test\"",
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
 }

@@ -1,0 +1,52 @@
+ <div class="container">
+        <div class = "header">
+            <div class = "header-signin inactive-login">
+                <a href = "/login">
+                    <img src = "../../images/assets/login.png">
+                    <h3>Sign In</h3>
+                </a>
+            </div>
+            <div class = "header-register active-login">
+                <a href = "/register">
+                    <img src = "../../images/assets/register.png">
+                    <h3>Register</h3>
+                </a>
+            </div>
+        </div>
+        <br>
+        <div class = "form-wrapper">
+            <form name = "register" id = "registerform" action = "/register_process" method = "post">
+              <label for="usertype">User Type</label><br>
+                <select name = "usertype" id = "usertype" class = "inputfield">
+                    <option value = "none" selected disabled hidden>Select User Type</option>
+                    <option value = "customer">Customer</option>
+                    <option value = "owner">Establishment Owner</option>
+                </select>
+                <div id = "inputform"></div>
+                <!-- 
+                // first name
+                // last name
+                // age
+                // email
+                // password
+                // confirm password
+
+                //if owner
+                //establishment name
+                //establishment address
+                //establishment contact number
+                //type (bar/cafe)
+                //password
+                //confirm password
+                //email
+
+
+                <label for="email">First Name</label><br>
+                <input type="email" class = "inputfield" name="email" required><br>
+                <label for="password">Password</label><br>
+                <input type="password" class = "inputfield" name="password" required>
+                <br>
+                <input type = "button" id = "submit" name = "submit" value = "Sign In"> -->
+            </form>
+        </div>
+    </div>

@@ -1,9 +1,18 @@
 # CCAPDEV-GROUP11
+## cafebara cafe review site with backend
 
-## Landing Page: html/guest-views/index.html
+-----------------------------------------------------------------------
+NOTE:   
+    - To install dependencies just do `npm i`
+    - To populate the DB SPECIFICALLY IN THIS ORDER!!!! IMPORTANT
+      - `npm run pop1`
+      - `npm run pop2`
+    - To run the website
+      - `npm run start`
+      - Start the server using "npm start" command
+      - Enter "http://localhost:3000/cafebara/" in the browser url to open index.html (guest-view)
 
-
-## cafebara cafe review site
+-----------------------------------------------------------------------
 
 The following describes the features of a restaurant / store / service review web application. Groups may choose to either develop a review web application for either restaurants, stores, or services. For realism, groups may base the establishments featured in the application from actual establishments that are found around the campus. The minimum features required to be implemented for this project is as follows:
 - View establishments
@@ -57,3 +66,5 @@ published, making it visible to the public.
   - Visitors can easily navigate without help, all information is easy to access.
   - Good visual design.
   - Design suits the theme of the application, and is cohesive and consistent across the whole application.
+
+    

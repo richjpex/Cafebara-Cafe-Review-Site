@@ -1,0 +1,31 @@
+<!--
+Title for Recommended
+-->
+<div class="container-sm">
+<h3 class="recommended">
+    NEWLY OPENED AROUND TAFT
+</h3>
+<p class="recommended">
+    Recommended
+</p>
+</div>
+
+<!--
+Beginning of the Carousel for Newly Opened around Taft
+
+TO DO: please turn this into variable shit!!
+-->
+<div class="container-sm wrapper">
+
+    <i id="left" class="fa-solid fa-angle-left"></i>
+
+   
+    <ul class="carousel">
+    {{#each carouselCards}}
+        {{> carouselCard this}}
+    {{/each}}
+    </ul>
+
+    <i id="right" class="fa-solid fa-angle-right"></i>
+
+</div>

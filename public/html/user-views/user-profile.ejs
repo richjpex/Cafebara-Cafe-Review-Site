@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="../../images/assets/favicon.ico">
+
+    <title>cafebara | Profile</title>
+    <link rel="stylesheet" href="../../css/user_profile.css" />
+
+    <!-- 
+      Importing BOOTSTRAP
+    -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script> 
+    <!--
+        Importing Leaflet
+    -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="crossorigin=""></script>
+    <link rel="stylesheet" href="../../css/Control.FullScreen.css" />
+    <script src="../../scripts/Control.FullScreen.js"></script>
+    
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg fixed-top" data-bs-theme="dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href=".\index.html">
+        <img src = "../../images/assets/2logo.png" id = "logo">
+        <span id = "headername">cafebara</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item inactive">
+            <a class="nav-link" aria-current="page" href="../../html/user-views/index.html">Home</a>
+          </li>
+          <li class="nav-item inactive">
+            <a class="nav-link" href="../../html/user-views/view-cafes.html">Review</a>
+          </li>
+          <li class="nav-item inactive">
+            <a class="nav-link" href="../../html/user-views/about.html">About</a>
+          </li>
+          <li class="nav-item dropdown active">
+            <a class="nav-link active dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Profile
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">My Profile</a></li>
+              <li><a class="dropdown-item" href="../../html/user-views/edit-profile.html">Settings</a></li>
+              <li><a class="dropdown-item" href="../../html/guest-views/index.html">Log out</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+    <!-- 
+      BEGINNING OF MAIN CONTAINER
+
+      Notes:  I made it container sm and userCon
+              so that it inherits the properties of Bootstrap fluid
+    -->
+    <div class="container-fluid userCon">
+
+        <div class="container-fluid">
+
+            <div class="row">
+
+              <div class="col-3">
+                <div class="container-sm">
+                  
+                <img src="/<%= activeUser.profilepic.path %>" style="width: 60%; border-radius: 10%; border: 1px solid grey;">
+                <h5 class="recommended">
+                    <%= activeUser.firstname%> <%= activeUser.lastname%>
+                </h5>
+
+                    <p class="recommended">
+                      member since 2023
+                    </p>
+                    
+                    <p>
+                      <%= activeUser.bio%>
+                    </p>
+
+                    <hr>
+
+                    <p class="recommended">
+                        Review Stats
+                    </p>
+
+                    <p>
+                      5 stars: 169 <br>
+                      4 stars: 123<br>
+                      3 stars: 2<br>
+                      2 stars: 32<br>
+                      1 stars: 12<br>
+                    </p>
+
+
+                    <hr>
+                </div>
+
+                </div>
+
+                
+              <!--
+                Middle Column
+              -->
+              <div class="col-8">
+                <!--
+                    Title for Recommended
+                -->
+                <div class="container-sm">
+                    <h3 class="recommended">
+                    Their Reviews
+                    </h3>
+
+
+                    <!-- DROPDOWN SORT BY -->
+                    <div class="dropdown recommended">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          Sort by: 
+                        </button>
+                        <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" href="#">Date</a></li>
+                          <li><a class="dropdown-item" href="#">Alphabetical</a></li>
+                          <li><a class="dropdown-item" href="#">Most Useful</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!--
+                    List of Cafes
+                -->
+
+                 <!-- Cafe 6 -->
+                 <div class="card mb-3">
+                    <div class="row g-0" style="margin: 0;">
+                      <div class="col-md-4">
+                        <img src="../../images/cafes/starbs.jpg" class="img-fluid rounded" alt="...">
+                      </div>
+
+                      <div class="col-md-6">
+                        <div class="card-body"  style="margin: 0;">
+                          <a href="../../html/cafes/starbs.html"><h5 class="card-title">Starbucks Green Court</h5></a>
+                          <p class="card-text">LEGEN...DAIRY</p>
+                          <div class="hard">
+                          <img src="../../images/ratings/full.png"/>
+                          <img src="../../images/ratings/full.png"/>
+                          <img src="../../images/ratings/full.png"/>
+                          <img src="../../images/ratings/full.png"/>
+                          <img src="../../images/ratings/full.png"/>
+                          <br></div>
+                          <p class="card-text"><small class="text-body-secondary">Oh my gosh, I am, like, totally obsessed with Starbucks! Every time I walk into their super chill and sosyal store, I just feel, like, sosyal AF, you know? The smell of freshly brewed coffee pa lang, it's already an instant mood-lifter. And the baristas, OMG, they're always so jolly and ma-chika! Whether I'm craving for a super extra creamy latte or a refreshing iced tea, Starbucks never fails to deliver. The food choices, mga beh, super sarap! They have these ah-mazing pastries and sandwiches that are perfect for my IG-worthy brunch dates with my barkada. And let's not forget the Starbucks Rewards, girl! I get to earn stars and redeem them for free drinks and other exclusive perks. Starbucks is like my ultimate go-to coffee shop for the best vibes, yummy drinks, and top-notch customer service! Yas, Starbucks, you slay!</small></p>
+                        </div>
+                      </div>
+
+                    </div>
+                </div>
+
+                <!--
+                    Pagination
+                -->
+                <ul class="pagination justify-content-center">
+                    <li class="page-item disabled">
+                      <a class="page-link">Previous</a>
+                    </li>
+
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+
+                    <li class="page-item">
+                      <a class="page-link" href="#">Next</a>
+                    </li>
+                  </ul>
+              </div>
+
+              <!-- 
+                Right Column
+              -->
+             
+            </div>
+            <!-- ROW -->
+
+        </div>
+        <!-- container-sm -->
+
+    </div>
+    <!-- userCon -->
+
+</body>
+
+<script defer>
+    var map = new L.Map('map', {
+    fullscreenControl: true,
+    fullscreenControlOptions: {
+        position: 'topleft'
+    }
+    }).setView([14.564980, 120.993041], 17);
+
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+</script>
+
+</html>

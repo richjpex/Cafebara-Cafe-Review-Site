@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {{> head}}
+
+    <link rel="stylesheet" href="../../css/user_profile.css" />
+    <link rel = "stylesheet" href = "../../css/editprofile.css">
+    <script src = "../../scripts/editprofile.js" defer></script>
+</head>
+
+<body>
+    {{#unless session}}
+        {{> navbar}}
+    {{else}}
+        {{> navbar_logged}}
+    {{/unless}}
+    
+    {{{body}}}
+</body>
+</html>

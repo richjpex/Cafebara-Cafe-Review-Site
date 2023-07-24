@@ -1,0 +1,336 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@300;500&family=Ubuntu+Condensed&display=swap');
+:root {
+    --primary: #3b3d2b;
+    --secondary: #ccd5ae;
+    --secondary2: #e9edc9;
+    --secondary3: #99a280;
+    --tertiary: #fefae0;
+    --quarternary: #faedcd;
+    --fivenary: #d4a373;
+    --sexanary: #423F32;
+    --headfont: 'Merriweather Sans', sans-serif;
+
+}
+
+/*NAVBAR*/
+#logo{
+  width: 45px;
+  border-radius: 50%;
+  margin-left:3vw;
+}
+
+#headername{
+  font-family: var(--headfont) !important;
+  font-size: 2rem;
+  color: var(--secondary) !important;
+  margin-left: 0.3vw;
+  align-self: center;
+  vertical-align: middle;
+  font-weight: 700;
+}
+
+#navbarNav{
+  justify-content: flex-end;
+  margin-right:4vw;
+}
+
+a.nav-link{
+  text-transform: uppercase;
+  width: 7em;
+  padding: 1.5em 0 1.5em 0;
+  box-sizing: border-box;
+  text-align: center;
+  font-weight: 600;
+}
+
+a#login{
+  text-transform: lowercase;
+  background-color: var(--fivenary) !important;
+  margin: 1.3em 0 1.3em 0;
+  padding: 0.2em 0 0.2em 0;
+  border-radius: 2em;
+  color:white;
+}
+
+.active{
+  box-shadow: inset 0 3px var(--secondary);
+}
+
+.inactive:hover{
+  box-shadow: inset 0 3px var(--secondary);
+}
+
+nav.navbar{
+  background-color: var(--primary) !important;
+  padding: 0 16px;
+}
+
+ul.dropdown-menu{
+  background-color: #f5f5f5 !important;
+  border: none;
+  padding: 0;
+}
+
+a.dropdown-item{
+  color: black !important;
+}
+
+a.dropdown-item:hover{
+  background-color: #cacaca;
+}
+
+.card.mb-3:hover {
+  cursor: pointer;
+}
+
+body {
+    background-color: #fafafa;
+    background-image: url('../images/assets/leaf_bg.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+/*center the header div that contains a h1*/
+
+div.userCon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5em;
+}
+
+div.userCon div {
+  margin: 1em;
+}
+
+/* search bar */
+.searchbar-container {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  height: 80%;
+  padding-left: 8rem;
+  padding-right: 14rem;
+  width: 100%;
+}
+
+.search-form {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  width: 70%;
+  max-width: 1500px;
+  margin: 1em;
+  border-radius: 30px;
+  overflow: hidden;
+  background-color: #fff;
+  /*put shadow all around*/
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.6);
+}
+
+.search-form input[type="text"] {
+  padding: 20px 20px;
+  font-size: 1rem;
+  border: none;
+  outline: none;
+}
+
+.search-form button[type="submit"] {
+  padding: 20px;
+  background-color: #CCD5AE;
+  border: none;
+  outline: none;
+  color: #fff;
+  font-size: 1.3rem;
+  border-radius: 0 30px 30px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+}
+
+.search-form button[type="submit"]:hover {
+  cursor: pointer;
+}
+
+
+/*recommended section*/
+.wrapper {
+  width: 100% !important;
+  position: relative;
+  margin-top: 2em !important;
+  margin-bottom: 10em !important;
+}
+.wrapper i {
+  top: 50%;
+  height: 50px;
+  width: 50px;
+  cursor: pointer;
+  font-size: 1.25rem;
+  position: absolute;
+  text-align: center;
+  line-height: 50px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.23);
+  transform: translateY(-50%);
+  transition: transform 0.1s linear;
+  z-index: 9999;
+}
+.wrapper i:active{
+  transform: translateY(-50%) scale(0.85);
+}
+.wrapper i:first-child{
+  left: -22px;
+}
+.wrapper i:last-child{
+  right: -22px;
+}
+.wrapper .carousel{
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: calc((100% / 4) - 1px);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  gap: 16px;
+  border-radius: 8px;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+
+.carousel::-webkit-scrollbar {
+  display: none;
+}
+.carousel.no-transition {
+  scroll-behavior: auto;
+}
+.carousel.dragging {
+  scroll-snap-type: none;
+  scroll-behavior: auto;
+}
+.carousel.dragging .cardui {
+  cursor: grab;
+  user-select: none;
+}
+
+.carousel :where(.cardui, .img) {
+  display: flex;
+  justify-content: left !important;
+  align-items: left !important;
+}
+
+.carousel .cardui {
+  scroll-snap-align: start;
+  list-style: none;
+  cursor: pointer;
+  flex-direction: column;
+}
+.carousel .cardui .img {
+  height: 250px;
+  width: 250px;
+}
+.cardui .img img {
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
+  border: 4px solid #fff;
+}
+.carousel .cardui h2 {
+  font-weight: 500;
+  font-size: 1.56rem;
+}
+.carousel .cardui p {
+  color: #6A6D78;
+  font-size: 1.31rem;
+}
+
+@media screen and (max-width: 900px) {
+  .wrapper .carousel {
+    grid-auto-columns: calc((100% / 2) - 9px);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .wrapper .carousel {
+    grid-auto-columns: 100%;
+  }
+}
+
+.recommended {
+  font-family: 'Ubuntu Condensed', sans-serif;
+  font-weight: 800;
+}
+
+.dropdown {
+    color: var(--sexanary);
+    margin: 0 !important;
+}
+
+.col-8 > ul {
+    margin: 1em;
+}
+
+.col-md-4 > img {
+    width: 90%;
+    height: 30vh;
+    object-fit: cover;
+}
+
+.col-8 > .container-sm {
+    padding: 0;
+}
+
+#map { 
+    height: 150vh; 
+    width: 100%;
+    z-index: 0;
+    margin: 0;
+    outline: 1px solid black;
+}
+
+div.col-2, div.col-8, div.col {
+    margin: 0 !important;
+    padding: 0.25em !important;
+}
+
+/* Custom styles for radio button group */
+.custom-radio-group .btn-outline-primary:not(.active):hover {
+    background-color: var(--primary);
+    color: var(--secondary2);
+    border-color: var(--primary);
+}
+
+.custom-radio-group .btn-check:checked + .btn-outline-primary {
+    background-color: var(--primary);
+    color: var(--secondary2);
+    border-color: var(--primary);
+}
+
+.custom-radio-group .btn-outline-primary:not(.active){
+    color: var(--sexanary);
+    border-color: var(--sexanary);
+}
+
+h5.recommended {
+    margin-top: 1.6em;
+}
+
+.card-body > a {
+    text-decoration: none !important;
+    color: var(--secondary3) !important;
+}
+
+.card-body > a:hover {
+    color: var(--sexanary) !important;
+}
+
+.cb_rating { margin: 0 !important; }
+
+.cb_rating img{
+  width: 2rem;
+  height: 2rem;
+}
+
+.numreviews{
+  color: var(--fivenary);
+}

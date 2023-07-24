@@ -1,0 +1,62 @@
+ <script defer>
+    var greenIcon = new L.Icon({
+    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
+    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41]
+    });
+    
+    var map = new L.Map('map', {
+    fullscreenControl: true,
+    fullscreenControlOptions: {
+        position: 'topleft'
+    }
+    }).setView([14.564980, 120.993041], 16);
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+
+    // obscure cafe
+    new L.Marker([14.566824663720093, 120.9925406238582], {icon: greenIcon})
+    .bindTooltip("Obscure Cafe", {
+        permanent: true, 
+        direction: 'top',
+        offset: L.point(-10, -50)}).addTo(map);
+
+    // nitro bar
+    new L.Marker([14.565697552435255, 120.99320370502565], {icon: greenIcon})
+    .bindTooltip("Nitro 7 Tea and Coffee", {
+        permanent: true, 
+        direction: 'top',
+        offset: L.point(-10, -50)}).addTo(map);
+
+    // starbucks
+    new L.Marker([14.566735951007082, 120.99228638959592], {icon: greenIcon})
+    .bindTooltip("Starbucks Green Court", {
+        permanent: true, 
+        direction: 'top',
+        offset: L.point(-10, -50)}).addTo(map);
+
+    // coffee project
+    new L.Marker([14.563019281246044, 120.9948154538624], {icon: greenIcon})
+    .bindTooltip("The Coffee Project", {
+        permanent: true, 
+        direction: 'top',
+        offset: L.point(-10, -50)}).addTo(map);
+
+    // bos coffee
+     new L.Marker([14.56730161967874, 120.9928768828137], {icon: greenIcon})
+    .bindTooltip("Bo's Coffee", {
+        permanent: true, 
+        direction: 'top',
+        offset: L.point(-10, -50)}).addTo(map);
+    // big boss
+    new L.Marker([14.566189361586224, 120.99320814562093], {icon: greenIcon})
+    .bindTooltip("Big Boss", {
+        permanent: true, 
+        direction: 'top',
+        offset: L.point(-10, -50)}).addTo(map);
+</script>

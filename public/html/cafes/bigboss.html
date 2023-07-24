@@ -1,0 +1,463 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cafebara | Big Boss</title>
+    <link rel="icon" type="image/x-icon" href="../../images/assets/favicon.ico">
+    <!-- Bootstrap css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Our CSS -->
+    <link rel = "stylesheet" href = "../../css/index.css">
+    <link rel = "stylesheet" href = "../../css/cafes.css">
+    <style>
+        #more {display: none;}
+    </style>
+    <script src = "../../scripts/cafes.js" defer></script>
+    <script src = "../../scripts/readmore.js"></script>
+    <script src = "../../scripts/cafe-rating.js"></script>
+<!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+
+<!-- Importing BOOTSTRAP -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+
+    <!--
+        Importing Leaflet
+    -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin=""></script>
+    <link rel="stylesheet" href="../../css/Control.FullScreen.css" />
+    <script src="../../scripts/Control.FullScreen.js"></script>
+    
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg fixed-top" data-bs-theme="dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="../user-views/index.html">
+                <img src = "../../images/assets/2logo.png" id = "logo">
+                <span id = "headername">cafebara</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item inactive">
+                        <a class="nav-link" aria-current="page" href="../user-views/index.html">Home</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link active" href="../user-views/view-cafes.html">Review</a>
+                    </li>
+                    <li class="nav-item inactive">
+                        <a class="nav-link" href="../user-views/about.html">About</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Profile
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="../user-views/user-profile.html">My Profile</a></li>
+                            <li><a class="dropdown-item" href="../user-views/edit-profile.html">Settings</a></li>
+                            <li><a class="dropdown-item" href="../../html/guest-views/index.html">Log out</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <img src="../../images/assets/leaf-accent.png" class="background_leaf"/>
+    <div class="content">
+        <div class = "left">
+            <div class = "pic_container">
+                <img src = "../../images/cafes/bigboss.jpeg">
+            </div>
+            <div class = "text_container">
+                <h3>Location and Hours</h3>
+                <hr>
+            </div>
+            <div class = "map_container">
+                <div id="map" style="width: 100%; height: 250px;"></div>
+            </div>
+            <div class="container text-center loc_and_time">
+                <div class = "address">
+                    8085 Mangga St. Taftasjhdgajkhsdghjkasghkdashgjdghkjaskghaskgdasg Ave. Pasay City, Manila
+                </div>
+                <div class="row row-cols-2">
+                    <div class="col-md-auto">
+                        <span class = "bold">Mon-Fri</span>
+                    </div>
+                    <div class="col-md-auto">
+                        7am - 10pm
+                    </div>
+                    <div class="col-md-auto">
+                        <span class = "bold">Sat-Sun</span>
+                    </div>
+                    <div class="col-md-auto">
+                        9am - 10pm
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="line"></div>
+        
+        <div class = "right">
+            <div class = "cb_name">
+                <h2>Big Boss Coffee</h2>
+                <hr>
+            </div>
+            <div class = "cb_rating">
+                <img src="../../images/ratings/full.png"/>
+                <img src="../../images/ratings/full.png"/>
+                <img src="../../images/ratings/full.png"/>
+                <img src="../../images/ratings/full.png"/>
+                <img src="../../images/ratings/full.png"/>
+                <span class = "numreviews">(56)</span>
+            </div>
+            <div class = "average-cost">
+                <i>Avg. Php200.00</i>
+            </div>
+            <div class = "description">
+                <p>
+                    Big Boss is my go-to cafe when I'm in need of a delicious cup of coffee. The moment you step inside, 
+                    you're greeted by the warm and inviting aroma of freshly brewed beans. The staff is incredibly knowledgeable and 
+                    passionate about coffee, and they always go the extra mile to ensure you have a fantastic experience. The menu offers a great 
+                    variety of unique coffee blends, and the baristas are skilled in their craft. 
+                    The cozy ambiance and comfortable seating make it a great spot to unwind and savor your coffee. Big Boss truly delivers excellence in every cup
+                </p>
+                
+            </div>
+            <div class = "details">
+                <h3>Menu</h3>
+                <hr>
+                <p>No available menu yet. Please contact the establishment.<br>
+                </p>
+            </div>
+            <div class = "details">
+                <h3>Contact</h3>
+                <hr>
+                <p>
+                    <!-- Might be better to just download the bootstrap icons -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-globe" viewBox="0 0 16 16">
+                    <path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm7.5-6.923c-.67.204-1.335.82-1.887 1.855A7.97 7.97 0 0 0 5.145 4H7.5V1.077zM4.09 4a9.267 9.267 0 0 1 .64-1.539 6.7 6.7 0 0 1 .597-.933A7.025 7.025 0 0 0 2.255 4H4.09zm-.582 3.5c.03-.877.138-1.718.312-2.5H1.674a6.958 6.958 0 0 0-.656 2.5h2.49zM4.847 5a12.5 12.5 0 0 0-.338 2.5H7.5V5H4.847zM8.5 5v2.5h2.99a12.495 12.495 0 0 0-.337-2.5H8.5zM4.51 8.5a12.5 12.5 0 0 0 .337 2.5H7.5V8.5H4.51zm3.99 0V11h2.653c.187-.765.306-1.608.338-2.5H8.5zM5.145 12c.138.386.295.744.468 1.068.552 1.035 1.218 1.65 1.887 1.855V12H5.145zm.182 2.472a6.696 6.696 0 0 1-.597-.933A9.268 9.268 0 0 1 4.09 12H2.255a7.024 7.024 0 0 0 3.072 2.472zM3.82 11a13.652 13.652 0 0 1-.312-2.5h-2.49c.062.89.291 1.733.656 2.5H3.82zm6.853 3.472A7.024 7.024 0 0 0 13.745 12H11.91a9.27 9.27 0 0 1-.64 1.539 6.688 6.688 0 0 1-.597.933zM8.5 12v2.923c.67-.204 1.335-.82 1.887-1.855.173-.324.33-.682.468-1.068H8.5zm3.68-1h2.146c.365-.767.594-1.61.656-2.5h-2.49a13.65 13.65 0 0 1-.312 2.5zm2.802-3.5a6.959 6.959 0 0 0-.656-2.5H12.18c.174.782.282 1.623.312 2.5h2.49zM11.27 2.461c.247.464.462.98.64 1.539h1.835a7.024 7.024 0 0 0-3.072-2.472c.218.284.418.598.597.933zM10.855 4a7.966 7.966 0 0 0-.468-1.068C9.835 1.897 9.17 1.282 8.5 1.077V4h2.355z"/>
+                </svg> 
+                bossing.com<br>
+                
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone-fill" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/>
+                </svg>
+                +639175469130<br>
+                
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
+                    <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/>
+                </svg>
+                
+                fb.me/ellipsis</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- collapsible write -->
+    <div class = "write_review">
+        <button class="btn btn-dark" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+            Write a review
+        </button>
+        <div class="collapse" id="collapseExample">
+            <div class="card card-body">
+                <div class = "review-wrapper">
+                    
+                    <form>
+                        <!--<img src="../../images/ratings/empty.png" class = "user-rating"/>
+                        <img src="../../images/ratings/empty.png" class = "user-rating"/>
+                        <img src="../../images/ratings/empty.png" class = "user-rating"/>
+                        <img src="../../images/ratings/empty.png" class = "user-rating"/>
+                        <img src="../../images/ratings/empty.png" class = "user-rating"/>-->
+                        
+                        <div class="rating-container">
+                            <span class="star" data-rating="1"></span>
+                            <span class="star" data-rating="2"></span>
+                            <span class="star" data-rating="3"></span>
+                            <span class="star" data-rating="4"></span>
+                            <span class="star" data-rating="5"></span>
+                          </div>
+                          <input type="hidden" id="selected-rating" value="0" />
+                          
+                        <div class = "review-title">
+                            <input class="form-control form-control-lg review-title" type="text" placeholder="Title" aria-label=".form-control-lg example">                        
+                        </div>
+                        <div class = "review-content">
+                            <textarea class="form-control review-body" placeholder="Leave your review here" id="review-editor" style="height: 100px"></textarea>
+                            <div class = "attachmedia">
+                                  <input class="form-control" type="file" id="formFile" accept = "image/*, video/*">
+                            </div>
+                        </div>
+                        <br>
+                        <input type = "submit" id = "submit-review">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="content_review">
+        <div class="review_label">
+            <h2>REVIEWS</h2>
+            <hr>
+        </div>
+
+        <!-- Turn this into JS -->
+        <div class = "review_wrapper">
+            <div class="review_post">
+                <div class="prof_header" >
+                    <div class="profpic_container"> 
+                        <img src="../../images/assets/login.png" class="profpic"/>
+                    </div>
+                    <div class = "userinfo">
+                        <div class="profname">
+                            Solid S.
+                        </div>
+                        <div class="member_duration">
+                            member since 2023
+                        </div>
+                    </div>
+                    <div class="dropdown options">
+                        <button class="btn " type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
+                                <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+                            </svg>
+                        </button>
+                        <ul class="dropdown-menu">
+                          <li><span class = "dropdown-item-text">No options</span></li>
+                        </ul>
+                      </div>
+                </div>
+                
+                <div class = "cb_rating">
+                    <span class = "review_title">SNAKEEEEE!!</span><br>
+                    <img src="../../images/ratings/full.png"/>
+                    <img src="../../images/ratings/full.png"/>
+                    <img src="../../images/ratings/full.png"/>
+                    <img src="../../images/ratings/full.png"/>
+                    <img src="../../images/ratings/full.png"/>
+                    <br>
+                    <span class = "review_date">Reviewed on 2023/06/21</span>
+                    </div>
+                <div class="review_comment crop">
+                    <p>
+                        Big Boss is my go-to cafe when I'm in need of a delicious cup of coffee. The moment you step inside, 
+                        you're greeted by the warm and inviting aroma of freshly brewed beans. The staff is incredibly knowledgeable and passionate about coffee, and they always go the extra mile to ensure you have a fantastic experience. The menu offers a great variety of unique coffee blends, and the baristas are skilled in their craft. The cozy ambiance and comfortable seating make it a great spot to unwind and savor your coffee. Big Boss truly delivers excellence in every cup.
+                    </p>
+                </div>
+
+
+                <div class="review_pics_container">
+                    <video src="../../videos/Learning with FGO - Gudako crazy about gacha.mp4" class="object-fit-cover" controls></video>
+                </div>
+                
+                <div class = "helpful?">
+                    <div class="helpful_label">
+                        Was this helpful?
+                    </div>
+
+                    <div class="helpful_bar">
+                        <div class = "helpful">
+                            <span class = "likes" id = "likes1">10</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" id = "up1" width="16" height="16" fill="currentColor" class="bi bi-hand-thumbs-up" viewBox="0 0 16 16">
+                                <path id = "up1path" d="M8.864.046C7.908-.193 7.02.53 6.956 1.466c-.072 1.051-.23 2.016-.428 2.59-.125.36-.479 1.013-1.04 1.639-.557.623-1.282 1.178-2.131 1.41C2.685 7.288 2 7.87 2 8.72v4.001c0 .845.682 1.464 1.448 1.545 1.07.114 1.564.415 2.068.723l.048.03c.272.165.578.348.97.484.397.136.861.217 1.466.217h3.5c.937 0 1.599-.477 1.934-1.064a1.86 1.86 0 0 0 .254-.912c0-.152-.023-.312-.077-.464.201-.263.38-.578.488-.901.11-.33.172-.762.004-1.149.069-.13.12-.269.159-.403.077-.27.113-.568.113-.857 0-.288-.036-.585-.113-.856a2.144 2.144 0 0 0-.138-.362 1.9 1.9 0 0 0 .234-1.734c-.206-.592-.682-1.1-1.2-1.272-.847-.282-1.803-.276-2.516-.211a9.84 9.84 0 0 0-.443.05 9.365 9.365 0 0 0-.062-4.509A1.38 1.38 0 0 0 9.125.111L8.864.046zM11.5 14.721H8c-.51 0-.863-.069-1.14-.164-.281-.097-.506-.228-.776-.393l-.04-.024c-.555-.339-1.198-.731-2.49-.868-.333-.036-.554-.29-.554-.55V8.72c0-.254.226-.543.62-.65 1.095-.3 1.977-.996 2.614-1.708.635-.71 1.064-1.475 1.238-1.978.243-.7.407-1.768.482-2.85.025-.362.36-.594.667-.518l.262.066c.16.04.258.143.288.255a8.34 8.34 0 0 1-.145 4.725.5.5 0 0 0 .595.644l.003-.001.014-.003.058-.014a8.908 8.908 0 0 1 1.036-.157c.663-.06 1.457-.054 2.11.164.175.058.45.3.57.65.107.308.087.67-.266 1.022l-.353.353.353.354c.043.043.105.141.154.315.048.167.075.37.075.581 0 .212-.027.414-.075.582-.05.174-.111.272-.154.315l-.353.353.353.354c.047.047.109.177.005.488a2.224 2.224 0 0 1-.505.805l-.353.353.353.354c.006.005.041.05.041.17a.866.866 0 0 1-.121.416c-.165.288-.503.56-1.066.56z"/>
+                            </svg>
+                            <span class = "dislikes" id = "dislikes1">2</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" id = "down1" width="16" height="16" fill="currentColor" class="bi bi-hand-thumbs-down" viewBox="0 0 16 16">
+                                <path id = "down1path"  d="M8.864 15.674c-.956.24-1.843-.484-1.908-1.42-.072-1.05-.23-2.015-.428-2.59-.125-.36-.479-1.012-1.04-1.638-.557-.624-1.282-1.179-2.131-1.41C2.685 8.432 2 7.85 2 7V3c0-.845.682-1.464 1.448-1.546 1.07-.113 1.564-.415 2.068-.723l.048-.029c.272-.166.578-.349.97-.484C6.931.08 7.395 0 8 0h3.5c.937 0 1.599.478 1.934 1.064.164.287.254.607.254.913 0 .152-.023.312-.077.464.201.262.38.577.488.9.11.33.172.762.004 1.15.069.13.12.268.159.403.077.27.113.567.113.856 0 .289-.036.586-.113.856-.035.12-.08.244-.138.363.394.571.418 1.2.234 1.733-.206.592-.682 1.1-1.2 1.272-.847.283-1.803.276-2.516.211a9.877 9.877 0 0 1-.443-.05 9.364 9.364 0 0 1-.062 4.51c-.138.508-.55.848-1.012.964l-.261.065zM11.5 1H8c-.51 0-.863.068-1.14.163-.281.097-.506.229-.776.393l-.04.025c-.555.338-1.198.73-2.49.868-.333.035-.554.29-.554.55V7c0 .255.226.543.62.65 1.095.3 1.977.997 2.614 1.709.635.71 1.064 1.475 1.238 1.977.243.7.407 1.768.482 2.85.025.362.36.595.667.518l.262-.065c.16-.04.258-.144.288-.255a8.34 8.34 0 0 0-.145-4.726.5.5 0 0 1 .595-.643h.003l.014.004.058.013a8.912 8.912 0 0 0 1.036.157c.663.06 1.457.054 2.11-.163.175-.059.45-.301.57-.651.107-.308.087-.67-.266-1.021L12.793 7l.353-.354c.043-.042.105-.14.154-.315.048-.167.075-.37.075-.581 0-.211-.027-.414-.075-.581-.05-.174-.111-.273-.154-.315l-.353-.354.353-.354c.047-.047.109-.176.005-.488a2.224 2.224 0 0 0-.505-.804l-.353-.354.353-.354c.006-.005.041-.05.041-.17a.866.866 0 0 0-.121-.415C12.4 1.272 12.063 1 11.5 1z"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class = "review_wrapper">
+                <div class="review_post">
+                    <div class="prof_header" >
+                        <div class="profpic_container"> 
+                            <img src="../../images/sprites/suisei.jpg" class="profpic"/>
+                        </div>
+                        <div class = "userinfo">
+                            <div class="profname">
+                                Suisei H.
+                            </div>
+                            <div class="member_duration">
+                                member since 2023
+                            </div>
+                        </div>
+                        
+                        <div class="dropdown options">
+                            <button class="btn " type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
+                                    <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+                                </svg>
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li><a class = "dropdown-item" id = "editbtn">Edit</a></li>
+                              <li><a class = "dropdown-item">Delete</a></li>
+                              <li><a class = "dropdown-item">Cancel</a></li>
+                            </ul>
+                          </div>
+                    </div>
+                    
+                    <div class = "cb_rating">
+                        <div class = "title editable">
+                            <span class = "review_title">Not Stellar Stellar</span><br>
+                        </div>
+                        <div class = "ratings">
+                            <img src="../../images/ratings/full.png"/>
+                            <img src="../../images/ratings/full.png"/>
+                            <img src="../../images/ratings/empty.png"/>
+                            <img src="../../images/ratings/empty.png"/>
+                            <img src="../../images/ratings/empty.png"/>
+                        </div>
+                        <div class="hidden other-rating-container">
+                            <span class="star" data-rating="1"></span>
+                            <span class="star" data-rating="2"></span>
+                            <span class="star" data-rating="3"></span>
+                            <span class="star" data-rating="4"></span>
+                            <span class="star" data-rating="5"></span>
+                          </div>
+                          <input type="hidden" id="selected-rating" value="0" />
+                        <br>
+                        <span class = "review_date">Reviewed on 2023/06/21</span>
+                    </div>
+                    <div class="review_comment crop editable">
+                        <p>
+                            Oh, my flickering comets, I must share my disappointment with the celestial voyage I had at Big Boss Cafe. As Hoshimachi Suisei, I've traversed the galaxy in search of stellar coffee experiences, but Big Boss Cafe left me feeling 
+                            <span id="dots">...</span><span id="more">somewhat unimpressed.
+                            <br><br>                            
+                            Upon entering the cafe, I expected to be greeted by an atmosphere as dazzling as the night sky. However, the ambiance fell flat, lacking the vibrant energy and cosmic charm I anticipated. The lackluster decor and mundane lighting failed to transport me to the otherworldly realm I craved.
+                            <br><br>
+                            Now, let's talk about the coffee. Oh, my distant constellations, it pains me to say that the celestial brews at Big Boss Cafe did not live up to my astronomical expectations. The flavors were underwhelming and lacked the cosmic magic that I seek in every sip. The coffee tasted ordinary and failed to ignite the supernova of delight I had hoped for. It left me yearning for the celestial depths of flavor that only the finest coffee can provide.
+                            <br><br>
+                            Furthermore, the service at Big Boss Cafe left much to be desired. The staff seemed disinterested and distant, providing little warmth or engagement. Their lack of stellar enthusiasm overshadowed the coffee experience and dampened the atmosphere. As a galactic idol, I appreciate interactions that make me feel like a shining star, but unfortunately, that was not the case here.
+                            <br><br>
+                            The menu, too, left me wanting more. While they offered a variety of coffee options, the selection lacked the cosmic creativity I had anticipated. I longed for celestial blends and captivating creations that would transport me on a flavorful journey through the cosmos. Instead, I found a range of mundane choices that failed to excite my interstellar taste buds.
+                            <br><br>
+                            In terms of comfort, Big Boss Cafe fell short. The seating arrangements were cramped and uncomfortable, leaving me feeling confined rather than relaxed. The lack of charging ports and limited access to Wi-Fi made it difficult for me to embrace the cafe as a space for creativity and productivity.
+                            <br><br>
+                            To conclude, my experience at Big Boss Cafe was far from the celestial voyage I had hoped for. The underwhelming coffee, lackluster atmosphere, indifferent service, and subpar comfort left me feeling disenchanted. As a galactic idol seeking cosmic coffee experiences, I cannot wholeheartedly recommend Big Boss Cafe as a destination for fellow stargazers. Perhaps there are other celestial havens that can offer a more captivating and stellar coffee adventure.   
+                        </span>
+                        </p>
+                    </div>
+                    <div>
+                        <button id="myBtn">Read more</button>
+                    </div>
+                    <div class = "editedon user-edit">
+                    </div>
+                    <div class = "submitChanges">
+                        <button class = "btn btn-primary" id = "submitChanges">Submit Changes</button>
+                        <button class = "btn btn-secondary" id = "cancel">Cancel</button>
+                    </div>
+    
+    
+                    <div class="review_pics_container">
+                        <img src="../../images/reviews/starbs_rev1.jpg" class="review_pics"/>
+                    </div>
+                    
+                    <div class = "helpful?">
+                        <div class="helpful_label">
+                            Was this helpful?
+                        </div>
+    
+                        <div class="helpful_bar">
+                            <div class = "helpful">
+                                <span class = "likes" id = "likes2">10</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" id = "up2" width="16" height="16" fill="currentColor" class="bi bi-hand-thumbs-up" viewBox="0 0 16 16">
+                                    <path id = "up2path" d="M8.864.046C7.908-.193 7.02.53 6.956 1.466c-.072 1.051-.23 2.016-.428 2.59-.125.36-.479 1.013-1.04 1.639-.557.623-1.282 1.178-2.131 1.41C2.685 7.288 2 7.87 2 8.72v4.001c0 .845.682 1.464 1.448 1.545 1.07.114 1.564.415 2.068.723l.048.03c.272.165.578.348.97.484.397.136.861.217 1.466.217h3.5c.937 0 1.599-.477 1.934-1.064a1.86 1.86 0 0 0 .254-.912c0-.152-.023-.312-.077-.464.201-.263.38-.578.488-.901.11-.33.172-.762.004-1.149.069-.13.12-.269.159-.403.077-.27.113-.568.113-.857 0-.288-.036-.585-.113-.856a2.144 2.144 0 0 0-.138-.362 1.9 1.9 0 0 0 .234-1.734c-.206-.592-.682-1.1-1.2-1.272-.847-.282-1.803-.276-2.516-.211a9.84 9.84 0 0 0-.443.05 9.365 9.365 0 0 0-.062-4.509A1.38 1.38 0 0 0 9.125.111L8.864.046zM11.5 14.721H8c-.51 0-.863-.069-1.14-.164-.281-.097-.506-.228-.776-.393l-.04-.024c-.555-.339-1.198-.731-2.49-.868-.333-.036-.554-.29-.554-.55V8.72c0-.254.226-.543.62-.65 1.095-.3 1.977-.996 2.614-1.708.635-.71 1.064-1.475 1.238-1.978.243-.7.407-1.768.482-2.85.025-.362.36-.594.667-.518l.262.066c.16.04.258.143.288.255a8.34 8.34 0 0 1-.145 4.725.5.5 0 0 0 .595.644l.003-.001.014-.003.058-.014a8.908 8.908 0 0 1 1.036-.157c.663-.06 1.457-.054 2.11.164.175.058.45.3.57.65.107.308.087.67-.266 1.022l-.353.353.353.354c.043.043.105.141.154.315.048.167.075.37.075.581 0 .212-.027.414-.075.582-.05.174-.111.272-.154.315l-.353.353.353.354c.047.047.109.177.005.488a2.224 2.224 0 0 1-.505.805l-.353.353.353.354c.006.005.041.05.041.17a.866.866 0 0 1-.121.416c-.165.288-.503.56-1.066.56z"/>
+                                </svg>
+                                <span class = "dislikes" id = "dislikes2">2</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" id = "down2" width="16" height="16" fill="currentColor" class="bi bi-hand-thumbs-down" viewBox="0 0 16 16">
+                                    <path id = "down2path"  d="M8.864 15.674c-.956.24-1.843-.484-1.908-1.42-.072-1.05-.23-2.015-.428-2.59-.125-.36-.479-1.012-1.04-1.638-.557-.624-1.282-1.179-2.131-1.41C2.685 8.432 2 7.85 2 7V3c0-.845.682-1.464 1.448-1.546 1.07-.113 1.564-.415 2.068-.723l.048-.029c.272-.166.578-.349.97-.484C6.931.08 7.395 0 8 0h3.5c.937 0 1.599.478 1.934 1.064.164.287.254.607.254.913 0 .152-.023.312-.077.464.201.262.38.577.488.9.11.33.172.762.004 1.15.069.13.12.268.159.403.077.27.113.567.113.856 0 .289-.036.586-.113.856-.035.12-.08.244-.138.363.394.571.418 1.2.234 1.733-.206.592-.682 1.1-1.2 1.272-.847.283-1.803.276-2.516.211a9.877 9.877 0 0 1-.443-.05 9.364 9.364 0 0 1-.062 4.51c-.138.508-.55.848-1.012.964l-.261.065zM11.5 1H8c-.51 0-.863.068-1.14.163-.281.097-.506.229-.776.393l-.04.025c-.555.338-1.198.73-2.49.868-.333.035-.554.29-.554.55V7c0 .255.226.543.62.65 1.095.3 1.977.997 2.614 1.709.635.71 1.064 1.475 1.238 1.977.243.7.407 1.768.482 2.85.025.362.36.595.667.518l.262-.065c.16-.04.258-.144.288-.255a8.34 8.34 0 0 0-.145-4.726.5.5 0 0 1 .595-.643h.003l.014.004.058.013a8.912 8.912 0 0 0 1.036.157c.663.06 1.457.054 2.11-.163.175-.059.45-.301.57-.651.107-.308.087-.67-.266-1.021L12.793 7l.353-.354c.043-.042.105-.14.154-.315.048-.167.075-.37.075-.581 0-.211-.027-.414-.075-.581-.05-.174-.111-.273-.154-.315l-.353-.354.353-.354c.047-.047.109-.176.005-.488a2.224 2.224 0 0 0-.505-.804l-.353-.354.353-.354c.006-.005.041-.05.041-.17a.866.866 0 0 0-.121-.415C12.4 1.272 12.063 1 11.5 1z"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        
+    </div>
+    
+
+    <div id="test">
+
+        
+    </div>
+</body>
+
+<script defer>
+    var map = new L.Map('map', {
+    fullscreenControl: true,
+    fullscreenControlOptions: {
+        position: 'topleft'
+    }
+    }).setView([14.564980, 120.993041], 17);
+
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+</script>
+<script>
+    // Get the elements you need
+    const ratingsDiv = document.querySelector('.ratings');
+    const ratingContainerDiv = document.querySelector('.other-rating-container');
+    const editBtn = document.getElementById('editbtn');
+    const submitChangesBtn = document.getElementById('submitChanges');
+    const selectedRatingInput = document.getElementById('selected-rating');
+  
+    // Add a click event listener to the "editbtn"
+    editBtn.addEventListener('click', function() {
+      // Show the "rating-container" and hide the "ratings" div
+      ratingContainerDiv.classList.remove('hidden');
+      ratingsDiv.classList.add('hidden');
+    });
+  
+    // Add a click event listener to the "submitChanges" button
+    submitChangesBtn.addEventListener('click', function() {
+      // Get the data-rating value from the selectedRatingInput
+      const dataRating = parseInt(selectedRatingInput.value);
+  
+      // Show the "ratings" div and hide the "rating-container" div
+      ratingContainerDiv.classList.add('hidden');
+      ratingsDiv.classList.remove('hidden');
+  
+      // Update the displayed images based on the data-rating value
+      const fullImages = dataRating;
+      const emptyImages = 5 - dataRating;
+  
+      const fullImageHTML = '<img src="../../images/ratings/full.png" />';
+      const emptyImageHTML = '<img src="../../images/ratings/empty.png" />';
+  
+      let ratingsHTML = '';
+  
+      for (let i = 0; i < fullImages; i++) {
+        ratingsHTML += fullImageHTML;
+      }
+  
+      for (let i = 0; i < emptyImages; i++) {
+        ratingsHTML += emptyImageHTML;
+      }
+  
+      ratingsDiv.innerHTML = ratingsHTML;
+    });
+  </script>
+</html>

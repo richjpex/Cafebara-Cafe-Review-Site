@@ -1,0 +1,66 @@
+import mongoose from 'mongoose';
+
+const Schema = mongoose.Schema;
+
+const cafeSchema = new Schema({
+    name: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    address: {
+        type: String,
+        //required: true,
+        //unique: true
+    },
+    description: {
+        type: String
+    },
+    weekdays_avail:{
+        type: String,
+    },
+    weekends_avail:{
+        type: String,
+    },
+    website:{
+        type: String
+    },
+    phone:{
+        type: String
+    },
+    email:{
+        type: String,
+        required: true,
+        unique: true
+    },
+    password: {
+        type: String,
+        required: true
+    },
+
+    image: String,
+
+    rating: {
+        type: Number,
+        required: true,
+        default: 0
+    },
+
+    price: {
+        type: Number,
+        required: true,
+        default: 0
+    },
+
+    dateCreated: {
+        type: Date,
+        default: Date.now()
+    },
+
+    menu: {
+        type: String,
+        default: "No menu posted. Please contact the store."   
+    }
+});
+
+export const Cafe = mongoose.model('Cafes', cafeSchema);
