@@ -2,6 +2,7 @@ import db from '../schemas/db.js';
 import {About} from '../schemas/aboutSchema.js';
 import { Cafe } from '../schemas/cafeSchema.js';
 import { Review } from '../schemas/reviewsSchema.js';
+
 const controller = {
 
     getIndex: function(req, res) {
@@ -20,6 +21,7 @@ const controller = {
 
         console.log(cafeCarouselCards)
        res.render('index', {
+            isIndex: true,
             carouselCards: cafeCarouselCards
        });
        res.status(200);
@@ -44,6 +46,7 @@ const controller = {
             }
         });
         res.render('about', {
+            isAbout: true,
             profilecards: profilecards
         });
     },
@@ -77,25 +80,29 @@ const controller = {
        const cafeName = req.params.cafeName;
        let cafeId;
 
-       db.findOne(Cafe, {name: req.params.cafeName}, function(result) { 
+       db.findOne(Cafe, {name: cafeName}, function(result) { 
             cafeId = result._id;
+            db.findAllQuery(Review, {cafeName: cafeId}, function(result) {
+                console.log(result + cafeId)
+                    for(let i = 0; i < result.length; i++){
+                        reviews.push({
+                            review: result[i].review,
+                            date: result[i].dateCreated.toString().substring(0, 10),
+                            // rating: result[i].rating,
+                            cafeName: result[i].cafeName,
+                            username: result[i].reviewer,
+                            dateModified: result[i].dateModified,
+                            up: result[i].upvotes,
+                            down: result[i].downvotes
+                        });
+                    }
+                    console.log(reviews)
+                });
+                
         });
 
-       db.findAllQuery(Review, {cafeName: cafeId}, function(result) {
-            for(let i = 0; i < result.length; i++){
-                reviews.push({
-                    // review_text: result[i].review,
-                    // date: result[i].dateCreated,
-                    // rating: result[i].rating,
-                    cafeName: result[i].cafeName,
-                    username: result[i].reviewer,
-                    // dateModified: result[i].dateModified
-                });
-            }
-        });
-        
-       db.findOne(Cafe, {name: req.params.cafeName}, function(result) {
-        console.log(result);    
+       
+       db.findOne(Cafe, {name: cafeName}, function(result) {
         cafe.push({
                 cafeName: result.name,
                 imgPath: result.image,
@@ -113,14 +120,15 @@ const controller = {
 
        res.render("viewCafe", {
             layout: 'cafeTemplate',
-            cafePage: cafe
+            cafePage: cafe,
+            reviews: reviews
        });
 
-       console.log(cafe);
-       console.log('asdsadsa');
+    },
+
+    addReview: function(req, res) {
 
     }
-
 
 }
 
