@@ -27,4 +27,7 @@ router.post('/register_process', controller.register_process);
 router.post('/addReview', controller.addReview);
 
 router.delete('/deleteReview', controller.deleteReview);
+
+router.put('/editReview', controller.editReview);
+
 export default router;
