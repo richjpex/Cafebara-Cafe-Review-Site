@@ -13,7 +13,7 @@
 }
 
 body {
-    background-image: url('../images/leaf_bg.png');
+    background-image: url('../images/assets/leaf_bg.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-color: #fafafa;
@@ -116,7 +116,7 @@ hr{
     padding:0;
     color:var(--sexanary);
     background-color: var(--sexanary);
-    border: none;
+    border-top: 1px solid var(--sexanary);
 }
 
 .bold{
@@ -129,6 +129,15 @@ hr{
 
 .loc_and_time{
     margin-top: 0.7rem;
+    display:flex;
+    max-width: 100%;
+}
+
+.address{
+    width: 45%;
+    max-width: 45%;
+    margin-right: 2em;  
+    overflow-wrap: break-word;
 }
 /*review*/
 

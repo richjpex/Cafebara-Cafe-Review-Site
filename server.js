@@ -35,8 +35,7 @@ import { dirname, join }        from 'path';
 // Schema model imports
 // These are basically the db collections
 import { Cafe }             from './schemas/cafeSchema.js';
-import { Reviews }          from './schemas/reviewsSchema.js';
-import { Review_details }   from './schemas/review_detailsSchema.js';
+import { Review }          from './schemas/reviewsSchema.js';
 import { User }             from './schemas/userSchema.js';
 
 // declare app for Express library
@@ -93,10 +92,11 @@ app.get('/', (req, res) => {
 	res.render ('index', {layout: 'main'});
 });
 
-app.get('/cafes', (req, res) => {
-	res.render ('cafes', {layout: 'main'});
+/*
+app.get('/logins', (req, res) => {
+    res.render ('login', {layout: 'main'});
 });
-
+*/
 /*** 
 app.get('/different directory view estab;ish')
 res.render ('view_establishments!', 'layout: main', ??)
@@ -123,6 +123,8 @@ async function main(){
                 // check if email exists in either User or cafe colleciton
                 const existingUser = await User.findOne({email: userdata.email});
                 const existingCafe = await Cafe.findOne({email: userdata.email});
+
+                
 
                 if (existingUser || existingCafe) {
                     const queryParams = new URLSearchParams();
@@ -233,7 +235,7 @@ async function main(){
                 const review_data = req.body;
                 console.log(review_data);
 
-                /*
+                
                 const newReview_details = new Review_details({
                     estName: currentEst,
                     reviewer: activeUser
@@ -255,7 +257,7 @@ async function main(){
                 //await collection.updateOne({_id: temp_review._id}, {$set: { estname: currentEst }});
                 res.redirect('/cafe/'+currentCafe);
                 res.redirect('/cafe/'+currentEst);
-                */
+                
     
             }
             catch(err){

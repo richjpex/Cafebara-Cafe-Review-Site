@@ -33,13 +33,16 @@
                     </p>
 
                     <div class="custom-radio-group btn-group flex-wrap" role="group" aria-label="Basic radio toggle button group" style="margin: 0;">
-                        <input type="radio" class="btn-check bg-success" name="btnradio2" id="btnradio21" autocomplete="off" checked>
+                        <input type="radio" class="btn-check bg-success" name="btnradio2" id="btnradio20" autocomplete="off" onclick="sortCafes('all')" checked>
+                        <label class="btn btn-outline-primary" for="btnradio20">All</label>
+                        
+                        <input type="radio" class="btn-check bg-success" name="btnradio2" id="btnradio21" autocomplete="off" onclick="sortCafes('P')">
                         <label class="btn btn-outline-primary" for="btnradio21">₱</label>
                     
-                        <input type="radio" class="btn-check" name="btnradio2" id="btnradio22" autocomplete="off">
+                        <input type="radio" class="btn-check" name="btnradio2" id="btnradio22" autocomplete="off" onclick="sortCafes('PP')">
                         <label class="btn btn-outline-primary" for="btnradio22">₱₱</label>
                     
-                        <input type="radio" class="btn-check" name="btnradio2" id="btnradio23" autocomplete="off">
+                        <input type="radio" class="btn-check" name="btnradio2" id="btnradio23" autocomplete="off" onclick="sortCafes('PPP')">
                         <label class="btn btn-outline-primary" for="btnradio23">₱₱₱</label>
                     </div>
 

@@ -19,7 +19,6 @@ const userSchema = new Schema({
     
     dateCreated: {
         type: Date, 
-        required: true,
         default: Date.now()
     },
 
@@ -28,8 +27,7 @@ const userSchema = new Schema({
     bio: String,
     
     birthday: {
-        type: Date,
-        required: true
+        type: Date
     }
 });
 
