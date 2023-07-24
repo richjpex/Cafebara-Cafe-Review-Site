@@ -3,9 +3,45 @@
 
 document.addEventListener("DOMContentLoaded",function() {
     
+    const cafeName = document.querySelector(".cb_name").children[0].innerHTML;
+
+    // const userName;
+
+    const submitBtn = document.getElementById("submit-review");
+    
+    submitBtn.addEventListener("click",function() {
+        
+        const urlParams = new URLSearchParams(window.location.search);
+        const email = urlParams.get('email');
+        console.log(email)
+        const review_title = document.querySelector("#review-title").value;
+        const review = document.querySelector("#review-editor").value;
+        const rating = document.querySelector("#selected-rating").value;
+        const dateCreated = Date.now();
+        const media = document.querySelector("#formFile").value;
+        //how to get current user
+
+        fetch('/addReview', {
+            method: "POST",
+            body: JSON.stringify({email,cafeName, review_title, review, rating, dateCreated, media}),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(response => {
+            console.log(response.data);
+            if (response.status == 200){
+                console.log("A")
+            }
+            else
+                console.log("An error has occurred");
+        }
+        );
+    });
+
+
+
     const btn = document.getElementById("myBtn");
     let check = true;
-    console.log(check);
     if(btn == null){
         check = false;
     }
