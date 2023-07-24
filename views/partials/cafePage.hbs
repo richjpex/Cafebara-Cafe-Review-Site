@@ -1,6 +1,7 @@
+{{#each cafePage}}
 <div class = "left">
     <div class = "pic_container">
-        <img src = "{{imgPath}}">
+        <img src = ".{{imgPath}}">
     </div>
     <div class = "text_container">
         <h3>Location and Hours</h3>
@@ -31,7 +32,7 @@
 </div>
 
 <div id="line"></div>
-        
+
 <div class = "right">
     <div class = "cb_name">
         <h2>{{cafeName}}</h2>
@@ -83,4 +84,6 @@
         </p>
     </div>
 </div>
+ {{/each}}
 
+{{> map_script}}

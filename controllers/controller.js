@@ -71,14 +71,13 @@ const controller = {
  
     cafe: function(req, res){
        //change render to the correct one
-       let cafe;
+       const cafe = [];
        const reviews = [];
 
        const cafeName = req.params.cafeName;
        let cafeId;
 
-       db.findOne(Cafe, {name: req.params.cafeName}, function(result) {
-            console.log(result);    
+       db.findOne(Cafe, {name: req.params.cafeName}, function(result) { 
             cafeId = result._id;
         });
 
@@ -97,24 +96,29 @@ const controller = {
         
        db.findOne(Cafe, {name: req.params.cafeName}, function(result) {
         console.log(result);    
-        cafe = {
-                cafeName: result[0].name,
-                imgPath: result[0].image,
-                description: result[0].description,
-                weekday_avail: result[0].weekdays_avail,
-                weekend_avail: result[0].weekends_avail,
-                website: result[0].website,
-                phonenumber: result[0].phone,
-                price: result[0].price,
+        cafe.push({
+                cafeName: result.name,
+                imgPath: result.image,
+                description: result.description,
+                weekday_avail: result.weekdays_avail,
+                weekend_avail: result.weekends_avail,
+                website: result.website,
+                phonenumber: result.phone,
+                price: result.price,
                 numReviews: reviews.length,
-                menu: result[0].menu,
-                address: result[0].address
-            };
+                menu: result.menu,
+                address: result.address
+            });
         });
 
        res.render("viewCafe", {
+            layout: 'cafeTemplate',
             cafePage: cafe
        });
+
+       console.log(cafe);
+       console.log('asdsadsa');
+
     }
 
 
