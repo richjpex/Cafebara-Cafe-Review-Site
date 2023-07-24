@@ -18,6 +18,7 @@ router.get(`/logout`, controller.logout);
 router.get(`/register`, controller.register);
 //edit
 router.get(`/review`, controller.refreshCafe);
+router.post('/register_process', controller.register_process);
 
 router.post('/addReview', controller.addReview);
 export default router;
