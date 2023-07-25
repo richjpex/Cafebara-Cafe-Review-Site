@@ -57,8 +57,8 @@ document.addEventListener("DOMContentLoaded",function() {
                 'Content-Type': 'application/json'
         }
         }).then(response => {
-            console.log(response.data);
             location.reload();
+            console.log(response.data);
         });
 
     });

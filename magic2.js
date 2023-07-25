@@ -1,12 +1,12 @@
 import mongoose from "mongoose";
 
-import { User } from "./schemas/userSchema.js";
-import { Cafe } from "./schemas/cafeSchema.js";
-import { Review } from "./schemas/reviewsSchema.js";
-import { Reply } from "./schemas/ownerReply.js";
+import { User } from "./model/userSchema.js";
+import { Cafe } from "./model/cafeSchema.js";
+import { Review } from "./model/reviewsSchema.js";
+import { Reply } from "./model/ownerReply.js";
 
 //change this to the env
-mongoose.connect('mongodb://127.0.0.1:27017/apdev_test_2', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb://127.0.0.1:27017/apdev_test', { useNewUrlParser: true, useUnifiedTopology: true });
 
 const ownerreplyids = ["64bd8915051d07496bdbca9b", "64bd8915051d07496bdbca9c"]
 
