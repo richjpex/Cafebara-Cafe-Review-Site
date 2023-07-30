@@ -1,7 +1,6 @@
     <script src = "../../scripts/cafe-rating.js"></script>
-    <script src = "../../scripts/edit.js"></script>
 <div class="content">
-    {{> cafePage}}
+    {{> cafePage cafePage}}
 </div>
 
     <!-- collapsible write -->
@@ -46,7 +45,7 @@
         <!-- Turn this into JS -->
         {{#if reviews}}
             {{#each reviews}}
-            {{>review}}
+                {{>review this}}
             {{/each}}
         {{else}}
             <h2>No reviews yet... start one yourself!</h2>

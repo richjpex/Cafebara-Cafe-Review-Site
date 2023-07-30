@@ -38,59 +38,6 @@ document.addEventListener("DOMContentLoaded",function() {
         );
     });
 
-
-    const deleteBtn = document.getElementById("deletebtn");
-    deleteBtn.addEventListener("click",function() {
-        let div = this.parentElement;
-        for(let i = 0; i < 5; i++){
-            div = div.parentElement;
-        }
-        console.log(div);
-
-        const cafe_id = div.children[1].children[0].innerHTML;
-        const user_id = div.children[1].children[1].innerHTML;
-
-        fetch('/deleteReview', {
-            method: "DELETE",
-            body: JSON.stringify({cafe_id, user_id}),
-            headers: {
-                'Content-Type': 'application/json'
-        }
-        }).then(response => {
-            location.reload();
-            console.log(response.data);
-        });
-
-    });
-
-    const submitChanges = document.getElementById("submitChanges");
-    const form = document.forms.editForm;
-    submitChanges.addEventListener("click",function() {
-        const editableforms = document.querySelectorAll(".editable");
-        const review_title = editableforms[0].children[0].innerHTML;
-        const review = editableforms[1].children[0].innerHTML;
-        const parent = this.parentElement.parentElement.parentElement.parentElement;
-        
-        const selectedRatingInput = document.getElementById("selected-rating");
-        const rating = selectedRatingInput.value;
-        const cafe_id = parent.children[1].children[0].innerHTML;
-        const user_id = parent.children[1].children[1].innerHTML;
-        fetch('/editReview', {
-            method: 'PUT',
-            body: JSON.stringify({user_id, cafe_id, review_title, review, rating}),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }).then(response => {
-            console.log(response.data);
-            if (response.status == 200){
-                console.log("A")
-            }
-            else
-                console.log("An error has occurred");
-        })
-    });
-
     const btn = document.getElementById("myBtn");
     let check = true;
     if(btn == null){
