@@ -6,9 +6,6 @@ import { User } from '../model/userSchema.js';
 import { Reply } from '../model/ownerReply.js';
 import bcrypt from 'bcrypt';
 import passport from 'passport';
-import initPassport from './passport-config.js';
-
-initPassport(passport);
 
 const controller = {
 
@@ -64,8 +61,6 @@ const controller = {
     },
 
     getCafes: async function(req, res) {
-        // your code here
-        // do database stuff here
        try{
             const cafes = [];
             const resp = await Cafe.find()
@@ -231,24 +226,28 @@ const controller = {
     },
 
     getLogin: function (req, res) {
-        res.render ('login', {layout: 'logregTemplate'});
+        if(req.isAuthenticated()){
+            res.redirect('/');
+        }
+        else{
+            res.render ('login', {layout: 'logregTemplate'});
+        }
     },
-
-    // logsucc: function (req, res) {
-    //     email = req.body.email;
-    //     isLogged = 1;
-    //     res.redirect(`/`);
-    // },
 
     logout: function (req, res) {
-        email = ``;
-        isLogged = 0;
-        res.redirect(`/`);
+        req.logout(function(err) {
+            if (err) { return next(err); }
+            res.redirect('/');
+          });
     },
 
-
     getRegister: async function (req, res) {
-        res.render ('register', {layout: 'logregTemplate'});
+        if(req.isAuthenticated()){
+            res.redirect('/');
+        }
+        else{
+            res.render ('register', {layout: 'logregTemplate'});
+        }
     },
 
     register_user: async function (req, res) {
@@ -318,100 +317,29 @@ const controller = {
             return res.sendStatus(500);
         }
     },
-    // register_process: async function (req, res) {
-    //     try {
-    //         console.log("check");
-    //         const userdata = req.body;
-
-            
-    //         console.log(userdata);
-            
-            
-    //         // check if email exists in either User or cafe colleciton
-    //         const existingUser = await db.findOne(User, {email: userdata.email}, function(result) {
-    //             if(result != false)
-    //                 user_id = result._id;
-    //         });
-    //         const existingCafe = await db.findOne(Cafe, {email: userdata.email}, function(result) {
-    //             if(result != false)
-    //                 user_id = result._id;
-    //         });
-            
-
-    //         if (existingUser || existingCafe) {
-    //             const queryParams = new URLSearchParams();
-    //             queryParams.append('usertype', userdata.usertype);
-    //             queryParams.append('message', 'Email already exists!');
-    //             const queryString = queryParams.toString();
-    //             return res.redirect(`/`);
-    //         }
-    //         else {
-    //             if(userdata.usertype === 'customer'){
-    //                 // create new user
-    //                 const newUser = new User({
-    //                     password: userdata.password,
-    //                     email: userdata.email,
-    //                     firstname: userdata.firstname,
-    //                     lastname: userdata.lastname,
-                        
-    //                     });
-    //                 console.log(newUser);
-    //                 //save to db
-    //                 newUser.save().then(function (err) {
-    //                     if (err) {
-    //                         console.log(err);
-    //                         const queryParams = new URLSearchParams();
-    //                         queryParams.append('message', 'Error creating user!');
-    //                         return res.redirect(`/`);
-    //                     }
-    //                     res.redirect('/');
-    //                 });
-    //             }   
-    //             else if(userdata.usertype ==='owner'){
-    //                 // create new est profile
-    //                 console.log(userdata)
-    //                 const newCafe = new Cafe({
-    //                     name: userdata.estname,
-    //                     address: userdata.estaddress,
-    //                     email: userdata.email,
-    //                     password: userdata.password,
-    //                 });
-
-    //                 //save to db
-    //                 newCafe.save().then(function (err) {
-    //                     if (err) {
-    //                         const queryParams = new URLSearchParams();
-    //                         queryParams.append('message', 'Error creating establishment!');
-    //                         return res.redirect(`/`);
-    //                     }
-    //                     res.redirect('/');
-    //                 });
-    //             }
-    //         }
-    //     } catch (err) {
-    //         console.error(err);
-    //         return res.sendStatus(500);
-    //     }
-    //     // insert information into DB here
-    //     /*
-    //     @BANANZAI
-    //     req.body.email
-    //     req.body.firstname
-    //     req.body.lastname
-    //     req.body.password
-    //     req.body.confirmpassword
-
-    //     req.body.estname
-    //     req.body.estaddress
-    //     */
-    // },
 
     profile: function (req, res) {
-        res.render ('userProfile', {layout: 'profileTemplate', session: isLogged});
+        if(req.isAuthenticated()){
+            res.render ('userProfile', {
+                layout: 'profileTemplate', 
+                session: req.isAuthenticated()
+            });
+        }
+        else{
+            res.redirect('/');
+        }
     },
 
     settings: function (req, res) {
-        res.render ('settings', {layout: 'profileTemplate', session: isLogged    });
+        if(req.isAuthenticated()){
+            res.render ('settings', {
+                layout: 'profileTemplate', 
+                session: req.isAuthenticated()
+            });
+        }
+        else{
+            res.redirect('/');
+        }
     },
 
     searchcafes: async function (req, res) {
@@ -443,18 +371,19 @@ const controller = {
             res.render('cafes', {
                 cafeCards: cafes,
                 error: "<h2 style='width: 100%; text-align: center;'>No results found...</h2>",
-                session: isLogged
+                session: req.isAuthenticated()
             });
         }
         else{
             res.render('cafes', {
                 cafeCards: cafes,
-                session: isLogged
+                session: req.isAuthenticated()
             });
         }
         
     },
     
+    //TODO this
     deleteReview: async function(req, res) {
         const review_id = req.body.user_id;
         const cafe_id = req.body.cafe_id;
@@ -486,6 +415,7 @@ const controller = {
         res.sendStatus(200);
     },
 
+    //TODO fix this
     editReview: async function(req, res) {
         const review_id = req.body.user_id;
         const cafe_id = req.body.cafe_id;
