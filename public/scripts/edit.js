@@ -48,11 +48,10 @@ document.addEventListener("DOMContentLoaded",function() {
       const parent = this.parentElement.parentElement.parentElement.parentElement;
       
       const rating = selectedRatingInput.value;
-      const cafe_id = document.getElementById("#cafe_id").innerHTML;
-      const user_id = parent.children[1].children[1].innerHTML;
+      const review_id = parent.children[1].children[0].innerHTML;
       fetch('/editReview', {
           method: 'PUT',
-          body: JSON.stringify({user_id, cafe_id, review_title, review, rating}),
+          body: JSON.stringify({review_id, review_title, review, rating}),
           headers: {
               'Content-Type': 'application/json'
           }
@@ -74,17 +73,16 @@ document.addEventListener("DOMContentLoaded",function() {
         }
         console.log(div);
 
-        const cafe_id = div.children[1].children[0].innerHTML;
-        const user_id = div.children[1].children[1].innerHTML;
+        const cafe_id = document.getElementById("#cafe_id").innerHTML;
 
         fetch('/deleteReview', {
             method: "DELETE",
-            body: JSON.stringify({cafe_id, user_id}),
+            body: JSON.stringify({cafe_id}),
             headers: {
                 'Content-Type': 'application/json'
         }
         }).then(response => {
-            location.reload();
+            // location.reload();
             console.log(response.data);
         });
 

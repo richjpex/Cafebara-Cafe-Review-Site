@@ -4,8 +4,6 @@ import { Cafe } from '../model/cafeSchema.js';
 import { Review } from '../model/reviewsSchema.js';
 import { User } from '../model/userSchema.js';
 import { Reply } from '../model/ownerReply.js';
-import bcrypt from 'bcrypt';
-import passport from 'passport';
 
 const controller = {
 
@@ -31,8 +29,6 @@ const controller = {
     },
 
     getAbout: async function(req, res) {
-        if(req.user)
-                console.log(req.user.user)
         try{
             const profilecards = [];
             const result = await About.find();
@@ -98,7 +94,10 @@ const controller = {
                 const reply = await Reply.findOne({_id: reviews[i].ownerReply});
 
                 const reviewer = await User.findOne({_id: reviews[i].reviewer});
-                const author = (email == reviewer.email) ? true: false;
+                let author = false;
+                if(req.user){
+                    author = (reviewer.email == req.user.user.email) ? true: false;
+                }
                     
                 let review = {
                     review: reviews[i].review,
@@ -113,8 +112,7 @@ const controller = {
                     title: reviews[i].review_title,
                     author: author,
                     date: reviewer.dateCreated.toString().substring(11, 15),
-                    //could probably skip this
-                    user_id: reviews[i].reviewer
+                    reviewId: reviews[i]._id
                 };
                 if (reply != null) {
                     review.ownerreplydate = reply.date.toString().substring(0, 15);
@@ -225,99 +223,6 @@ const controller = {
         }
     },
 
-    getLogin: function (req, res) {
-        if(req.isAuthenticated()){
-            res.redirect('/');
-        }
-        else{
-            res.render ('login', {layout: 'logregTemplate'});
-        }
-    },
-
-    logout: function (req, res) {
-        req.logout(function(err) {
-            if (err) { return next(err); }
-            res.redirect('/');
-          });
-    },
-
-    getRegister: async function (req, res) {
-        if(req.isAuthenticated()){
-            res.redirect('/');
-        }
-        else{
-            res.render ('register', {layout: 'logregTemplate'});
-        }
-    },
-
-    register_user: async function (req, res) {
-        try {
-            const userdata = req.body;
-            const existingUser = await User.findOne({email: userdata.email});
-            if(existingUser){
-                const queryParams = new URLSearchParams();
-                queryParams.append('message', 'Email already exists!');
-                const queryString = queryParams.toString();
-                return res.redirect(`/register?${queryString}`);
-            }
-            else{
-                if(userdata.password === userdata.confirmpassword){
-                    const hashedPassword = await bcrypt.hash(req.body.password, 10);
-                    const newUser = new User({
-                        password: hashedPassword,
-                        email: userdata.email,
-                        firstname: userdata.firstname,
-                        lastname: userdata.lastname
-                    });
-                    newUser.save();
-                    res.sendStatus(200)
-                }else{
-                    const queryParams = new URLSearchParams();
-                    queryParams.append('message', 'Passwords do not match!');
-                    const queryString = queryParams.toString();
-                    return res.redirect(`/register?${queryString}`);
-                }
-            }
-        } catch (err) {
-            console.error(err);
-            return res.sendStatus(500);
-        }
-    },
-
-    register_owner: async function (req,res){
-        try{
-            const userdata = req.body;
-            const existingCafe = await Cafe.findOne({email: userdata.email});
-            if(existingCafe){
-                const queryParams = new URLSearchParams();
-                queryParams.append('message', 'Email already exists!');
-                const queryString = queryParams.toString();
-                return res.redirect(`/register?${queryString}`);
-            }
-            else{
-                if(userdata.password === userdata.confirmpassword){
-                    const hashedPassword = await bcrypt.hash(req.body.password, 10);
-                    const newCafe = new Cafe({
-                        name: userdata.estname,
-                        address: userdata.estaddress,
-                        email: userdata.email,
-                        password: hashedPassword
-                    });
-                    newCafe.save();
-                    res.redirect('/login');
-                }else{
-                    const queryParams = new URLSearchParams();
-                    queryParams.append('message', 'Passwords do not match!');
-                    const queryString = queryParams.toString();
-                    return res.redirect(`/register?${queryString}`);
-                }
-            }
-        }catch{
-            console.error(err);
-            return res.sendStatus(500);
-        }
-    },
-
     profile: function (req, res) {
         if(req.isAuthenticated()){
             res.render ('userProfile', {
@@ -342,30 +247,64 @@ const controller = {
         }
     },
 
-    searchcafes: async function (req, res) {
-        const cafes = [];
-        console.log(`Search Query: ${req.body.search}`);
-        // i call the db 
-        // select * from est where=`%req.body.search%`
-        // then just display everything
-        // refresh page with the new list of cafes badabing badaboom!!!
+    // searchcafes: async function (req, res) {
+    //     const cafes = [];
+    //     console.log(`Search Query: ${req.body.search}`);
+    //     // i call the db 
+    //     // select * from est where=`%req.body.search%`
+    //     // then just display everything
+    //     // refresh page with the new list of cafes badabing badaboom!!!
         
-        const v = await db.findAllQuery(Cafe, {name: { $regex : '.*' + req.body.search + '.*', $options: 'i'}}, async function(result){
-                //write here what you want to happen after it finds teh stuff
+    //     const v = await db.findAllQuery(Cafe, {name: { $regex : '.*' + req.body.search + '.*', $options: 'i'}}, async function(result){
+    //             //write here what you want to happen after it finds teh stuff
      
-                for(let i = 0; i < result.length; i++){
-                    await db.findAllQuery(Review, {cafeName: result[i]._id}, function(result2) {
-                        cafes.push({
-                            cafeName: result[i].name,
-                            numOfReviews: result2.length,
-                            cafeShortInfo: result[i].description,
-                            open_details: result[i].weekdays_avail,
-                            cafeImg: result[i].image,
-                            price: result[i].price,
-                        });
-                    })
-                }
-        });
+    //             for(let i = 0; i < result.length; i++){
+    //                 await db.findAllQuery(Review, {cafeName: result[i]._id}, function(result2) {
+    //                     cafes.push({
+    //                         cafeName: result[i].name,
+    //                         numOfReviews: result2.length,
+    //                         cafeShortInfo: result[i].description,
+    //                         open_details: result[i].weekdays_avail,
+    //                         cafeImg: result[i].image,
+    //                         price: result[i].price,
+    //                     });
+    //                 })
+    //             }
+    //     });
+
+    //     if (cafes.length == 0) {
+    //         res.render('cafes', {
+    //             cafeCards: cafes,
+    //             error: "<h2 style='width: 100%; text-align: center;'>No results found...</h2>",
+    //             session: req.isAuthenticated()
+    //         });
+    //     }
+    //     else{
+    //         res.render('cafes', {
+    //             cafeCards: cafes,
+    //             session: req.isAuthenticated()
+    //         });
+    //     }
+        
+    // },
+
+    searchcafes: async function (req, res) {
+        console.log(`Search Query: ${req.body.search}`);
+
+        const cafes = [];
+        const cafeList = await Cafe.find({name: { $regex : '.*' + req.body.search + '.*', $options: 'i'}})
+        for(let i = 0; i < cafes.length; i++){
+            const review = await Review.find({cafeName: cafes[i]._id})
+            
+            cafes.push({
+                cafeName: cafeList[i].name,
+                numOfReviews: review.length,
+                cafeShortInfo: cafeList[i].description,
+                open_details: cafeList[i].weekdays_avail,
+                cafeImg: cafeList[i].image,
+                price: cafeList[i].price,
+            });
+        }
 
         if (cafes.length == 0) {
             res.render('cafes', {
@@ -384,64 +323,100 @@ const controller = {
     },
     
     //TODO this
-    deleteReview: async function(req, res) {
-        const review_id = req.body.user_id;
-        const cafe_id = req.body.cafe_id;
-        let ownerreplyID;
-        console.log(review_id + cafe_id)
-        const resp2 = await db.findOne(Review, {reviewer: review_id, cafeName: cafe_id}, function(flag) {
-            if(flag.ownerReply != null){
-                ownerreplyID = flag.ownerReply;                
-            }
-        });
+    // deleteReview: async function(req, res) {
+    //     const review_id = req.body.user_id;
+    //     const cafe_id = req.body.cafe_id;
+    //     let ownerreplyID;
+    //     console.log(review_id + cafe_id)
+    //     const resp2 = await db.findOne(Review, {reviewer: review_id, cafeName: cafe_id}, function(flag) {
+    //         if(flag.ownerReply != null){
+    //             ownerreplyID = flag.ownerReply;                
+    //         }
+    //     });
 
-        const resp3 = await db.deleteOne(Reply, {_id: ownerreplyID}, function(flag) {
-            if(flag != false){
-                console.log("Owner reply deleted");
-            }
-            else{
-                console.log("Owner reply not deleted");
-            }
-        });
+    //     const resp3 = await db.deleteOne(Reply, {_id: ownerreplyID}, function(flag) {
+    //         if(flag != false){
+    //             console.log("Owner reply deleted");
+    //         }
+    //         else{
+    //             console.log("Owner reply not deleted");
+    //         }
+    //     });
         
-        const resp = await db.deleteOne(Review, {reviewer: review_id, cafeName: cafe_id}, function(flag) {
-            if(flag != false){
-                console.log("Review deleted");
-            }
-            else{
-                console.log("Review not deleted");
-            }
-        });
-        res.sendStatus(200);
-    },
+    //     const resp = await db.deleteOne(Review, {reviewer: review_id, cafeName: cafe_id}, function(flag) {
+    //         if(flag != false){
+    //             console.log("Review deleted");
+    //         }
+    //         else{
+    //             console.log("Review not deleted");
+    //         }
+    //     });
+    //     res.sendStatus(200);
+    // },
 
-    //TODO fix this
-    editReview: async function(req, res) {
-        const review_id = req.body.user_id;
-        const cafe_id = req.body.cafe_id;
-        const newReview = req.body.review;
-        const newTitle = req.body.review_title;
-        const newRating = req.body.rating;
-        console.log(newRating)
-        const resp = await db.updateOne(Review, {reviewer: review_id, cafeName: cafe_id}, {review: newReview, review_title: newTitle, rating: newRating}, function(flag) {
-            if(flag != false){
-                console.log("Review updated");
+    deleteReview: async function(req, res) {
+        try{
+            const review_id = req.user.user._id;
+            const cafe_id = req.body.cafe_id;
+            const review = await Review.findOne({reviewer: review_id, cafeName: cafe_id});
+
+            if(review.ownerReply != null){
+                await Reply.deleteOne({_id: review.ownerReply});
             }
-            else{
-                console.log("Review not updated");
-            }
-        });
+
+            await Review.deleteOne({reviewer: review_id, cafeName: cafe_id});
+            res.sendStatus(200);
+        }catch{
+            res.sendStatus(400)
+        }
     },
     
-    loginAuth: async function(req, res, next) {
-        console.log(req.cookies)
-        passport.authenticate('local', {
-            successRedirect: '/',
-            failureRedirect: '/login',
-            failureFlash: true
-        })(req, res, next);
-    }
 
+    // //TODO fix this
+    // editReview: async function(req, res) {
+    //     const review_id = req.body.user_id;
+    //     const cafe_id = req.body.cafe_id;
+    //     const newReview = req.body.review;
+    //     const newTitle = req.body.review_title;
+    //     const newRating = req.body.rating;
+    //     console.log(newRating)
+    //     const resp = await db.updateOne(Review, {reviewer: review_id, cafeName: cafe_id}, {review: newReview, review_title: newTitle, rating: newRating}, function(flag) {
+    //         if(flag != false){
+    //             console.log("Review updated");
+    //         }
+    //         else{
+    //             console.log("Review not updated");
+    //         }
+    //     });
+    // },
+
+    editReview: async function(req, res) {
+        try{
+            const review_id = req.body.review_id;
+            const newReview = req.body.review;
+            const newTitle = req.body.review_title;
+            const newRating = req.body.rating;
+            await Review.updateOne({_id: review_id}, {review: newReview, review_title: newTitle, rating: newRating});
+            res.sendStatus(200);
+        }
+        catch{
+            res.sendStatus(400)
+        }
+    },
+
+    /*TODO
+    - add owner reply
+    - add owner reply date
+    - add owner reply text
+    - add upvotes and downvotes
+    - add media
+    - add date modified
+    - add owner index (if statement using req.user.type)
+      - adjust navbar accordingly
+    */
+
+
+    
 }
 
 export default controller;

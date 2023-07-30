@@ -15,7 +15,6 @@ const loginController = {
     },
 
     loginAuth: async function(req, res, next) {
-        console.log(req.cookies)
         passport.authenticate('local', {
             successRedirect: '/',
             failureRedirect: '/login',
@@ -59,7 +58,7 @@ const loginController = {
                         lastname: userdata.lastname
                     });
                     newUser.save();
-                    res.sendStatus(200)
+                    res.redirect('/login');
                 }else{
                     const queryParams = new URLSearchParams();
                     queryParams.append('message', 'Passwords do not match!');
@@ -68,7 +67,7 @@ const loginController = {
                 }
             }
         } catch (err) {
-            console.error(err);
+            console.log(err);
             return res.sendStatus(500);
         }
     },
@@ -102,7 +101,7 @@ const loginController = {
                 }
             }
         }catch{
-            console.error(err);
+            console.log(err);
             return res.sendStatus(500);
         }
     }
