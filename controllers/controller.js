@@ -112,8 +112,10 @@ const controller = {
                     title: reviews[i].review_title,
                     author: author,
                     date: reviewer.dateCreated.toString().substring(11, 15),
-                    reviewId: reviews[i]._id
+                    reviewId: reviews[i]._id,
                 };
+                if(reviews[i].dateModified != null)
+                    review.editdate = reviews[i].dateModified.toString().substring(0, 15);
                 if (reply != null) {
                     review.ownerreplydate = reply.date.toString().substring(0, 15);
                     review.ownerreply = reply.reply_text;
@@ -142,54 +144,12 @@ const controller = {
                 reviews: reviewList,
                 session: req.isAuthenticated()
             });
-        }catch{
+        }catch(err){
+            console.log(err)
             res.sendStatus(400)
         }
  
      },
-
-    // addReview: async function(req, res) {
-    //     const cafeName = req.body.cafeName;
-    //     const review = req.body.review;
-    //     const review_title = req.body.review_title;
-    //     const rating = req.body.rating;
-    //     const dateCreated = req.body.dateCreated;
-    //     const media = req.body.media;
-    //     const user = email;
-    //     let user_id;
-    //     let cafe_id;
-        
-    //     const resp1 = await db.findOne(User, {email: user}, function(result) {
-    //         if(result != false)
-    //             user_id = result._id;
-    //     });
-    //     const resp2 = await db.findOne(Cafe, {name: cafeName}, function(result2) {
-    //         if(result2){
-    //             cafe_id = result2._id;
-    //         }
-    //     });
-    //     const newReview = {
-    //         cafeName: cafe_id,
-    //         reviewer: user_id,
-    //         review: review,
-    //         review_title: review_title,
-    //         rating: rating,
-    //         dateCreated: dateCreated,
-    //         mediaPath: media,
-    //         ownerreply: null
-    //     };
-
-    //     const resp3 = await db.insertOne(Review, newReview, function(flag) {
-    //         if(flag!=false){
-    //             console.log("Review added");
-    //         }
-    //         else{
-    //             console.log("Review not added");
-    //         }
-    //     });
-
-    //     res.redirect('/review?cafeid=' + cafe_id);
-    // },
 
     addReview: async function(req, res) {
         try{
@@ -293,8 +253,8 @@ const controller = {
 
         const cafes = [];
         const cafeList = await Cafe.find({name: { $regex : '.*' + req.body.search + '.*', $options: 'i'}})
-        for(let i = 0; i < cafes.length; i++){
-            const review = await Review.find({cafeName: cafes[i]._id})
+        for(let i = 0; i < cafeList.length; i++){
+            const review = await Review.find({cafeName: cafeList[i]._id})
             
             cafes.push({
                 cafeName: cafeList[i].name,
@@ -396,10 +356,11 @@ const controller = {
             const newReview = req.body.review;
             const newTitle = req.body.review_title;
             const newRating = req.body.rating;
-            await Review.updateOne({_id: review_id}, {review: newReview, review_title: newTitle, rating: newRating});
+            await Review.updateOne({_id: review_id}, {review: newReview, review_title: newTitle, rating: newRating, dateModified: Date.now()});
             res.sendStatus(200);
         }
-        catch{
+        catch(err){
+            console.log(err);
             res.sendStatus(400)
         }
     },
