@@ -183,12 +183,96 @@ const controller = {
         }
     },
 
-    profile: function (req, res) {
+    profile: async function (req, res) {
         if(req.isAuthenticated()){
-            res.render ('userProfile', {
-                layout: 'profileTemplate', 
-                session: req.isAuthenticated()
-            });
+            if(req.user.type == 'user'){
+                const userDetails = await User.findOne({_id: req.user.user._id});
+                const reviews = await Review.find({reviewer: req.user.user._id});
+                const reviewList = [];
+                let five = 0;
+                let four = 0;
+                let three = 0;
+                let two = 0;
+                let one = 0;
+                for(let i = 0; i < reviews.length; i++){
+                    const cafe = await Cafe.findOne({_id: reviews[i].cafeName});
+                    reviewList.push({
+                        cafe: cafe.name,
+                        title: reviews[i].review_title,
+                        rating: reviews[i].rating,
+                        reviewtext: reviews[i].review,
+                        cafeimg: cafe.image,
+                    })
+                    switch(reviewList[i].rating){
+                        case 5:
+                            five++; break;
+                        case 4:
+                            four++; break;
+                        case 3:
+                            three++; break;
+                        case 2:
+                            two++; break;
+                        case 1:
+                            one++; break;
+                    }
+                }
+
+                const userdetails = {
+                    imgsrc: userDetails.profilepic,
+                    username: userDetails.firstname + " " + userDetails.lastname,
+                    memberyear: userDetails.dateCreated.toString().substring(11, 15),
+                    bio: userDetails.bio,
+                    go: five,
+                    shi: four,
+                    san: three,
+                    ni: two,
+                    ichi: one,
+                }
+
+                res.render ('userProfile', {
+                    layout: 'profileTemplate', 
+                    userProfile: userdetails,
+                    reviews: reviewList,
+                    session: req.isAuthenticated()
+                });
+            }
+            else if(req.user.type == 'cafe'){
+
+                const cafe = await Cafe.findOne({_id: req.user.user._id});
+                const reviews = await Review.find({cafeName: req.user.user._id});
+                const reviewList = [];
+                let average = 0;
+                for(let i = 0; i < reviews.length; i++){
+                    const user = await User.findOne({_id: reviews[i].reviewer});
+                    reviewList.push({
+                        reviewtext: reviews[i].review,
+                        title: reviews[i].review_title,
+                        media: reviews[i].mediaPath,
+                        username: user.firstname + " " + user.lastname,
+                        reviewdate: reviews[i].dateCreated.toString().substring(0, 15),
+                        rating: reviews[i].rating,
+                        memberyear: user.dateCreated.toString().substring(11, 15),
+                        userimg: user.profilepic,
+                        reviewId: reviews[i]._id,
+                    })
+                    average += reviews[i].rating;
+                }
+                average /= reviews.length;
+
+                const cafedetails = {
+                    cafeimg: cafe.image,
+                    cafeName: cafe.name,
+                    description: cafe.description,
+                    numreviews: reviews.length,
+                }
+
+                res.render ('cafeProfile', { //edit to correct one
+                    layout: 'ownerTemplate',
+                    ownerprofile: cafedetails,
+                    reviews: reviewList,
+                    session: req.isAuthenticated()
+                });
+            }
         }
         else{
             res.redirect('/');
@@ -206,47 +290,6 @@ const controller = {
             res.redirect('/');
         }
     },
-
-    // searchcafes: async function (req, res) {
-    //     const cafes = [];
-    //     console.log(`Search Query: ${req.body.search}`);
-    //     // i call the db 
-    //     // select * from est where=`%req.body.search%`
-    //     // then just display everything
-    //     // refresh page with the new list of cafes badabing badaboom!!!
-        
-    //     const v = await db.findAllQuery(Cafe, {name: { $regex : '.*' + req.body.search + '.*', $options: 'i'}}, async function(result){
-    //             //write here what you want to happen after it finds teh stuff
-     
-    //             for(let i = 0; i < result.length; i++){
-    //                 await db.findAllQuery(Review, {cafeName: result[i]._id}, function(result2) {
-    //                     cafes.push({
-    //                         cafeName: result[i].name,
-    //                         numOfReviews: result2.length,
-    //                         cafeShortInfo: result[i].description,
-    //                         open_details: result[i].weekdays_avail,
-    //                         cafeImg: result[i].image,
-    //                         price: result[i].price,
-    //                     });
-    //                 })
-    //             }
-    //     });
-
-    //     if (cafes.length == 0) {
-    //         res.render('cafes', {
-    //             cafeCards: cafes,
-    //             error: "<h2 style='width: 100%; text-align: center;'>No results found...</h2>",
-    //             session: req.isAuthenticated()
-    //         });
-    //     }
-    //     else{
-    //         res.render('cafes', {
-    //             cafeCards: cafes,
-    //             session: req.isAuthenticated()
-    //         });
-    //     }
-        
-    // },
 
     searchcafes: async function (req, res) {
         console.log(`Search Query: ${req.body.search}`);
@@ -281,38 +324,6 @@ const controller = {
         }
         
     },
-    
-    //TODO this
-    // deleteReview: async function(req, res) {
-    //     const review_id = req.body.user_id;
-    //     const cafe_id = req.body.cafe_id;
-    //     let ownerreplyID;
-    //     console.log(review_id + cafe_id)
-    //     const resp2 = await db.findOne(Review, {reviewer: review_id, cafeName: cafe_id}, function(flag) {
-    //         if(flag.ownerReply != null){
-    //             ownerreplyID = flag.ownerReply;                
-    //         }
-    //     });
-
-    //     const resp3 = await db.deleteOne(Reply, {_id: ownerreplyID}, function(flag) {
-    //         if(flag != false){
-    //             console.log("Owner reply deleted");
-    //         }
-    //         else{
-    //             console.log("Owner reply not deleted");
-    //         }
-    //     });
-        
-    //     const resp = await db.deleteOne(Review, {reviewer: review_id, cafeName: cafe_id}, function(flag) {
-    //         if(flag != false){
-    //             console.log("Review deleted");
-    //         }
-    //         else{
-    //             console.log("Review not deleted");
-    //         }
-    //     });
-    //     res.sendStatus(200);
-    // },
 
     deleteReview: async function(req, res) {
         try{
@@ -330,25 +341,6 @@ const controller = {
             res.sendStatus(400)
         }
     },
-    
-
-    // //TODO fix this
-    // editReview: async function(req, res) {
-    //     const review_id = req.body.user_id;
-    //     const cafe_id = req.body.cafe_id;
-    //     const newReview = req.body.review;
-    //     const newTitle = req.body.review_title;
-    //     const newRating = req.body.rating;
-    //     console.log(newRating)
-    //     const resp = await db.updateOne(Review, {reviewer: review_id, cafeName: cafe_id}, {review: newReview, review_title: newTitle, rating: newRating}, function(flag) {
-    //         if(flag != false){
-    //             console.log("Review updated");
-    //         }
-    //         else{
-    //             console.log("Review not updated");
-    //         }
-    //     });
-    // },
 
     editReview: async function(req, res) {
         try{
@@ -366,17 +358,22 @@ const controller = {
     },
 
     /*TODO
-    - add owner reply
-    - add owner reply date
-    - add owner reply text
-    - add upvotes and downvotes
-    - add media
-    - add date modified
-    - add owner index (if statement using req.user.type)
-      - adjust navbar accordingly
+    - owner profile - half done - implement pagination
+        - add owner reply
+        - add owner reply date
+        - add owner reply text
+    
+    - finish register
+    - fix owner navbar and redirect
+    - edit profile page
+    - upvotes and downvotes (might need to change how the db stores data so the page knows when the user has liked something already)
+    - handle adding of media for reviews
+    - change media in edit review
+    - is the read more thing fixed?
+    - fix navbar highlights
+    - fix magic and magic2.js for hashed passwords (and whatever change occurs bc of upvotes and downvotes)
+    - view other user's profile
     */
-
-
     
 }
 

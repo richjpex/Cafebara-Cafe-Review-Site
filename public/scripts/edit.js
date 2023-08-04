@@ -46,9 +46,11 @@ document.addEventListener("DOMContentLoaded",function() {
       const review_title = editableforms[0].children[0].innerHTML;
       const review = editableforms[1].children[0].innerHTML;
       const parent = this.parentElement.parentElement.parentElement.parentElement;
+
       
       const rating = selectedRatingInput.value;
       const review_id = parent.children[1].children[0].innerHTML;
+      console.log(JSON.stringify({review_id, review_title, review, rating}))
       fetch('/editReview', {
           method: 'PUT',
           body: JSON.stringify({review_id, review_title, review, rating}),
@@ -73,7 +75,7 @@ document.addEventListener("DOMContentLoaded",function() {
         }
         console.log(div);
 
-        const cafe_id = document.getElementById("#cafe_id").innerHTML;
+        const cafe_id = document.getElementById("cafe_id").innerHTML;
 
         fetch('/deleteReview', {
             method: "DELETE",
@@ -82,8 +84,8 @@ document.addEventListener("DOMContentLoaded",function() {
                 'Content-Type': 'application/json'
         }
         }).then(response => {
-            // location.reload();
-            console.log(response.data);
+            location.reload();
+            // console.log(response.data);
         });
 
     });

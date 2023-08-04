@@ -76,6 +76,9 @@
                         <input type="hidden" id="selected-rating" value="0" />
                     <br>
                     <span class = "review_date">Reviewed on {{reviewdate}}</span>
+                    {{#if editdate}}
+                    <br><span class = "review_date">Last edited on {{editdate}}</span>
+                    {{/if}}
                 </div>
                 <div class="review_comment crop editable">
                     <p>
@@ -127,8 +130,7 @@
                 {{/if}}
             </div>
         <div class = "metadata" hidden = "true" display = "none">
-            <span class = "cafeId">{{cafe_id}}</span>
-            <span class = "userId">{{user_id}}</span>
+                <span class = "reviewId">{{reviewId}}</span>
         </div>
 </div>
     {{else}}
@@ -194,6 +196,9 @@
                     {{/equals}}
                     <br>
                     <span class = "review_date">Reviewed on {{reviewdate}}</span>
+                    {{#if editdate}}
+                    <br><span class = "review_date">Last edited on {{editdate}}</span>
+                    {{/if}}
                     </div>
                 <div class="review_comment crop">
                     <p>

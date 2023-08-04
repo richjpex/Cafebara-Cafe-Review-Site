@@ -7,7 +7,10 @@ const loginController = {
 
     getLogin: function (req, res) {
         if(req.isAuthenticated()){
-            res.redirect('/');
+            if(req.user.type === 'user')
+                res.redirect('/');
+            else if(req.user.type === 'cafe')
+                res.redirect('/myprofile');
         }
         else{
             res.render ('login', {layout: 'logregTemplate'});

@@ -23,9 +23,12 @@ async function initPassport(passport){
                 }
             }
             else if (cafe != null){
-                if (await bcrypt.compare(password, cafe.password)){
+                // if (await bcrypt.compare(password, cafe.password)){
+                if (password == cafe.password){
+                    console.log("cafe")
                     return done(null, {cafe, 'type': 'cafe'})
                 } else {
+                    console.log("wrong pass")
                     return done(null, false, {message: 'Password incorrect'})
                 }
             }
@@ -35,7 +38,13 @@ async function initPassport(passport){
     }
     
     passport.use(new LocalStrategy({usernameField: 'email'}, authenticateUser))
-    passport.serializeUser(({user, type}, done) => done(null, {id: user._id, type}))
+    passport.serializeUser(({user, cafe, type}, done) => {
+            if (user != null)
+                done(null, {id: user._id, type})
+            else if (cafe != null)
+                done(null, {id: cafe._id, type})
+        }
+    )
     await passport.deserializeUser(async ({id, type}, done) => {
         if (type == 'user')
             return done(null, {'user': await getUserById(id), type})
