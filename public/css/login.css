@@ -71,13 +71,6 @@
     background-color: var(--primary);
     padding: 0 16px;
   }
-  
-  body {
-      background-color: #fafafa;
-      background-image: url('../images/leaf_bg.png');
-      background-repeat: no-repeat;
-      background-attachment: fixed;
-  }
 
 div.container {
     display:flex;
