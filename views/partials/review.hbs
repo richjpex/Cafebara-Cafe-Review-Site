@@ -3,17 +3,19 @@
 <div class = "review_wrapper">
             <div class="review_post">
                 <div class="prof_header" >
-                    <div class="profpic_container"> 
-                        <img src=".{{profilepic}}" class="profpic"/>
-                    </div>
-                    <div class = "userinfo">
-                        <div class="profname">
-                            {{username}}
+                    <a href = "/myprofile">
+                        <div class="profpic_container"> 
+                            <img src=".{{profilepic}}" class="profpic"/>
                         </div>
-                        <div class="member_duration">
-                            member since {{date}}
+                        <div class = "userinfo">
+                            <div class="profname">
+                                {{username}}
+                            </div>
+                            <div class="member_duration">
+                                member since {{date}}
+                            </div>
                         </div>
-                    </div>
+                    </a>
                     
                     <div class="dropdown options">
                         <button class="btn " type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -34,37 +36,12 @@
                         <span class = "review_title">{{title}}</span><br>
                     </div>
                     <div class = "ratings">
-                        {{#equals rating 5}}
-                    <img src="../../images/ratings/full.png"/>
-                    <img src="../../images/ratings/full.png"/>
-                    <img src="../../images/ratings/full.png"/>
-                    <img src="../../images/ratings/full.png"/>
-                    <img src="../../images/ratings/full.png"/>
-                    {{else equals rating 4}}
-                    <img src="../../images/ratings/full.png"/>
-                    <img src="../../images/ratings/full.png"/>
-                    <img src="../../images/ratings/full.png"/>
-                    <img src="../../images/ratings/full.png"/>
-                    <img src="../../images/ratings/empty.png"/>
-                    {{else equals rating 3}}
-                    <img src="../../images/ratings/full.png"/>
-                    <img src="../../images/ratings/full.png"/>
-                    <img src="../../images/ratings/full.png"/>
-                    <img src="../../images/ratings/empty.png"/>
-                    <img src="../../images/ratings/empty.png"/>
-                    {{else equals rating 2}}
-                    <img src="../../images/ratings/full.png"/>
-                    <img src="../../images/ratings/full.png"/>
-                    <img src="../../images/ratings/empty.png"/>
-                    <img src="../../images/ratings/empty.png"/>
-                    <img src="../../images/ratings/empty.png"/>
-                    {{else equals rating 1}}
-                    <img src="../../images/ratings/full.png"/>
-                    <img src="../../images/ratings/empty.png"/>
-                    <img src="../../images/ratings/empty.png"/>
-                    <img src="../../images/ratings/empty.png"/>
-                    <img src="../../images/ratings/empty.png"/>
-                    {{/equals}}
+                        <img src="../../images/ratings/{{#grequals rating 1}}full{{else}}empty{{/grequals}}.png"/>
+                        <img src="../../images/ratings/{{#grequals rating 2}}full{{else}}empty{{/grequals}}.png"/>
+                        <img src="../../images/ratings/{{#grequals rating 3}}full{{else}}empty{{/grequals}}.png"/>
+                        <img src="../../images/ratings/{{#grequals rating 4}}full{{else}}empty{{/grequals}}.png"/>
+                        <img src="../../images/ratings/{{#grequals rating 5}}full{{else}}empty{{/grequals}}.png"/>
+                    
                     </div>
                     <div class="hidden other-rating-container">
                         <span class="star" data-rating="1"></span>
@@ -137,17 +114,19 @@
     <div class = "review_wrapper">
             <div class="review_post">
                 <div class="prof_header" >
-                    <div class="profpic_container"> 
-                        <img src=".{{profilepic}}" class="profpic"/>
-                    </div>
-                    <div class = "userinfo">
-                        <div class="profname">
-                            {{username}}
+                    <a href = "/user/{{username}}">
+                        <div class="profpic_container"> 
+                            <img src=".{{profilepic}}" class="profpic"/>
                         </div>
-                        <div class="member_duration">
-                            member since {{date}}
+                        <div class = "userinfo">
+                            <div class="profname">
+                                {{username}}
+                            </div>
+                            <div class="member_duration">
+                                member since {{date}}
+                            </div>
                         </div>
-                    </div>
+                    </a>
                     <div class="dropdown options">
                         <button class="btn " type="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">

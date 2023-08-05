@@ -29,12 +29,12 @@ router.post(`/register_owner`, loginController.register_owner);
 //profile gets
 router.get(`/myprofile`, controller.profile);
 router.get(`/settings`, controller.settings);
-
+router.get(`/user/:username`, controller.userProfile);
 
 //POSTS
 router.post('/addReview', controller.addReview);
-
-router.post(`/cafe`, controller.searchcafes)
+router.post(`/cafe`, controller.searchcafes);
+router.post(`/reply`, controller.reply);
 
 //DELETES
 router.delete('/deleteReview', controller.deleteReview);

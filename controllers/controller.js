@@ -9,6 +9,12 @@ const controller = {
 
     getIndex: async function(req, res) {
         try{
+            if(req.isAuthenticated()){
+                if(req.user.type == 'cafe'){
+                    res.redirect('/myprofile');
+                    return
+                }
+            }
             const cafeCarouselCards = [];
             const resp = await Cafe.find().sort({dateCreated:-1}).limit(5)
             for(let i = 0; i < resp.length; i++){
@@ -69,12 +75,14 @@ const controller = {
                     open_details: resp[i].weekdays_avail,
                     cafeImg: resp[i].image,
                     price: resp[i].price,
+                    rating: resp[i].rating
                 });
             };
 
             res.render('cafes', {
                 cafeCards: cafes,
-                session: req.isAuthenticated()
+                session: req.isAuthenticated(),
+                isCafe: true
             });
         }catch{
             res.sendStatus(400)
@@ -135,14 +143,15 @@ const controller = {
                 numReviews: reviewList.length,
                 menu: cafe.menu,
                 address: cafe.address,
-                cafe_id: cafe._id
+                cafe_id: cafe._id,
+                rating: cafe.rating
             };
 
             res.render("viewCafe", {
                 layout: 'cafeTemplate',
                 cafePage: cafeView,
                 reviews: reviewList,
-                session: req.isAuthenticated()
+                session: req.isAuthenticated(),
             });
         }catch(err){
             console.log(err)
@@ -177,6 +186,9 @@ const controller = {
 
             const newReview = new Review(newDoc);
             await newReview.save();
+            cafe.rating = (cafe.rating + rating)/2;
+            await cafe.save();
+
             res.sendStatus(200)
         } catch{
             res.sendStatus(400)
@@ -233,7 +245,8 @@ const controller = {
                     layout: 'profileTemplate', 
                     userProfile: userdetails,
                     reviews: reviewList,
-                    session: req.isAuthenticated()
+                    session: req.isAuthenticated(),
+                    isProfile: true
                 });
             }
             else if(req.user.type == 'cafe'){
@@ -244,6 +257,7 @@ const controller = {
                 let average = 0;
                 for(let i = 0; i < reviews.length; i++){
                     const user = await User.findOne({_id: reviews[i].reviewer});
+                    const reply = await Reply.findOne({_id: reviews[i].ownerReply});
                     reviewList.push({
                         reviewtext: reviews[i].review,
                         title: reviews[i].review_title,
@@ -255,22 +269,27 @@ const controller = {
                         userimg: user.profilepic,
                         reviewId: reviews[i]._id,
                     })
+                    if(reply != null){
+                        reviewList[i].reply = reply.reply_text;
+                        reviewList[i].reply_date = reply.date.toString().substring(0, 15);
+                    }
                     average += reviews[i].rating;
                 }
                 average /= reviews.length;
-
+                console.log(average)
                 const cafedetails = {
                     cafeimg: cafe.image,
                     cafeName: cafe.name,
                     description: cafe.description,
                     numreviews: reviews.length,
+                    rating: average
                 }
-
                 res.render ('cafeProfile', { //edit to correct one
                     layout: 'ownerTemplate',
                     ownerprofile: cafedetails,
                     reviews: reviewList,
-                    session: req.isAuthenticated()
+                    session: req.isAuthenticated(),
+                    owner: true
                 });
             }
         }
@@ -348,7 +367,15 @@ const controller = {
             const newReview = req.body.review;
             const newTitle = req.body.review_title;
             const newRating = req.body.rating;
-            await Review.updateOne({_id: review_id}, {review: newReview, review_title: newTitle, rating: newRating, dateModified: Date.now()});
+
+            if(newRating != 0){
+                await Review.updateOne({_id: review_id}, {review: newReview, review_title: newTitle, rating: newRating, dateModified: Date.now()});
+                const rev = Review.findOne({_id: review_id});
+                const cafe = Cafe.findOne({_id: rev.cafeName});
+                cafe.rating = (cafe.rating + newRating)/2;
+            }
+            else
+                await Review.updateOne({_id: review_id}, {review: newReview, review_title: newTitle, dateModified: Date.now()});
             res.sendStatus(200);
         }
         catch(err){
@@ -357,22 +384,101 @@ const controller = {
         }
     },
 
+     userProfile: async function (req, res) {
+        try{
+            const username = req.params.username;
+            const split = username.split("%20")[0].split(" ");
+            console.log(split)
+            const userDetails = await User.findOne({firstname: split[0], lastname: split[1]});
+            const reviews = await Review.find({reviewer: userDetails._id});
+            const reviewList = [];
+            let five = 0;
+            let four = 0;
+            let three = 0;
+            let two = 0;
+            let one = 0;
+            for(let i = 0; i < reviews.length; i++){
+                const cafe = await Cafe.findOne({_id: reviews[i].cafeName});
+                reviewList.push({
+                    cafe: cafe.name,
+                    title: reviews[i].review_title,
+                    rating: reviews[i].rating,
+                    reviewtext: reviews[i].review,
+                    cafeimg: cafe.image,
+                })
+                switch(reviewList[i].rating){
+                    case 5:
+                        five++; break;
+                    case 4:
+                        four++; break;
+                    case 3:
+                        three++; break;
+                    case 2:
+                        two++; break;
+                    case 1:
+                        one++; break;
+                }
+            }
+
+            const userdetails = {
+                imgsrc: userDetails.profilepic,
+                username: userDetails.firstname + " " + userDetails.lastname,
+                memberyear: userDetails.dateCreated.toString().substring(11, 15),
+                bio: userDetails.bio,
+                go: five,
+                shi: four,
+                san: three,
+                ni: two,
+                ichi: one,
+            }
+
+            res.render ('userProfile', {
+                layout: 'profileTemplate', 
+                userProfile: userdetails,
+                reviews: reviewList,
+                session: req.isAuthenticated()
+            });
+        }catch(err){
+            res.sendStatus(400)
+        }
+    },
+
+    reply: async function(req, res) {
+        try{
+            const review_id = req.body.reviewId;
+            const reply = req.body.reply;
+
+            const doc = {
+                reply_text: reply,
+                date: Date.now()
+            }
+
+            const newReply = new Reply(doc);
+            await newReply.save();
+
+            await Review.updateOne({_id: review_id}, {ownerReply: newReply._id});
+        }
+        catch(err){
+            console.log(err);
+            res.sendStatus(400)
+        }
+
+    }
+
     /*TODO
-    - owner profile - half done - implement pagination
-        - add owner reply
-        - add owner reply date
-        - add owner reply text
+    - owner profile 
+        - fix showing of capybaras
     
+    - cafe menu should hold either an image or image path
+    - implement pagination
     - finish register
-    - fix owner navbar and redirect
     - edit profile page
     - upvotes and downvotes (might need to change how the db stores data so the page knows when the user has liked something already)
     - handle adding of media for reviews
     - change media in edit review
     - is the read more thing fixed?
-    - fix navbar highlights
     - fix magic and magic2.js for hashed passwords (and whatever change occurs bc of upvotes and downvotes)
-    - view other user's profile
+    - dont forget to change passport-config to the hash password one
     */
     
 }
