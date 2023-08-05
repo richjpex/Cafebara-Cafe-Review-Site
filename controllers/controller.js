@@ -466,8 +466,7 @@ const controller = {
     }
 
     /*TODO
-    - owner profile 
-        - fix showing of capybaras
+    - owner profile i feel there is stuff im missing
     
     - cafe menu should hold either an image or image path
     - implement pagination
