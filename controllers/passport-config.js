@@ -13,24 +13,26 @@ async function initPassport(passport){
         }
         try{
             if (user != null){
-                // if (await bcrypt.compare(password, user.password)){
-                if (password == user.password){
-                    console.log("user")
-                    return done(null, {user, 'type': 'user'})
-                } else {
-                    console.log("user wrong pass")
-                    return done(null, false, {message: 'Password incorrect'})
-                }
+                if (await bcrypt.compare(password, user.password)){
+                    //if (password == user.password){
+                        console.log("user")
+                        return done(null, {user, 'type': 'user'})
+                    } else {
+                        console.log("user wrong pass")
+                        return done(null, false, {message: 'Password incorrect'})
+                    }
+                
             }
             else if (cafe != null){
-                // if (await bcrypt.compare(password, cafe.password)){
-                if (password == cafe.password){
-                    console.log("cafe")
-                    return done(null, {cafe, 'type': 'cafe'})
-                } else {
-                    console.log("wrong pass")
-                    return done(null, false, {message: 'Password incorrect'})
-                }
+                if (await bcrypt.compare(password, cafe.password)){
+                    //if (password == cafe.password){
+                        console.log("cafe")
+                        return done(null, {cafe, 'type': 'cafe'})
+                    } else {
+                        console.log("wrong pass")
+                        return done(null, false, {message: 'Password incorrect'})
+                    }
+                
             }
         } catch (e){
             return done(e)

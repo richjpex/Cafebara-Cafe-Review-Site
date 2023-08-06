@@ -41,69 +41,65 @@ const loginController = {
         }
     },
 
-    register_user: async function (req, res) {
+    register_process: async function(req, res) {
         try {
             const userdata = req.body;
-            const existingUser = await User.findOne({email: userdata.email});
-            if(existingUser){
-                const queryParams = new URLSearchParams();
-                queryParams.append('message', 'Email already exists!');
-                const queryString = queryParams.toString();
-                return res.redirect(`/register?${queryString}`);
-            }
-            else{
-                if(userdata.password === userdata.confirmpassword){
-                    const hashedPassword = await bcrypt.hash(req.body.password, 10);
-                    const newUser = new User({
-                        password: hashedPassword,
-                        email: userdata.email,
-                        firstname: userdata.firstname,
-                        lastname: userdata.lastname
-                    });
-                    newUser.save();
-                    res.redirect('/login');
-                }else{
+            if (userdata.usertype === `customer`) {
+                const existingUser = await User.findOne({email: userdata.email});
+
+                if(existingUser){
                     const queryParams = new URLSearchParams();
-                    queryParams.append('message', 'Passwords do not match!');
+                    queryParams.append('message', 'Email already exists!');
                     const queryString = queryParams.toString();
                     return res.redirect(`/register?${queryString}`);
+                }
+                else{
+                    if(userdata.password === userdata.confirmpassword){
+                        const hashedPassword = await bcrypt.hash(req.body.password, 10);
+                        const newUser = new User({
+                            password: hashedPassword,
+                            email: userdata.email,
+                            firstname: userdata.firstname,
+                            lastname: userdata.lastname
+                        });
+                        newUser.save();
+                        res.redirect('/login');
+                    }else{
+                        const queryParams = new URLSearchParams();
+                        queryParams.append('message', 'Passwords do not match!');
+                        const queryString = queryParams.toString();
+                        return res.redirect(`/register?${queryString}`);
+                    }
+                }
+            }
+            else if (userdata.usertype === `owner`) {
+                const existingCafe = await Cafe.findOne({email: userdata.email});
+                if(existingCafe){
+                    const queryParams = new URLSearchParams();
+                    queryParams.append('message', 'Email already exists!');
+                    const queryString = queryParams.toString();
+                    return res.redirect(`/register?${queryString}`);
+                }
+                else{
+                    if(userdata.password === userdata.confirmpassword){
+                        const hashedPassword = await bcrypt.hash(req.body.password, 10);
+                        const newCafe = new Cafe({
+                            name: userdata.estname,
+                            address: userdata.estaddress,
+                            email: userdata.email,
+                            password: hashedPassword
+                        });
+                        newCafe.save();
+                        res.redirect('/login');
+                    }else{
+                        const queryParams = new URLSearchParams();
+                        queryParams.append('message', 'Passwords do not match!');
+                        const queryString = queryParams.toString();
+                        return res.redirect(`/register?${queryString}`);
+                    }
                 }
             }
         } catch (err) {
-            console.log(err);
-            return res.sendStatus(500);
-        }
-    },
-
-    register_owner: async function (req,res){
-        try{
-            const userdata = req.body;
-            const existingCafe = await Cafe.findOne({email: userdata.email});
-            if(existingCafe){
-                const queryParams = new URLSearchParams();
-                queryParams.append('message', 'Email already exists!');
-                const queryString = queryParams.toString();
-                return res.redirect(`/register?${queryString}`);
-            }
-            else{
-                if(userdata.password === userdata.confirmpassword){
-                    const hashedPassword = await bcrypt.hash(req.body.password, 10);
-                    const newCafe = new Cafe({
-                        name: userdata.estname,
-                        address: userdata.estaddress,
-                        email: userdata.email,
-                        password: hashedPassword
-                    });
-                    newCafe.save();
-                    res.redirect('/login');
-                }else{
-                    const queryParams = new URLSearchParams();
-                    queryParams.append('message', 'Passwords do not match!');
-                    const queryString = queryParams.toString();
-                    return res.redirect(`/register?${queryString}`);
-                }
-            }
-        }catch{
             console.log(err);
             return res.sendStatus(500);
         }
