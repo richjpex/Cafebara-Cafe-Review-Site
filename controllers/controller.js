@@ -228,7 +228,7 @@ const controller = {
  
      },
 
-    addReview: async function(req, res) {
+     addReview: async function(req, res) {
         try{
             const cafeName = req.body.cafeName;
             const review = req.body.review;
@@ -385,8 +385,6 @@ const controller = {
             }         
             
             
-            
-            
             const userDetails = await User.updateOne({_id: req.user.user._id}, {$set: {
                 profilepic: img_path,
                 firstname: updatedDetails.firstname,
@@ -487,8 +485,13 @@ const controller = {
             const cafe_id = req.body.cafe_id;
             const review = await Review.findOne({reviewer: review_id, cafeName: cafe_id});
             const cafe = await Cafe.findOne({_id: cafe_id});
-            cafe.rating = 2 * parseFloat(cafe.rating) - parseInt(review.rating);
-            cafe.save()
+            const reviews = await Review.find({cafeName: cafe_id});
+
+            if(reviews.length == 1)
+                cafe.rating = 0;
+            else
+                cafe.rating = 2 * parseFloat(cafe.rating) - parseInt(review.rating);
+            await cafe.save()
             if(review.ownerReply != null){
                 await Reply.deleteOne({_id: review.ownerReply});
             }
