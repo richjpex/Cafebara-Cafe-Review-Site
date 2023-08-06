@@ -99,7 +99,6 @@ document.addEventListener("DOMContentLoaded",function() {
             const editedon = document.getElementsByClassName("editedon user-edit");
             let date = getDate();
             
-            editedon[0].innerHTML = `<span class = "review_date">Last edited on: ${date}</span>`;
             changesbuttons.style.display = "none";
 
             if(check){
