@@ -9,7 +9,6 @@ const controller = {
 
     getIndex: async function(req, res) {
         try{
-            console.log("INDEX")
             if(req.isAuthenticated()){
                 if(req.user.type == 'cafe'){
                     res.redirect('/myprofile');
