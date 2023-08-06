@@ -5,7 +5,7 @@ const url = process.env.MONGODB_URI;
 const database = {
 
     connect: function () {
-        mongoose.connect(url + 'apdev_test').then(function() {
+        mongoose.connect(url).then(function() {
             console.log('Connected to: ' + url);
         }).catch(function(error) {
             console.log(error)
