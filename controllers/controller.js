@@ -204,6 +204,11 @@ const controller = {
                 rating: cafe.rating
             };
 
+            //sort reviewList by upvotes
+            reviewList.sort(function(a, b){
+                return b.up/b.down - a.up/a.down;
+            });
+
             res.render("viewCafe", {
                 layout: 'cafeTemplate',
                 cafePage: cafeView,
