@@ -5,6 +5,7 @@ import { Review } from '../model/reviewsSchema.js';
 import { User } from '../model/userSchema.js';
 import { Reply } from '../model/ownerReply.js';
 import fs from 'fs';
+import bcrypt from 'bcrypt';
 
 import multer from 'multer';
 const storage = multer.diskStorage({
@@ -373,17 +374,25 @@ const controller = {
             console.log(img_path);
             if(img_path === undefined){
                 img_path = user.profilepic;
-            }           
+            } 
+            else{
+                img_path = "./uploads/" + req.file.filename;
+            }         
+            
+            
             
             
             const userDetails = await User.updateOne({_id: req.user.user._id}, {$set: {
-                profpic: img_path,
+                profilepic: img_path,
                 firstname: updatedDetails.firstname,
                 lastname: updatedDetails.lastname,
                 email: updatedDetails.email,
+                password: await bcrypt.hash(updatedDetails.password, 10),
                 birthday: new Date(updatedDetails.year, updatedDetails.month, updatedDetails.day),
                 bio: updatedDetails.bio,
             }});
+
+            
                 
             res.redirect('/myprofile');
             
@@ -396,7 +405,19 @@ const controller = {
     settings: async function (req, res) {
         if(req.isAuthenticated()){
             const userDetails = await User.findOne({_id: req.user.user._id}); 
-            
+            let day = '';
+            let month = '';
+            let year = '';
+            if(userDetails.birthday === undefined){
+                day = '';
+                month = '';
+                year = '';
+            }
+            else{
+                day = userDetails.birthday.getDate();
+                month = userDetails.birthday.getMonth();
+                year = userDetails.birthday.getFullYear();
+            }
             const userdetails = {
                 profilepic: userDetails.profilepic,
                 email: userDetails.email,
@@ -405,9 +426,9 @@ const controller = {
                 lastname: userDetails.lastname,
                 memberyear: userDetails.dateCreated.toString().substring(11, 15),
                 bio: userDetails.bio,
-                day: userDetails.birthday.getDate(),
-                month: userDetails.birthday.getMonth(),
-                year: userDetails.birthday.getFullYear(),
+                day: day,
+                month: month,
+                year: year,
             }
             res.render ('settings', {
                 layout: 'profileTemplate', 
