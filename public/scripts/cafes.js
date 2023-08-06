@@ -238,3 +238,11 @@ function downvoteClicked(path, counterUp, counterDown, upPath){
         counterUp.innerHTML = parseInt(counterUp.innerHTML) - 1;
     }
 };
+
+// Add an event listener to all "Read More" buttons
+document.querySelectorAll('.read-more-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+        const fullText = this.dataset.fulltext;
+        this.parentNode.innerHTML = `<p>${fullText}</p>`;
+    });
+});

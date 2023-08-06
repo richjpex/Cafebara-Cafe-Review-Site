@@ -216,13 +216,3 @@
             </div>
     </div>
     {{/if}}
-
-<script>
-// Add an event listener to all "Read More" buttons
-document.querySelectorAll('.read-more-btn').forEach(btn => {
-    btn.addEventListener('click', function() {
-        const fullText = this.dataset.fulltext;
-        this.parentNode.innerHTML = `<p>${fullText}</p>`;
-    });
-});
-</script>
