@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded",function() {
       
       const rating = selectedRatingInput.value;
       const review_id = parent.children[1].children[0].innerHTML;
-      console.log(JSON.stringify({review_id, review_title, review, rating}))
+      
       fetch('/editReview', {
           method: 'PUT',
           body: JSON.stringify({review_id, review_title, review, rating}),
@@ -90,4 +90,57 @@ document.addEventListener("DOMContentLoaded",function() {
 
     });
 
+
+    //ALTERNATIVE EDIT
+    const editBtn2 = document.getElementById("edit-review");
+    if(editBtn2 != null){
+        editBtn2.addEventListener("click",function() {
+            const review_title = document.querySelector("#review-title").value;
+            const review = document.querySelector("#review-editor").value;
+            const rating = document.querySelector("#selected-rating").value;
+            const media = document.querySelector("#formFile").value;
+            const review_id = document.getElementById("review_id").innerHTML;
+
+            fetch('/editReview', {
+                method: 'PUT',
+                body: JSON.stringify({review_id, review_title, review, rating, media}),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(response => {
+                if (response.status == 200){
+                    location.reload()
+
+                    // const review = document.getElementById(review_id);
+                    // const revTitle = review.children[0].children[1].children[0];
+                    // const revBody = review.children[0].children[2].children[0];
+
+                    // revTitle.innerHTML = review_title.value;
+                    // revBody.innerHTML = review.value;
+
+                    // updateRating(rating, review_id);
+                }
+                else
+                    console.log("An error has occurred");
+            })
+        });
+
+    }
+
 });
+
+function updateRating(rating, review_id){
+    const review = document.getElementById(review_id);
+    const rating1 = review.children[0].children[1].children[2];
+    const rating2 = review.children[0].children[1].children[3];
+    const rating3 = review.children[0].children[1].children[4];
+    const rating4 = review.children[0].children[1].children[5];
+    const rating5 = review.children[0].children[1].children[6];
+
+    console.log(rating1);
+    console.log(rating2);
+    console.log(rating3);
+    console.log(rating4);
+    console.log(rating5);
+
+}

@@ -1,6 +1,6 @@
 {{#if author}}
     <script src = "../../scripts/edit.js"></script>
-<div class = "review_wrapper">
+<div class = "review_wrapper" id = "{{reviewId}}">
             <div class="review_post">
                 <div class="prof_header" >
                     <a href = "/myprofile">
@@ -28,46 +28,46 @@
                             <li><a class = "dropdown-item" id = "deletebtn">Delete</a></li>
                             <li><a class = "dropdown-item">Cancel</a></li>
                         </ul>
-                        </div>
+                    </div>
                 </div>
                 <form name = "editForm" method ="PUT">
-                <div class = "cb_rating">
-                    <div class = "title editable">
-                        <span class = "review_title">{{title}}</span><br>
-                    </div>
-                    <div class = "ratings">
-                        <img src="../../images/ratings/{{#grequal rating 1}}full{{else}}empty{{/grequal}}.png"/>
-                        <img src="../../images/ratings/{{#grequal rating 2}}full{{else}}empty{{/grequal}}.png"/>
-                        <img src="../../images/ratings/{{#grequal rating 3}}full{{else}}empty{{/grequal}}.png"/>
-                        <img src="../../images/ratings/{{#grequal rating 4}}full{{else}}empty{{/grequal}}.png"/>
-                        <img src="../../images/ratings/{{#grequal rating 5}}full{{else}}empty{{/grequal}}.png"/>
-                    
-                    </div>
-                    <div class="hidden other-rating-container">
-                        <span class="star" data-rating="1"></span>
-                        <span class="star" data-rating="2"></span>
-                        <span class="star" data-rating="3"></span>
-                        <span class="star" data-rating="4"></span>
-                        <span class="star" data-rating="5"></span>
+                    <div class = "cb_rating">
+                        <div class = "title editable">
+                            <span class = "review_title">{{title}}</span><br>
                         </div>
-                        <input type="hidden" id="selected-rating" value="0" />
-                    <br>
-                    <span class = "review_date">Reviewed on {{reviewdate}}</span>
-                    {{#if editdate}}
-                    <br><span class = "review_date">Last edited on {{editdate}}</span>
-                    {{/if}}
-                </div>
-                <div class="review_comment crop editable">
-                    <p>
-                    {{review}}
-                    </p>
-                </div>
-                <div class = "editedon user-edit">
-                </div>
-                <div class = "submitChanges">
-                    <input class = "btn btn-primary" id = "submitChanges" placeholder = "Submit Changes">
-                    <button class = "btn btn-secondary" id = "cancel">Cancel</button>
-                </div>
+                        <div class = "ratings">
+                            <img src="../../images/ratings/{{#grequal rating 1}}full{{else}}empty{{/grequal}}.png"/>
+                            <img src="../../images/ratings/{{#grequal rating 2}}full{{else}}empty{{/grequal}}.png"/>
+                            <img src="../../images/ratings/{{#grequal rating 3}}full{{else}}empty{{/grequal}}.png"/>
+                            <img src="../../images/ratings/{{#grequal rating 4}}full{{else}}empty{{/grequal}}.png"/>
+                            <img src="../../images/ratings/{{#grequal rating 5}}full{{else}}empty{{/grequal}}.png"/>
+                        
+                        </div>
+                        <div class="hidden other-rating-container">
+                            <span class="star" data-rating="1"></span>
+                            <span class="star" data-rating="2"></span>
+                            <span class="star" data-rating="3"></span>
+                            <span class="star" data-rating="4"></span>
+                            <span class="star" data-rating="5"></span>
+                            </div>
+                            <input type="hidden" id="selected-rating" value="0" />
+                        <br>
+                        <span class = "review_date">Reviewed on {{reviewdate}}</span>
+                        {{#if editdate}}
+                        <br><span class = "review_date">Last edited on {{editdate}}</span>
+                        {{/if}}
+                    </div>
+                    <div class="review_comment crop editable">
+                        <p>
+                        {{review}}
+                        </p>
+                    </div>
+                    <div class = "editedon user-edit">
+                    </div>
+                    <div class = "submitChanges">
+                        <input class = "btn btn-primary" id = "submitChanges" placeholder = "Submit Changes">
+                        <button class = "btn btn-secondary" id = "cancel">Cancel</button>
+                    </div>
                 </form>
 
                 {{#if media}}
@@ -111,7 +111,7 @@
         </div>
 </div>
     {{else}}
-    <div class = "review_wrapper">
+    <div class = "review_wrapper" id = "{{reviewId}}">
             <div class="review_post">
                 <div class="prof_header" >
                     <a href = "/user/{{username}}">
