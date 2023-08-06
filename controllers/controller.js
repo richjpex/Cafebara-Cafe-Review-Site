@@ -421,7 +421,7 @@ const controller = {
     editReview: async function(req, res) {
         try{
             const review_id = req.body.review_id;
-            const newReview = req.body.review.trim();
+            const newReview = req.body.review;
             const newTitle = req.body.review_title.trim();
             const newRating = req.body.rating;
             const oldrating = req.body.oldRating;

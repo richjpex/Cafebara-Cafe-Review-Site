@@ -86,9 +86,3 @@ Handlebars.registerHelper('truncateText', function (text, maxLength) {
       );
     }
   });
-
-  Handlebars.registerHelper('toggleReview', function (text) {
-    return new Handlebars.SafeString(
-      `<span class="full-text hidden">${text}</span><button class="read-more-btn">Read Less</button>`
-    );
-  });
