@@ -33,7 +33,7 @@ a.btn-dark{
     margin-top:0.5rem;
 }
 
-#submit-review{
+.submit-review{
     background-color: var(--primary) !important;
     border-radius: 5px;
     padding: 0.3rem 1rem;

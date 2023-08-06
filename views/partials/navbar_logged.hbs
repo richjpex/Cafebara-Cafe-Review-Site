@@ -9,40 +9,18 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
-        {{#if isIndex}}
-          <li class="nav-item active">
-            <a class="nav-link active" aria-current="page" href="/">Home</a>
-          </li>
-          <li class="nav-item inactive">
-            <a class="nav-link" href="/cafe">Review</a>
-          </li>
-          <li class="nav-item inactive">
-            <a class="nav-link" href="/about">About</a>
-          </li>
-           {{> usernav}}
-        {{else if isAbout}}
-          <li class="nav-item inactive">
-            <a class="nav-link" href="/">Home</a>
-          </li>
-          <li class="nav-item inactive">
-            <a class="nav-link" href="/cafe">Review</a>
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link active" href="/about">About</a>
-          </li>
-          {{> usernav}}
-        {{else}}
-          <li class="nav-item inactive">
-            <a class="nav-link" href="/">Home</a>
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link active" href="/cafe">Review</a>
-          </li>
-          <li class="nav-item inactive">
-            <a class="nav-link" href="/about">About</a>
-          </li>
-          {{> usernav}}
-        {{/if}}
+        {{#unless owner}}
+            <li class="nav-item {{#if isIndex}}active{{else}}inactive{{/if}}">
+              <a class="nav-link {{#if isIndex}}active{{else}}inactive{{/if}}" aria-current="page" href="/">Home</a>
+            </li>
+            <li class="nav-item {{#if isCafe}}active{{else}}inactive{{/if}}">
+              <a class="nav-link {{#if isCafe}}active{{else}}inactive{{/if}}" href="/cafe">Review</a>
+            </li>
+            <li class="nav-item {{#if isAbout}}active{{else}}inactive{{/if}}">
+              <a class="nav-link {{#if isAbout}}active{{else}}inactive{{/if}}" href="/about">About</a>
+            </li>
+        {{/unless}}
+        {{> usernav}}
       </ul>
 
 

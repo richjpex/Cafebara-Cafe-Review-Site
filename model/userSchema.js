@@ -22,12 +22,27 @@ const userSchema = new Schema({
         default: Date.now()
     },
 
-    profilepic: String,
+    profilepic: {
+        type: String,
+        default: './images/assets/default_user.png'   
+    },
 
     bio: String,
     
     birthday: {
         type: Date
+    },
+
+    upvotes: {
+        type: [Schema.Types.ObjectId],
+        ref: 'Review',
+        default: []
+    },
+
+    downvotes: {
+        type: [Schema.Types.ObjectId],
+        ref: 'Review',
+        default: []
     }
 });
 
