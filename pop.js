@@ -33,7 +33,7 @@ async function createUsers(){
     const users = [];
 
     users.push(new User({
-        password: "password",
+        password: "orrinpassword",
         email: "orrin@gmail.com",
         firstname: "Orrin",
         lastname: "Uy",
@@ -42,7 +42,7 @@ async function createUsers(){
     }));
 
     users.push(new User({
-        password: "password",
+        password: "migspassword",
         email: "migs@gmail.com",
         firstname: "Migs",
         lastname: "Leysa",
@@ -51,7 +51,7 @@ async function createUsers(){
     }));
 
     users.push(new User({
-        password: "password",
+        password: "richpassword",
         email: "rich@gmail.com",
         firstname: "Rich",
         lastname: "Pex",
@@ -60,7 +60,7 @@ async function createUsers(){
     }));
 
     users.push(new User({
-        password: "password",
+        password: "icepassword",
         email: "ice@gmail.com",
         firstname: "Francis",
         lastname: "Mart",
@@ -69,7 +69,7 @@ async function createUsers(){
     }));
 
     users.push(new User({
-        password: "password",
+        password: "shinjipassword",
         email: "shinji@eva.com",
         firstname: "Shinji",
         lastname: "Ikari",

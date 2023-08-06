@@ -197,7 +197,7 @@ const controller = {
 
             const newReview = new Review(newDoc);
             await newReview.save();
-            cafe.rating = (cafe.rating + rating)/2;
+            cafe.rating = (parseFloat(cafe.rating) + parseInt(rating))/2;
             await cafe.save();
 
             res.sendStatus(200)
@@ -383,7 +383,7 @@ const controller = {
                 await Review.updateOne({_id: review_id}, {review: newReview, review_title: newTitle, rating: newRating, dateModified: Date.now()});
                 const rev = Review.findOne({_id: review_id});
                 const cafe = Cafe.findOne({_id: rev.cafeName});
-                cafe.rating = (cafe.rating + newRating)/2;
+                cafe.rating = (parseFloat(cafe.rating) + parseInt(newRating))/2;
             }
             else
                 await Review.updateOne({_id: review_id}, {review: newReview, review_title: newTitle, dateModified: Date.now()});
