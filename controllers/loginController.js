@@ -13,14 +13,26 @@ const loginController = {
                 res.redirect('/myprofile');
         }
         else{
-            res.render ('login', {layout: 'logregTemplate'});
+            if (!req.query)
+                res.render ('login', {layout: 'logregTemplate'});
+            else 
+            {
+                res.render ('login', {
+                    layout: 'logregTemplate',
+                    message: req.query.message
+                });
+            }
         }
     },
 
     loginAuth: async function(req, res, next) {
+        const queryParams = new URLSearchParams();
+        queryParams.append('message', 'Incorrect username or password!');
+        const queryString = queryParams.toString();
+
         passport.authenticate('local', {
             successRedirect: '/',
-            failureRedirect: '/login',
+            failureRedirect: `/login?${queryString}`,
             failureFlash: true
         })(req, res, next);
     },
@@ -37,7 +49,15 @@ const loginController = {
             res.redirect('/');
         }
         else{
-            res.render ('register', {layout: 'logregTemplate'});
+            
+            if (req.query) {
+                res.render ('register', {
+                    layout: 'logregTemplate',
+                    message: req.query.message});
+            }
+            else {
+                res.render ('register', {layout: 'logregTemplate'});
+            }
         }
     },
 
