@@ -100,10 +100,12 @@ document.addEventListener("DOMContentLoaded",function() {
             const rating = document.querySelector("#selected-rating").value;
             const media = document.querySelector("#formFile").value;
             const review_id = document.getElementById("review_id").innerHTML;
-
+            const oldRatingDiv = document.getElementById(review_id);
+            const oldRating = oldRatingDiv.children[0].children[1].getAttribute("data-rate");
+            console.log(oldRating);
             fetch('/editReview', {
                 method: 'PUT',
-                body: JSON.stringify({review_id, review_title, review, rating, media}),
+                body: JSON.stringify({review_id, review_title, review, rating, media, oldRating}),
                 headers: {
                     'Content-Type': 'application/json'
                 }

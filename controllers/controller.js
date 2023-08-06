@@ -405,6 +405,7 @@ const controller = {
             const newReview = req.body.review.trim();
             const newTitle = req.body.review_title.trim();
             const newRating = req.body.rating;
+            const oldrating = req.body.oldRating;
             const rev = await Review.findOne({_id: review_id});
 
             if(newRating != rev.rating || newRating != 0){
@@ -415,6 +416,7 @@ const controller = {
                 await rev.save();
 
                 const cafe = await Cafe.findOne({_id: rev.cafeName});
+                cafe.rating = 2 * parseFloat(cafe.rating) - parseInt(oldrating);
                 cafe.rating = (parseFloat(cafe.rating) + parseInt(newRating))/2;
                 await cafe.save();
             }
