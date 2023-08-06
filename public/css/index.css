@@ -124,12 +124,12 @@ div.search-container{
   font-family: var(--secondaryfont);
 }
 
-.search-container h1{
-  font-size: 120px;
+.search-container h2{
+  font-size: 90px;
 }
 
 .search-container p {
-  font-size: 50px;
+  font-size: 30px;
 }
 
 .search-form {

@@ -84,6 +84,7 @@ document.addEventListener("DOMContentLoaded",function() {
         }
         }).then(response => {
             location.reload();
+            location.reload();
             // console.log(response.data);
         });
 
@@ -110,7 +111,8 @@ document.addEventListener("DOMContentLoaded",function() {
                 }
             }).then(response => {
                 if (response.status == 200){
-                    location.reload()
+                    location.reload();
+                    location.reload();
 
                     // const review = document.getElementById(review_id);
                     // const revTitle = review.children[0].children[1].children[0];
