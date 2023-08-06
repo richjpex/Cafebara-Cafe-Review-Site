@@ -71,13 +71,6 @@
     background-color: var(--primary);
     padding: 0 16px;
   }
-  
-  body {
-      background-color: #fafafa;
-      background-image: url('../images/leaf_bg.png');
-      background-repeat: no-repeat;
-      background-attachment: fixed;
-  }
 
 div.container {
     display:flex;
@@ -87,7 +80,7 @@ div.container {
     color: #423F32;
     width: 30rem;
     position: relative;
-    margin: 15rem auto 50px;
+    margin: 10rem auto;
     overflow: hidden;
     border-radius: 30px;
     padding: 0 0 1rem 0;
@@ -210,4 +203,9 @@ input#submit:hover{
 
 label{
     margin-bottom: 0;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
 }
