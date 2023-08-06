@@ -502,7 +502,7 @@ const controller = {
             const newRating = req.body.rating;
             const oldrating = req.body.oldRating;
             const rev = await Review.findOne({_id: review_id});
-            console.log(oldrating)
+
             if(newRating != rev.rating || newRating != 0){
                 rev.review = newReview;
                 rev.review_title = newTitle;
