@@ -41,6 +41,8 @@ router.delete('/deleteReview', controller.deleteReview);
 
 //UPDATES
 router.put('/editReview', controller.editReview);
+router.put('/upvote', controller.upvote);
+router.put('/downvote', controller.downvote);
 
 
 export default router;

@@ -58,9 +58,7 @@ const cafeSchema = new Schema({
     },
 
     menu: {
-        type: String,
-        default: "No menu posted. Please contact the store."   
-    }
+        type: String    }
 });
 
 export const Cafe = mongoose.model('Cafes', cafeSchema);
