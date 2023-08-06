@@ -101,6 +101,7 @@ document.addEventListener("DOMContentLoaded",function() {
             const review_id = document.getElementById("review_id").innerHTML;
             const oldRatingDiv = document.getElementById(review_id);
             const oldRating = oldRatingDiv.children[0].children[1].getAttribute("data-rate");
+            console.log(oldRating)
 
             fetch('/editReview', {
                 method: 'PUT',
