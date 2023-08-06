@@ -106,7 +106,8 @@ const controller = {
                     open_details: resp[i].weekdays_avail,
                     cafeImg: resp[i].image,
                     price: resp[i].price,
-                    rating: resp[i].rating
+                    rating: resp[i].rating,
+                    media: resp[i].mediPath,
                 });
             };
 
@@ -225,14 +226,25 @@ const controller = {
 
     addReview: async function(req, res) {
         try{
-            const cafeName = req.body.cafeName;
-            const review = req.body.review;
-            const review_title = req.body.review_title;
+            const cafeName = req.body.cafename;
+            const review = req.body.body;
+            const review_title = req.body.title;
             const rating = req.body.rating;
-            const dateCreated = req.body.dateCreated;
-            const media = req.body.media;
+            const dateCreated = new Date()
             const email = req.user.user.email;
             
+            let img_path = req.files;
+            const attached = [];
+            console.log(img_path);
+            if(img_path === undefined){
+                attached = [];
+            }   
+            else{
+                for(let i=0; i < img_path.length; i++){
+                    attached.push("../uploads/" + img_path[i].filename);
+                }
+            }   
+
             const user = await User.findOne({email: email});
                 
             const cafe = await Cafe.findOne({name: cafeName});
@@ -243,12 +255,16 @@ const controller = {
                 review_title: review_title,
                 rating: rating,
                 dateCreated: dateCreated,
-                mediaPath: media,
+                mediaPath: attached,
                 ownerreply: null
             };
 
+            console.log(newDoc);
+
             const newReview = new Review(newDoc);
             await newReview.save();
+            
+
             if(cafe.rating === 0)
                 cafe.rating = parseInt(rating);
             else

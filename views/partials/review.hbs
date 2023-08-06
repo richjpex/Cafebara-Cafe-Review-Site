@@ -74,7 +74,9 @@
 
                 {{#if media}}
                 <div class="review_pics_container">
-                    <img src=".{{media}}" class="review_pics"/>
+                    {{#each media}}
+                    <img src={{this}} class="review_pics"/>
+                    {{/each}}
                 </div>
                 {{/if}}
 
@@ -165,12 +167,21 @@
 
                 <!-- end of review -->
 
+                {{#if media}}
+                <div class="review_pics_container">
+                    {{#each media}}
+                    <img src={{this}} class="review_pics"/>
+                    {{/each}}
+                </div>
+                {{/if}}
+
+                <!--
                     {{#if media}}
                 <div class="review_pics_container">
                     <video src=".{{media}}" class="object-fit-cover" controls></video>
                 </div>
                     {{/if}}
-                
+                -->
                 <div class = "helpful?">
                     <div class="helpful_label">
                         Was this helpful?
