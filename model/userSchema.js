@@ -22,7 +22,10 @@ const userSchema = new Schema({
         default: Date.now()
     },
 
-    profilepic: String,
+    profilepic: {
+        type: String,
+        default: './images/assets/default_user.png'   
+    },
 
     bio: String,
     

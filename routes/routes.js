@@ -23,8 +23,7 @@ router.get(`/logout`, loginController.logout);
 
 //log in post
 router.post(`/login`, loginController.loginAuth);
-router.post(`/register_user`, loginController.register_user);
-router.post(`/register_owner`, loginController.register_owner);
+router.post(`/register_process`, loginController.register_process)
 
 //profile gets
 router.get(`/myprofile`, controller.profile);
