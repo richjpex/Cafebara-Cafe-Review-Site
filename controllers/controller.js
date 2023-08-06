@@ -4,6 +4,7 @@ import { Cafe } from '../model/cafeSchema.js';
 import { Review } from '../model/reviewsSchema.js';
 import { User } from '../model/userSchema.js';
 import { Reply } from '../model/ownerReply.js';
+import fs from 'fs';
 
 import multer from 'multer';
 const storage = multer.diskStorage({
@@ -46,29 +47,47 @@ const controller = {
     },
 
     getAbout: async function(req, res) {
+
         try{
             const profilecards = [];
             const result = await About.find();
+
+            fs.readFile('package.json', 'utf8', (err, data) => {
+
+                if (err) {
+                  console.error('Error reading file:', err);
+                  return res.status(500).json({ error: 'Failed to read data.' });
+                }
+                
+                let jsonData = JSON.parse(data).dependencies;
+
+                // clean up the version number
+                for (let key in jsonData) jsonData[key] = `(${jsonData[key].substring(1)})`;
+                console.log(jsonData);
             
-            for(let i = 0; i < result.length; i++){
-                profilecards.push({
-                    name: result[i].name,
-                    position: result[i].position,
-                    bio: result[i].bio,
-                    // fb: result[i].fb,
-                    // twitter: result[i].twitter,
-                    // insta: result[i].insta,
-                    // git: result[i].git,
-                    image: result[i].image
+
+                for(let i = 0; i < result.length; i++){
+                    profilecards.push({
+                        name: result[i].name,
+                        position: result[i].position,
+                        bio: result[i].bio,
+                        // fb: result[i].fb,
+                        // twitter: result[i].twitter,
+                        // insta: result[i].insta,
+                        // git: result[i].git,
+                        image: result[i].image
+                    });
+                };
+                
+                res.render('about', {
+                    isAbout: true,
+                    profilecards: profilecards,
+                    session: req.isAuthenticated(),
+                    dependencies: jsonData
                 });
-            };
-            
-            res.render('about', {
-                isAbout: true,
-                profilecards: profilecards,
-                session: req.isAuthenticated()
             });
-        }catch{
+        }catch(e){
+            console.log(e)
             res.sendStatus(400)
         }
     },
@@ -457,9 +476,10 @@ const controller = {
     editReview: async function(req, res) {
         try{
             const review_id = req.body.review_id;
-            const newReview = req.body.review.trim();
+            const newReview = req.body.review;
             const newTitle = req.body.review_title.trim();
             const newRating = req.body.rating;
+            const oldrating = req.body.oldRating;
             const rev = await Review.findOne({_id: review_id});
 
             if(newRating != rev.rating || newRating != 0){
@@ -470,6 +490,7 @@ const controller = {
                 await rev.save();
 
                 const cafe = await Cafe.findOne({_id: rev.cafeName});
+                cafe.rating = 2 * parseFloat(cafe.rating) - parseInt(oldrating);
                 cafe.rating = (parseFloat(cafe.rating) + parseInt(newRating))/2;
                 await cafe.save();
             }

@@ -8,7 +8,7 @@
                             <img src=".{{profilepic}}" class="profpic"/>
                         </div>
                         <div class = "userinfo">
-                            <div class="profname">
+                            <div class="profname">  
                                 {{username}}
                             </div>
                             <div class="member_duration">
@@ -24,14 +24,16 @@
                             </svg>
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a class = "dropdown-item" id = "editbtn">Edit</a></li>
+                            
+                            <li><a class = "dropdown-item" id = "editbtn" href="#realEditButton">Edit</a></li>
+                            
                             <li><a class = "dropdown-item" id = "deletebtn">Delete</a></li>
                             <li><a class = "dropdown-item">Cancel</a></li>
                         </ul>
                     </div>
                 </div>
                 <form name = "editForm" method ="PUT">
-                    <div class = "cb_rating">
+                    <div class = "cb_rating" data-rate = "{{rating}}">
                         <div class = "title editable">
                             <span class = "review_title">{{title}}</span><br>
                         </div>
@@ -59,7 +61,7 @@
                     </div>
                     <div class="review_comment crop editable">
                         <p>
-                        {{review}}
+                        {{{truncateText review 180}}}
                         </p>
                     </div>
                     <div class = "editedon user-edit">
@@ -154,12 +156,14 @@
                     <br><span class = "review_date">Last edited on {{editdate}}</span>
                     {{/if}}
                 </div>
+                <!-- review -->
                 <div class="review_comment crop">
                     <p>
-                        {{review}}
-                     </p>
+                        {{{truncateText review 180}}}
+                    </p>
                 </div>
 
+                <!-- end of review -->
 
                     {{#if media}}
                 <div class="review_pics_container">

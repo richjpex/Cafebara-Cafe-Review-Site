@@ -14,6 +14,8 @@ import flash from 'express-flash';
 import session from 'express-session';
 import cookieParser from 'cookie-parser';
 
+
+
 const port = process.env.SERVER_PORT;
 
 // import { connectToMongo, getDb }  from './conn.js';
@@ -73,3 +75,14 @@ Handlebars.registerHelper("grequal", function(a , b, options) {
         return options.inverse(this);
     }
 });
+
+Handlebars.registerHelper('truncateText', function (text, maxLength) {
+    if (text.length <= maxLength) {
+      return new Handlebars.SafeString(text);
+    } else {
+      const truncatedText = text.substring(0, maxLength) + '...';
+      return new Handlebars.SafeString(
+        `<span class="truncated-text">${truncatedText}</span><button class="read-more-btn" data-fulltext="${text}">Read More</button>`
+      );
+    }
+  });
