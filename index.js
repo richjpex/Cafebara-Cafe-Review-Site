@@ -73,3 +73,20 @@ Handlebars.registerHelper("grequal", function(a , b, options) {
         return options.inverse(this);
     }
 });
+
+Handlebars.registerHelper('truncateText', function (text, maxLength) {
+    if (text.length <= maxLength) {
+      return new Handlebars.SafeString(text);
+    } else {
+      const truncatedText = text.substring(0, maxLength) + '...';
+      return new Handlebars.SafeString(
+        `<span class="truncated-text">${truncatedText}</span><button class="read-more-btn" data-fulltext="${text}">Read More</button>`
+      );
+    }
+  });
+
+  Handlebars.registerHelper('toggleReview', function (text) {
+    return new Handlebars.SafeString(
+      `<span class="full-text hidden">${text}</span><button class="read-more-btn">Read Less</button>`
+    );
+  });

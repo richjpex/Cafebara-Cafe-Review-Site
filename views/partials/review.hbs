@@ -59,7 +59,7 @@
                     </div>
                     <div class="review_comment crop editable">
                         <p>
-                        {{review}}
+                        {{{truncateText review 180}}}
                         </p>
                     </div>
                     <div class = "editedon user-edit">
@@ -154,12 +154,14 @@
                     <br><span class = "review_date">Last edited on {{editdate}}</span>
                     {{/if}}
                 </div>
+                <!-- review -->
                 <div class="review_comment crop">
                     <p>
-                        {{review}}
-                     </p>
+                        {{{truncateText review 180}}}
+                    </p>
                 </div>
 
+                <!-- end of review -->
 
                     {{#if media}}
                 <div class="review_pics_container">
@@ -214,3 +216,13 @@
             </div>
     </div>
     {{/if}}
+
+<script>
+// Add an event listener to all "Read More" buttons
+document.querySelectorAll('.read-more-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+        const fullText = this.dataset.fulltext;
+        this.parentNode.innerHTML = `<p>${fullText}</p>`;
+    });
+});
+</script>
