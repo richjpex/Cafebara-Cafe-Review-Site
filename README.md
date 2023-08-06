@@ -2,11 +2,24 @@
 ## cafebara cafe review site with backend
 
 -----------------------------------------------------------------------
+<<<<<<< HEAD
+HOW TO RUN WEB APP:
+1. Install dependencies using `npm i`
+2. Populate the DB using
+    1. `npm run pop1`
+    2. Terminate manually
+    3. `npm run pop2`
+    4. Terminate manually
+3. Run the web app using `npm run start`
+4. Enter "http://localhost:3000/" in the browser address bar
+5. Enjoy
+=======
 NOTE:   
     - Make sure to have a working 
     - Collections should still be manually imported to MongoDB.
         - Obtain the JSON files of the pre-existing collections in 'db_data_init' folder
         - Using MongoDB Compass, import the file collections to the database "apdev_test"
+>>>>>>> f5d61038973dc27714ab771f8c162ff6e2b84282
 
     - To run the website
         - Start the server using "npm start" command

@@ -67,9 +67,11 @@ document.addEventListener("DOMContentLoaded",function() {
 
     
     const editBtn = document.getElementById('editbtn');
-    editBtn.addEventListener('click', function() {
-        document.getElementById('realEditButton').click();
-    });
+    if(editBtn != null){
+        editBtn.addEventListener('click', function() {
+            document.getElementById('realEditButton').click();
+        });
+    }
 
     /*
     const editreview = document.getElementById("editbtn");
