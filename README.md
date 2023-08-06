@@ -3,15 +3,15 @@
 
 -----------------------------------------------------------------------
 NOTE:   
-    - To install dependencies just do `npm i`
-    - To populate the DB SPECIFICALLY IN THIS ORDER!!!! IMPORTANT
-      - `npm run pop1`
-      - `npm run pop2`
-    - To run the website
-      - `npm run start`
-      - Start the server using "npm start" command
-      - Enter "http://localhost:3000/cafebara/" in the browser url to open index.html (guest-view)
+    - Make sure to have a working 
+    - Collections should still be manually imported to MongoDB.
+        - Obtain the JSON files of the pre-existing collections in 'db_data_init' folder
+        - Using MongoDB Compass, import the file collections to the database "apdev_test"
 
+    - To run the website
+        - Start the server using "npm start" command
+        - Enter "http://localhost:3000/cafebara/" in the browser url to open index.html (guest-view)
+    
 -----------------------------------------------------------------------
 
 The following describes the features of a restaurant / store / service review web application. Groups may choose to either develop a review web application for either restaurants, stores, or services. For realism, groups may base the establishments featured in the application from actual establishments that are found around the campus. The minimum features required to be implemented for this project is as follows:
@@ -59,7 +59,7 @@ or the description. By entering a search phrase/word, all establishment containi
   - Groups must implement an additional user account role – establishment
 owner. This doesn’t need to be integrated with the register system, and
 credentials can be created manually by the database admin.
-  - Establishment owner accounts are tied to a single establishment, and can respond to reviews on their establishment. Their responses would then be
+  - Establishmentowneraccountsaretiedtoasingleestablishment,andcan respond to reviews on their establishment. Their responses would then be
 published, making it visible to the public.
 - General
   - Good user experience.
