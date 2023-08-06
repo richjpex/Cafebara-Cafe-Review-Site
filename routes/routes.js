@@ -44,7 +44,7 @@ router.get(`/user/:username`, controller.userProfile);
 router.post(`/updateprofile`,upload.single('dp_upload'), controller.updateProfile)
 
 //POSTS
-router.post('/addReview', controller.addReview);
+router.post('/addReview', upload.array('review_upload', 10), controller.addReview);
 router.post(`/cafe`, controller.searchcafes);
 router.post(`/reply`, controller.reply);
 
