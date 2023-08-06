@@ -4,6 +4,7 @@ import { Cafe } from '../model/cafeSchema.js';
 import { Review } from '../model/reviewsSchema.js';
 import { User } from '../model/userSchema.js';
 import { Reply } from '../model/ownerReply.js';
+import fs from 'fs';
 
 const controller = {
 
@@ -35,29 +36,47 @@ const controller = {
     },
 
     getAbout: async function(req, res) {
+
         try{
             const profilecards = [];
             const result = await About.find();
+
+            fs.readFile('package.json', 'utf8', (err, data) => {
+
+                if (err) {
+                  console.error('Error reading file:', err);
+                  return res.status(500).json({ error: 'Failed to read data.' });
+                }
+                
+                let jsonData = JSON.parse(data).dependencies;
+
+                // clean up the version number
+                for (let key in jsonData) jsonData[key] = `(${jsonData[key].substring(1)})`;
+                console.log(jsonData);
             
-            for(let i = 0; i < result.length; i++){
-                profilecards.push({
-                    name: result[i].name,
-                    position: result[i].position,
-                    bio: result[i].bio,
-                    // fb: result[i].fb,
-                    // twitter: result[i].twitter,
-                    // insta: result[i].insta,
-                    // git: result[i].git,
-                    image: result[i].image
+
+                for(let i = 0; i < result.length; i++){
+                    profilecards.push({
+                        name: result[i].name,
+                        position: result[i].position,
+                        bio: result[i].bio,
+                        // fb: result[i].fb,
+                        // twitter: result[i].twitter,
+                        // insta: result[i].insta,
+                        // git: result[i].git,
+                        image: result[i].image
+                    });
+                };
+                
+                res.render('about', {
+                    isAbout: true,
+                    profilecards: profilecards,
+                    session: req.isAuthenticated(),
+                    dependencies: jsonData
                 });
-            };
-            
-            res.render('about', {
-                isAbout: true,
-                profilecards: profilecards,
-                session: req.isAuthenticated()
             });
-        }catch{
+        }catch(e){
+            console.log(e)
             res.sendStatus(400)
         }
     },

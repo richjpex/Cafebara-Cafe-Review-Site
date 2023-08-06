@@ -1,6 +1,21 @@
+:root {
+  --primary: #3b3d2b;
+  --secondary: #ccd5ae;
+  --secondary2: #e9edc9;
+  --secondary3: #99a280;
+  --tertiary: #fefae0;
+  --quarternary: #faedcd;
+  --fivenary: #d4a373;
+  --sexanary: #423F32;
+  --headfont: 'Merriweather Sans', sans-serif;
+  --secondaryfont: 'Ubuntu Condensed', sans-serif;
+
+}
+
 .content-container {
   text-align: center;
   background: #f5f5f5;
+  padding-top: 5rem;
 }
 
 .content-container h1 {
@@ -28,7 +43,7 @@
   justify-content: center;
   text-align: center;
   align-items: center;
-  margin-bottom: 40rem;
+  margin-bottom: 15rem;
 }
 
 .profile {
@@ -84,6 +99,18 @@
 
 .social-links a i {
   color: #444;
+}
+
+#dependencies {
+  padding-bottom: 5rem;
+  background-color: var(--secondary );
+}
+
+ul {
+  columns: 2;
+  -webkit-columns: 2;
+  -moz-columns: 2;
+  list-style: none;
 }
 
 
