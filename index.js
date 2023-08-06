@@ -16,7 +16,7 @@ import cookieParser from 'cookie-parser';
 
 
 
-const port = process.env.SERVER_PORT;
+const port = process.env.PORT;
 
 // import { connectToMongo, getDb }  from './conn.js';
 // import { URLSearchParams }      from 'url';
