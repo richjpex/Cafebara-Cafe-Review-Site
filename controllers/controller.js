@@ -5,6 +5,17 @@ import { Review } from '../model/reviewsSchema.js';
 import { User } from '../model/userSchema.js';
 import { Reply } from '../model/ownerReply.js';
 
+import multer from 'multer';
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, './uploads/');
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.originalname);
+    }
+});
+const upload = multer({ storage: storage });
+
 const controller = {
 
     getIndex: async function(req, res) {
@@ -334,11 +345,55 @@ const controller = {
         }
     },
 
-    settings: function (req, res) {
+    updateProfile: async function(req, res) {
         if(req.isAuthenticated()){
+            const user = await User.findOne({_id: req.user.user._id});
+            const updatedDetails = req.body;
+        
+            let img_path = req.file;
+            console.log(img_path);
+            if(img_path === undefined){
+                img_path = user.profilepic;
+            }           
+            
+            
+            const userDetails = await User.updateOne({_id: req.user.user._id}, {$set: {
+                profpic: img_path,
+                firstname: updatedDetails.firstname,
+                lastname: updatedDetails.lastname,
+                email: updatedDetails.email,
+                birthday: new Date(updatedDetails.year, updatedDetails.month, updatedDetails.day),
+                bio: updatedDetails.bio,
+            }});
+                
+            res.redirect('/myprofile');
+            
+        }
+        else{
+            res.redirect('/');
+        }
+    },
+
+    settings: async function (req, res) {
+        if(req.isAuthenticated()){
+            const userDetails = await User.findOne({_id: req.user.user._id}); 
+            
+            const userdetails = {
+                profilepic: userDetails.profilepic,
+                email: userDetails.email,
+                imgsrc: userDetails.profilepic,
+                firstname: userDetails.firstname,
+                lastname: userDetails.lastname,
+                memberyear: userDetails.dateCreated.toString().substring(11, 15),
+                bio: userDetails.bio,
+                day: userDetails.birthday.getDate(),
+                month: userDetails.birthday.getMonth(),
+                year: userDetails.birthday.getFullYear(),
+            }
             res.render ('settings', {
                 layout: 'profileTemplate', 
-                session: req.isAuthenticated()
+                session: req.isAuthenticated(),
+                userProfile: userdetails,
             });
         }
         else{

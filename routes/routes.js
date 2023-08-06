@@ -3,6 +3,17 @@ import controller from '../controllers/controller.js';
 import bodyParser from 'body-parser';
 import loginController from "../controllers/loginController.js";
 
+import multer from 'multer';
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'uploads/');
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.originalname);
+    }
+});
+const upload = multer({ storage: storage });
+
 const router = Router();
 
 //BOILERPLATE
@@ -29,6 +40,8 @@ router.post(`/register_process`, loginController.register_process)
 router.get(`/myprofile`, controller.profile);
 router.get(`/settings`, controller.settings);
 router.get(`/user/:username`, controller.userProfile);
+
+router.post(`/updateprofile`,upload.single('dp_upload'), controller.updateProfile)
 
 //POSTS
 router.post('/addReview', controller.addReview);
