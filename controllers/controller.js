@@ -116,6 +116,12 @@ const controller = {
             const reviews = await Review.find({cafeName: cafe._id});
             const session = req.isAuthenticated();
             const reviewList = [];
+            let writebuttondisable = false;
+            let userRating = 0;
+            let userReview;
+            let userReviewTitle;
+            let userReviewId;
+            let userReviewMedia;
             for(let i = 0; i < reviews.length; i++){
                 const reply = await Reply.findOne({_id: reviews[i].ownerReply});
 
@@ -126,6 +132,15 @@ const controller = {
                 if(session){
                     author = (reviewer.email == req.user.user.email) ? true: false;
                     
+                    if(author){
+                        writebuttondisable = true;
+                        userRating = reviews[i].rating;
+                        userReview = reviews[i].review;
+                        userReviewTitle = reviews[i].review_title;
+                        userReviewId = reviews[i]._id;
+                        userReviewMedia = reviews[i].mediaPath;
+                    }
+
                     if(req.user.user.upvotes.includes(reviews[i]._id)){
                         upvoted = true;
                     }
@@ -182,6 +197,12 @@ const controller = {
                 cafePage: cafeView,
                 reviews: reviewList,
                 session: session,
+                writeReview: writebuttondisable,
+                rating: userRating,
+                review_text: userReview,
+                review_title: userReviewTitle,
+                reviewId: userReviewId,
+                review_media: userReviewMedia
             });
         }catch(err){
             console.log(err)
@@ -216,7 +237,11 @@ const controller = {
 
             const newReview = new Review(newDoc);
             await newReview.save();
-            cafe.rating = (parseFloat(cafe.rating) + parseInt(rating))/2;
+            if(cafe.rating === 0)
+                cafe.rating = parseInt(rating);
+            else
+                cafe.rating = (parseFloat(cafe.rating) + parseInt(rating))/2;
+
             await cafe.save();
 
             res.sendStatus(200)
@@ -306,7 +331,7 @@ const controller = {
                     average += reviews[i].rating;
                 }
                 average /= reviews.length;
-                console.log(average)
+
                 const cafedetails = {
                     cafeimg: cafe.image,
                     cafeName: cafe.name,
@@ -379,7 +404,9 @@ const controller = {
             const review_id = req.user.user._id;
             const cafe_id = req.body.cafe_id;
             const review = await Review.findOne({reviewer: review_id, cafeName: cafe_id});
-
+            const cafe = await Cafe.findOne({_id: cafe_id});
+            cafe.rating = 2 * parseFloat(cafe.rating) - parseInt(review.rating);
+            cafe.save()
             if(review.ownerReply != null){
                 await Reply.deleteOne({_id: review.ownerReply});
             }
@@ -394,15 +421,23 @@ const controller = {
     editReview: async function(req, res) {
         try{
             const review_id = req.body.review_id;
-            const newReview = req.body.review;
-            const newTitle = req.body.review_title;
+            const newReview = req.body.review.trim();
+            const newTitle = req.body.review_title.trim();
             const newRating = req.body.rating;
+            const oldrating = req.body.oldRating;
+            const rev = await Review.findOne({_id: review_id});
 
-            if(newRating != 0){
-                await Review.updateOne({_id: review_id}, {review: newReview, review_title: newTitle, rating: newRating, dateModified: Date.now()});
-                const rev = Review.findOne({_id: review_id});
-                const cafe = Cafe.findOne({_id: rev.cafeName});
+            if(newRating != rev.rating || newRating != 0){
+                rev.review = newReview;
+                rev.review_title = newTitle;
+                rev.rating = newRating;
+                rev.dateModified = Date.now();
+                await rev.save();
+
+                const cafe = await Cafe.findOne({_id: rev.cafeName});
+                cafe.rating = 2 * parseFloat(cafe.rating) - parseInt(oldrating);
                 cafe.rating = (parseFloat(cafe.rating) + parseInt(newRating))/2;
+                await cafe.save();
             }
             else
                 await Review.updateOne({_id: review_id}, {review: newReview, review_title: newTitle, dateModified: Date.now()});
@@ -418,7 +453,7 @@ const controller = {
         try{
             const username = req.params.username;
             const split = username.split("%20")[0].split(" ");
-            console.log(split)
+           
             const userDetails = await User.findOne({firstname: split[0], lastname: split[1]});
             const reviews = await Review.find({reviewer: userDetails._id});
             const reviewList = [];
@@ -568,12 +603,9 @@ const controller = {
     - implement pagination
     - finish register
     - edit profile page
-    - upvotes and downvotes (might need to change how the db stores data so the page knows when the user has liked something already)
     - handle adding of media for reviews
     - change media in edit review
     - is the read more thing fixed?
-    - fix magic and magic2.js for hashed passwords (and whatever change occurs bc of upvotes and downvotes)
-    - dont forget to change passport-config to the hash password one
     */
     
 }

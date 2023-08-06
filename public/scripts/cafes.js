@@ -8,35 +8,36 @@ document.addEventListener("DOMContentLoaded",function() {
     // const userName;
 
     const submitBtn = document.getElementById("submit-review");
-    
-    submitBtn.addEventListener("click",function() {
-        
-        /*const urlParams = new URLSearchParams(window.location.search);
-        const email = urlParams.get('email');
-        console.log(email)*/
-        const review_title = document.querySelector("#review-title").value;
-        const review = document.querySelector("#review-editor").value;
-        const rating = document.querySelector("#selected-rating").value;
-        const dateCreated = Date.now();
-        const media = document.querySelector("#formFile").value;
-        //how to get current user
+    if(submitBtn != null){
+        submitBtn.addEventListener("click",function() {
+            
+            /*const urlParams = new URLSearchParams(window.location.search);
+            const email = urlParams.get('email');
+            console.log(email)*/
+            const review_title = document.querySelector("#review-title").value;
+            const review = document.querySelector("#review-editor").value;
+            const rating = document.querySelector("#selected-rating").value;
+            const dateCreated = Date.now();
+            const media = document.querySelector("#formFile").value;
+            //how to get current user
 
-        fetch('/addReview', {
-            method: "POST",
-            body: JSON.stringify({cafeName, review_title, review, rating, dateCreated, media}),
-            headers: {
-                'Content-Type': 'application/json'
+            fetch('/addReview', {
+                method: "POST",
+                body: JSON.stringify({cafeName, review_title, review, rating, dateCreated, media}),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(response => {
+                console.log(response.data);
+                if (response.status == 200){
+                    console.log("A")
+                }
+                else
+                    console.log("An error has occurred");
             }
-        }).then(response => {
-            console.log(response.data);
-            if (response.status == 200){
-                console.log("A")
-            }
-            else
-                console.log("An error has occurred");
-        }
-        );
-    });
+            );
+        });
+    }
 
     const btn = document.getElementById("myBtn");
     let check = true;
@@ -237,3 +238,11 @@ function downvoteClicked(path, counterUp, counterDown, upPath){
         counterUp.innerHTML = parseInt(counterUp.innerHTML) - 1;
     }
 };
+
+// Add an event listener to all "Read More" buttons
+document.querySelectorAll('.read-more-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+        const fullText = this.dataset.fulltext;
+        this.parentNode.innerHTML = `<p>${fullText}</p>`;
+    });
+});
