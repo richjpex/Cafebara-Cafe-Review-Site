@@ -47,10 +47,9 @@ document.addEventListener("DOMContentLoaded",function() {
       const review = editableforms[1].children[0].innerHTML;
       const parent = this.parentElement.parentElement.parentElement.parentElement;
 
-      
       const rating = selectedRatingInput.value;
       const review_id = parent.children[1].children[0].innerHTML;
-      
+
       fetch('/editReview', {
           method: 'PUT',
           body: JSON.stringify({review_id, review_title, review, rating}),
@@ -60,7 +59,7 @@ document.addEventListener("DOMContentLoaded",function() {
       }).then(response => {
           console.log(response.data);
           if (response.status == 200){
-              console.log("A")
+              location.reload()
           }
           else
               console.log("An error has occurred");
@@ -102,7 +101,7 @@ document.addEventListener("DOMContentLoaded",function() {
             const review_id = document.getElementById("review_id").innerHTML;
             const oldRatingDiv = document.getElementById(review_id);
             const oldRating = oldRatingDiv.children[0].children[1].getAttribute("data-rate");
-            console.log(oldRating);
+
             fetch('/editReview', {
                 method: 'PUT',
                 body: JSON.stringify({review_id, review_title, review, rating, media, oldRating}),

@@ -14,6 +14,8 @@ import flash from 'express-flash';
 import session from 'express-session';
 import cookieParser from 'cookie-parser';
 
+
+
 const port = process.env.SERVER_PORT;
 
 // import { connectToMongo, getDb }  from './conn.js';
@@ -83,10 +85,4 @@ Handlebars.registerHelper('truncateText', function (text, maxLength) {
         `<span class="truncated-text">${truncatedText}</span><button class="read-more-btn" data-fulltext="${text}">Read More</button>`
       );
     }
-  });
-
-  Handlebars.registerHelper('toggleReview', function (text) {
-    return new Handlebars.SafeString(
-      `<span class="full-text hidden">${text}</span><button class="read-more-btn">Read Less</button>`
-    );
   });

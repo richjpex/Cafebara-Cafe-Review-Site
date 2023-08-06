@@ -65,6 +65,13 @@ document.addEventListener("DOMContentLoaded",function() {
         }
     }
 
+    
+    const editBtn = document.getElementById('editbtn');
+    editBtn.addEventListener('click', function() {
+        document.getElementById('realEditButton').click();
+    });
+
+    /*
     const editreview = document.getElementById("editbtn");
     if(editreview != null){
         const changesbuttons = document.querySelector(".submitChanges");
@@ -99,7 +106,6 @@ document.addEventListener("DOMContentLoaded",function() {
             const editedon = document.getElementsByClassName("editedon user-edit");
             let date = getDate();
             
-            editedon[0].innerHTML = `<span class = "review_date">Last edited on: ${date}</span>`;
             changesbuttons.style.display = "none";
 
             if(check){
@@ -121,7 +127,7 @@ document.addEventListener("DOMContentLoaded",function() {
                 btn.style.display = "inline";
             }
         });
-    }
+    }*/
 
     function getDate(){
         const date = new Date();

@@ -1,4 +1,7 @@
 <link rel="stylesheet" href="../../css/about.css" />
+<script>
+    console.log("HELLO")
+</script>
 
 <div class="content-container">
     <h1>Meet the Team</h1>
@@ -7,7 +10,19 @@
 
     {{#each profilecards}}
         {{> profilecard this}}
-    {{/each}}
+    {{/each}}   
 
-</div>
+    </div>
+
+
+    <div id="dependencies">
+        <h2>
+            Libraries Used
+        </h2>
+        <ul>
+        {{#each dependencies}}
+            <li><b>{{@key}}</b> {{@this}}</li>
+        {{/each}}
+        </ul>
+    </div>
 </div>

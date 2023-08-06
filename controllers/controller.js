@@ -4,6 +4,19 @@ import { Cafe } from '../model/cafeSchema.js';
 import { Review } from '../model/reviewsSchema.js';
 import { User } from '../model/userSchema.js';
 import { Reply } from '../model/ownerReply.js';
+import fs from 'fs';
+import bcrypt from 'bcrypt';
+
+import multer from 'multer';
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, './uploads/');
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.originalname);
+    }
+});
+const upload = multer({ storage: storage });
 
 const controller = {
 
@@ -35,29 +48,47 @@ const controller = {
     },
 
     getAbout: async function(req, res) {
+
         try{
             const profilecards = [];
             const result = await About.find();
+
+            fs.readFile('package.json', 'utf8', (err, data) => {
+
+                if (err) {
+                  console.error('Error reading file:', err);
+                  return res.status(500).json({ error: 'Failed to read data.' });
+                }
+                
+                let jsonData = JSON.parse(data).dependencies;
+
+                // clean up the version number
+                for (let key in jsonData) jsonData[key] = `(${jsonData[key].substring(1)})`;
+                console.log(jsonData);
             
-            for(let i = 0; i < result.length; i++){
-                profilecards.push({
-                    name: result[i].name,
-                    position: result[i].position,
-                    bio: result[i].bio,
-                    // fb: result[i].fb,
-                    // twitter: result[i].twitter,
-                    // insta: result[i].insta,
-                    // git: result[i].git,
-                    image: result[i].image
+
+                for(let i = 0; i < result.length; i++){
+                    profilecards.push({
+                        name: result[i].name,
+                        position: result[i].position,
+                        bio: result[i].bio,
+                        // fb: result[i].fb,
+                        // twitter: result[i].twitter,
+                        // insta: result[i].insta,
+                        // git: result[i].git,
+                        image: result[i].image
+                    });
+                };
+                
+                res.render('about', {
+                    isAbout: true,
+                    profilecards: profilecards,
+                    session: req.isAuthenticated(),
+                    dependencies: jsonData
                 });
-            };
-            
-            res.render('about', {
-                isAbout: true,
-                profilecards: profilecards,
-                session: req.isAuthenticated()
             });
-        }catch{
+        }catch(e){
+            console.log(e)
             res.sendStatus(400)
         }
     },
@@ -334,11 +365,75 @@ const controller = {
         }
     },
 
-    settings: function (req, res) {
+    updateProfile: async function(req, res) {
         if(req.isAuthenticated()){
+            const user = await User.findOne({_id: req.user.user._id});
+            const updatedDetails = req.body;
+        
+            let img_path = req.file;
+            console.log(img_path);
+            if(img_path === undefined){
+                img_path = user.profilepic;
+            } 
+            else{
+                img_path = "./uploads/" + req.file.filename;
+            }         
+            
+            
+            
+            
+            const userDetails = await User.updateOne({_id: req.user.user._id}, {$set: {
+                profilepic: img_path,
+                firstname: updatedDetails.firstname,
+                lastname: updatedDetails.lastname,
+                email: updatedDetails.email,
+                password: await bcrypt.hash(updatedDetails.password, 10),
+                birthday: new Date(updatedDetails.year, updatedDetails.month, updatedDetails.day),
+                bio: updatedDetails.bio,
+            }});
+
+            
+                
+            res.redirect('/myprofile');
+            
+        }
+        else{
+            res.redirect('/');
+        }
+    },
+
+    settings: async function (req, res) {
+        if(req.isAuthenticated()){
+            const userDetails = await User.findOne({_id: req.user.user._id}); 
+            let day = '';
+            let month = '';
+            let year = '';
+            if(userDetails.birthday === undefined){
+                day = '';
+                month = '';
+                year = '';
+            }
+            else{
+                day = userDetails.birthday.getDate();
+                month = userDetails.birthday.getMonth();
+                year = userDetails.birthday.getFullYear();
+            }
+            const userdetails = {
+                profilepic: userDetails.profilepic,
+                email: userDetails.email,
+                imgsrc: userDetails.profilepic,
+                firstname: userDetails.firstname,
+                lastname: userDetails.lastname,
+                memberyear: userDetails.dateCreated.toString().substring(11, 15),
+                bio: userDetails.bio,
+                day: day,
+                month: month,
+                year: year,
+            }
             res.render ('settings', {
                 layout: 'profileTemplate', 
-                session: req.isAuthenticated()
+                session: req.isAuthenticated(),
+                userProfile: userdetails,
             });
         }
         else{
@@ -402,7 +497,7 @@ const controller = {
     editReview: async function(req, res) {
         try{
             const review_id = req.body.review_id;
-            const newReview = req.body.review.trim();
+            const newReview = req.body.review;
             const newTitle = req.body.review_title.trim();
             const newRating = req.body.rating;
             const oldrating = req.body.oldRating;
