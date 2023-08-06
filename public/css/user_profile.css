@@ -328,3 +328,7 @@ h5.recommended {
 }
 
 .hard { margin: 0 !important; }
+
+.numreviews{
+  color: var(--fivenary);
+}
