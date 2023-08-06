@@ -6,34 +6,39 @@
     <!-- collapsible write -->
     <div class = "write_review">
         <button class="btn btn-dark" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-            Write a review
+            {{#unless writeReview}}
+                Write a review
+            {{else}}
+                Update review
+            {{/unless}}
         </button>
-        <div class="collapse" id="collapseExample">
-            <div class="card card-body">
-                <div class = "review-wrapper">
-                    <form name="writeReview" id = "reviewWrite">
-                        <div class="rating-container">
-                            <span class="star" data-rating="1"></span>
-                            <span class="star" data-rating="2"></span>
-                            <span class="star" data-rating="3"></span>
-                            <span class="star" data-rating="4"></span>
-                            <span class="star" data-rating="5"></span>
-                          </div>
-                          <input type="hidden" id="selected-rating" value="0" />
-                        <div class = "review-title">
-                            <input class="form-control form-control-lg review-title" type="text" id = "review-title" placeholder="Title" aria-label=".form-control-lg example">                        </div>
-                        <div class = "review-content">
-                            <textarea class="form-control review-body" placeholder="Leave your review here" id="review-editor" style="height: 100px"></textarea>
-                            <div class = "attachmedia">
-                                  <input class="form-control" type="file" id="formFile" accept = "image/*, video/*">
+            <div class="collapse" id="collapseExample">
+                <div class="card card-body">
+                    <div class = "review-wrapper">
+                        <form name="writeReview" id = "reviewWrite">
+                            <div class="rating-container">
+                                <span class="star" data-rating="1"></span>
+                                <span class="star" data-rating="2"></span>
+                                <span class="star" data-rating="3"></span>
+                                <span class="star" data-rating="4"></span>
+                                <span class="star" data-rating="5"></span>
                             </div>
-                        </div>
-                        <br>
-                        <input type = "submit" id = "submit-review">
-                    </form>
+                            <input type="hidden" id="selected-rating" value="{{rating}}" />
+                            <div class = "review-title">
+                                <input class="form-control form-control-lg review-title" {{#if writeReview}}value = "{{review_title}}"{{/if}} type="text" id = "review-title" {{#unless writeReview}}placeholder="Title"{{/unless}} aria-label=".form-control-lg example">                        </div>
+                            <div class = "review-content">
+                                <textarea class="form-control review-body" {{#unless writeReview}}placeholder="Leave your review here"{{/unless}} id="review-editor" style="height: 100px">{{#if writeReview}}{{review_text}}{{/if}}</textarea>
+                                <div class = "attachmedia">
+                                    <input class="form-control" {{#if writeReview}}value = "{{review_media}}"{{/if}} type="file" id="formFile" accept = "image/*, video/*">
+                                </div>
+                            </div>
+                            <br>
+                            <div id = "review_id" hidden = "true">{{reviewId}}</div>
+                            <input type = "submit" id = "{{#unless writeReview}}submit-review{{else}}edit-review{{/unless}}">
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
     </div>
 
     <div class="content_review">
