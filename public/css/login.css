@@ -204,3 +204,8 @@ input#submit:hover{
 label{
     margin-bottom: 0;
 }
+
+footer {
+    position: absolute;
+    bottom: 0;
+}
