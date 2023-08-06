@@ -31,6 +31,18 @@ const userSchema = new Schema({
     
     birthday: {
         type: Date
+    },
+
+    upvotes: {
+        type: [Schema.Types.ObjectId],
+        ref: 'Review',
+        default: []
+    },
+
+    downvotes: {
+        type: [Schema.Types.ObjectId],
+        ref: 'Review',
+        default: []
     }
 });
 

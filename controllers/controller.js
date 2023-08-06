@@ -94,17 +94,25 @@ const controller = {
             const cafeName = req.params.cafeName;
     
             const cafe = await Cafe.findOne({name: cafeName}); 
-            
             const reviews = await Review.find({cafeName: cafe._id});
-    
+            const session = req.isAuthenticated();
             const reviewList = [];
             for(let i = 0; i < reviews.length; i++){
                 const reply = await Reply.findOne({_id: reviews[i].ownerReply});
 
                 const reviewer = await User.findOne({_id: reviews[i].reviewer});
                 let author = false;
-                if(req.user){
+                let upvoted = false;
+                let downvoted = false;
+                if(session){
                     author = (reviewer.email == req.user.user.email) ? true: false;
+                    
+                    if(req.user.user.upvotes.includes(reviews[i]._id)){
+                        upvoted = true;
+                    }
+                    else if(req.user.user.downvotes.includes(reviews[i]._id)){
+                        downvoted = true;
+                    }
                 }
                     
                 let review = {
@@ -121,6 +129,9 @@ const controller = {
                     author: author,
                     date: reviewer.dateCreated.toString().substring(11, 15),
                     reviewId: reviews[i]._id,
+                    upvoted: upvoted,
+                    downvoted: downvoted,
+                    session: session
                 };
                 if(reviews[i].dateModified != null)
                     review.editdate = reviews[i].dateModified.toString().substring(0, 15);
@@ -151,7 +162,7 @@ const controller = {
                 layout: 'cafeTemplate',
                 cafePage: cafeView,
                 reviews: reviewList,
-                session: req.isAuthenticated(),
+                session: session,
             });
         }catch(err){
             console.log(err)
@@ -186,7 +197,7 @@ const controller = {
 
             const newReview = new Review(newDoc);
             await newReview.save();
-            cafe.rating = (cafe.rating + rating)/2;
+            cafe.rating = (parseFloat(cafe.rating) + parseInt(rating))/2;
             await cafe.save();
 
             res.sendStatus(200)
@@ -372,7 +383,7 @@ const controller = {
                 await Review.updateOne({_id: review_id}, {review: newReview, review_title: newTitle, rating: newRating, dateModified: Date.now()});
                 const rev = Review.findOne({_id: review_id});
                 const cafe = Cafe.findOne({_id: rev.cafeName});
-                cafe.rating = (cafe.rating + newRating)/2;
+                cafe.rating = (parseFloat(cafe.rating) + parseInt(newRating))/2;
             }
             else
                 await Review.updateOne({_id: review_id}, {review: newReview, review_title: newTitle, dateModified: Date.now()});
@@ -463,7 +474,73 @@ const controller = {
             res.sendStatus(400)
         }
 
-    }
+    },
+
+    upvote: async function(req, res) {
+        try{
+            if(req.isAuthenticated()){
+                const review_id = req.body.reviewId;
+                const user = await User.findOne({_id: req.user.user._id});
+                const review = await Review.findOne({_id: review_id});
+
+                if(user.upvotes.includes(review_id)){
+                    user.upvotes.splice(user.upvotes.indexOf(review_id), 1);
+                    review.upvotes--;
+                }
+                else{
+                    if(user.downvotes.includes(review_id)){
+                        user.downvotes.splice(user.downvotes.indexOf(review_id), 1);
+                        review.downvotes--;
+                    }
+                    user.upvotes.push(review_id);
+                    review.upvotes++;
+                }
+
+                await user.save();
+                await review.save();
+                res.sendStatus(200);
+            }
+            else
+                res.sendStatus(400)
+        }
+        catch(err){
+            console.log(err);
+            res.sendStatus(400)
+        }
+    },
+    
+    downvote: async function(req, res) {
+        try{
+            if(req.isAuthenticated()){
+                const review_id = req.body.reviewId;
+                const user = await User.findOne({_id: req.user.user._id});
+                const review = await Review.findOne({_id: review_id});
+
+                if(user.downvotes.includes(review_id)){
+                    user.downvotes.splice(user.downvotes.indexOf(review_id), 1);
+                    review.downvotes--;
+                }
+                else{
+                    if(user.upvotes.includes(review_id)){
+                        user.upvotes.splice(user.upvotes.indexOf(review_id), 1);
+                        review.upvotes--;
+                    }
+                    user.downvotes.push(review_id);
+                    review.downvotes++;
+                }
+
+                await user.save();
+                await review.save();
+                res.sendStatus(200);
+            }
+            else
+                res.sendStatus(400)
+        }
+        catch(err){
+            console.log(err);
+            res.sendStatus(400)
+        }
+    },
 
     /*TODO
     - owner profile i feel there is stuff im missing
