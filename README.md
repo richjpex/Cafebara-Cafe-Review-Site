@@ -11,7 +11,7 @@
 3. Run the web app using `npm run start`
 4. Enter "http://localhost:3000/" in the browser address bar
 5. Enjoy
-NOTE:  
+- NOTE:  
     - Collections should still be manually imported to MongoDB.
         - Obtain the JSON files of the pre-existing collections in 'db_data_init' folder
         - Using MongoDB Compass, import the file collections to the database "apdev_test"
