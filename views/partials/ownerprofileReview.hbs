@@ -1,0 +1,63 @@
+<div class="card">
+    <h5 class="card-header">
+        <img src = ".{{userimg}}" class = "reviewer-img">
+        <div class = "userinfo">
+          {{username}}<br>
+          <span class = "member_since">member since {{memberyear}}</span>
+        </div>
+    </h5>
+    <div class="card-body">
+      <h5 class="card-title">{{title}}</h5>
+      <div class = "cb_rating">
+        <img src="../../images/ratings/{{#grequal rating 1}}full{{else}}empty{{/grequal}}.png"/>
+        <img src="../../images/ratings/{{#grequal rating 2}}full{{else}}empty{{/grequal}}.png"/>
+        <img src="../../images/ratings/{{#grequal rating 3}}full{{else}}empty{{/grequal}}.png"/>
+        <img src="../../images/ratings/{{#grequal rating 4}}full{{else}}empty{{/grequal}}.png"/>
+        <img src="../../images/ratings/{{#grequal rating 5}}full{{else}}empty{{/grequal}}.png"/>
+        <br>
+        <span class = "review_date">Reviewed on {{reviewdate}}</span>
+      </div>
+      <p class="card-text">
+          {{reviewtext}}
+      </p>
+      <div class = "data" hidden = "true">
+        <span>{{reviewId}}</span>
+      </div>
+      {{#if media}}
+      <div class="review_pics_container" style= "margin: 0">
+        <video src="../../videos/Learning with FGO - Gudako crazy about gacha.mp4" class="object-fit-cover" controls></video>
+      </div>
+      {{/if}}
+      {{#unless reply}}
+      <div class = "write_review reply-button" style = "margin: 0;">
+        <button class="btn btn-dark" type="button" data-bs-toggle="collapse" data-bs-target="#{{reviewId}}" aria-expanded="false" aria-controls="collapseExample">
+            Reply
+        </button>
+        <div class="collapse" id="{{reviewId}}">
+            <div class="card card-body">
+                <div class = "review-wrapper">
+                    <form>
+                        <div class = "review-content">
+                            <textarea class="form-control review-body" name = "replyText" placeholder="Write a reply" id="review-editor" style="height: 100px"></textarea>
+                        </div>
+                        <input type = "submit" class = "submit-review">
+                    </form>
+                </div>
+            </div>
+        </div>
+      </div>
+      {{else}}
+      <br>
+      <div class = "ownerreply" style = "margin:0; padding : 0;">
+            <div class = "ownerreplytext">
+                <h4>Owner Reply</h4>
+                <!--<span class = "customeraddressed">XiJin P.</span>-->
+                <span class = "review_date">Replied on {{reply_date}}</span>
+            </div>
+            <div class = "ownerreplycontent">
+                <p>{{reply}}</p>
+            </div>
+        </div>
+      {{/unless}}
+    </div>
+  </div>

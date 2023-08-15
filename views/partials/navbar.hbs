@@ -9,46 +9,18 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
-        {{#if isIndex}}
-          <li class="nav-item active">
-            <a class="nav-link active" aria-current="page" href="/">Home</a>
+          <li class="nav-item {{#if isIndex}}active{{else}}inactive{{/if}}">
+            <a class="nav-link {{#if isIndex}}active{{/if}}" aria-current="page" href="/">Home</a>
           </li>
-          <li class="nav-item inactive">
-            <a class="nav-link" href="/cafe">Review</a>
+          <li class="nav-item {{#if isCafe}}active{{else}}inactive{{/if}}">
+            <a class="nav-link {{#if isCafe}}active{{/if}}" href="/cafe">Review</a>
           </li>
-          <li class="nav-item inactive">
-            <a class="nav-link" href="/about">About</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" id="login" href="/login">Login</a>
-          </li>
-        {{else if isAbout}}
-          <li class="nav-item inactive">
-            <a class="nav-link" href="/">Home</a>
-          </li>
-          <li class="nav-item inactive">
-            <a class="nav-link" href="/cafe">Review</a>
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link active" href="/about">About</a>
+          <li class="nav-item {{#if isAbout}}active{{else}}inactive{{/if}}">
+            <a class="nav-link {{#if isAbout}}active{{/if}}" href="/about">About</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" id="login" href="/login">Login</a>
           </li>
-        {{else}}
-          <li class="nav-item inactive">
-            <a class="nav-link" href="/">Home</a>
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link active" href="/cafe">Review</a>
-          </li>
-          <li class="nav-item inactive">
-            <a class="nav-link" href="/about">About</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" id="login" href="/login">Login</a>
-          </li>
-        {{/if}}
       </ul>
     </div>
   </div>

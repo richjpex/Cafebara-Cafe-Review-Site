@@ -82,7 +82,7 @@ a.dropdown-item:hover{
 
 body {
     background-color: #fafafa;
-    background-image: url('../images/leaf_bg.png');
+    background-image: url('../images/assets/leaf_bg.png');
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
@@ -328,3 +328,7 @@ h5.recommended {
 }
 
 .hard { margin: 0 !important; }
+
+.numreviews{
+  color: var(--fivenary);
+}

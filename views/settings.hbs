@@ -1,76 +1,88 @@
-  <div class = "content-wrapper">
+  <form class = "editprofileform" name = "editprofileform" action = "/updateprofile" method="POST" enctype="multipart/form-data">
+     <div class = "content-wrapper">
+                
         <div class = "profilepic">
-            <img src = "../../images/assets/2logo.png" id = "profilepic">
+            <img src = {{userProfile.profilepic}} id = "profilepic">
             <div class = "uploadphoto-btn">
                 <label for = "uploadbtn">Upload Photo</label>
-                <input type = "file"  id = "uploadbtn" class = "hidden" name = "dp-upload" accept = "image/*">
+                <input type = "file"  id = "uploadbtn" class = "hidden" name = "dp_upload" accept = "image/*" single>
             </div>
         </div>
         <div class = "vertline"></div>
         <div class = "right-div">
-            <form class = "editprofileform" name = "editprofileform" action = "../../html/user-views/user-profile.html">
-                <div class = "singlebox">
-                    <label for = "username">Username</label>
-                    <input type = "text" id = "username" class = "form-control" placeholder = "Edit username">
-                </div>
                 <div class = "irlname doubleboxwrapper spacing">
                     <div>
                         <label for = "firstname">First Name</label>
-                        <input type = "text" id = "firstname" class = "form-control" placeholder = "Edit first name">
+                        <input type = "text" name ="firstname" id = "firstname" class = "form-control" placeholder = "Edit first name" value={{userProfile.firstname}}>
                     </div>
                     <div class = "hspacing" style="margin-left: 0 !important;">    
                         <label for = "lastname">Last Name</label>
-                        <input type = "text" id = "lastname" class = "form-control" placeholder = "Edit last name">
+                        <input type = "text" name ="lastname" id = "lastname" class = "form-control" placeholder = "Edit last name" value={{userProfile.lastname}}>
                     </div>
                 </div>
                 <div class = "tripleboxwrapper spacing">
                     <div id = "daydiv">
                         <label for = "day">Day</label>
-                        <input type = "number" id = "day" class = "form-control" placeholder = "DD" min = "1" max = "31">
+                        <input type = "number" id = "day" name ="day" class = "form-control" placeholder = "DD" min = "1" max = "31" value={{userProfile.day}} required="required">
                     </div>
                     <div class = "col-6" id = "monthdiv">
                         <label for = "month">Month</label>
-                        <select id = "month" class = "form-select">
-                            <option value = "none" disabled selected hidden>Month</option>
-                            <option value = "jan">January</option>
-                            <option value = "feb">February</option>
-                            <option value = "mar">March</option>
-                            <option value = "apr">April</option>
-                            <option value = "may">May</option>
-                            <option value = "jun">June</option>
-                            <option value = "jul">July</option>
-                            <option value = "aug">August</option>
-                            <option value = "sep">September</option>
-                            <option value = "oct">October</option>
-                            <option value = "nov">November</option>
-                            <option value = "dec">December</option>
+                        <select id = "month" name ="month" class = "form-select" required="required">
+                            <option id="def" value = "" disabled hidden>Month</option>
+                            <option value = "0">January</option>
+                            <option value = "1">February</option>
+                            <option value = "2">March</option>
+                            <option value = "3">April</option>
+                            <option value = "4">May</option>
+                            <option value = "5">June</option>
+                            <option value = "6">July</option>
+                            <option value = "7">August</option>
+                            <option value = "8">September</option>
+                            <option value = "9">October</option>
+                            <option value = "10">November</option>
+                            <option value = "11">December</option>
                         </select>
                     </div>
                     <div id = "yeardiv">
                         <label for = "year">Year</label>
-                        <input type = "number" id = "year" class = "form-control" placeholder = "YYYY">
+                        <input type = "number" name ="year" id = "year" class = "form-control" placeholder = "YYYY" value={{userProfile.year}} required="required">
                     </div>
                 </div>
                 <div class = "bio-box spacing"> <!--Its not as gross as it sounds-->
                     <label for = "bio">Bio</label>
-                    <textarea id = "bio" placeholder = "Edit bio" class = "form-control"></textarea>
+                    <textarea id = "bio" name ="bio" placeholder = "Edit bio" class = "form-control" >{{userProfile.bio}}</textarea>
                 </div>
                 <div class = "singlebox spacing">
                     <label for = "email">Email</label>
-                    <input type = "email" id = "email" class = "form-control" placeholder = "Edit email">
+                    <input type = "email" id = "email" name ="email" class = "form-control" placeholder = "Edit email" value="{{userProfile.email}}" required>
                 </div>
                 <div class = "singlebox spacing">
                     <label for = "password">Password</label>
-                    <input type = "password" id = "password" class = "form-control" placeholder = "Edit password">
+                    <input type = "password" name ="password" id = "password" class = "form-control" placeholder = "Edit password" required>
                 </div>
                 <div class = "singlebox spacing">
                     <label for = "confirmpassword">Confirm Password</label>
-                    <input type = "password" id = "confirmpassword" class = "form-control" placeholder = "Confirm password">
+                    <input type = "password" id = "confirmpassword" class = "form-control" placeholder = "Confirm password" required>
                 </div>
                 <div class = "btns spacing">
                     <input type = "reset" class = "btn btn-secondary" value = "Cancel">
                     <input type = "submit" class = "btn btn-primary" value = "Save Changes">
                 </div>
-            </form>
+            
         </div>
     </div>
+</form>
+    <script>
+        document.addEventListener("DOMContentLoaded", (event) => {
+            const selectElement = document.getElementById('month');
+            const desiredValue = '{{userProfile.month}}';
+            for (const option of selectElement.options) {
+                if (option.value === desiredValue) {
+                    option.selected = true;
+                    return;
+                }
+            }
+            document.getElementById('def').selected = true;
+
+        });
+    </script>

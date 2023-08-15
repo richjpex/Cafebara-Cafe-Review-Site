@@ -13,7 +13,7 @@
 }
 
 body {
-    background-image: url('../images/assets/leaf_bg.png');
+    background-image: url('./images/assets/leaf_bg.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-color: #fafafa;
@@ -370,3 +370,11 @@ div[contenteditable="true"]{
     padding: 0;
     margin: 0;
 }
+
+a{
+    text-decoration: none;
+    color: var(--primary);
+    display: flex;
+    cursor: pointer;
+}
+

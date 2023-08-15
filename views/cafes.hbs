@@ -1,7 +1,6 @@
 
 
 <link rel="stylesheet" href="../../css/view_cafes.css" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
 <script>
     function sortCafes(priceLabel) {
         const cafes = document.querySelectorAll('.card');
@@ -14,6 +13,26 @@
                     (priceLabel === 'P' && cafePrice < 200) ||
                     (priceLabel === 'PP' && cafePrice >= 200 && cafePrice < 250) ||
                     (priceLabel === 'PPP' && cafePrice >= 250)
+                );
+                cafe.style.display = shouldShow ? 'block' : 'none';
+            }
+        });
+    }
+
+    //make a function that sorts cafes by rating
+    function sortCafesByRating(ratingLabel) {
+        const cafes = document.querySelectorAll('.card');
+        cafes.forEach(cafe => {
+            if (ratingLabel === 'all') {
+                cafe.style.display = 'block'; // Show all cafes
+            } else {
+                const cafeRating = parseFloat(cafe.getAttribute('data-rating'));
+                const shouldShow = (
+                    (ratingLabel === '1' && cafeRating <= 1) ||
+                    (ratingLabel === '2' && cafeRating > 1 && cafeRating <= 2) ||
+                    (ratingLabel === '3' && cafeRating > 2 && cafeRating <= 3) ||
+                    (ratingLabel === '4' && cafeRating > 3 && cafeRating <= 4) ||
+                    (ratingLabel === '5' && cafeRating > 4)
                 );
                 cafe.style.display = shouldShow ? 'block' : 'none';
             }
@@ -32,7 +51,7 @@
                 </div>
               {{> filters}}
              
-              {{> cafelist}}
+              {{> cafelist this}}
               
               <!-- 
                 Right Column

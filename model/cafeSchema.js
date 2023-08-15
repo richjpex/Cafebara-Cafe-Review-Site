@@ -14,7 +14,8 @@ const cafeSchema = new Schema({
         //unique: true
     },
     description: {
-        type: String
+        type: String,
+        default: "No description... Uncappy-bara :("
     },
     weekdays_avail:{
         type: String,
@@ -23,10 +24,12 @@ const cafeSchema = new Schema({
         type: String,
     },
     website:{
-        type: String
+        type: String,
+        default: "N/A"
     },
     phone:{
-        type: String
+        type: String,
+        default: "N/A"
     },
     email:{
         type: String,
@@ -38,7 +41,10 @@ const cafeSchema = new Schema({
         required: true
     },
 
-    image: String,
+    image: {
+        type: String,
+        default: "./uploads/cafes/default_cafe.webp"
+    },
 
     rating: {
         type: Number,
@@ -49,7 +55,7 @@ const cafeSchema = new Schema({
     price: {
         type: Number,
         required: true,
-        default: 0
+        default: 100
     },
 
     dateCreated: {
@@ -58,9 +64,7 @@ const cafeSchema = new Schema({
     },
 
     menu: {
-        type: String,
-        default: "No menu posted. Please contact the store."   
-    }
+        type: String    }
 });
 
 export const Cafe = mongoose.model('Cafes', cafeSchema);

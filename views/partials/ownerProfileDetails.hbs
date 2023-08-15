@@ -1,0 +1,30 @@
+<script src = "./scripts/ownerprofile.js" defer></script>
+<div class="col-3">
+    <div class="container-sm">
+
+    <img src=".{{cafeimg}}" style="width: 100%; border-radius: 10%; border: 1px solid grey;">
+    <h5 class="recommended">
+        {{cafeName}}
+    </h5>
+
+      <p class="recommended">
+        member since {{memberyear}}
+      </p>
+      <p class = "ratings">
+        <img src="../../images/ratings/{{#grequal rating 1}}full{{else grequal rating 0.5}}half{{else}}empty{{/grequal}}.png"/>
+        <img src="../../images/ratings/{{#grequal rating 2}}full{{else grequal rating 1.5}}half{{else}}empty{{/grequal}}.png"/>
+        <img src="../../images/ratings/{{#grequal rating 3}}full{{else grequal rating 2.5}}half{{else}}empty{{/grequal}}.png"/>
+        <img src="../../images/ratings/{{#grequal rating 4}}full{{else grequal rating 3.5}}half{{else}}empty{{/grequal}}.png"/>
+        <img src="../../images/ratings/{{#grequal rating 5}}full{{else grequal rating 4.5}}half{{else}}empty{{/grequal}}.png"/>
+        <span class = "numreviews">{{rating}} ({{numreviews}})</span>
+      </p>
+      <hr>
+        <p>
+          <h5 class = "recommended">Description</h5>
+          {{description}}
+        </p>
+
+        <hr>
+    </div>
+
+</div>  

@@ -1,5 +1,5 @@
-{{#each cafePage}}
 <div class = "left">
+    <span id = "cafe_id" hidden>{{cafe_id}}</span>
     <div class = "pic_container">
         <img src = ".{{imgPath}}">
     </div>
@@ -10,7 +10,7 @@
     <div class = "map_container">
         <div id="map" style="width: 100%; height: 250px;"></div>
     </div>
-    <div class="container text-center loc_and_time">
+    <div class="container text-center loc_and_time" >
         <div class = "address">
             {{address}}    
         </div>
@@ -39,12 +39,12 @@
         <hr>
     </div>
     <div class = "cb_rating">
-        <img src="../../images/ratings/full.png"/>
-        <img src="../../images/ratings/full.png"/>
-        <img src="../../images/ratings/full.png"/>
-        <img src="../../images/ratings/full.png"/>
-        <img src="../../images/ratings/full.png"/>
-        <span class = "numreviews">({{numReviews}})</span>
+        <img src="../../images/ratings/{{#grequal rating 1}}full{{else grequal rating 0.5}}half{{else}}empty{{/grequal}}.png"/>
+        <img src="../../images/ratings/{{#grequal rating 2}}full{{else grequal rating 1.5}}half{{else}}empty{{/grequal}}.png"/>
+        <img src="../../images/ratings/{{#grequal rating 3}}full{{else grequal rating 2.5}}half{{else}}empty{{/grequal}}.png"/>
+        <img src="../../images/ratings/{{#grequal rating 4}}full{{else grequal rating 3.5}}half{{else}}empty{{/grequal}}.png"/>
+        <img src="../../images/ratings/{{#grequal rating 5}}full{{else grequal rating 4.5}}half{{else}}empty{{/grequal}}.png"/>
+        <span class = "numreviews">{{rating}} ({{numReviews}})</span>
     </div>
     <div class = "average-cost">
         <i>Avg. Php{{price}}</i>
@@ -58,7 +58,13 @@
     <div class = "details">
         <h3>Menu</h3>
         <hr>
-        <p>{{menu}}<br>
+        <p>
+            {{#if menu}}
+                <img src = ".{{menu}}">
+            {{else}}
+                <i>No menu available</i>
+            {{/if}}
+            <br>
         </p>
     </div>
     <div class = "details">
@@ -84,6 +90,5 @@
         </p>
     </div>
 </div>
- {{/each}}
 
 {{> map_script}}

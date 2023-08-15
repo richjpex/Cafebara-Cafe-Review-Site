@@ -15,7 +15,8 @@
         </div>
         <br>
         <div class = "form-wrapper">
-            <form name = "login" action="/login_success" method = "POST" >
+            <span id="errReg" style="color: red;">{{message}}</span>
+            <form name = "login" action="/login" method = "POST" >
                 <div class = "singlebox">
                     <label for="email">Email</label>
                     <input type="email" class = "inputfield" placeholder = "Enter your email" id = "email" name="email" required>
@@ -26,7 +27,7 @@
                 </div>
                 
                 <div id = "buton">
-                    <p id="errorMessage"></p>
+                    <p id="errorMessage" class="d-none">Invalid email or password</p>
                     <input type = "submit" id = "submit" name = "submit" value = "Sign In">
                 </div>
             </form>

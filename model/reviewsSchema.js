@@ -33,7 +33,10 @@ const reviewsSchema = new Schema({
         required: true
     },
 
-    mediaPath: String,
+    mediaPath:{
+        type: [String],
+        default: []
+    },
 
     dateCreated: {
         type: Date,

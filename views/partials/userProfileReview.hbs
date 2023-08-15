@@ -1,0 +1,23 @@
+ <div class="card mb-3">
+    <div class="row g-0" style="margin: 0;">
+        <div class="col-md-4">
+        <img src=".{{cafeimg}}" class="img-fluid rounded" alt="...">
+        </div>
+
+        <div class="col-md-6">
+        <div class="card-body"  style="margin: 0;">
+            <a href="/cafe/{{cafe}}"><h5 class="card-title">{{cafe}}</h5></a>
+            <div class="hard">
+                <img src="../../images/ratings/{{#grequal rating 1}}full{{else grequal rating 0.5}}half{{else}}empty{{/grequal}}.png"/>
+                <img src="../../images/ratings/{{#grequal rating 2}}full{{else grequal rating 1.5}}half{{else}}empty{{/grequal}}.png"/>
+                <img src="../../images/ratings/{{#grequal rating 3}}full{{else grequal rating 2.5}}half{{else}}empty{{/grequal}}.png"/>
+                <img src="../../images/ratings/{{#grequal rating 4}}full{{else grequal rating 3.5}}half{{else}}empty{{/grequal}}.png"/>
+                <img src="../../images/ratings/{{#grequal rating 5}}full{{else grequal rating 4.5}}half{{else}}empty{{/grequal}}.png"/>
+                <span class = "numreviews">{{rating}}</span>
+            <br></div>
+            <p class="card-text">{{title}}</p>
+            <p class="card-text"><small class="text-body-secondary">{{reviewtext}}</small></p>
+        </div>
+        </div>
+    </div>
+</div>
