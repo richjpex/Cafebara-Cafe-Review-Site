@@ -1,32 +1,43 @@
-# CCAPDEV-GROUP11
-## cafebara cafe review site with backend
+# CCAPDEV-Cafebara
 
 -----------------------------------------------------------------------
-<<<<<<< HEAD
-HOW TO RUN WEB APP:
+## How to run web app:
 1. Install dependencies using `npm i`
-2. Populate the DB using
-    1. `npm run pop1`
+2. Populate DB and hash passwords
+    1. Run `node pop.js`
     2. Terminate manually
-    3. `npm run pop2`
+    3. Run `node hashAll.js`
     4. Terminate manually
 3. Run the web app using `npm run start`
 4. Enter "http://localhost:3000/" in the browser address bar
 5. Enjoy
-=======
-NOTE:   
-    - Make sure to have a working 
+NOTE:  
     - Collections should still be manually imported to MongoDB.
         - Obtain the JSON files of the pre-existing collections in 'db_data_init' folder
         - Using MongoDB Compass, import the file collections to the database "apdev_test"
->>>>>>> f5d61038973dc27714ab771f8c162ff6e2b84282
-
+        - 
     - To run the website
         - Start the server using "npm start" command
         - Enter "http://localhost:3000/cafebara/" in the browser url to open index.html (guest-view)
-    
------------------------------------------------------------------------
 
+-----------------------------------------------------------------------
+## Credentials
+### Cafes
+bigbosscafe@gmail.com: password: b1gb0ss
+boscoffee@gmail.com: b0sc0ffee
+coffeeproject@gmail.com: c0ff33pr0ject
+nitro7taft@gmail.com: n1tr07
+obscurecafetaft@gmail.com: 0bscur3
+starbucksgreencourt@gmail.com: st4rbuck5
+### Users
+orrin@gmail.com: orrinpassword
+migs@gmail.com: migspassword
+rich@gmail.com: richpassword
+ice@gmail.com: icepassword
+shinji@eva.com:  shinjipassword
+
+-----------------------------------------------------------------------
+## Specifications
 The following describes the features of a restaurant / store / service review web application. Groups may choose to either develop a review web application for either restaurants, stores, or services. For realism, groups may base the establishments featured in the application from actual establishments that are found around the campus. The minimum features required to be implemented for this project is as follows:
 - View establishments
   - Upon visiting the web page, an unregistered visitor may see a list of establishments that are featured in the web application.
