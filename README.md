@@ -1,4 +1,4 @@
-# CCAPDEV-Cafebara
+# CCAPDEV-Cafebara-GROUP11
 
 -----------------------------------------------------------------------
 ## How to run web app:
@@ -23,18 +23,18 @@ NOTE:
 -----------------------------------------------------------------------
 ## Credentials
 ### Cafes
-bigbosscafe@gmail.com: password: b1gb0ss
-boscoffee@gmail.com: b0sc0ffee
-coffeeproject@gmail.com: c0ff33pr0ject
-nitro7taft@gmail.com: n1tr07
-obscurecafetaft@gmail.com: 0bscur3
-starbucksgreencourt@gmail.com: st4rbuck5
+- bigbosscafe@gmail.com: password: b1gb0ss
+- boscoffee@gmail.com: b0sc0ffee
+- coffeeproject@gmail.com: c0ff33pr0ject
+- nitro7taft@gmail.com: n1tr07
+- obscurecafetaft@gmail.com: 0bscur3
+- starbucksgreencourt@gmail.com: st4rbuck5
 ### Users
-orrin@gmail.com: orrinpassword
-migs@gmail.com: migspassword
-rich@gmail.com: richpassword
-ice@gmail.com: icepassword
-shinji@eva.com:  shinjipassword
+- orrin@gmail.com: orrinpassword
+- migs@gmail.com: migspassword
+- rich@gmail.com: richpassword
+- ice@gmail.com: icepassword
+- shinji@eva.com:  shinjipassword
 
 -----------------------------------------------------------------------
 ## Specifications
